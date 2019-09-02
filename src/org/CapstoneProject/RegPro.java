@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -30,6 +31,7 @@ import javax.swing.JTextField;
 public class RegPro extends JFrame implements ActionListener, ItemListener {
    
    ArrayList ar = new ArrayList();
+   ArrayList ar1 = new ArrayList();
    
    private JLabel vRegModel, vRegPro2, vProNm, vSale, vModelCtgr2, vModelNm, vPrice, vAdminModel, 
    vModelCtgr, vRegPro, vAdminPro, vProUp, vProSize, vProDetail, vProColor, vProStock;
@@ -39,7 +41,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 //   private JTextArea xPrice;
 
 //   private JPasswordField xMemPw1, xMemPw2;
-//   private String[] ctgr1 = {"»óÀÇ", "ÇÏÀÇ", "¾Æ¿ìÅÍ", "¼ÅÃ÷", "½Å¹ß"};
+//   private String[] ctgr1 = {"ìƒì˜", "í•˜ì˜", "ì•„ìš°í„°", "ì…”ì¸ ", "ì‹ ë°œ"};
 //   private String[] size = {""};
    private String[] size1 = {"90", "95", "100", "105", "110"};
    private String[] size2 = {"27", "28", "29", "30", "31", "32", "33", "34", "35" };  
@@ -73,24 +75,24 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       gbl = new GridBagLayout();
       gbc = new GridBagConstraints(); 
         
-      vRegModel = new JLabel("¸ğµ¨µî·Ï");
+      vRegModel = new JLabel("ëª¨ë¸ë“±ë¡");
       vRegModel.setPreferredSize(new Dimension(200,28));
-      vRegPro2 = new JLabel("»óÇ°µî·Ï");
+      vRegPro2 = new JLabel("ìƒí’ˆë“±ë¡");
       vRegPro2.setPreferredSize(new Dimension(200,28));
-      vAdminModel = new JLabel("¸ğ‰K°Ë»ö");
+      vAdminModel = new JLabel("ëª¨Â‰Kê²€ìƒ‰");
       vAdminModel.setPreferredSize(new Dimension(200,28));
-      vModelCtgr = new JLabel("¸ğµ¨ºĞ·ù");
+      vModelCtgr = new JLabel("ëª¨ë¸ë¶„ë¥˜");
       vModelCtgr.setPreferredSize(new Dimension(200,28));
-      vRegPro = new JLabel("»óÇ°µî·Ï");
+      vRegPro = new JLabel("ìƒí’ˆë“±ë¡");
       vRegPro.setPreferredSize(new Dimension(200,28));
-      vAdminPro = new JLabel("»óÇ°°ü¸®");
+      vAdminPro = new JLabel("ìƒí’ˆê´€ë¦¬");
       vAdminPro.setPreferredSize(new Dimension(200,28));
-      vProUp = new JLabel("»óÇ°´Ü°¡º¯°æ");
+      vProUp = new JLabel("ìƒí’ˆë‹¨ê°€ë³€ê²½");
         vProUp.setPreferredSize(new Dimension(200,28));
         
-      vProNm = new JLabel("»óÇ°¸í");
-      vProColor = new JLabel("»óÇ° »ö»ó");
-//      vProStock = new JLabel("Àç°íµî·Ï");
+      vProNm = new JLabel("ìƒí’ˆëª…");
+      vProColor = new JLabel("ìƒí’ˆ ìƒ‰ìƒ");
+//      vProStock = new JLabel("ì¬ê³ ë“±ë¡");
 
       xModelNm = new JTextField(20);
       taProNm = new JTextArea();
@@ -100,19 +102,19 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 //      xPrice = new JTextField(20);
 //      xProStock = new JTextField(20);
       
-      vModelNm = new JLabel("¸ğµ¨¸í");
-//      vPrice = new JLabel("»óÇ° °¡°İ");
-      vSale = new JLabel("ÆÇ¸Å»óÅÂ");
+      vModelNm = new JLabel("ëª¨ë¸ëª…");
+//      vPrice = new JLabel("ìƒí’ˆ ê°€ê²©");
+      vSale = new JLabel("íŒë§¤ìƒíƒœ");
 //      CbSize = new JComboBox<String>(size);
 //      CbSize.setPreferredSize(new Dimension(100,25));
-//      vModelCtgr2 = new JLabel("2Â÷ºĞ·ù");
-      vProSize = new JLabel("»óÇ° »çÀÌÁî");
-      vProDetail = new JLabel("»óÇ° »ó¼¼ Á¤º¸");
+//      vModelCtgr2 = new JLabel("2ì°¨ë¶„ë¥˜");
+      vProSize = new JLabel("ìƒí’ˆ ì‚¬ì´ì¦ˆ");
+      vProDetail = new JLabel("ìƒí’ˆ ìƒì„¸ ì •ë³´");
       
-      RSale = new JRadioButton("ÆÇ¸ÅÁß");
+      RSale = new JRadioButton("íŒë§¤ì¤‘");
       RSale.setSelected(true);
-      RSoldOut = new JRadioButton("Ç°Àı");
-      RBehind = new JRadioButton("¼û±è");
+      RSoldOut = new JRadioButton("í’ˆì ˆ");
+      RBehind = new JRadioButton("ìˆ¨ê¹€");
       
       BtRadio = new ButtonGroup();
       BtRadio.add(RSale);
@@ -131,7 +133,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       psize3 = new JPanel(new FlowLayout(FlowLayout.LEFT));
       psize3.setPreferredSize(new Dimension(250,80));
       pcolor = new JPanel(new FlowLayout(FlowLayout.LEFT));
-      pcolor.setPreferredSize(new Dimension(250,100));
+      pcolor.setPreferredSize(new Dimension(250,130));
       
       for(int i = 0; i<chsize1.length; i++) {
          chsize1[i] = new JCheckBox(size1[i]);
@@ -150,45 +152,50 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       
       for(int i = 0; i<color.length; i++) {
          chcolor[i] = new JCheckBox(color[i]);
-         chcolor[i].addItemListener(this);
+//         chcolor[i].addItemListener(this);
          pcolor.add(chcolor[i]);
       }
       
-      BtBussMan = new JButton("°Å·¡°ü¸®");
+      BtBussMan = new JButton("ê±°ë˜ê´€ë¦¬");
       BtBussMan.setPreferredSize(new Dimension(200,28));
       
-      BtModel = new JButton("¸ğµ¨ ºÒ·¯¿À±â");
+      BtModel = new JButton("ëª¨ë¸ ë¶ˆëŸ¬ì˜¤ê¸°");
       BtModel.addActionListener(this);
         
 //        regist.addActionListener(this);
-      BtProMan = new JButton("¸ğµ¨/»óÇ°°ü¸®");
+      BtProMan = new JButton("ëª¨ë¸/ìƒí’ˆê´€ë¦¬");
       BtProMan.setPreferredSize(new Dimension(200,28));
 //        cancel.addActionListener(this);
-      BtOdMan = new JButton("ÁÖ¹®°ü¸®");
+      BtOdMan = new JButton("ì£¼ë¬¸ê´€ë¦¬");
       BtOdMan.setPreferredSize(new Dimension(200,28));
-      BtMbMan = new JButton("È¸¿ø°ü¸®");
+      BtMbMan = new JButton("íšŒì›ê´€ë¦¬");
       BtMbMan.setPreferredSize(new Dimension(200,28));
-      BtEmpMan = new JButton("Á÷¿ø°ü¸®");
+      BtEmpMan = new JButton("ì§ì›ê´€ë¦¬");
       BtEmpMan.setPreferredSize(new Dimension(200,28));
-//      BtSearch = new JButton("°Ë»ö");
+//      BtSearch = new JButton("ê²€ìƒ‰");
 //      BtSearch.setPreferredSize(new Dimension(100,28));
       
-      BtColor = new JButton("»ö»ó °¡Á®¿À±â");
+      BtColor = new JButton("ìƒ‰ìƒ ê°€ì ¸ì˜¤ê¸°");
       BtColor.addActionListener(this);
-      BtPro = new JButton("»óÇ°¸í »ı¼º");
+      BtPro = new JButton("ìƒí’ˆëª… ìƒì„±");
       BtPro.setPreferredSize(new Dimension(109,28));
       BtPro.addActionListener(this);
-      BtReg = new JButton("µî·Ï");
-      BtCancel = new JButton("´İ±â");
+      BtReg = new JButton("ë“±ë¡");
+      BtCancel = new JButton("ë‹«ê¸°");
 
-
+	  psize2.setEnabled(false);
+	  psize2.setVisible(false);
+	  psize3.setEnabled(false);
+	  psize3.setVisible(false);
+	  psize1.setEnabled(false);
+	  psize1.setVisible(false);
       setExtendedState(MAXIMIZED_BOTH);
       RegProView();
    }
    
    private void RegProView() {
 
-      setTitle("È¨ÆäÀÌÁö °ü¸®ÀÚ");
+      setTitle("í™ˆí˜ì´ì§€ ê´€ë¦¬ì");
       setLayout(gbl);
       
 //      gridbagAdd(psize1, 3, 4, 1, 1);
@@ -237,7 +244,9 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
         gridbagAdd(BtColor, 4, 5, 1, 1);
         gbc.anchor = GridBagConstraints.EAST;
         gridbagAdd(BtCancel, 3, 10, 1, 1);
-        
+        gridbagAdd(psize1, 2, 4, 2, 1);
+        gridbagAdd(psize2, 2, 4, 2, 1);
+        gridbagAdd(psize3, 2, 4, 2, 1);
 //       gridbagAdd(scrollpane1, 1, 2, 5, 1);
 //       gridbagAdd(scrollpane2, 1, 6, 6, 5);
 //       gridbagAdd(regist, 0, 12, 1, 1);
@@ -251,13 +260,13 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       
       gbc.gridx = x;
       gbc.gridy = y; 
-      //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+      //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
       
       gbc.gridwidth  = w;
       gbc.gridheight = h;
       
       
-      gbl.setConstraints(c, gbc); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+      gbl.setConstraints(c, gbc); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
       
       add(c);   
       
@@ -273,51 +282,58 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       if(e.getSource() == BtModel) {
          ManModel mM = new ManModel(new JFrame());
          xModelNm.setText(mM.ModelName);
-      if(mM.first_ctgr.equals("»óÀÇ") ||mM.first_ctgr.equals("¾Æ¿ìÅÍ") || mM.first_ctgr.equals("¼ÅÃ÷")) {
-         gridbagAdd(psize1, 2, 4, 2, 1);
-         setVisible(true);
-         
-      }else if(mM.first_ctgr.equals("ÇÏÀÇ")){
-         gridbagAdd(psize2, 2, 4, 2, 1);
-         setVisible(true);
-      }else if(mM.first_ctgr.equals("½Å¹ß")) {
-         gridbagAdd(psize3, 2, 4, 2, 1);
-         setVisible(true);
+      if(mM.first_ctgr.equals("ìƒì˜") ||mM.first_ctgr.equals("ì•„ìš°í„°") || mM.first_ctgr.equals("ì…”ì¸ ")) {
+//    	  gridbagAdd(psize1, 2, 4, 2, 1);
+//        gridbagAdd(psize2, 2, 4, 2, 1);
+//        gridbagAdd(psize3, 2, 4, 2, 1);
+    	  psize2.setEnabled(false);
+    	  psize2.setVisible(false);
+    	  psize3.setEnabled(false);
+    	  psize3.setVisible(false);
+    	  psize1.setEnabled(true);
+    	  psize1.setVisible(true);
+      }else if(mM.first_ctgr.equals("í•˜ì˜")){
+//         gridbagAdd(psize2, 2, 4, 2, 1);
+//         setVisible(true);
+    	  psize2.setEnabled(true);
+    	  psize2.setVisible(true);
+    	  psize3.setEnabled(false);
+    	  psize3.setVisible(false);
+    	  psize1.setEnabled(false);
+    	  psize1.setVisible(false);
+      }else if(mM.first_ctgr.equals("ì‹ ë°œ")) {
+//         gridbagAdd(psize3, 2, 4, 2, 1);
+//         setVisible(true);
+    	  psize2.setEnabled(false);
+    	  psize2.setVisible(false);
+    	  psize3.setEnabled(true);
+    	  psize3.setVisible(true);
+    	  psize1.setEnabled(false);
+    	  psize1.setVisible(false);
       }
    } if(e.getSource() == BtPro) {
       xProNm.setText(xModelNm.getText() + "-" + CbSize.getSelectedItem());   
       } 
    if(e.getSource() == BtColor) {
-	   for(int i= 0; i<color.length; i++) {
-//	   System.out.println(color[i]);
-                
-                final int value = i;
-               chcolor[i].addItemListener(new ItemListener() {
-                   public void itemStateChanged(ItemEvent e) {
-                      Object source = e.getItemSelectable();
-                      if(source == chcolor[value]) {
-                      if(e.getStateChange() == ItemEvent.DESELECTED ) {    
-                         System.out.println(1);
-                         }else
-                            System.out.println(chcolor[value].getText());
-                       }
-                   }
-               });
-         }
-      }
+	   for(int i= 0; i<chcolor.length; i++) {
+		   if ( chcolor[i]. isSelected() == true ) {
+			   ar.add(chcolor[i].getText());
+	      } 
+	   }for(int i = 0; i<ar.size(); i++) {
+	   System.out.println(ar.get(i));   
+	   }
+	}
   
    }
+   
    @Override
    public void itemStateChanged(ItemEvent e) {
-      if(e.getSource() ==BtColor) {
-      if(e.getStateChange() == ItemEvent.SELECTED) {
-//            System.out.println(1);
-         }
-      }
-   } 
+//	   Object source = e.getItemSelectable();
+//	   if(source == chcolor[i])
+//		   if(e.getStateChange() == ItemEvent.SELECTED) {
+//			   System.out.println(1);    	  
+//      }else
+//    	  System.out.println(2);
+   }
 }
 
-
-
-   
-         
