@@ -27,9 +27,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-public class RegModel extends JPanel implements ActionListener {
+public class RegModel extends JFrame implements ActionListener {
 	
-	private static final int MAXIMIZED_BOTH = 0;
+//	private static final int MAXIMIZED_BOTH = 0;
 	private JLabel vRegModel, vRegModel2, vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelImage, vAdminModel, 
 	vModelCtgr, vRegPro, vAdminPro, vProUp, vModelExp, vModelSize;
 	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelSize, xModelImage;
@@ -111,9 +111,6 @@ public class RegModel extends JPanel implements ActionListener {
 		vModelCtgr2 = new JLabel("2차분류");
 		vModelExp = new JLabel("모델설명");
 //		vModelSize = new JLabel("모델 상세사이즈");
-		
-
-
 
 		BtCode = new JButton("코드생성");
 		BtCode.addActionListener(this);
@@ -137,12 +134,11 @@ public class RegModel extends JPanel implements ActionListener {
 		BtReg.addActionListener(this);
 		BtCancel = new JButton("닫기");
 
-//		setExtendedState(MAXIMIZED_BOTH);
+
 		RegModelView();
 	}
 	
 	private void RegModelView() {
-
 
 //		setTitle("홈페이지 관리자");
 
@@ -196,7 +192,7 @@ public class RegModel extends JPanel implements ActionListener {
 //	    gridbagAdd(regist, 0, 12, 1, 1);
 //	    gridbagAdd(cancel, 2, 12, 1, 1);
 	    
-	   
+		setExtendedState(MAXIMIZED_BOTH);
 	    setVisible(true);
 	}   
 	         
@@ -223,11 +219,11 @@ public class RegModel extends JPanel implements ActionListener {
 	
 	
 	public static void main(String[] args) {   
-		JFrame jf = new JFrame();
-		jf.add(new RegModel());
-//		new RegModel();
-		jf.pack();
-		jf.setVisible(true);
+//		JFrame jf = new JFrame();
+//		jf.add(new RegModel());
+		new RegModel();
+//		jf.pack();
+//		jf.setVisible(true);
 	}
 
 	@Override

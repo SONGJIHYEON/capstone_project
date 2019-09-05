@@ -1,4 +1,5 @@
 package org.CapstoneProject;
+import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -42,7 +43,8 @@ public class ProDetail extends JFrame implements ActionListener {
 	private JButton BtPurchae, BtBasket, BtPlus, BtMinus;  
 	private JComboBox<String> CbSize1, CbSize2; 
 	private JTabbedPane t;
-	private JPanel p;
+	JTextArea ta = new JTextArea(22,30);
+	static JPanel p = new JPanel();
 	         
 	GridBagLayout gridbaglayout;      
 	GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
@@ -76,18 +78,22 @@ public class ProDetail extends JFrame implements ActionListener {
 		BtPurchae = new JButton("구매하기");
 		BtBasket = new JButton("장바구니");
 		
-
-
-		t = new JTabbedPane(JTabbedPane.NORTH);
-		t.add("상품상세", new JTextArea());
-		t.add("상품사이즈", new JTextArea());
+		JPanel p1 = new JPanel(); 
+		ta.setLineWrap(true);
+		scrollpane1 = new JScrollPane(ta);
+		scrollpane1.setPreferredSize(new Dimension(300, 400));
+		p1.add(scrollpane1);
+		p1.setPreferredSize(new Dimension(300,400));
 		
-		p = new JPanel();
-		t.addTab("상품상세", p);
+		JPanel p2 = new JPanel();
+		p2.setPreferredSize(new Dimension(300,400));
+		 
+		JTabbedPane t = new JTabbedPane();
+		 
+		t.add("상품상세",p1);  
+		t.add("상품사이즈",p2);
 		
-		p = new JPanel();
-		t.addTab("상품사이즈", p);
-		
+		p.add(t);
 
 		
 		
@@ -122,16 +128,17 @@ public class ProDetail extends JFrame implements ActionListener {
         gridbagAdd(xAllPrice, 3, 5, 2, 1);
         gridbagAdd(BtPlus, 4, 4, 1, 1);
         
+        
         gridbagconstraints.anchor = GridBagConstraints.WEST;
         gridbagAdd(BtPurchae, 3, 6, 1, 1);
         gridbagAdd(xOption, 3, 4, 2, 1);
-        gridbagAdd(t, 0, 7, 10, 10);
+        gridbagAdd(p, 0,7,7,10);
         
         gridbagconstraints.anchor = GridBagConstraints.EAST;
         gridbagAdd(BtBasket, 4, 6, 1, 1);       
         gridbagAdd(BtMinus, 4, 4, 1, 1);
 
-        pack();
+        
         setExtendedState(MAXIMIZED_BOTH);
         
 	    setVisible(true);
@@ -150,7 +157,7 @@ public class ProDetail extends JFrame implements ActionListener {
 	         
      }   
 	public static void main(String[] args) {   
-		new ProDetail();
+		ProDetail win = new ProDetail();
     	 }
 
 	@Override

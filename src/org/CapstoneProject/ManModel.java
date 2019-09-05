@@ -50,7 +50,7 @@ public class ManModel extends Dialog implements MouseListener, ActionListener{
 	private JButton BtSearch, BtReg; 
 	private JComboBox<String> CbSearch;
 	
-	String ModelName, first_ctgr;
+	String ModelName, first_ctgr, ModelNum;
 	
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
@@ -184,6 +184,8 @@ public class ManModel extends Dialog implements MouseListener, ActionListener{
 		ModelName += tModelInfo.getValueAt(row, 0);
 		first_ctgr = "";
 		first_ctgr += tModelInfo.getValueAt(row, 2);
+		ModelNum = "";
+		ModelNum += tModelInfo.getValueAt(row, 1);
 		}
 	}
 
