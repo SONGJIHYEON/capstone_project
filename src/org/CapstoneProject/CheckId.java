@@ -33,30 +33,6 @@ public class CheckId {
 //		addrdata.put("A", NAME);
 	}
 //	
-//	public static void initCustData2(String sid, String pwd) {
-//
-//		iddata.put("아이디", sid);
-//		iddata.put("비밀번호", pwd);
-//	}
-//	
-		
-//	/* 고객정보를 생성하는 질의어 */
-//	static void createCust
-//	
-//	() {
-//		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, ID, PWD, BD, ADDR, CUST_TP) VALUES(103,'" + custdata.get("고객명") + "','" + custdata.get("휴대폰번호") + "','"
-//				+ custdata.get("아이디") + "','" + custdata.get("비밀번호") + "','" + custdata.get("생년월일") + "','" + custdata.get("주소") + "','1')";
-//	System.out.println(quary);
-//		try {
-//			pstm = conn.prepareStatement(quary);
-//			pstm.executeQuery();
-//		} catch (SQLException sqle) {
-//			System.out.println("select문에서 예외 발생");
-//			sqle.printStackTrace();
-//		}
-//
-//	}
-	
 	
 static List<Map<String, Serializable>> selectid() {
 		
@@ -77,7 +53,7 @@ static List<Map<String, Serializable>> selectid() {
 //				addrdataSet.put("SEQ", rs.getString(2));
 			
 				
-				System.out.println(iddataSet);
+//				System.out.println(iddataSet);
 				idListData.add(iddataSet);
 				
 				
@@ -108,11 +84,8 @@ static List<Map<String, Serializable>> selectlogin(String sid, String pwd) {
 			iddataSet.put("ID", rs.getString(1)); 
 			iddataSet.put("PWD", rs.getString(2)); 
 //			addrdataSet.put("SEQ", rs.getString(2));
-//			addrdataSet.put("SIDO", rs.getString(3));
-//			addrdataSet.put("GUGUN", rs.getString(4));
-	
-			
-			System.out.println(iddataSet);
+
+//			System.out.println(iddataSet);
 			idListData.add(iddataSet);
 			}
 		

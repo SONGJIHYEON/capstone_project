@@ -79,8 +79,6 @@ public class Address extends Dialog implements ActionListener, MouseListener{
    
 	private void getData(List<Map<String, Serializable>> addrListData) {
 		
-		
-
 		for(int i=0; i < addrListData.size(); i++) {
 			model1.addRow(new Object[] {
 					

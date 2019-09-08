@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -75,6 +76,7 @@ public class home_user extends JFrame {
 		scrollpane2.setPreferredSize(new Dimension(1000, 100));
 		setExtendedState(MAXIMIZED_BOTH);
 		home_userView();
+
 	}
 	
 	private void home_userView() {
@@ -97,8 +99,8 @@ public class home_user extends JFrame {
 	    gridbagAdd(vShirts, 4, 1, 1, 1);
 	    gridbagAdd(vShoes, 5, 1, 1, 1);
 	         
-	    gridbagAdd(scrollpane1, 1, 2, 5, 1);
-	    gridbagAdd(scrollpane2, 1, 6, 6, 1);
+//	    gridbagAdd(scrollpane1, 1, 2, 5, 1);
+//	    gridbagAdd(scrollpane2, 1, 6, 6, 1);
 //	    gridbagAdd(regist, 0, 12, 1, 1);
 //	    gridbagAdd(cancel, 2, 12, 1, 1);
 	    
@@ -124,6 +126,15 @@ public class home_user extends JFrame {
 	
 	public static void main(String[] args) {   
 		new home_user();
+		JPanel mainimg = new MainProImg();
+        mainimg.setBounds(0, 0, 1920, 40);
+//        add(mainimg);
+//        Dimension d = getSize();
+//        mainimg.setBounds(0, 40, d.width, d.height);
+//        add(mainimg);
+//        repaint();
+//        revalidate();
+
 	}   
 }	
 

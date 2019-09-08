@@ -31,8 +31,8 @@ public class RegModel extends JFrame implements ActionListener {
 	
 //	private static final int MAXIMIZED_BOTH = 0;
 	private JLabel vRegModel, vRegModel2, vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelImage, vAdminModel, 
-	vModelCtgr, vRegPro, vAdminPro, vProUp, vModelExp, vModelSize;
-	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelSize, xModelImage;
+	vModelCtgr, vRegPro, vAdminPro, vProUp, vModelExp, vModelSize, vModelNick;
+	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelSize, xModelImage, xModelNick;
 //	private JTextArea xModelImage;
 
 	private String[] ctgr1 = {"상의", "하의", "아우터", "셔츠", "신발"};
@@ -48,11 +48,11 @@ public class RegModel extends JFrame implements ActionListener {
 	private JTable tBest, tNew;      
 	private JScrollPane scrollpane1, scrollpane2;  
    
-	private JButton BtBussMan, BtProMan, BtOdMan, BtMbMan, BtEmpMan, BtSearch, BtImg, BtReg, BtCancel, BtCode; 
+	private JButton BtSearch, BtImg, BtReg, BtCancel, BtCode; 
 	private JComboBox<String> Cbctgr1, Cbctgr2;
 	
 
-	String fModel, MODEL_NUM, MODEL_CTGR_NUM, MODEL_NM, MODEL_EXP;
+	String fModel, MODEL_NUM, MODEL_CTGR_NUM, MODEL_NM, MODEL_NICK, MODEL_EXP, REP_MODEL_IMG, DET_MODEL_IMG;
 	
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
@@ -64,8 +64,12 @@ public class RegModel extends JFrame implements ActionListener {
 		MODEL_NUM = xModelCode.getText();
 		MODEL_CTGR_NUM = fModel;
 		MODEL_NM = xModelNm.getText();
+		MODEL_NICK = xModelNick.getText();
 		MODEL_EXP = xModelExp.getText();
-		ModelData.initModelData(MODEL_NUM, MODEL_CTGR_NUM, MODEL_NM, MODEL_EXP);
+		REP_MODEL_IMG = "REP_" + xModelNm.getText();
+		DET_MODEL_IMG = "DET_" + xModelNm.getText();
+		
+		ModelData.initModelData(MODEL_NUM, MODEL_CTGR_NUM, MODEL_NM, MODEL_EXP,MODEL_NICK, REP_MODEL_IMG, DET_MODEL_IMG);
 		ModelData.createModel();
 	}
 	
@@ -88,6 +92,8 @@ public class RegModel extends JFrame implements ActionListener {
 		vAdminPro.setPreferredSize(new Dimension(200,28));
 		vProUp = new JLabel("상품단가변경");
         vProUp.setPreferredSize(new Dimension(200,28));
+        vModelNick = new JLabel("모델별칭");
+        vProUp.setPreferredSize(new Dimension(200,28));
         
 		vModelNm = new JLabel("모델명");
 
@@ -96,11 +102,12 @@ public class RegModel extends JFrame implements ActionListener {
 		xModelCtgr1 = new JTextField(20);
 		xModelCtgr2 = new JTextField(20);
 		xModelExp = new JTextField(20);
+		xModelNick = new JTextField(20);
 //		xModelSize = new JTextField(20);
-		xModelImage = new JTextField(20);
+		
 		
 		vModelCode = new JLabel("모델코드");
-		vModelImage = new JLabel("모델대표이미지");
+		
 		vModelCtgr1 = new JLabel("1차분류");
 		Cbctgr1 = new JComboBox<String>(ctgr1);
 		Cbctgr1.setPreferredSize(new Dimension(200,28));
@@ -109,25 +116,12 @@ public class RegModel extends JFrame implements ActionListener {
 		Cbctgr2.setPreferredSize(new Dimension(200,28));
 		Cbctgr2.addActionListener(this);
 		vModelCtgr2 = new JLabel("2차분류");
-		vModelExp = new JLabel("모델설명");
+		vModelExp = new JLabel("모델상세사이즈");
 //		vModelSize = new JLabel("모델 상세사이즈");
 
 		BtCode = new JButton("코드생성");
 		BtCode.addActionListener(this);
-		BtBussMan = new JButton("거래관리");
-		BtBussMan.setPreferredSize(new Dimension(200,28));
-        
-//        regist.addActionListener(this);
-		BtProMan = new JButton("모델/상품관리");
-		BtProMan.setPreferredSize(new Dimension(200,28));
-//        cancel.addActionListener(this);
-		BtOdMan = new JButton("주문관리");
-		BtOdMan.setPreferredSize(new Dimension(200,28));
-		BtMbMan = new JButton("회원관리");
-		BtMbMan.setPreferredSize(new Dimension(200,28));
-		BtEmpMan = new JButton("직원관리");
-		BtEmpMan.setPreferredSize(new Dimension(200,28));
-		BtImg = new JButton("첨부하기");
+		
 //		BtSearch = new JButton("검색");
 //		BtSearch.setPreferredSize(new Dimension(100,28));
 		BtReg = new JButton("등록");
@@ -154,18 +148,20 @@ public class RegModel extends JFrame implements ActionListener {
 	    gridbagAdd(vProUp, 0, 6, 1, 1);
 	    gridbagAdd(vModelNm, 1, 2, 1, 1);
 	    gridbagAdd(vModelCode, 1, 3, 1, 1);
-	    gridbagAdd(vModelImage, 1, 4, 1, 1);
+	    
 	    gridbagAdd(vModelCtgr1, 1, 5, 1, 1);
 	    gridbagAdd(vModelCtgr2, 1, 6, 1, 1);
-	    gridbagAdd(vModelExp, 1, 7, 1, 1);
-//	    gridbagAdd(vModelSize, 1, 8, 1, 1);
+	    gridbagAdd(vModelExp, 1, 8, 1, 1);
+	    gridbagAdd(vModelNick, 1, 7, 1, 1);
+	    
 	    gridbagAdd(xModelNm, 2, 2, 2, 1);
 	    gridbagAdd(xModelCode, 2, 3, 2, 1);
-	    gridbagAdd(xModelImage, 2, 4, 2, 1);
+	    
 	    gridbagAdd(Cbctgr1, 2, 5, 2, 1);
 	    gridbagAdd(Cbctgr2, 2, 6, 2, 1);
-	    gridbagAdd(xModelExp, 2, 7, 2, 1);
-//	    gridbagAdd(xModelSize, 2, 8, 2, 1);
+	    gridbagAdd(xModelExp, 2, 8, 2, 1);
+	    gridbagAdd(xModelNick, 2, 7, 2, 1);
+	    
 	    
 //	    gridbagAdd(vTop, 1, 1, 1, 1);
 //	    gridbagAdd(vBottom, 2, 1, 1, 1);
@@ -174,14 +170,9 @@ public class RegModel extends JFrame implements ActionListener {
 //	    gridbagAdd(vShoes, 5, 1, 1, 1);
 	    
         gbc.anchor = GridBagConstraints.CENTER;
-        gridbagAdd(BtBussMan, 1, 0, 1, 1);
-        gridbagAdd(BtProMan, 2, 0, 2, 1);
-        gridbagAdd(BtOdMan, 4, 0, 1, 1);
         
-        gridbagAdd(BtMbMan, 5, 0, 1, 1);
-        gridbagAdd(BtEmpMan, 6, 0, 1, 1);
         gbc.anchor = GridBagConstraints.WEST;
-        gridbagAdd(BtImg, 4, 4, 1, 1);
+//        gridbagAdd(BtImg, 4, 4, 1, 1);
         gridbagAdd(BtCode, 4, 3, 1, 1);
         gridbagAdd(BtReg, 2, 9, 1, 1);
         gbc.anchor = GridBagConstraints.EAST;

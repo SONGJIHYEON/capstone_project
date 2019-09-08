@@ -36,8 +36,7 @@ public class ProData {
 	static void createPro(String Pro_num, String PRO_NM, String CLR, String SIZ, String SIZ_DET_INFO) {
 		
 		
-		quary = "insert into pro values (SEQ_PRO_NUM.NEXTVAL, '"+Pro_num+"', '" +PRO_NM+ "', '" +CLR+ "', '"+SIZ+"', "
-				+ "'"+SIZ_DET_INFO+"')";
+		quary = "insert into pro values (SEQ_PRO_NUM.NEXTVAL, '"+Pro_num+"', '" +PRO_NM+ "', '" +CLR+ "', '"+SIZ+"', '"+SIZ_DET_INFO+")";
 		
 		
 		System.out.println(quary);

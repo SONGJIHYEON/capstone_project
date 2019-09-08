@@ -27,12 +27,15 @@ public class ModelData {
 	public static List<Map<String, Serializable>> ModelListData = new ArrayList<Map<String, Serializable>>();
 	
 	/* 고객번호가 있는 링크 리스트 구성 */
-	public static void initModelData(String MODEL_NUM, String MODEL_CTGR_NUM, String MODEL_NM, String MODEL_EXP) {
+	public static void initModelData(String MODEL_NUM, String MODEL_CTGR_NUM, String MODEL_NM, String MODEL_EXP, String MODEL_NICK, String REP_MODEL_IMG, String DET_MODEL_IMG) {
 
 		Modeldata.put("모델번호", MODEL_NUM);
 		Modeldata.put("모델분류번호", MODEL_CTGR_NUM);
 		Modeldata.put("모델이름", MODEL_NM);
 		Modeldata.put("모델상세정보", MODEL_EXP);
+		Modeldata.put("모델별칭", MODEL_NICK);
+		Modeldata.put("대표이미지", REP_MODEL_IMG);
+		Modeldata.put("상세이미지", DET_MODEL_IMG);
 	}
 	
 		
@@ -41,7 +44,7 @@ public class ModelData {
 		
 		
 		quary = "insert into model values ('"+Modeldata.get("모델번호")+"', '" + Modeldata.get("모델분류번호") + "', '" + Modeldata.get("모델이름") + "', "
-				+ " '"+Modeldata.get("모델상세정보")+"')";
+				+ " '"+Modeldata.get("모델상세정보")+"', '"+Modeldata.get("모델별칭")+"', '"+Modeldata.get("대표이미지")+"', '"+Modeldata.get("상세이미지")+"')";
 		
 		
 		System.out.println(quary);

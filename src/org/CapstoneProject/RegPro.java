@@ -30,15 +30,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class RegPro extends JFrame implements ActionListener, ItemListener {
+public class RegPro extends JPanel implements ActionListener, ItemListener {
    
    ArrayList ar = new ArrayList();
    ArrayList ar1 = new ArrayList();
    ArrayList pro = new ArrayList();
    
    private JLabel vRegModel, vRegPro2, vProNm, vSale, vModelCtgr2, vModelNm, vPrice, vAdminModel, 
-   vModelCtgr, vRegPro, vAdminPro, vProUp, vProSize, vProDetail, vProColor, vProStock;
-   private JTextField xModelNm, xProNm, xSale, xModelCtgr2, xProDetail, xPrice, xProStock, xColor;
+   vModelCtgr, vRegPro, vAdminPro, vProUp, vProSize, vProDetail, vProColor, vProStock, vModelImage;
+   private JTextField xModelNm, xProNm, xSale, xModelCtgr2, xProDetail, xPrice, xProStock, xColor, xModelImage;
 
    
 //   private JTextArea xPrice;
@@ -50,7 +50,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
    private String[] size2 = {"27", "28", "29", "30", "31", "32", "33", "34", "35" };  
    private String[] size3 = {"250", "255", "260", "265", "270", "275", "280", "285"};
    private String[] color = {"BLACK", "BLUE", "CYAN", "DARK_GRAY", "GRAY", "GREEN", "LIGHT_GRAY", "ORANGE", "PINK", "RED", "WHITE", "YELLOW"};
-   private String[] col = {"사이즈", "색상"};
+   private String[] col = {"사이즈", "색상", "상품명"};
    
    private JCheckBox[] chsize1 = new JCheckBox[size1.length];
    private JCheckBox[] chsize2 = new JCheckBox[size2.length];
@@ -62,14 +62,14 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
    
    private DefaultTableModel model1 = new DefaultTableModel(col, 0);  
    
-   private JButton BtBussMan, BtProMan, BtOdMan, BtMbMan, BtEmpMan, BtSearch, BtReg, BtCancel, BtModel, BtPro, BtColor; 
+   private JButton BtBussMan, BtProMan, BtOdMan, BtMbMan, BtEmpMan, BtSearch, BtReg, BtCancel, BtModel, BtPro, BtColor, BtImg; 
    private JRadioButton RSale, RSoldOut, RBehind;
    private ButtonGroup BtRadio;
    private JPanel PRadio, psize1, psize2, psize3, pcolor;
    private JComboBox<String> CbSize;
    private JTextArea taProNm;
    
-   String name;
+   String name, PRO_IMG;
    
    int o = -1, k = 0;
    int i;
@@ -77,7 +77,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
    GridBagLayout gbl;
    GridBagConstraints gbc;
    
-   public RegPro(JFrame fr) {
+   public RegPro() {
       
 
       gbl = new GridBagLayout();
@@ -96,7 +96,8 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       vAdminPro = new JLabel("상품관리");
       vAdminPro.setPreferredSize(new Dimension(200,28));
       vProUp = new JLabel("상품단가변경");
-        vProUp.setPreferredSize(new Dimension(200,28));
+      vProUp.setPreferredSize(new Dimension(200,28));
+      vModelImage = new JLabel("모델대표이미지");
         
       vProNm = new JLabel("상품명");
       vProColor = new JLabel("상품 색상");
@@ -107,6 +108,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       xSale = new JTextField(20);
       xProDetail = new JTextField(20);
       xColor = new JTextField(20);
+      xModelImage = new JTextField(20);
 //      xPrice = new JTextField(20);
 //      xProStock = new JTextField(20);
       
@@ -135,6 +137,9 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       PRadio.add(RBehind);
       
       tpro = new JTable(model1);
+      tpro.getColumnModel().getColumn(0).setPreferredWidth(15);
+      tpro.getColumnModel().getColumn(1).setPreferredWidth(15);
+      tpro.getColumnModel().getColumn(2).setPreferredWidth(60);
       scrollpane1 = new JScrollPane(tpro);
       scrollpane1.setPreferredSize(new Dimension(250,80));
       
@@ -191,6 +196,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
       BtColor.addActionListener(this);
       BtPro = new JButton("상품명 생성");
       BtPro.setPreferredSize(new Dimension(109,28));
+      BtImg = new JButton("첨부하기");
       BtPro.addActionListener(this);
       BtReg = new JButton("등록");
       BtReg.addActionListener(this);
@@ -202,13 +208,13 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 	  psize3.setVisible(false);
 	  psize1.setEnabled(false);
 	  psize1.setVisible(false);
-      setExtendedState(MAXIMIZED_BOTH);
+//      setExtendedState(MAXIMIZED_BOTH);
       RegProView();
    }
    
    private void RegProView() {
 
-      setTitle("홈페이지 관리자");
+//      setTitle("홈페이지 관리자");
       setLayout(gbl);
       
 //      gridbagAdd(psize1, 3, 4, 1, 1);
@@ -275,7 +281,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
    }   
    
    public static void main(String[] args) {   
-      new RegPro(new JFrame());
+      new RegPro();
            
    }
 
@@ -285,8 +291,8 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
          ManModel mM = new ManModel(new JFrame());
          xModelNm.setText(mM.ModelName);
          name = mM.ModelNum;
-      if(mM.first_ctgr.equals("상의") ||mM.first_ctgr.equals("아우터") || mM.first_ctgr.equals("셔츠")) {
-//    	  gridbagAdd(psize1, 2, 4, 2, 1);
+      if(mM.first_ctgr.equals("상의") || mM.first_ctgr.equals("아우터") || mM.first_ctgr.equals("셔츠")) {
+//    	  gridbagAdd(psize1, 2, 4, 2, 1); 
 //        gridbagAdd(psize2, 2, 4, 2, 1);
 //        gridbagAdd(psize3, 2, 4, 2, 1);
     	  psize2.setEnabled(false);
@@ -367,19 +373,17 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 			   for(int j=0;j<ar.size();j++) {
 				   model1.addRow(new Object[] {
 						   ar1.get(i),
-						   ar.get(j)
-				   });					   
-//				   System.out.println("사이즈 : "+ar1.get(i) + " 색상 : " + ar.get(j));
-				   pro.add(xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j));
-
+						   ar.get(j),
+						   xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j)
+				   });		
+				   PRO_IMG = xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j);
 				   }
 		   }
-		   System.out.println(pro);
 		  }
       }if(e.getSource() == BtReg) {
     	  for(int i=0;i<ar1.size();i++) {
 			   for(int j=0;j<ar.size();j++) {
-	    		   RegProData.createpro(name,xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j), ar.get(j).toString(), ar1.get(i).toString(), "" );
+	    		   RegProData.createpro(name, xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j), ar.get(j).toString(), ar1.get(i).toString(), PRO_IMG );
 				   }
 		   }
 

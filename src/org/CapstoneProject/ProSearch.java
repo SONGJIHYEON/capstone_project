@@ -150,6 +150,7 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 	
 	public static void main(String[] args) {   
 		new ProSearch(new JFrame());
+		
 	}
 	
 

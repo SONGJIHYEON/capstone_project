@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,14 +17,18 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
+
 public class Login extends JFrame implements ActionListener {   
-	private JLabel vLabel1, vLabel2, vLabel3, vLabel4, vLabel5, vId, vPwd;      
-	         
+	
+	ArrayList ar = new ArrayList();
+	
+	private JLabel vLabel1, vLabel2, vLabel3, vLabel4, vLabel5, vId, vPwd;   
 	private JTextField xEmpName, xEmpPhone, xEmpRegist, xEmpHireDate, xDeptName, xEmpSal, xSpvName, xEmpAnin, xEmpComm, xId, xPwd;      
 	   
 	private String[] col1 = {"부서명", "부서위치"};      
@@ -38,19 +45,36 @@ public class Login extends JFrame implements ActionListener {
 	private JButton BtLogin, BtRegMb, BtFind, Btnonmember;      
 	private JComboBox<String> cbSel;    
 	
-	String sid, sid2, pwd, pwd2;
+	String sid, sid2, pwd, pwd2, id;
 	         
 	GridBagLayout gridbaglayout;      
 	GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 	
 	private void getData(List<Map<String, Serializable>> idListData) {
-		
-		if(pwd.equals(pwd2)) {
-			System.out.println("일치");
-		}else
-			System.out.println("불일치");
+		 HashMap<Serializable, Serializable> id = new HashMap<Serializable, Serializable>();	
 
-}
+		 ArrayList ar = new ArrayList();
+		 
+		 for(int i = 0; i<idListData.size(); i++) {
+			 
+		 id.put(idListData.get(i).get("ID"),
+				idListData.get(i).get("PWD"));	 
+		 }
+		 
+
+		 if(!id.containsKey(sid)) {
+			 JOptionPane.showMessageDialog(null, "등록되지 않은 ID입니다", "", JOptionPane.ERROR_MESSAGE);
+		 }else {
+			 if(!id.get(sid).equals(pwd)) {
+				 JOptionPane.showMessageDialog(null, "입력하신 ID와 비밀번호가 일치하지 않습니다", "", JOptionPane.ERROR_MESSAGE);
+			 }else {
+				 JOptionPane.showMessageDialog(null, "로그인 되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+			 	}
+		 	}
+		 }
+
+	
+				 
 	         
 	public Login() {
 		gridbaglayout = new GridBagLayout();
@@ -63,7 +87,7 @@ public class Login extends JFrame implements ActionListener {
 	    cbSel.setPreferredSize(new Dimension(203, 20));
 
         xId = new JTextField(20);
-        xPwd = new JTextField(20);
+        xPwd = new JPasswordField(20);
        	                  
         vLabel3 = new JLabel("아직 회원이 아니신가요?");
         vLabel4 = new JLabel("아이디/비밀번호를 잊으셨나요?");

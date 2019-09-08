@@ -137,7 +137,7 @@ static List<Map<String, Serializable>> SearchAddr(String search) {
 //			custdataSet.put("할인시작일", rs.getString(11));
 //			custdataSet.put("할인종료일", rs.getString(12));
 			
-			System.out.println(addrdataSet);
+//			System.out.println(addrdataSet);
 			addrListData.add(addrdataSet);
 			
 			

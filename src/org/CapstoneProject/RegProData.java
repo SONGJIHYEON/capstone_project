@@ -39,11 +39,11 @@ public class RegProData {
 	
 		
 	/* 고객정보를 생성하는 질의어 */
-	static void createpro(String model_num, String PRO_NM, String CLR, String SIZ, String SIZ_DET_INFO) {
+	static void createpro(String model_num, String PRO_NM, String CLR, String SIZ, String PRO_IMG) {
 		
 		
 		quary = "insert into pro values (SEQ_PRO_NUM.NEXTVAL, '"+model_num+"', '" +PRO_NM+ "', '" +CLR+ "', '"+SIZ+"', "
-				+ "'"+SIZ_DET_INFO+"')";
+				+ " '"+PRO_IMG+"', '')";
 		
 		
 		System.out.println(quary);
