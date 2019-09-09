@@ -7,6 +7,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -22,7 +24,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
-public class home_user extends JFrame {
+public class home_user extends JFrame implements ActionListener {
 	private JLabel vHomeIcon, vViewIcon, vTop, vBottom, vOuter, vShirts, vShoes, v1;
 //	private JTextField xMemId, xMemName, xMemBirth, xMemPhone, xMemEmail1, xMemEmail2, xMemAddr1, xMemAddr2, xMemAddr3;
 //	private JPasswordField xMemPw1, xMemPw2;
@@ -52,6 +54,7 @@ public class home_user extends JFrame {
 		v1.setPreferredSize(new Dimension(200,28));
 		vCenter = new JButton("고객센터");
 		vCenter.setPreferredSize(new Dimension(200,28));
+		vCenter.addActionListener(this);
 		vBasket = new JButton("장바구니");
 		vBasket.setPreferredSize(new Dimension(200,28));
 		vMypage = new JButton("마이페이지");
@@ -103,6 +106,7 @@ public class home_user extends JFrame {
 //	    gridbagAdd(scrollpane2, 1, 6, 6, 1);
 //	    gridbagAdd(regist, 0, 12, 1, 1);
 //	    gridbagAdd(cancel, 2, 12, 1, 1);
+		
 	    
 	   
 	    setVisible(true);
@@ -112,6 +116,7 @@ public class home_user extends JFrame {
 		
 		gbc.gridx = x;
 		gbc.gridy = y; 
+		
 		//가장 왼쪽 위 gridx, gridy값은 0    
 		
 		gbc.gridwidth  = w;
@@ -126,15 +131,18 @@ public class home_user extends JFrame {
 	
 	public static void main(String[] args) {   
 		new home_user();
-		JPanel mainimg = new MainProImg();
-        mainimg.setBounds(0, 0, 1920, 40);
-//        add(mainimg);
-//        Dimension d = getSize();
-//        mainimg.setBounds(0, 40, d.width, d.height);
-//        add(mainimg);
-//        repaint();
-//        revalidate();
 
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == vCenter) {
+			getContentPane().removeAll();
+			BackgroundPanel sub = new BackgroundPanel();
+	         gridbagAdd(sub, 0, 0, 10, 10);
+		}
+		
 	}   
 }	
 

@@ -4,6 +4,9 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -14,15 +17,16 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class mb_gra extends JPanel {
+public class mb_gra extends JFrame implements ActionListener {
 
-   private JLabel  mb_lookup, mb_lookup2, mb_gra, gra_s, gra_v, gra_f ;
+   private JLabel  mb_gra, gra_s, gra_v, gra_f ;
    
-   private JTextField  Tsearch, Tgra_s, Tgra_v, Tgra_f;
+   private JTextField  Tgra_s, Tgra_v, Tgra_f;
    
-   private JButton Bmodify,Bcancel,Breset; 
+   private JButton BmodifyS,BmodifyV,BmodifyF; 
    
-   private JComboBox<String> cbSearch;      
+   String Smodrate;
+   
          
    GridBagLayout gridbaglayout;      
    GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
@@ -33,32 +37,41 @@ public class mb_gra extends JPanel {
          gridbagconstraints = new GridBagConstraints();
          
          mb_gra = new JLabel("등급관리");
-         mb_gra.setPreferredSize(new Dimension(200,28));
+         mb_gra.setPreferredSize(new Dimension(100,28));
          gra_s = new JLabel("S등급");
-         gra_s.setPreferredSize(new Dimension(200,28));
+         gra_s.setPreferredSize(new Dimension(100,28));
          gra_v = new JLabel("V등급");
-         gra_v.setPreferredSize(new Dimension(200,28));
+         gra_v.setPreferredSize(new Dimension(100,28));
          gra_f = new JLabel("F등급");
-         gra_f.setPreferredSize(new Dimension(200,28));
+         gra_f.setPreferredSize(new Dimension(100,28));
          
-         Tsearch = new JTextField(18);
-         Tsearch.setPreferredSize(new Dimension(100,30));
-         Tgra_s = new JTextField(18);
-         Tgra_s.setPreferredSize(new Dimension(100,30));
-         Tgra_v = new JTextField(18);
-         Tgra_v.setPreferredSize(new Dimension(100,30));
-         Tgra_f = new JTextField(18);
-         Tgra_f.setPreferredSize(new Dimension(100,30));
+         Tgra_s = new JTextField(5);
+         Tgra_s.setPreferredSize(new Dimension(100,28));
+         Tgra_v = new JTextField(5);
+         Tgra_v.setPreferredSize(new Dimension(100,28));
+         Tgra_f = new JTextField(5);
+         Tgra_f.setPreferredSize(new Dimension(100,28));
          
         
-         Bmodify = new JButton("수정");
-         Bmodify.setPreferredSize(new Dimension(200,28));
+         BmodifyS = new JButton("수정");
+         BmodifyS.setPreferredSize(new Dimension(100,28));
+         BmodifyV = new JButton("수정");
+         BmodifyV.setPreferredSize(new Dimension(100,28));
+         BmodifyF = new JButton("수정");
+         BmodifyF.setPreferredSize(new Dimension(100,28));
+
+         BmodifyS.addActionListener(this);
+         BmodifyV.addActionListener(this);
+         BmodifyF.addActionListener(this);
+         
+         
          
          EmpRegisterView();
       }   
          
-   private void EmpRegisterView() {      
-         
+   private void EmpRegisterView() {  
+	   
+	   	 setLayout(gridbaglayout);
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -78,7 +91,9 @@ public class mb_gra extends JPanel {
          gridbagAdd(Tgra_v, 2, 3, 1, 1);
          gridbagAdd(Tgra_f, 2, 4, 1, 1);
          
-         gridbagAdd(Bmodify, 1, 5, 1, 1);
+         gridbagAdd(BmodifyS, 3, 2, 1, 1);
+         gridbagAdd(BmodifyV, 3, 3, 1, 1);
+         gridbagAdd(BmodifyF, 3, 4, 1, 1);
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
          
@@ -105,6 +120,35 @@ public class mb_gra extends JPanel {
          
       public static void main(String[] args) {   
          new mb_gra();
-      }   
+      }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if(e.getSource() == BmodifyS){
+			Smodrate = Tgra_s.getText();
+			double modrate = Double.parseDouble(Smodrate);
+			MbgraData.createMbgraS(modrate);
+			
+			Tgra_s.setText("");
+			
+		}else if(e.getSource() == BmodifyV){
+			Smodrate = Tgra_v.getText();
+			double modrate = Double.parseDouble(Smodrate);
+			MbgraData.createMbgraV(modrate);
+			
+			Tgra_v.setText("");
+			
+		}else if(e.getSource() == BmodifyF){
+			Smodrate = Tgra_f.getText();
+			double modrate = Double.parseDouble(Smodrate);
+			MbgraData.createMbgraF(modrate);
+			
+			Tgra_f.setText("");
+			
+		}
+		
+	}   
+      
          
 }

@@ -27,14 +27,13 @@ public class empData {
    public static List<Map<String, Serializable>> empListData = new ArrayList<Map<String, Serializable>>();
    
    /* 고객번호가 있는 링크 리스트 구성 */
-   public static void initempData(String EMP_NO, String EMP_NM, String EMP_DT, String EMP_PH_NUM,
+   public static void initempData(String EMP_NM, String EMP_DT, String EMP_PH_NUM,
 		   String EMP_TP, String EMP_ADDR, String REG_TP, String REG_ID, String REG_PW) {
 
-	   empData.put("사원번호", EMP_NO);
 	   empData.put("사원명", EMP_NM);
-	   empData.put("입사일자", EMP_DT);
-	   empData.put("휴대폰번호", EMP_PH_NUM);
 	   empData.put("사원주소", EMP_ADDR);
+	   empData.put("휴대폰번호", EMP_PH_NUM);
+	   empData.put("입사일자", EMP_DT);
 	   empData.put("사원구분", EMP_TP);
 	   empData.put("정규직구분", REG_TP);
 	   empData.put("사원ID", REG_ID);
@@ -43,7 +42,11 @@ public class empData {
    }
    
    static void createemp() {
-		quary = "INSERT INTO emp VALUES('"+ empData.get("사원번호") + "','" + empData.get("사원명") + "','" + empData.get("입사일자") + "','" + empData.get("휴대폰번호") + "' ,'" + empData.get("사원주소") + "', '" + empData.get("사원구분") + "', '" + empData.get("정규직구분") + "', '" + empData.get("사원ID") + "', '" + empData.get("초기비밀번호") + "')";
+		quary = "INSERT INTO emp VALUES(SEQ_EMP_NUM.NEXTVAL, '" + empData.get("사원명") + "', '" + empData.get("사원주소") + "', "
+				+ " '" + empData.get("휴대폰번호") + "' , to_date('" + empData.get("입사일자") + "', 'YYYY-MM-DD'), '" + empData.get("사원구분") + "', "
+						+ "  '" + empData.get("사원ID") + "', '" + empData.get("정규직구분") + "', '" + empData.get("초기비밀번호") + "')";
+		
+		System.out.println(quary);
 	
 		try {
 			pstm = conn.prepareStatement(quary);

@@ -25,8 +25,6 @@ import javax.swing.table.DefaultTableModel;
 public class MainProImg extends JPanel {   
 	private JLabel Main;
 
-	BufferedImage img;
-	
 //	private JComboBox<String> cbSel;      
 	         
 	GridBagLayout gridbaglayout;      
@@ -51,14 +49,13 @@ public class MainProImg extends JPanel {
 //        gridbagconstraints.weighty=1.0;
         
         setLayout(gridbaglayout);
-        
-        
        
          BackgroundPanel sub = new BackgroundPanel();
          sub.setSize(1377, 768);
          add(sub);
          setLayout(null);
         
+         
         gridbagconstraints.anchor = GridBagConstraints.CENTER;
         gridbagconstraints.anchor = GridBagConstraints.EAST;
         gridbagconstraints.anchor = GridBagConstraints.WEST;
@@ -83,35 +80,6 @@ public class MainProImg extends JPanel {
 	public static void main(String[] args) {   
 		new MainProImg();
     	 }
-	
-
-	class BackgroundPanel extends JPanel{
-		
-		String Simg;
-		
-		public void imgread() {
-
-			Simg = "aa";
-			
-			try {
-		        img = ImageIO.read(new File("C:\\Users\\ssong\\Desktop\\img\\"+Simg+".jpg"));
-		     } catch (IOException e) {
-		        JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
-		        System.exit(0);
-		     }
-		}
-	
-        public void paint(Graphics g) {
-        	for(int i = 0 ; i < 4 ; i++) {
-        		for(int j = 0 ; j < 3 ; j++) {
-	        		imgread();
-	        		Dimension d = getSize();
-	        		g.drawImage(img, i*(d.width/4 + 10), j*d.height/3, d.width/4, d.height/3, null);
-	        		setOpaque(true);
-        		}
-        	}
-		}
-	}
 }
 	         
 

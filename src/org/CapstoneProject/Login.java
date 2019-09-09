@@ -69,6 +69,8 @@ public class Login extends JFrame implements ActionListener {
 				 JOptionPane.showMessageDialog(null, "입력하신 ID와 비밀번호가 일치하지 않습니다", "", JOptionPane.ERROR_MESSAGE);
 			 }else {
 				 JOptionPane.showMessageDialog(null, "로그인 되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+				 dispose();
+				 JFrame user_main = new home_user();
 			 	}
 		 	}
 		 }

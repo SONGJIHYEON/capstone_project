@@ -10,6 +10,9 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -46,13 +49,14 @@ public class RegMember extends JFrame implements ActionListener {
 	private JButton BtCheckId, BtSearchAddr, BtRegist, BtCancel;
 	private JComboBox CbEmail;
 	
-	String sid, sid2, ID, CUST_NM, PH_NUM, ADDR, BD, PWD;
+	String sid, sid2, ID, CUST_NM, PH_NUM, ADDR, BD, PWD, STdate;
+//	static String STdate;
 	int intid= 0;
 	int check;
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 	
-	private void getData(List<Map<String, Serializable>> idListData) {
+	private void getData1(List<Map<String, Serializable>> idListData) {
 
 		sid2 = "";
 		sid2 += idListData.get(0).get("ID").toString(); 
@@ -65,6 +69,28 @@ public class RegMember extends JFrame implements ActionListener {
 		}else 
 			JOptionPane.showMessageDialog(null, "중복된 아이디 입니다","", JOptionPane.INFORMATION_MESSAGE);
 			return;
+	}
+	
+	public void getData2(List<Map<String, Serializable>> MbgraListData) {
+		
+		SimpleDateFormat spdate = new SimpleDateFormat("yyyy-MM-dd");
+		
+		STdate = "";
+		STdate += MbgraListData.get(0).get("DISC_APP_ST_DT");
+		
+		String oldstring = STdate;
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String newstring = new SimpleDateFormat("yyyy-MM-dd").format(date);
+		System.out.println(newstring);
+		
+		CustData.initCustData(ID, PWD, CUST_NM, BD, PH_NUM, ADDR, newstring );
+		CustData.createCust();
 	}
 	
 	public RegMember(JFrame fr) {
@@ -204,7 +230,7 @@ public class RegMember extends JFrame implements ActionListener {
 				System.out.println("아이디 넣으셈");
 			} else
 			CheckId.initCustData(sid);
-			getData(CheckId.selectid());
+			getData1(CheckId.selectid());
 
 		}
 		
@@ -222,12 +248,12 @@ public class RegMember extends JFrame implements ActionListener {
 			BD = xMemBirth.getText();
 			PH_NUM = xMemPhone.getText();
 			ADDR = xMemAddr2.getText() + " " + xMemAddr3.getText();
-			CustData.initCustData(ID, PWD, CUST_NM, BD, PH_NUM, ADDR);
-			CustData.createCust();
 			
 			check = JOptionPane.showConfirmDialog(null, "회원가입 하시겠습니까?", "등록 확인", JOptionPane.YES_NO_OPTION,
 		               JOptionPane.INFORMATION_MESSAGE);
 			if(check == JOptionPane.YES_OPTION) {
+//				MbgraData.initMbgraData(STdate);
+				getData2(MbgraData.Mbgra());
 				JOptionPane.showMessageDialog(null, "회원으로 가입되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			} else

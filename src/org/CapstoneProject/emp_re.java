@@ -3,6 +3,7 @@ package org.CapstoneProject;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -20,17 +21,17 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 
 
-public class emp_re extends Dialog implements ActionListener{
+public class emp_re extends JFrame implements ActionListener{
 
-   private JLabel mb_regist, mb_lookup, mb_regist2, Lemp_no, Lemp_nm, Lemp_dt, Lemp_ph_num, Lemp_tp, Lemp_addr,
+   private JLabel mb_regist, mb_lookup, mb_regist2, Lemp_no, Lemp_nm, Lemp_dt, Lemp_ph_num, Lemp_tp, Lemp_addr, Lemp_addr1, Lemp_addr2,
    Lreg_tp,Lreg_id,Lreg_pw;      
          
-   private JTextField  Temp_no, Temp_nm, Temp_dt, Temp_ph_num, Temp_addr, Treg_id, Treg_pw;      
+   private JTextField  Temp_no, Temp_nm, Temp_dt, Temp_ph_num, Temp_addr, Temp_addr1, Temp_addr2, Treg_id, Treg_pw;      
    
    private String[] emp_tp = {"정규직", "계약직"};    
    private String[] reg_tp = {"스타일리스트", "웹디자이너", "포토그래퍼", "물류관리담당", "고객센터담당"};  
          
-   private JButton Bregist,Bcancel; 
+   private JButton Bregist,Bcancel,BtSearchAddr; 
    
    private JComboBox<String> CBemp_tp, CBreg_tp;   
    
@@ -42,7 +43,7 @@ public class emp_re extends Dialog implements ActionListener{
    GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
          
    public emp_re(JFrame fr) {      
-	     super(fr, "", true);
+//	     super(fr, "", true);
          
          gridbaglayout = new GridBagLayout();
          gridbagconstraints = new GridBagConstraints();
@@ -62,6 +63,10 @@ public class emp_re extends Dialog implements ActionListener{
          Lemp_tp.setPreferredSize(new Dimension(100,30));
          Lemp_addr = new JLabel("주소");
          Lemp_addr.setPreferredSize(new Dimension(100,30));
+         Lemp_addr1 =  new JLabel("기본주소");
+         Lemp_addr1.setFont(new Font("serif", Font.PLAIN, 12));
+         Lemp_addr2 =  new JLabel("상세주소");
+         Lemp_addr2.setFont(new Font("serif", Font.PLAIN, 12));
          Lreg_tp = new JLabel("정규직 구분");
          Lreg_tp.setPreferredSize(new Dimension(100,30));
          Lreg_id = new JLabel("아이디");
@@ -75,19 +80,23 @@ public class emp_re extends Dialog implements ActionListener{
          CBreg_tp = new JComboBox<String>(reg_tp);
          CBreg_tp.setPreferredSize(new Dimension(100,30));
          
-         Temp_no = new JTextField(20);
-         Temp_no.setPreferredSize(new Dimension(100,30));
-         Temp_nm = new JTextField(20);
+//         Temp_no = new JTextField(22);
+//         Temp_no.setPreferredSize(new Dimension(100,30));
+         Temp_nm = new JTextField(22);
          Temp_nm.setPreferredSize(new Dimension(100,30));
-         Temp_dt = new JTextField(20);
+         Temp_dt = new JTextField(22);
          Temp_dt.setPreferredSize(new Dimension(100,30));
-         Temp_ph_num = new JTextField(20);
+         Temp_ph_num = new JTextField(22);
          Temp_ph_num.setPreferredSize(new Dimension(100,30));
-         Temp_addr = new JTextField(20);
+         Temp_addr = new JTextField(22);
          Temp_addr.setPreferredSize(new Dimension(100,30));
-         Treg_id = new JTextField(20);
+         Temp_addr1 = new JTextField(22);
+         Temp_addr1.setPreferredSize(new Dimension(100,30));
+         Temp_addr2 = new JTextField(22);
+         Temp_addr2.setPreferredSize(new Dimension(100,30));
+         Treg_id = new JTextField(22);
          Treg_id.setPreferredSize(new Dimension(100,30));
-         Treg_pw = new JTextField(20);
+         Treg_pw = new JTextField(22);
          Treg_pw.setPreferredSize(new Dimension(100,30));
          
          Bregist = new JButton("등록");
@@ -96,6 +105,8 @@ public class emp_re extends Dialog implements ActionListener{
          Bcancel = new JButton("취소");
          Bcancel.setPreferredSize(new Dimension(100,28)); 
          Bcancel.addActionListener(this);
+         BtSearchAddr = new JButton("우편번호 검색");
+         BtSearchAddr.addActionListener(this);
         
          
          CBreg_tp.setEnabled(true);
@@ -127,26 +138,32 @@ public class emp_re extends Dialog implements ActionListener{
          gridbagAdd(Lemp_dt, 1, 4, 1, 1);
          gridbagAdd(Lemp_ph_num, 1, 5, 1, 1);
          gridbagAdd(Lemp_addr, 1, 6, 1, 1);
-         gridbagAdd(Lemp_tp, 1, 7, 1, 1);
-         gridbagAdd(Lreg_tp, 1, 8, 1, 1);
-         gridbagAdd(Lreg_id, 1, 9, 1, 1);
-         gridbagAdd(Lreg_pw, 1, 10, 1, 1);
-         gridbagAdd(CBreg_tp, 2, 8, 1, 1);
+         gridbagAdd(Lemp_tp, 1, 9, 1, 1);
+         gridbagAdd(Lreg_tp, 1, 10, 1, 1);
+         gridbagAdd(Lreg_id, 1, 11, 1, 1);
+         gridbagAdd(Lreg_pw, 1, 12, 1, 1);
 //         gridbagAdd(Temp_no, 2, 2, 1, 1);
          gridbagAdd(Temp_nm, 2, 3, 1, 1);
          gridbagAdd(Temp_dt, 2, 4, 1, 1);
          gridbagAdd(Temp_ph_num, 2, 5, 1, 1);
          gridbagAdd(Temp_addr, 2, 6, 1, 1);
-         gridbagAdd(CBemp_tp, 2, 7, 1, 1);
+         gridbagAdd(Temp_addr1, 2, 7, 1, 1);
+         gridbagAdd(Temp_addr2, 2, 8, 1, 1);
+         gridbagAdd(BtSearchAddr, 3, 6, 1, 1);
+         gridbagAdd(Lemp_addr1, 3, 7, 1, 1);
+         gridbagAdd(Lemp_addr2, 3, 8, 1, 1);
          
-         gridbagAdd(Treg_id, 2, 9, 1, 1);
-         gridbagAdd(Treg_pw, 2, 10, 1, 1);
+         gridbagAdd(CBemp_tp, 2, 9, 1, 1);
+         gridbagAdd(CBreg_tp, 2, 10, 1, 1);
+         
+         gridbagAdd(Treg_id, 2, 11, 1, 1);
+         gridbagAdd(Treg_pw, 2, 12, 1, 1);
          
 
-         gridbagAdd(Bregist, 2, 11, 1, 1);
+         gridbagAdd(Bregist, 2, 13, 1, 1);
          
          gridbagconstraints.anchor = GridBagConstraints.EAST;
-         gridbagAdd(Bcancel, 2, 11, 1, 1);
+         gridbagAdd(Bcancel, 2, 13, 1, 1);
 
          setVisible(true);
       }   
@@ -198,33 +215,37 @@ public class emp_re extends Dialog implements ActionListener{
 					if(result == 0) {
 						//변수에 콤보박스 값 저장
 						
-						EMP_NO = Temp_no.getText();
+//						EMP_NO = Temp_no.getText();
 						EMP_NM = Temp_nm.getText();
 						EMP_DT = Temp_dt.getText();
 						EMP_PH_NUM = Temp_ph_num.getText();
 						EMP_TP = (String) CBemp_tp.getSelectedItem();
-						EMP_ADDR = Temp_addr.getText();
+						EMP_ADDR = Temp_addr1.getText() + Temp_addr2.getText();
 						REG_TP = (String) CBreg_tp.getSelectedItem();
 						REG_ID = Treg_id.getText();
 						REG_PW = Treg_pw.getText();
 						
-						empData.initempData(EMP_NO,  EMP_NM,  EMP_DT,  EMP_PH_NUM,  EMP_TP,  EMP_ADDR,  REG_TP,  REG_ID,  REG_PW);
+						empData.initempData(EMP_NM,  EMP_DT,  EMP_PH_NUM,  EMP_TP,  EMP_ADDR,  REG_TP,  REG_ID,  REG_PW);
 						empData.createemp();
 						JOptionPane.showMessageDialog(null, "사원이 등록되었습니다.", "사원 등록",
 					               JOptionPane.WARNING_MESSAGE);
-						Temp_no.setText("");
-						Temp_nm.setText("");
-						Temp_dt.setText("");
-						Temp_ph_num.setText("");
-						Temp_addr.setText("");
-						Treg_id.setText("");
-						Treg_pw.setText("");
-			
+//						Temp_no.setText("");
+//						Temp_nm.setText("");
+//						Temp_dt.setText("");
+//						Temp_ph_num.setText("");
+//						Temp_addr.setText("");
+//						Treg_id.setText("");
+//						Treg_pw.setText("");
+						
+					}else if(result ==1) {
+						JOptionPane.getRootFrame().dispose(); 
+						}
+					}else if(e.getSource() == Bcancel) {
+						
+					}if(e.getSource() == BtSearchAddr) {
+						Address s = new Address(new JFrame());
+						Temp_addr.setText(s.zipcode);
+						Temp_addr1.setText(s.addr);
+					}
 		}
-		else if(result ==1) {
-			JOptionPane.getRootFrame().dispose(); 
-		}
-	}else if(e.getSource() == Bcancel) {
-   }
-}
 }
