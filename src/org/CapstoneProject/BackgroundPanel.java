@@ -38,8 +38,7 @@ class BackgroundPanel extends JPanel{
 	        		Dimension d = getSize();
 	        		g.drawImage(img, i*(d.width/4 + 10), j*d.height/3, d.width/4, d.height/3, null);
 	        		setOpaque(true);
-	                
-	                System.out.println(6);
+
         		}
         	}
 		}

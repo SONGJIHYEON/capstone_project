@@ -22,8 +22,9 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class MainProImg extends JPanel {   
+public class MainProImg extends JFrame {   
 	private JLabel Main;
+	private JPanel p;
 
 //	private JComboBox<String> cbSel;      
 	         
@@ -51,16 +52,17 @@ public class MainProImg extends JPanel {
         setLayout(gridbaglayout);
        
          BackgroundPanel sub = new BackgroundPanel();
-         sub.setSize(1377, 768);
-         add(sub);
-         setLayout(null);
+//         sub.setSize(1377, 768);
+         p = sub;
+         add(p);
+//         setLayout(null);
         
          
         gridbagconstraints.anchor = GridBagConstraints.CENTER;
         gridbagconstraints.anchor = GridBagConstraints.EAST;
         gridbagconstraints.anchor = GridBagConstraints.WEST;
         
-//        setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(MAXIMIZED_BOTH);
 	    setVisible(true);
 	}
 	

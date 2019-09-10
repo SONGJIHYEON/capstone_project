@@ -27,12 +27,11 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-public class RegModel extends JFrame implements ActionListener {
+public class RegModel extends JPanel implements ActionListener {
 	
 //	private static final int MAXIMIZED_BOTH = 0;
-	private JLabel vRegModel, vRegModel2, vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelImage, vAdminModel, 
-	vModelCtgr, vRegPro, vAdminPro, vProUp, vModelExp, vModelSize, vModelNick;
-	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelSize, xModelImage, xModelNick;
+	private JLabel vRegModel2, vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelExp, vModelNick;
+	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelNick;
 //	private JTextArea xModelImage;
 
 	private String[] ctgr1 = {"상의", "하의", "아우터", "셔츠", "신발"};
@@ -45,10 +44,7 @@ public class RegModel extends JFrame implements ActionListener {
 //	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
 //	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
 
-	private JTable tBest, tNew;      
-	private JScrollPane scrollpane1, scrollpane2;  
-   
-	private JButton BtSearch, BtImg, BtReg, BtCancel, BtCode; 
+	private JButton BtReg, BtCancel, BtCode; 
 	private JComboBox<String> Cbctgr1, Cbctgr2;
 	
 
@@ -78,22 +74,10 @@ public class RegModel extends JFrame implements ActionListener {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints(); 
 		        
-		vRegModel = new JLabel("모델등록");
-		vRegModel.setPreferredSize(new Dimension(200,28));
 		vRegModel2 = new JLabel("모델등록");
 		vRegModel2.setPreferredSize(new Dimension(200,28));
-		vAdminModel = new JLabel("모델검색");
-		vAdminModel.setPreferredSize(new Dimension(200,28));
-		vModelCtgr = new JLabel("모델분류");
-		vModelCtgr.setPreferredSize(new Dimension(200,28));
-		vRegPro = new JLabel("상품등록");
-		vRegPro.setPreferredSize(new Dimension(200,28));
-		vAdminPro = new JLabel("상품관리");
-		vAdminPro.setPreferredSize(new Dimension(200,28));
-		vProUp = new JLabel("상품단가변경");
-        vProUp.setPreferredSize(new Dimension(200,28));
         vModelNick = new JLabel("모델별칭");
-        vProUp.setPreferredSize(new Dimension(200,28));
+		vRegModel2.setPreferredSize(new Dimension(200,28));
         
 		vModelNm = new JLabel("모델명");
 
@@ -139,13 +123,8 @@ public class RegModel extends JFrame implements ActionListener {
 
 		setLayout(gbl);
 		
-		gridbagAdd(vRegModel, 0, 1, 1, 1);
 		gridbagAdd(vRegModel2, 1, 1, 1, 1);
-		gridbagAdd(vAdminModel,0, 2, 1, 1);
-	    gridbagAdd(vModelCtgr, 0, 3, 1, 1);
-	    gridbagAdd(vRegPro, 0, 4, 1, 1);
-	    gridbagAdd(vAdminPro, 0, 5, 1, 1);
-	    gridbagAdd(vProUp, 0, 6, 1, 1);
+		
 	    gridbagAdd(vModelNm, 1, 2, 1, 1);
 	    gridbagAdd(vModelCode, 1, 3, 1, 1);
 	    
@@ -183,7 +162,6 @@ public class RegModel extends JFrame implements ActionListener {
 //	    gridbagAdd(regist, 0, 12, 1, 1);
 //	    gridbagAdd(cancel, 2, 12, 1, 1);
 	    
-		setExtendedState(MAXIMIZED_BOTH);
 	    setVisible(true);
 	}   
 	         

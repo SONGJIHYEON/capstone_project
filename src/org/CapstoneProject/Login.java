@@ -33,7 +33,7 @@ public class Login extends JFrame implements ActionListener {
 	   
 	private String[] col1 = {"부서명", "부서위치"};      
 	private String[] col2 = {"부서명", "성명"};      
-	private String[] div = {"관리자", "유저"}; // 사원구분 콤보박스의 목록
+	private String[] div = {"유저", "관리자"}; // 사원구분 콤보박스의 목록
 	         
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);      
 	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -60,17 +60,56 @@ public class Login extends JFrame implements ActionListener {
 		 id.put(idListData.get(i).get("ID"),
 				idListData.get(i).get("PWD"));	 
 		 }
-		 
 
 		 if(!id.containsKey(sid)) {
 			 JOptionPane.showMessageDialog(null, "등록되지 않은 ID입니다", "", JOptionPane.ERROR_MESSAGE);
+			 xId.setText("");
+			 xPwd.setText("");
+			 sid = "";
+			 pwd = "";
 		 }else {
 			 if(!id.get(sid).equals(pwd)) {
 				 JOptionPane.showMessageDialog(null, "입력하신 ID와 비밀번호가 일치하지 않습니다", "", JOptionPane.ERROR_MESSAGE);
+				 xId.setText("");
+				 xPwd.setText("");
+				 sid = "";
+				 pwd = "";
 			 }else {
 				 JOptionPane.showMessageDialog(null, "로그인 되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
 				 dispose();
 				 JFrame user_main = new home_user();
+			 	}
+		 	}
+		 }
+	
+	private void getData2(List<Map<String, Serializable>> idListData) {
+		 HashMap<Serializable, Serializable> id = new HashMap<Serializable, Serializable>();	
+
+		 ArrayList ar = new ArrayList();
+		 
+		 for(int i = 0; i<idListData.size(); i++) {
+			 
+		 id.put(idListData.get(i).get("ID"),
+				idListData.get(i).get("PWD"));	 
+		 }
+
+		 if(!id.containsKey(sid2)) {
+			 JOptionPane.showMessageDialog(null, "등록되지 않은 ID입니다", "", JOptionPane.ERROR_MESSAGE);
+			 xId.setText("");
+			 xPwd.setText("");
+			 sid2 = "";
+			 pwd2 = "";
+		 }else {
+			 if(!id.get(sid2).equals(pwd2)) {
+				 JOptionPane.showMessageDialog(null, "입력하신 ID와 비밀번호가 일치하지 않습니다", "", JOptionPane.ERROR_MESSAGE);
+				 xId.setText("");
+				 xPwd.setText("");
+				 sid2 = "";
+				 pwd2 = "";
+			 }else {
+				 JOptionPane.showMessageDialog(null, "로그인 되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+				 dispose();
+				 JFrame admin_main = new home_admin();
 			 	}
 		 	}
 		 }
@@ -173,12 +212,22 @@ public class Login extends JFrame implements ActionListener {
 			Find f = new Find(new JFrame());
 		} else if(e.getSource() == Btnonmember) {
 			Nonmember n = new Nonmember(new JFrame());
-		}if(e.getSource() == BtLogin) {
+		}if(cbSel.getSelectedItem() == "유저") {
+			if(e.getSource() == BtLogin) {
 			sid = "";
 			pwd = "";
 			sid = xId.getText();
-			pwd = xPwd.getText();
-			getData(CheckId.selectlogin(sid, pwd));
+			pwd = xPwd.getText();			
+			getData(CheckId.selectlogin1(sid, pwd));
+			}
+		}if(cbSel.getSelectedItem() == "관리자") {
+			if(e.getSource() == BtLogin) {
+				sid2 = "";
+				pwd2 = "";
+				sid2 = xId.getText();
+				pwd2 = xPwd.getText();
+				getData2(CheckId.selectlogin2(sid2, pwd2));
+			}
 		}
 	}
 }

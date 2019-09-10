@@ -24,6 +24,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -32,9 +33,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
-public class ManModel extends Dialog implements MouseListener, ActionListener{
-	private JLabel vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelExp, vModelSize;
-	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelSize, xSearch;
+public class ManModel extends JPanel implements MouseListener, ActionListener{
+	private JLabel vAdminModel;
+	private JTextField xSearch;
 	
 	private String[] col1 = {"모델명", "모델번호", "1차분류", "상의2차분류", "하의2차분류", "아우터2차분류","셔츠2차분류", "신발2차분류"};      
 	private String[] search = {"모델명", "1차분류"};    
@@ -43,11 +44,11 @@ public class ManModel extends Dialog implements MouseListener, ActionListener{
 //	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
 
 	private JTable tModelInfo;    
-	private JScrollPane scrollpane1, scrollpane2;  	
+	private JScrollPane scrollpane1;  	
 	
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
    
-	private JButton BtSearch, BtReg; 
+	private JButton BtSearch; 
 	private JComboBox<String> CbSearch;
 	
 	String ModelName, first_ctgr, ModelNum;
@@ -55,10 +56,12 @@ public class ManModel extends Dialog implements MouseListener, ActionListener{
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 	
-	public ManModel(JFrame fr) {
-		super(fr, "", true);
+	public ManModel() {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints(); 
+		
+		vAdminModel = new JLabel("모델조회");
+		vAdminModel.setPreferredSize(new Dimension(200,28));
         		
 		CbSearch = new JComboBox<String>(search);
 		CbSearch.setPreferredSize(new Dimension(200,28));
@@ -74,9 +77,6 @@ public class ManModel extends Dialog implements MouseListener, ActionListener{
 		BtSearch = new JButton("검색");
 		BtSearch.addActionListener(this);
 		BtSearch.setPreferredSize(new Dimension(100,28));
-		BtReg = new JButton("등록");
-		BtReg.addActionListener(this);
-		BtReg.setPreferredSize(new Dimension(100,28));
 //		BtCancel = new JButton("닫기");
 		
 		
@@ -105,8 +105,6 @@ public class ManModel extends Dialog implements MouseListener, ActionListener{
 
 //		setExtendedState(MAXIMIZED_BOTH);
 
-		setTitle("홈페이지 관리자");
-
 
 		setLayout(gbl);
 
@@ -117,21 +115,17 @@ public class ManModel extends Dialog implements MouseListener, ActionListener{
 
 	    
         gbc.anchor = GridBagConstraints.CENTER;
-//        gridbagAdd(BtBussMan, 1, 0, 1, 1);
-//        gridbagAdd(BtProMan, 2, 0, 1, 1);
-//        gridbagAdd(BtOdMan, 3, 0, 1, 1);
-//        gridbagAdd(BtMbMan, 4, 0, 1, 1);
-//        gridbagAdd(BtEmpMan, 5, 0, 1, 1);
+        
         
 	    gbc.anchor = GridBagConstraints.WEST;
+
+		gridbagAdd(vAdminModel, 1, 1, 1, 1);
 	    gridbagAdd(BtSearch, 3, 2, 1, 1);
         gridbagAdd(scrollpane1, 1, 3, 10, 5);
 	    gbc.anchor = GridBagConstraints.EAST;
-	    gridbagAdd(BtReg, 10, 10, 1, 1);
 	    
-
-	    pack();
-	    setResizable(true);
+	 
+	    
         setVisible(true);
 	}   
 	         
@@ -152,15 +146,12 @@ public class ManModel extends Dialog implements MouseListener, ActionListener{
 	}   
 	
 	public static void main(String[] args) {   
-		new ManModel(new JFrame());
+		new ManModel();
 	}
 	
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == BtReg) {
-			dispose();
-		}
 		
 		if(e.getSource() == BtSearch) {
 			String search = xSearch.getText();

@@ -241,18 +241,16 @@ public class RegMember extends JFrame implements ActionListener {
 			if(!(pw1.equals(pw2))) {
 				JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다","오류", JOptionPane.ERROR_MESSAGE);
 				return;
-			}else
-			ID = xMemId.getText();
-			PWD = new String(xMemPw1.getPassword());
-			CUST_NM = xMemName.getText();
-			BD = xMemBirth.getText();
-			PH_NUM = xMemPhone.getText();
-			ADDR = xMemAddr2.getText() + " " + xMemAddr3.getText();
-			
-			check = JOptionPane.showConfirmDialog(null, "회원가입 하시겠습니까?", "등록 확인", JOptionPane.YES_NO_OPTION,
-		               JOptionPane.INFORMATION_MESSAGE);
+			}else				
+				check = JOptionPane.showConfirmDialog(null, "회원가입 하시겠습니까?", "등록 확인", JOptionPane.YES_NO_OPTION,
+						JOptionPane.INFORMATION_MESSAGE);			
 			if(check == JOptionPane.YES_OPTION) {
-//				MbgraData.initMbgraData(STdate);
+				ID = xMemId.getText();
+				PWD = new String(xMemPw1.getPassword());
+				CUST_NM = xMemName.getText();
+				BD = xMemBirth.getText();
+				PH_NUM = xMemPhone.getText();
+				ADDR = xMemAddr2.getText() + " " + xMemAddr3.getText();
 				getData2(MbgraData.Mbgra());
 				JOptionPane.showMessageDialog(null, "회원으로 가입되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
 				dispose();

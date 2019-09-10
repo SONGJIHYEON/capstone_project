@@ -1,4 +1,3 @@
-
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -30,7 +29,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class RegPro extends JPanel implements ActionListener, ItemListener {
+public class RegPro extends JFrame implements ActionListener, ItemListener {
    
    ArrayList ar = new ArrayList();
    ArrayList ar1 = new ArrayList();
@@ -288,7 +287,7 @@ public class RegPro extends JPanel implements ActionListener, ItemListener {
    @Override
    public void actionPerformed(ActionEvent e) {
       if(e.getSource() == BtModel) {
-         ManModel mM = new ManModel(new JFrame());
+         ModelSearch mM = new ModelSearch(new JFrame());
          xModelNm.setText(mM.ModelName);
          name = mM.ModelNum;
       if(mM.first_ctgr.equals("상의") || mM.first_ctgr.equals("아우터") || mM.first_ctgr.equals("셔츠")) {
@@ -401,4 +400,3 @@ public class RegPro extends JPanel implements ActionListener, ItemListener {
 //    	  System.out.println(2);
    }
 }
-

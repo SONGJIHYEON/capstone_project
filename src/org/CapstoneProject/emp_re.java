@@ -30,6 +30,7 @@ public class emp_re extends JFrame implements ActionListener{
    
    private String[] emp_tp = {"정규직", "계약직"};    
    private String[] reg_tp = {"스타일리스트", "웹디자이너", "포토그래퍼", "물류관리담당", "고객센터담당"};  
+   private String[] empty = {""};
          
    private JButton Bregist,Bcancel,BtSearchAddr; 
    
@@ -200,6 +201,7 @@ public class emp_re extends JFrame implements ActionListener{
 		        Treg_id.setVisible(true);
 		        Treg_pw.setVisible(true);
 			}else if(CBemp_tp.getSelectedItem() == "계약직") {
+//				CBreg_tp = new JComboBox<String>(empty);				
 				CBreg_tp.setEnabled(false);
 		        CBreg_tp.setVisible(false);
 		        Lreg_tp.setVisible(false);
@@ -222,6 +224,9 @@ public class emp_re extends JFrame implements ActionListener{
 						EMP_TP = (String) CBemp_tp.getSelectedItem();
 						EMP_ADDR = Temp_addr1.getText() + Temp_addr2.getText();
 						REG_TP = (String) CBreg_tp.getSelectedItem();
+						if(EMP_TP == "계약직") {
+		                     REG_TP = "";
+		                  }
 						REG_ID = Treg_id.getText();
 						REG_PW = Treg_pw.getText();
 						

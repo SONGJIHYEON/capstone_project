@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -21,10 +22,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 
-public class ManPro extends JFrame {
-	private JLabel vRegModel, vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vAdminModel, vAdminPro2,
-	vModelCtgr, vRegPro, vAdminPro, vProUp, vModelExp, vModelSize;
-	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelSize, xSearch;
+public class ManPro extends JPanel {
+	private JLabel vAdminPro2;
+	private JTextField xSearch;
 
 //	private JPasswordField xMemPw1, xMemPw2;
 //	private String[] ctgr1 = {"상의", "하의", "셔츠", "아우터", "신발"};
@@ -45,7 +45,7 @@ public class ManPro extends JFrame {
 	
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
    
-	private JButton BtBussMan, BtProMan, BtOdMan, BtMbMan, BtEmpMan, BtSearch, BtReg; 
+	private JButton BtSearch, BtReg; 
 	private JComboBox<String> CbSearch, Cbctgr1, CbCbctgr2_1, CbCbctgr2_2, CbCbctgr2_3, CbCbctgr2_4, CbCbctgr2_5;
 	
 	GridBagLayout gbl;
@@ -55,20 +55,7 @@ public class ManPro extends JFrame {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints(); 
         
-		vRegModel = new JLabel("모델등록");
-		vRegModel.setPreferredSize(new Dimension(200,28));
-		vAdminModel = new JLabel("모델검색");
-		vAdminModel.setPreferredSize(new Dimension(200,28));
-		vModelCtgr = new JLabel("모델분류");
-		vModelCtgr.setPreferredSize(new Dimension(200,28));
-		vRegPro = new JLabel("상품등록");
-		vRegPro.setPreferredSize(new Dimension(200,28));
-		vAdminPro = new JLabel("상품관리");
-		vAdminPro.setPreferredSize(new Dimension(200,28));
-		vProUp = new JLabel("상품단가변경");
-        vProUp.setPreferredSize(new Dimension(200,28));
-        
-		vAdminPro2 = new JLabel("상품관리");
+		vAdminPro2 = new JLabel("상품조회");
 		vAdminPro2.setPreferredSize(new Dimension(200,28));
 		
 		CbSearch = new JComboBox<String>(search);
@@ -81,57 +68,26 @@ public class ManPro extends JFrame {
         scrollpane1 = new JScrollPane(tModelInfo);
         scrollpane1.setPreferredSize(new Dimension(1000, 300));
 
-
-		BtBussMan = new JButton("거래관리");
-		BtBussMan.setPreferredSize(new Dimension(200,28));
-        
-//        regist.addActionListener(this);
-		BtProMan = new JButton("모델/상품관리");
-		BtProMan.setPreferredSize(new Dimension(200,28));
-//        cancel.addActionListener(this);
-		BtOdMan = new JButton("주문관리");
-		BtOdMan.setPreferredSize(new Dimension(200,28));
-		BtMbMan = new JButton("회원관리");
-		BtMbMan.setPreferredSize(new Dimension(200,28));
-		BtEmpMan = new JButton("직원관리");
-		BtEmpMan.setPreferredSize(new Dimension(200,28));
 		
 		BtSearch = new JButton("검색");
 		BtSearch.setPreferredSize(new Dimension(100,28));
 		BtReg = new JButton("등록");
 		BtReg.setPreferredSize(new Dimension(100,28));
 //		BtCancel = new JButton("닫기");
-
-		setExtendedState(MAXIMIZED_BOTH);
 		ManProView();
 	}
 	
 	private void ManProView() {
 
-
-		setTitle("홈페이지 관리자");
-
-
 		setLayout(gbl);
 		
-		gridbagAdd(vRegModel, 0, 1, 1, 1);
 		gridbagAdd(vAdminPro2, 1, 1, 1, 1);
-		gridbagAdd(vAdminModel,0, 2, 1, 1);
-	    gridbagAdd(vModelCtgr, 0, 3, 1, 1);
-	    gridbagAdd(vRegPro, 0, 4, 1, 1);
-	    gridbagAdd(vAdminPro, 0, 5, 1, 1);
-	    gridbagAdd(vProUp, 0, 6, 1, 1);
 	    
 	    gridbagAdd(CbSearch, 1, 2, 1, 1);
 	    gridbagAdd(xSearch, 2, 2, 1, 1);
 
 	    
         gbc.anchor = GridBagConstraints.CENTER;
-        gridbagAdd(BtBussMan, 1, 0, 1, 1);
-        gridbagAdd(BtProMan, 2, 0, 1, 1);
-        gridbagAdd(BtOdMan, 3, 0, 1, 1);
-        gridbagAdd(BtMbMan, 4, 0, 1, 1);
-        gridbagAdd(BtEmpMan, 5, 0, 1, 1);
         
 	    gbc.anchor = GridBagConstraints.WEST;
 	    gridbagAdd(BtSearch, 3, 2, 1, 1);
