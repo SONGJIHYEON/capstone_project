@@ -98,41 +98,41 @@ static List<Map<String, Serializable>> selectemp() {
       return empListData;
       
    }
-//static List<Map<String, Serializable>> SearchAddr(String search) {
-//   
-//   quary = "select * from zipcode where addr like '%"+search+"%'";
-//   
-//   empListData.clear();
-//   
-//   try {
-//   
-//      pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-//      rs = pstm.executeQuery();         
-//      while(rs.next()){
-//         
-//         empDataSet = new HashMap<String, Serializable>();
-//
-//         empDataSet.put("ZIPCODE", rs.getString(1)); 
-//         empDataSet.put("SEQ", rs.getString(2));
-//         empDataSet.put("SIDO", rs.getString(3));
-//         empDataSet.put("GUGUN", rs.getString(4));
-//         empDataSet.put("DONG", rs.getString(5));
-//         
-//         //System.out.println(addrdataSet);
-//         empListData.add(empDataSet);
-//         
-//         
-//      } 
-//      
-//      
-//   } catch (SQLException sqle) {
-//      System.out.println("select문에서 예외 발생");
-//      sqle.printStackTrace();
-//   }
-//   
-//   return empListData;
-//   
-//}
+static List<Map<String, Serializable>> selectid(String sid) {
+	
+	quary = "select count(id) from emp where id = '"+ sid +"'";
+	
+	
+
+		empListData.clear();
+	
+	try {
+	
+		pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+		rs = pstm.executeQuery();
+
+		while(rs.next()){
+			
+			empDataSet = new HashMap<String, Serializable>();
+			
+			empDataSet.put("ID", rs.getString(1)); 
+//				addrdataSet.put("SEQ", rs.getString(2));
+		
+			
+//				System.out.println(iddataSet);
+			empListData.add(empDataSet);
+			
+			
+		} 
+		
+	} catch (SQLException sqle) {
+		System.out.println("select문에서 예외 발생");
+		sqle.printStackTrace();
+	}
+	
+	return empListData;
+	
+}
 }
 
 

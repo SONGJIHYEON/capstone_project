@@ -38,7 +38,7 @@ public class CheckId {
 			
 			quary = "select count(id) from cust where id = '"+iddata.get("¾ÆÀÌµð")+"'";
 	
-	//		idListData.clear();
+			idListData.clear();
 			
 			try {
 			

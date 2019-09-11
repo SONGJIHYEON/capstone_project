@@ -226,11 +226,13 @@ public class RegMember extends JFrame implements ActionListener {
 		if(e.getSource() == BtCheckId) {
 			sid = "";
 			sid += xMemId.getText();
-			if(sid == " ") {
-				System.out.println("아이디 넣으셈");
-			} else
+			if(sid.equals("")) {
+				JOptionPane.showMessageDialog(null, "ID를 입력해 주세요.", "ID미입력", JOptionPane.WARNING_MESSAGE);
+			} else {
 			CheckId.initCustData(sid);
 			getData1(CheckId.selectid());
+			}
+			xMemId.setText("");
 
 		}
 		
