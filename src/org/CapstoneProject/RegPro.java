@@ -234,11 +234,11 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
        gridbagAdd(vProSize, 1, 4, 1, 1);
        gridbagAdd(vProColor, 1, 5, 1, 1);
 //       gridbagAdd(vProStock, 1, 8, 1, 1);
-       gridbagAdd(vProDetail, 1, 7, 1, 1);
+//       gridbagAdd(vProDetail, 1, 7, 1, 1);
        
        gridbagAdd(xModelNm, 2, 2, 2, 1);
        gridbagAdd(PRadio, 2, 3, 2, 1);
-       gridbagAdd(xProDetail, 2, 7, 2, 1);
+//       gridbagAdd(xProDetail, 2, 7, 2, 1);
        gridbagAdd(pcolor, 2, 5, 2, 1);
        
 
@@ -373,16 +373,16 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 				   model1.addRow(new Object[] {
 						   ar1.get(i),
 						   ar.get(j),
-						   xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j)
+						   xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j),
+						   
 				   });		
-				   PRO_IMG = xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j);
 				   }
 		   }
 		  }
       }if(e.getSource() == BtReg) {
     	  for(int i=0;i<ar1.size();i++) {
 			   for(int j=0;j<ar.size();j++) {
-	    		   RegProData.createpro(name, xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j), ar.get(j).toString(), ar1.get(i).toString(), PRO_IMG );
+	    		   RegProData.createpro(name, xModelNm.getText()+"_"+ar1.get(i) +"_"+ ar.get(j), ar.get(j).toString(), ar1.get(i).toString() );
 				   }
 		   }
 

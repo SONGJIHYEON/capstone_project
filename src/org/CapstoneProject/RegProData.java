@@ -33,17 +33,16 @@ public class RegProData {
 		prodata.put("모델분류번호", pro_CTGR_NUM);
 		prodata.put("모델이름", pro_NM);
 		prodata.put("모델상세정보", pro_EXP);
-		prodata.put("모델상세정보", pro_EXP);
-		prodata.put("모델상세정보", pro_EXP);
+//		prodata.put("모델상세정보", pro_EXP);
+//		prodata.put("모델상세정보", pro_EXP);
 	}
 	
 		
 	/* 고객정보를 생성하는 질의어 */
-	static void createpro(String model_num, String PRO_NM, String CLR, String SIZ, String PRO_IMG) {
+	static void createpro(String model_num, String PRO_NM, String CLR, String SIZ) {
 		
 		
-		quary = "insert into pro values (SEQ_PRO_NUM.NEXTVAL, '"+model_num+"', '" +PRO_NM+ "', '" +CLR+ "', '"+SIZ+"', "
-				+ " '"+PRO_IMG+"', '')";
+		quary = "insert into pro values (SEQ_PRO_NUM.NEXTVAL, '"+model_num+"', '" +PRO_NM+ "', '" +CLR+ "', '"+SIZ+"')";
 		
 		
 		System.out.println(quary);

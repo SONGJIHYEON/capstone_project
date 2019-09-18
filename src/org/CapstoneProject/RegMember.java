@@ -246,16 +246,26 @@ public class RegMember extends JFrame implements ActionListener {
 			}else				
 				check = JOptionPane.showConfirmDialog(null, "회원가입 하시겠습니까?", "등록 확인", JOptionPane.YES_NO_OPTION,
 						JOptionPane.INFORMATION_MESSAGE);			
-			if(check == JOptionPane.YES_OPTION) {
+			if(check == 0) {
+				ID = "";
 				ID = xMemId.getText();
+				PWD = "";
 				PWD = new String(xMemPw1.getPassword());
+				CUST_NM = "";
 				CUST_NM = xMemName.getText();
+				BD = "";
 				BD = xMemBirth.getText();
+				PH_NUM = "";
 				PH_NUM = xMemPhone.getText();
+				ADDR = "";
 				ADDR = xMemAddr2.getText() + " " + xMemAddr3.getText();
+				if(ID.equals("")|| PWD.equals("") || CUST_NM.equals("") || BD.equals("") || PH_NUM.equals("") || ADDR.equals("") ) {
+					JOptionPane.showMessageDialog(null, "입력되지 않은 항목이 있습니다.","오류", JOptionPane.ERROR_MESSAGE);
+				}else {					
 				getData2(MbgraData.Mbgra());
 				JOptionPane.showMessageDialog(null, "회원으로 가입되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
+				}
 			} else
 				return;
 		} else if(e.getSource() == BtSearchAddr) {

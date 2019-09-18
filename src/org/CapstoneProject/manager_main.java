@@ -1,6 +1,6 @@
 package org.CapstoneProject;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -16,9 +16,12 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.Action;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -30,55 +33,59 @@ import javax.swing.border.LineBorder;
 
 import org.CapstoneProject.RegPro;
 
-public class manager_main extends JFrame implements ActionListener {
+public class manager_main extends JFrame implements ActionListener, MouseListener {
    
    static JPanel menu_b = new JPanel();
    
+   Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+   
    JMenuBar MenuBar = new JMenuBar();
    //거래처 메뉴
-   JMenu Mn_corr = new JMenu("   거래처   ");
-   JMenuItem corr_look = new JMenuItem(" 거래처조회 ");
-   JMenuItem corr_regist = new JMenuItem(" 거래처등록 ");
+   JMenu Mn_corr = new JMenu("    거래처    ");
+   JMenuItem corr_look = new JMenuItem("   거래처조회  ");
+   JMenuItem corr_regist = new JMenuItem("   거래처등록  ");
    //상품 메뉴
-   JMenu Mn_pro = new JMenu("    상품    ");
+   JMenu Mn_pro = new JMenu("     상품     ");
+   JMenuItem model_look = new JMenuItem(" 모델조회  ");
+   JMenuItem model_regist = new JMenuItem(" 모델등록  ");
+   JMenuItem pro_look = new JMenuItem(" 상품조회  ");
+   JMenuItem pro_regist = new JMenuItem(" 상품등록  ");
+   JMenuItem pro_up_rec = new JMenuItem(" 상품단가관리");
    
-   JMenuItem model_look = new JMenuItem("모델조회  ");
-   JMenuItem model_regist = new JMenuItem("모델등록  ");
-   JMenuItem pro_look = new JMenuItem("상품조회  ");
-   JMenuItem pro_regist = new JMenuItem("상품등록  ");
-   JMenuItem pro_up_rec = new JMenuItem("상품단가관리");
-   
-   //주문 메뉴
-   JMenu Mn_Od = new JMenu("    주문    ");
-   JMenuItem Od_deposit = new JMenuItem("통장미입금");
-   JMenuItem Od_pre = new JMenuItem("상품준비중");
-   JMenuItem Od_change = new JMenuItem("교환    ");
-   JMenuItem Od_refund = new JMenuItem("환불    ");
-   JMenuItem Od_cancel = new JMenuItem("취소    ");
+   //주문 메뉴 
+   JMenu Mn_Od = new JMenu("     주문     ");
+   JMenuItem Od_deposit = new JMenuItem("   통장미입금 ");
+   JMenuItem Od_pre = new JMenuItem("   상품준비중 ");
+   JMenuItem Od_change = new JMenuItem(" 교환");
+   JMenuItem Od_refund = new JMenuItem(" 환불");
+   JMenuItem Od_cancel = new JMenuItem(" 취소");
    //사원 메뉴
-   JMenu Mn_Emp = new JMenu("    사원    ");
-   JMenuItem Emp_look = new JMenuItem("  사원조회  ");
-   JMenuItem Emp_regist = new JMenuItem("  사원등록  ");
+   JMenu Mn_Emp = new JMenu("     사원     ");
+   JMenuItem Emp_look = new JMenuItem("    사원조회   ");
+   JMenuItem Emp_regist = new JMenuItem("    사원등록   ");
    //회원 메뉴
-   JMenu Mn_Mb = new JMenu("    회원    ");
-   JMenuItem Mb_look = new JMenuItem("  회원조회  ");
-   JMenuItem Mb_grade = new JMenuItem("  등급관리  ");
+   JMenu Mn_Mb = new JMenu("     회원     ");
+   JMenuItem Mb_look = new JMenuItem("    회원조회   ");
+   JMenuItem Mb_grade = new JMenuItem("    등급관리   ");
    //이벤트
    
-   JMenu Mn_EVT = new JMenu("   이벤트   ");
-   JMenuItem EVT_look = new JMenuItem(" 이벤트조회 ");
-   JMenuItem EVT_regist = new JMenuItem(" 이벤트등록 ");
+   JMenu Mn_EVT = new JMenu("    이벤트    ");
+   JMenuItem EVT_look = new JMenuItem("   이벤트조회  ");
+   JMenuItem EVT_regist = new JMenuItem("   이벤트등록  ");
+   
+   JMenu Close = new JMenu(" 닫기 ");
+   JMenu Home = new JMenu(" 홈 ");
    
    BufferedImage img = null;
    
-   JButton Close;
+//   JButton Close;
    
    
    GridBagLayout gridbaglayout;      
    GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
          
    public manager_main() {      
-	   
+      
          gridbaglayout = new GridBagLayout();
          gridbagconstraints = new GridBagConstraints();
          
@@ -101,7 +108,9 @@ public class manager_main extends JFrame implements ActionListener {
          Mb_grade.addActionListener(this);
          EVT_look.addActionListener(this);
          EVT_regist.addActionListener(this);
-
+         Close.addMouseListener(this);
+         Home.addMouseListener(this);
+         
          Mn_corr.add(corr_look);
          Mn_corr.add(corr_regist);
          
@@ -125,32 +134,38 @@ public class manager_main extends JFrame implements ActionListener {
          
          Mn_EVT.add(EVT_look);
          Mn_EVT.add(EVT_regist);
-         
+
+         MenuBar.add(Home);
          MenuBar.add(Mn_corr);
          MenuBar.add(Mn_pro);
          MenuBar.add(Mn_Od);
          MenuBar.add(Mn_Emp);
          MenuBar.add(Mn_Mb);
          MenuBar.add(Mn_EVT);
+         MenuBar.add(Close);
+         
+
+         MenuBar.setBounds(0, 0, 1377, 40);
          
          menu_b.add(MenuBar);
          
-         Close = new JButton("닫기");
+//         Close = new JButton("닫기");
          
          
          
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
-         setExtendedState(MAXIMIZED_BOTH);
+//         setExtendedState(MAXIMIZED_BOTH);
          EmpRegisterView();
       }   
          
    private void EmpRegisterView() {      
          
          setTitle("관리자 메인화면");
+         setSize(d.width, d.height);
          //크기설정
          //거래처 메뉴
-         MenuBar.setBounds(0, 0, 810, 40);
+         MenuBar.setBounds(0, 0, 1050, 40);
          Mn_corr.setBorder(new LineBorder(new Color(0, 0, 0)));
          Mn_corr.setHorizontalAlignment(SwingConstants.CENTER);
          Mn_corr.setFont(new Font("맑은 고딕", Font.BOLD, 25));
@@ -204,14 +219,17 @@ public class manager_main extends JFrame implements ActionListener {
          Od_change.setBackground(new Color(255, 255, 255));
          Od_change.setHorizontalAlignment(SwingConstants.TRAILING);
          Od_change.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-
+         Od_change.setHorizontalAlignment(JLabel.CENTER);
+ 
          Od_refund.setBackground(new Color(255, 255, 255));
          Od_refund.setHorizontalAlignment(SwingConstants.TRAILING);
          Od_refund.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+         Od_refund.setHorizontalAlignment(JLabel.CENTER);
 
          Od_cancel.setBackground(new Color(255, 255, 255));
          Od_cancel.setHorizontalAlignment(SwingConstants.TRAILING);
          Od_cancel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+         Od_cancel.setHorizontalAlignment(JLabel.CENTER);
          
          //사원메뉴
          Mn_Emp.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -252,26 +270,28 @@ public class manager_main extends JFrame implements ActionListener {
          EVT_regist.setHorizontalAlignment(SwingConstants.TRAILING);
          EVT_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
          
-         Close.setBackground(Color.white);
-         Close.setSize(100  ,40);
-         Close.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-
-         Close.setBounds(1800, 0, 100, 40);
+         Home.setBorder(new LineBorder(new Color(0, 0, 0)));
+         Home.setHorizontalAlignment(SwingConstants.CENTER);
+         Home.setFont(new Font("맑은 고딕", Font.BOLD, 25));
          
-//         try {
-//        	 img = ImageIO.read(new File("C:\\Users\\kimkibum\\Desktop\\관리자 메인.jpg"));
-//         } catch (IOException e) {
-//        	 JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
-//        	 System.exit(0);
-//         }
+         Close.setBorder(new LineBorder(new Color(0, 0, 0)));
+         Close.setHorizontalAlignment(SwingConstants.CENTER);
+         Close.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+         
+         try {
+            img = ImageIO.read(new File("C:\\Users\\kibum\\Desktop\\메인 배경.png"));
+         } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
+            System.exit(0);
+         }
          
          BackgroundPanel sub = new BackgroundPanel();
-         sub.setSize(1377, 840);
+         sub.setSize(d.width, d.height-40);
          add(sub);
          setLayout(null);
          
          add(MenuBar);
-         add(Close);
+//         add(Close);
         
          setResizable(false);
          setVisible(true);
@@ -293,215 +313,239 @@ public class manager_main extends JFrame implements ActionListener {
          
          }
       class BackgroundPanel extends JPanel{
-	      public void paint(Graphics g) {
-	    	  Dimension d = getSize();
-	    	  g.drawImage(img, 0, 40, d.width, d.height, null);
-	    	  setOpaque(true);
-	      }
+         public void paint(Graphics g) {
+            g.drawImage(img, 0, 40, d.width, d.height, null);
+            setOpaque(true);
+         }
       }
+
       public static void main(String[] args) {
-        	  
-    	  JFrame win = new manager_main();
-    	  
+             
+         JFrame win = new manager_main();
+         
       }
       
 
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == corr_look){
-        	getContentPane().removeAll();
-        	JPanel Pcorr_look = new corr_look();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	Pcorr_look.setBounds(0, 40, d.width, d.height);
-        	add(Pcorr_look);
-        	repaint();
-        	revalidate();
+      public void actionPerformed(ActionEvent e) {
+         if(e.getSource() == corr_look){
+              getContentPane().removeAll();
+              JPanel Pcorr_look = new corr_look();
+              add(MenuBar);
+              Dimension d = getSize();
+              Pcorr_look.setBounds(0, 40, d.width, d.height);
+              add(Pcorr_look);
+              repaint();
+              revalidate();
+            
+           }
+         else if(e.getSource() == corr_regist){
+              getContentPane().removeAll();
+              JPanel Pcorr_regist = new corr_regist();
+              add(MenuBar);
+              Dimension d = getSize();
+              Pcorr_regist.setBounds(0, 40, d.width, d.height);
+              add(Pcorr_regist);
+              repaint();
+              revalidate();
+           }
+         //
+         else if(e.getSource() == model_look){
+              getContentPane().removeAll();
+              JPanel Pmodel_look = new ManModel();
+              add(MenuBar);
+              Dimension d = getSize();
+              Pmodel_look.setBounds(0, 40, d.width, d.height);
+              add(Pmodel_look);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == model_regist){
+              getContentPane().removeAll();
+              JPanel Pmodel_regist = new RegModel();
+              add(MenuBar);
+              Dimension d = getSize();
+              Pmodel_regist.setBounds(0, 40, d.width, d.height);
+              add(Pmodel_regist);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == pro_look){
+              getContentPane().removeAll();
+              JPanel Ppro_look = new ManPro();
+              add(MenuBar);
+              Dimension d = getSize();
+              Ppro_look.setBounds(0, 40, d.width, d.height);
+              add(Ppro_look);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == pro_regist){
+              getContentPane().removeAll();
+//              JPanel Ppro_regist = new RegPro();
+              add(MenuBar);
+              Dimension d = getSize();
+//              Ppro_regist.setBounds(0, 40, d.width, d.height);
+//              add(Ppro_regist);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == pro_up_rec){
+              getContentPane().removeAll();
+              JPanel Ppro_up_rec = new RegProPrice();
+              add(MenuBar);
+              Dimension d = getSize();
+              Ppro_up_rec.setBounds(0, 40, d.width, d.height);
+              add(Ppro_up_rec);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == Od_deposit){
+            getContentPane().removeAll();
+              JPanel POd_deposit = new od_list_no_deposit();
+              add(MenuBar);
+              Dimension d = getSize();
+              POd_deposit.setBounds(0, 40, d.width, d.height);
+              add(POd_deposit);
+              repaint();
+              revalidate();
+           } 
+         else if(e.getSource() == Od_pre){
+            getContentPane().removeAll();
+              JPanel POd_pre = new od_list_pre_pro();
+              add(MenuBar);
+              Dimension d = getSize();
+              POd_pre.setBounds(0, 40, d.width, d.height);
+              add(POd_pre);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == Od_change){
+            getContentPane().removeAll();
+              JPanel POd_change = new od_list_change();
+              add(MenuBar);
+              Dimension d = getSize();
+              POd_change.setBounds(0, 40, d.width, d.height);
+              add(POd_change);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == Od_refund){
+            getContentPane().removeAll();
+              JPanel POd_refund = new od_list_od_refund();
+              add(MenuBar);
+              Dimension d = getSize();
+              POd_refund.setBounds(0, 40, d.width, d.height);
+              add(POd_refund);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == Od_cancel){
+            getContentPane().removeAll();
+              JPanel POd_cancel = new od_list_od_cancel();
+              add(MenuBar);
+              Dimension d = getSize();
+              POd_cancel.setBounds(0, 40, d.width, d.height);
+              add(POd_cancel);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == Emp_look){
+            getContentPane().removeAll();
+              JPanel PEmp_look = new emp_look();
+              add(MenuBar);
+              Dimension d = getSize();
+              PEmp_look.setBounds(0, 40, d.width, d.height);
+              add(PEmp_look);
+              repaint();
+              revalidate();
+           }
+         else if(e.getSource() == Emp_regist){
+            getContentPane().removeAll();
+//              JPanel PEmp_regist = new emp_re();
+              add(MenuBar);
+              Dimension d = getSize();
+//              PEmp_regist.setBounds(0, 40, d.width, d.height);
+//              add(PEmp_regist);
+              repaint();
+              revalidate();
+           }else if(e.getSource() == Mb_look){
+            getContentPane().removeAll();
+              JPanel PMb_look = new mb_look();
+              add(MenuBar);
+              Dimension d = getSize();
+              PMb_look.setBounds(0, 40, d.width, d.height);
+              add(PMb_look);
+              repaint();
+              revalidate();
+           }else if(e.getSource() == Mb_grade){
+            getContentPane().removeAll();
+//              JPanel PMb_gra = new mb_gra();
+              add(MenuBar);
+              Dimension d = getSize();
+//              PMb_gra.setBounds(0, 40, d.width, d.height);
+//              add(PMb_gra);
+              repaint();
+              revalidate();
+           }else if(e.getSource() == EVT_look){
+            getContentPane().removeAll();
+              JPanel PEvt_look = new evt_look();
+              add(MenuBar);
+              Dimension d = getSize();
+              PEvt_look.setBounds(0, 40, d.width, d.height);
+              add(PEvt_look);
+              repaint();
+              revalidate();
+           }else if(e.getSource() == EVT_regist){
+            getContentPane().removeAll();
+              JPanel PEvt_regist = new evt_regist();
+              add(MenuBar);
+              Dimension d = getSize();
+              PEvt_regist.setBounds(0, 40, d.width, d.height);
+              add(PEvt_regist);
+              repaint();
+              revalidate();
+           }
+      }
+
+   @Override
+   public void mouseClicked(MouseEvent e) {
+      // TODO Auto-generated method stub
+      if(e.getSource() == Close){
+         dispose();
+        } else if(e.getSource() == Home){
+           getContentPane().removeAll();
+           BackgroundPanel sub = new BackgroundPanel();
+            sub.setSize(d.width, d.height-40);
+            add(sub);
+            add(MenuBar);
+            setResizable(false);
+            setVisible(true);
         }
-		else if(e.getSource() == corr_regist){
-        	getContentPane().removeAll();
-        	JPanel Pcorr_regist = new corr_regist();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	Pcorr_regist.setBounds(0, 40, d.width, d.height);
-        	add(Pcorr_regist);
-        	repaint();
-        	revalidate();
-        }
-		//
-		else if(e.getSource() == model_look){
-        	getContentPane().removeAll();
-        	JPanel Pmodel_look = new ManModel();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	Pmodel_look.setBounds(0, 40, d.width, d.height);
-        	add(Pmodel_look);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == model_regist){
-        	getContentPane().removeAll();
-        	JPanel Pmodel_regist = new RegModel();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	Pmodel_regist.setBounds(0, 40, d.width, d.height);
-        	add(Pmodel_regist);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == pro_look){
-        	getContentPane().removeAll();
-        	JPanel Ppro_look = new ManPro();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	Ppro_look.setBounds(0, 40, d.width, d.height);
-        	add(Ppro_look);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == pro_regist){
-        	getContentPane().removeAll();
-        	JPanel Ppro_regist = new RegPro();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	Ppro_regist.setBounds(0, 40, d.width, d.height);
-        	add(Ppro_regist);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == pro_up_rec){
-        	getContentPane().removeAll();
-        	JPanel Ppro_up_rec = new RegProPrice();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	Ppro_up_rec.setBounds(0, 40, d.width, d.height);
-        	add(Ppro_up_rec);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == Od_deposit){
-			getContentPane().removeAll();
-        	JPanel POd_deposit = new od_list_no_deposit();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	POd_deposit.setBounds(0, 40, d.width, d.height);
-        	add(POd_deposit);
-        	repaint();
-        	revalidate();
-        } 
-		else if(e.getSource() == Od_pre){
-			getContentPane().removeAll();
-        	JPanel POd_pre = new od_list_pre_pro();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	POd_pre.setBounds(0, 40, d.width, d.height);
-        	add(POd_pre);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == Od_change){
-			getContentPane().removeAll();
-        	JPanel POd_change = new od_list_change();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	POd_change.setBounds(0, 40, d.width, d.height);
-        	add(POd_change);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == Od_refund){
-			getContentPane().removeAll();
-        	JPanel POd_refund = new od_list_od_refund();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	POd_refund.setBounds(0, 40, d.width, d.height);
-        	add(POd_refund);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == Od_cancel){
-			getContentPane().removeAll();
-        	JPanel POd_cancel = new od_list_od_cancel();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	POd_cancel.setBounds(0, 40, d.width, d.height);
-        	add(POd_cancel);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == Emp_look){
-			getContentPane().removeAll();
-        	JPanel PEmp_look = new emp_look();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	PEmp_look.setBounds(0, 40, d.width, d.height);
-        	add(PEmp_look);
-        	repaint();
-        	revalidate();
-        }
-		else if(e.getSource() == Emp_regist){
-			getContentPane().removeAll();
-        	JPanel PEmp_regist = new emp_regist();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	PEmp_regist.setBounds(0, 40, d.width, d.height);
-        	add(PEmp_regist);
-        	repaint();
-        	revalidate();
-        }else if(e.getSource() == Mb_look){
-			getContentPane().removeAll();
-        	JPanel PMb_look = new mb_look();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	PMb_look.setBounds(0, 40, d.width, d.height);
-        	add(PMb_look);
-        	repaint();
-        	revalidate();
-        }else if(e.getSource() == Mb_grade){
-			getContentPane().removeAll();
-        	JPanel PMb_gra = new mb_gra();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	PMb_gra.setBounds(0, 40, d.width, d.height);
-        	add(PMb_gra);
-        	repaint();
-        	revalidate();
-        }else if(e.getSource() == EVT_look){
-			getContentPane().removeAll();
-        	JPanel PEvt_look = new evt_look();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	PEvt_look.setBounds(0, 40, d.width, d.height);
-        	add(PEvt_look);
-        	repaint();
-        	revalidate();
-        }else if(e.getSource() == EVT_regist){
-			getContentPane().removeAll();
-        	JPanel PEvt_regist = new evt_regist();
-        	MenuBar.setBounds(0, 0, 810, 40);
-        	add(MenuBar);
-        	Dimension d = getSize();
-        	PEvt_regist.setBounds(0, 40, d.width, d.height);
-        	add(PEvt_regist);
-        	repaint();
-        	revalidate();
-        }
-	}
+      
+   }
+
+   @Override
+   public void mousePressed(MouseEvent e) {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void mouseReleased(MouseEvent e) {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void mouseEntered(MouseEvent e) {
+      // TODO Auto-generated method stub
+      
+   }
+
+   @Override
+   public void mouseExited(MouseEvent e) {
+      // TODO Auto-generated method stub
+      
+   }
          
 }
