@@ -52,7 +52,7 @@ public class RegProPrice extends JPanel implements ActionListener {
    
 	private JButton Btsell, BtReg, BtCancel, BtPro; 
 
-	String pro_num, proname, modprice, modstdate, modendate, date, ex_price, ex_st_date, ex_end_date;
+	String pro_num, proname, proname2, modprice, modstdate, modendate, date, ex_price, ex_st_date, ex_end_date;
 	
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
@@ -68,6 +68,10 @@ public class RegProPrice extends JPanel implements ActionListener {
 		
 		ex_end_date = "";
 		ex_end_date += ProPriceListData.get(0).get("APP_END_DT");		
+		
+		xexPrice.setText(ex_price);
+		xexStDate.setText(ex_st_date);
+		xexEndDate.setText(ex_end_date);
 		
 	}
 	
@@ -194,18 +198,18 @@ public class RegProPrice extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == BtPro) {
 			ProSearch p = new ProSearch(new JFrame());
-			xProNm.setText(p.PRO_NM);
 			pro_num = p.PRO_NUM;
-			getData(ProPriceData.ProPrice());
-			xexPrice.setText(ex_price);
-			xexStDate.setText(ex_st_date);
-			xexEndDate.setText(ex_end_date);
+			proname = p.PRO_NM;
+			xProNm.setText(proname);
+			getData(ProPriceData.ProPrice(proname));
+
 			
 		}if(e.getSource() == BtReg) {
+			proname2 = xProNm.getText();
 			modprice = xModPrice.getText();
 			modstdate = xModStDate.getText();
 			modendate = xModEndDate.getText();
-			ProPriceData.createProPrice(pro_num, modstdate, modendate, modprice);
+			ProPriceData.createProPrice(pro_num, modstdate, modendate, modprice, proname2);
 			
 			xProNm.setText("");
 			xexPrice.setText("");

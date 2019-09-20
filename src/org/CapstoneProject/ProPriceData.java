@@ -39,9 +39,10 @@ public class ProPriceData {
 	
 		
 	/* 고객정보를 생성하는 질의어 */
-	static void createProPrice(String pro_num, String modstdate, String modendate, String modprice) {
+	static void createProPrice(String pro_num, String modstdate, String modendate, String modprice, String proname2) {
 		
-		quary1 = "update pro_up_rec SET APP_END_DT = to_char(sysdate-1, 'YYYYMMDD') WHERE APP_END_DT = '9999-12-31'";
+		quary1 = "update (select * from pro JOIN PRO_UP_REC ON PRO.PRO_NUM = PRO_UP_REC.PRO_NUM where pro_nm = '" + proname2 + "')" + 
+				"SET APP_END_DT = to_char(sysdate-1, 'YYYYMMDD') WHERE APP_END_DT = '9999-12-31'";
 		
 		quary2 = "insert into pro_up_rec values ('" + pro_num + "', to_char(sysdate, 'YYYYMMDD') , to_date('" + modendate + "', 'YYYY-MM-DD'), "
 				+ " '" + modprice + "', '0', '0')";
@@ -64,11 +65,12 @@ public class ProPriceData {
 
 	}
 	
-	static List<Map<String, Serializable>> ProPrice() {
+	static List<Map<String, Serializable>> ProPrice(String proname) {
 		
-		quary1 = "select pro_nm, up, APP_ST_DT, APP_END_DT from pro full outer join pro_up_rec on pro.pro_num = pro_up_rec.pro_num";
+		quary1 = "select pro_nm, up, APP_ST_DT, APP_END_DT from pro full outer join pro_up_rec on pro.pro_num = pro_up_rec.pro_num"
+				+ " where PRO_NM = '" + proname + "'";
 	
-//		ProListData.clear();
+		ProPriceListData.clear();
 	
 		try {
 			System.out.println(quary1);

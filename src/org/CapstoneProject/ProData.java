@@ -52,7 +52,7 @@ public class ProData {
 	
 static List<Map<String, Serializable>> selectPro() {
 		
-		quary = "select * from pro";
+		quary = "select *from pro order by PRO_NM asc";
 		
 		ProListData.clear();
 		

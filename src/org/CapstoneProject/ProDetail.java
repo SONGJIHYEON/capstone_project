@@ -10,8 +10,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,47 +31,55 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class ProDetail extends JFrame implements ActionListener, MouseListener {
+	
 	private JLabel vProImg, vProNm, vPrice, vColor, vSize, vOption, vAllPrice;
-
+	
 	private JTextField xPrice, xOption, xAllPrice;
 
 	private String[] size1 = { "90", "95", "100", "105", "110" };
 	private String[] size2 = { "27", "28", "29", "30", "31", "32", "33", "34", "35" };
-
-//	private String[] col1 = {"", "부서위치"};      
-//	private String[] col2 = {"부서명", "성명"};      
-//	private String[] div = {"관리자", "유저"}; // 사원구분 콤보박스의 목록
-
-//	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);      
-//	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
+	private String[] size3 = { "250", "255", "260", "265", "270", "275", "280", "285" };
+	private String[] color = { "BLACK", "BLUE", "CYAN", "DARK_GRAY", "GRAY", "GREEN", "LIGHT_GRAY", "ORANGE", "PINK",
+			"RED", "WHITE", "YELLOW" };
+	
+	private JComboBox<String> Cbsize, Cbcolor;
+	private Icon icon;
 
 	private JTable eDept, eSpv;
 	private JScrollPane scrollpane1, scrollpane2;
 
 	private JButton BtPurchae, BtBasket, BtPlus, BtMinus;
-	private JComboBox<String> CbSize1, CbSize2;
 	private JTabbedPane t;
-	JTextArea ta = new JTextArea(22, 30);
-	static JPanel p = new JPanel();
-
-	String price, option, allprice;
+	private JTextArea ta;
+	private JPanel p, p1, p2;
+	
+	String price, option, allprice, img, img2, nickname, ctgr;
 
 	int intprice, intoption, intallprice;
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
-
-	public ProDetail() {
+	List<Map<String, Serializable>> ImageListData;
+	
+	public ProDetail()  {
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
+		
+		img = ProImage.img;
+		img2 = ProImage.img2;
+		nickname = ProImage.nickname;
+		ctgr = ProImage.ctgr;
+				
+		
+		icon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\" + img + ".jpg");
 
-		vProImg = new JLabel();
+		vProImg = new JLabel(icon);
 		vPrice = new JLabel("가격");
 		vColor = new JLabel("색상");
 		vSize = new JLabel("사이즈");
 		vOption = new JLabel("구매 수량");
 		vAllPrice = new JLabel("총 상품가격");
-		vProNm = new JLabel("DB에서 상품이름");
+		vProNm = new JLabel(nickname);
 
 //	    cbSel = new JComboBox<String>(div);
 //	    cbSel.setPreferredSize(new Dimension(203, 20));
@@ -74,6 +88,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		xPrice.setText("10000");
 		xOption = new JTextField(3);
 		xOption.setText("1");
+		xOption.setEnabled(false);
 		xAllPrice = new JTextField(20);
 		xAllPrice.addMouseListener(this);
 		xAllPrice.setText(xPrice.getText());
@@ -86,22 +101,27 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		BtMinus.addActionListener(this);
 		BtPurchae = new JButton("구매하기");
 		BtBasket = new JButton("장바구니");
+		
+		Cbsize = new JComboBox<String>(size1);
+		Cbcolor = new JComboBox<String>(color);
 
-		JPanel p1 = new JPanel();
+		p1 = new JPanel();
+		ta = new JTextArea(22, 30);
 		ta.setLineWrap(true);
 		scrollpane1 = new JScrollPane(ta);
-		scrollpane1.setPreferredSize(new Dimension(300, 400));
+		scrollpane1.setPreferredSize(new Dimension(430, 400));
+		
 		p1.add(scrollpane1);
-		p1.setPreferredSize(new Dimension(300, 400));
+		p1.setPreferredSize(new Dimension(430, 400));
 
-		JPanel p2 = new JPanel();
-		p2.setPreferredSize(new Dimension(300, 400));
+		p2 = new JPanel();
+		p2.setPreferredSize(new Dimension(430, 400));
 
-		JTabbedPane t = new JTabbedPane();
-
+		t = new JTabbedPane();
 		t.add("상품상세", p1);
 		t.add("상품사이즈", p2);
-
+		
+		p = new JPanel();
 		p.add(t);
 
 //		price = xPrice.getText();
@@ -134,21 +154,22 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
 		gridbagAdd(vProImg, 0, 0, 2, 7);
-		gridbagAdd(vProNm, 2, 0, 1, 1);
+		gridbagAdd(vProNm, 2, 0, 3, 1);
 		gridbagAdd(vPrice, 2, 1, 1, 1);
 		gridbagAdd(xPrice, 3, 1, 2, 1);
-		gridbagAdd(vColor, 2, 2, 1, 1);
-//        gridbagAdd(vAllPoint, 0, 4, 1, 1);
-		gridbagAdd(vSize, 2, 3, 1, 1);
+		gridbagAdd(vSize, 2, 2, 1, 1);
+		gridbagAdd(vColor, 2, 3, 1, 1);
 		gridbagAdd(vOption, 2, 4, 1, 1);
 		gridbagAdd(vAllPrice, 2, 5, 1, 1);
 		gridbagAdd(xAllPrice, 3, 5, 2, 1);
 		gridbagAdd(BtPlus, 4, 4, 1, 1);
+		gridbagAdd(p, 0, 7, 10, 10);
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(BtPurchae, 3, 6, 1, 1);
 		gridbagAdd(xOption, 3, 4, 2, 1);
-		gridbagAdd(p, 0, 7, 7, 10);
+		gridbagAdd(Cbsize, 3, 2, 1, 1);
+		gridbagAdd(Cbcolor, 3, 3, 1, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtBasket, 4, 6, 1, 1);
@@ -219,24 +240,12 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-//		if (e.getSource() == xAllPrice) {
-//			price = xPrice.getText();
-//			intprice = Integer.parseInt(price);
-//			option = xOption.getText();
-//			intoption = Integer.parseInt(option);
-//
-//			intallprice = intprice * intoption;
-//
-//			allprice = Integer.toString(intallprice);
-//
-//			xAllPrice.setText(allprice);
-//		}
+
 
 	}
 
