@@ -7,18 +7,20 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class Mypage extends JFrame {   
-	private JLabel vMypage, vAllPoint, vUsedPoint, vSerPoint, vAllMoney, v1, v2, v3, v4, v5;  
+public class Mypage extends JFrame implements ActionListener {   
+	private JLabel vMypage, vAllPoint, vUsedPoint, vSerPoint, vAllMoney, v1, v2, v3, v4, v5, vGrade, vDiscount;  
 	         
 	private JTextField xGrade1, xGrade2, xDiscount, xAllPoint, xUsedPoint, xSerPoint, xAllMoney;
 	   
@@ -31,7 +33,9 @@ public class Mypage extends JFrame {
 	   
        
 	private JTable eDept, eSpv;      
-	private JScrollPane scrollpane1, scrollpane2;      
+	private JScrollPane scrollpane1, scrollpane2;  
+	
+	String user_id, user_grade, user_disc_rt, user_point;
 	         
 	private JButton BtChange, BtOrder, BtPostView;  
 	private JComboBox<String> cbSel;      
@@ -40,6 +44,10 @@ public class Mypage extends JFrame {
 	GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 	         
 	public Mypage() {
+		user_grade = Login.user_grade;
+		user_disc_rt = Login.user_disc_rt;
+		user_point = Login.user_point;
+		
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();       
 		
@@ -52,15 +60,16 @@ public class Mypage extends JFrame {
 		v2 = new JLabel("등급 입니다.");
 		v3 = new JLabel("상품 구매시");
 		v4 = new JLabel("추가할인혜택을 받으실 수 있습니다");
-		v5 = new JLabel("등급 혜택");
-		v5.setFont(new Font("", Font.BOLD, 11));
+		v5 = new JLabel(user_grade);
+		v5.setFont(new Font("", Font.BOLD, 20));
 	         
 //	    cbSel = new JComboBox<String>(div);
 //	    cbSel.setPreferredSize(new Dimension(203, 20));
 	    
 //		xGrade1 = new JTextField(5);
-		xGrade2 = new JTextField(5);
-		xDiscount = new JTextField(5);
+		vGrade = new JLabel(user_grade);
+		vDiscount = new JLabel(user_disc_rt + "%");
+
 		xAllPoint = new JTextField(20);
 		xUsedPoint = new JTextField(20);
 		xSerPoint = new JTextField(20);
@@ -68,6 +77,7 @@ public class Mypage extends JFrame {
 	    
         
         BtChange = new JButton("내 정보변경");
+        BtChange.addActionListener(this);
         BtOrder = new JButton("주문 내역");
         BtPostView = new JButton("내 게시글 보기");
         
@@ -93,7 +103,7 @@ public class Mypage extends JFrame {
         gridbagAdd(BtOrder, 3, 1, 1, 1);
         gridbagAdd(BtPostView, 4, 1, 1, 1);
         gridbagAdd(v5, 0, 2, 1, 2);
-        gridbagAdd(xDiscount, 2, 3, 1, 1);
+        gridbagAdd(vDiscount, 2, 3, 1, 1);
         gridbagAdd(vAllPoint, 0, 4, 1, 1);
         gridbagAdd(xAllPoint, 1, 4, 2, 1);
         gridbagAdd(vUsedPoint, 4, 4, 1, 1);
@@ -102,7 +112,7 @@ public class Mypage extends JFrame {
         gridbagAdd(xSerPoint, 1, 5, 2, 1);
         gridbagAdd(vAllMoney, 4, 5, 1, 1);
         gridbagAdd(xAllMoney, 5, 5, 2, 1);       
-        gridbagAdd(xGrade2, 2, 2, 1, 1);      
+        gridbagAdd(vGrade, 2, 2, 1, 1);      
 
         gridbagconstraints.anchor = GridBagConstraints.EAST;    
         gridbagAdd(BtChange, 2, 1, 1, 1);
@@ -132,7 +142,15 @@ public class Mypage extends JFrame {
      }   
 	public static void main(String[] args) {   
 		new Mypage();
-    	 }   
+    	 }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == BtChange) {
+			new ModiMember(new JFrame());
+		}
+		
+	}   
 }
 	         
 

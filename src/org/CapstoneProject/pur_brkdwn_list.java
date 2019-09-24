@@ -1,12 +1,17 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,9 +21,9 @@ import javax.swing.table.DefaultTableModel;
 
 public class pur_brkdwn_list extends Dialog implements ActionListener {
          
-   private String[] col1 = {"구매번호","내역번호","상품번호","구매수량","구매단가"};
+   private static String[] col1 = {"내역번호","상품명","구매수량","구매단가","금액"};
    
-   private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
+   private static DefaultTableModel model1 = new DefaultTableModel(col1, 0);
    
    private JTable pur_info;
    private JScrollPane scrollpane1;
@@ -39,9 +44,15 @@ public class pur_brkdwn_list extends Dialog implements ActionListener {
          
          Bpur_brkdwn_regist = new JButton("구매내역등록");
          Bpur_brkdwn_regist.addActionListener(this);
+         Bpur_brkdwn_regist.setFont(new Font("휴먼매직체", Font.PLAIN , 20));
+         Bpur_brkdwn_regist.setPreferredSize(new Dimension(150,40));
+         Bpur_brkdwn_regist.setBackground(Color.WHITE);
          
          Bclose = new JButton("닫기");
          Bclose.addActionListener(this);
+         Bclose.setFont(new Font("휴먼매직체", Font.PLAIN , 20));
+         Bclose.setPreferredSize(new Dimension(100,40));
+         Bclose.setBackground(Color.WHITE);
          
          
 //         getDeptData(EmpData.selectDept());
@@ -66,10 +77,30 @@ public class pur_brkdwn_list extends Dialog implements ActionListener {
          gridbagconstraints.anchor = GridBagConstraints.EAST;
          gridbagAdd(Bpur_brkdwn_regist,0,1,1,1);
 
+         getData(pur_brkdwn_Data.selectpur_brkdwn_Data(pur_list.pur_num));
          pack();
          setResizable(true);
          setVisible(true);
-      }   
+      }
+	   static void getData(List<Map<String, Serializable>> pur_brkdwnListData) {
+	 	  
+		   model1.setNumRows(0);
+	
+		      for(int i=0; i < pur_brkdwnListData.size(); i++) {
+		    	  
+		    	  model1.addRow(new Object[] {
+		               
+		    			  pur_brkdwnListData.get(i).get("BRKDWN_NUM"),
+		    			  pur_brkdwnListData.get(i).get("PRO_NM"),
+		    			  pur_brkdwnListData.get(i).get("PUR_QUANT"),
+		    			  pur_brkdwnListData.get(i).get("PUR_UP"),
+		    			  pur_brkdwnListData.get(i).get("PR")
+	
+		         });
+		      }
+	
+	
+		   }
          
       private void gridbagAdd(Component c, int x, int y, int w, int h) {   
          

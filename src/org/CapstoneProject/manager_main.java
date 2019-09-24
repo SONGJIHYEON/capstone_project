@@ -63,6 +63,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
    JMenu Mn_Emp = new JMenu("     사원     ");
    JMenuItem Emp_look = new JMenuItem("    사원조회   ");
    JMenuItem Emp_regist = new JMenuItem("    사원등록   ");
+   JMenuItem Emp_modify = new JMenuItem("    사원수정   ");
    //회원 메뉴
    JMenu Mn_Mb = new JMenu("     회원     ");
    JMenuItem Mb_look = new JMenuItem("    회원조회   ");
@@ -104,6 +105,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
          Od_cancel.addActionListener(this);
          Emp_look.addActionListener(this);
          Emp_regist.addActionListener(this);
+         Emp_modify.addActionListener(this);
          Mb_look.addActionListener(this);
          Mb_grade.addActionListener(this);
          EVT_look.addActionListener(this);
@@ -128,6 +130,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
          
          Mn_Emp.add(Emp_look);
          Mn_Emp.add(Emp_regist);
+         Mn_Emp.add(Emp_modify);
          
          Mn_Mb.add(Mb_look);
          Mn_Mb.add(Mb_grade);
@@ -244,6 +247,10 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
          Emp_regist.setHorizontalAlignment(SwingConstants.TRAILING);
          Emp_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
          
+         Emp_modify.setBackground(new Color(255, 255, 255));
+         Emp_modify.setHorizontalAlignment(SwingConstants.TRAILING);
+         Emp_modify.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+         
          //회원메뉴
          Mn_Mb.setBorder(new LineBorder(new Color(0, 0, 0)));
          Mn_Mb.setHorizontalAlignment(SwingConstants.CENTER);
@@ -278,12 +285,12 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
          Close.setHorizontalAlignment(SwingConstants.CENTER);
          Close.setFont(new Font("맑은 고딕", Font.BOLD, 25));
          
-         try {
-            img = ImageIO.read(new File("C:\\Users\\kibum\\Desktop\\메인 배경.png"));
-         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
-            System.exit(0);
-         }
+//         try {
+//            img = ImageIO.read(new File("C:\\Users\\kibum\\Desktop\\메인 배경.png"));
+//         } catch (IOException e) {
+//            JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
+//            System.exit(0);
+//         }
          
          BackgroundPanel sub = new BackgroundPanel();
          sub.setSize(d.width, d.height-40);
@@ -336,7 +343,6 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
               add(Pcorr_look);
               repaint();
               revalidate();
-            
            }
          else if(e.getSource() == corr_regist){
               getContentPane().removeAll();
@@ -461,14 +467,25 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
            }
          else if(e.getSource() == Emp_regist){
             getContentPane().removeAll();
-//              JPanel PEmp_regist = new emp_re();
+              JPanel PEmp_regist = new emp_re();
               add(MenuBar);
               Dimension d = getSize();
-//              PEmp_regist.setBounds(0, 40, d.width, d.height);
-//              add(PEmp_regist);
+              PEmp_regist.setBounds(0, 40, d.width, d.height);
+              add(PEmp_regist);
               repaint();
               revalidate();
-           }else if(e.getSource() == Mb_look){
+           }
+         else if(e.getSource() == Emp_modify){
+             getContentPane().removeAll();
+               JPanel PEmp_regist = new emp_modify();
+               add(MenuBar);
+               Dimension d = getSize();
+               PEmp_regist.setBounds(0, 40, d.width, d.height);
+               add(PEmp_regist);
+               repaint();
+               revalidate();
+            }
+         else if(e.getSource() == Mb_look){
             getContentPane().removeAll();
               JPanel PMb_look = new mb_look();
               add(MenuBar);
@@ -477,7 +494,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
               add(PMb_look);
               repaint();
               revalidate();
-           }else if(e.getSource() == Mb_grade){
+           }
+         else if(e.getSource() == Mb_grade){
             getContentPane().removeAll();
 //              JPanel PMb_gra = new mb_gra();
               add(MenuBar);
@@ -486,7 +504,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 //              add(PMb_gra);
               repaint();
               revalidate();
-           }else if(e.getSource() == EVT_look){
+           }
+         else if(e.getSource() == EVT_look){
             getContentPane().removeAll();
               JPanel PEvt_look = new evt_look();
               add(MenuBar);
@@ -495,7 +514,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
               add(PEvt_look);
               repaint();
               revalidate();
-           }else if(e.getSource() == EVT_regist){
+           }
+         else if(e.getSource() == EVT_regist){
             getContentPane().removeAll();
               JPanel PEvt_regist = new evt_regist();
               add(MenuBar);

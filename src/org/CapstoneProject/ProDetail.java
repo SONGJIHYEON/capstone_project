@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +54,8 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	private JTextArea ta;
 	private JPanel p, p1, p2;
 	
-	String price, option, allprice, img, img2, nickname, ctgr;
+	String option, allprice, img, img2, nickname, ctgr, price, price2;
+	static ArrayList<String> arSize, arColor;
 
 	int intprice, intoption, intallprice;
 
@@ -69,12 +71,16 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		img2 = ProImage.img2;
 		nickname = ProImage.nickname;
 		ctgr = ProImage.ctgr;
-				
+		arSize = ProImage.arSize;
+		arColor = ProImage.arColor;
+		price = ProImage.price;
+		
+//		System.out.println(price);
 		
 		icon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\" + img + ".jpg");
 
 		vProImg = new JLabel(icon);
-		vPrice = new JLabel("가격");
+		vPrice = new JLabel("단가");
 		vColor = new JLabel("색상");
 		vSize = new JLabel("사이즈");
 		vOption = new JLabel("구매 수량");
@@ -85,7 +91,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 //	    cbSel.setPreferredSize(new Dimension(203, 20));
 
 		xPrice = new JTextField(20);
-		xPrice.setText("10000");
+		xPrice.setText(price);
 		xOption = new JTextField(3);
 		xOption.setText("1");
 		xOption.setEnabled(false);
@@ -102,8 +108,10 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		BtPurchae = new JButton("구매하기");
 		BtBasket = new JButton("장바구니");
 		
-		Cbsize = new JComboBox<String>(size1);
-		Cbcolor = new JComboBox<String>(color);
+		Cbsize = new JComboBox<String>(arSize.toArray(new String[arSize.size()]));
+		Cbsize.addActionListener(this);
+		Cbcolor = new JComboBox<String>(arColor.toArray(new String[arColor.size()]));
+		Cbcolor.addActionListener(this);
 
 		p1 = new JPanel();
 		ta = new JTextArea(22, 30);
@@ -124,20 +132,6 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		p = new JPanel();
 		p.add(t);
 
-//		price = xPrice.getText();
-//		intprice = Integer.parseInt(price);
-//		option = xOption.getText();
-//		intoption = Integer.parseInt(option);
-//		
-//		intallprice = intprice * intoption;
-//		
-//		allprice = Integer.toString(intallprice);
-//
-//		xAllPrice.setText(allprice);
-
-//	         getDeptData(EmpData.selectDept());
-//	         getSvpData(EmpData.selectSpv());
-
 		ProDetailView();
 	}
 
@@ -155,21 +149,21 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 
 		gridbagAdd(vProImg, 0, 0, 2, 7);
 		gridbagAdd(vProNm, 2, 0, 3, 1);
-		gridbagAdd(vPrice, 2, 1, 1, 1);
-		gridbagAdd(xPrice, 3, 1, 2, 1);
-		gridbagAdd(vSize, 2, 2, 1, 1);
-		gridbagAdd(vColor, 2, 3, 1, 1);
+		gridbagAdd(vPrice, 2, 3, 1, 1);
+		gridbagAdd(xPrice, 3, 3, 2, 1);
+		gridbagAdd(vSize, 2, 1, 1, 1);
+		gridbagAdd(vColor, 2, 2, 1, 1);
 		gridbagAdd(vOption, 2, 4, 1, 1);
 		gridbagAdd(vAllPrice, 2, 5, 1, 1);
 		gridbagAdd(xAllPrice, 3, 5, 2, 1);
-		gridbagAdd(BtPlus, 4, 4, 1, 1);
 		gridbagAdd(p, 0, 7, 10, 10);
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(BtPurchae, 3, 6, 1, 1);
 		gridbagAdd(xOption, 3, 4, 2, 1);
-		gridbagAdd(Cbsize, 3, 2, 1, 1);
-		gridbagAdd(Cbcolor, 3, 3, 1, 1);
+		gridbagAdd(Cbsize, 3, 1, 1, 1);
+		gridbagAdd(Cbcolor, 3, 2, 1, 1);
+		gridbagAdd(BtPlus, 4, 4, 1, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtBasket, 4, 6, 1, 1);
@@ -200,14 +194,13 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		if (e.getSource() == BtPlus) {
 			int p = Integer.parseInt(xOption.getText());
 			p++;
 			xOption.setText(p + "");
 			
-			price = xPrice.getText();
-			intprice = Integer.parseInt(price);
+			price2 = xPrice.getText();
+			intprice = Integer.parseInt(price2);
 			option = xOption.getText();
 			intoption = Integer.parseInt(option);
 
@@ -234,8 +227,11 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 
 				xAllPrice.setText(allprice);
 			}
+		}if(e.getSource() == Cbsize) {
+			String selectSize = Cbsize.getSelectedItem().toString();
+		}if(e.getSource() == Cbcolor) {
+			String selectColor = Cbcolor.getSelectedItem().toString();
 		}
-
 	}
 
 	@Override

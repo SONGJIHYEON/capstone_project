@@ -14,7 +14,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class mb_look extends JPanel {
+public class mb_look extends JFrame {
 
    private JLabel  mb_lookup, mb_lookup2, mb_gra;
    

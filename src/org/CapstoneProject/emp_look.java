@@ -6,6 +6,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
@@ -20,14 +23,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class emp_look extends JPanel implements ActionListener{
+public class emp_look extends JFrame implements ActionListener{
 
    private JLabel  emp_lookup, Lemp_no, Lemp_nm,  Lemp_dt, Lemp_ph_num, Lemp_tp, Lemp_addr;      
          
    private JTextField  Tsearch;      
          
-   private String[] col1 = {"No", "사원번호", "사원명", "휴대폰번호", "입사일", "사원구분"};  
-   private String[] search = {"사원번호", "사원명"};       
+   private String[] col1 = {"사원번호", "사원명", "휴대폰번호", "입사일", "사원구분"};  
+   private String[] search = {"사원번호", "휴대폰번호"};       
    
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
    
@@ -73,6 +76,7 @@ public class emp_look extends JPanel implements ActionListener{
          scrollpane1.setPreferredSize(new Dimension(1000, 300));
          
          Bsearch = new JButton("검색");
+         Bsearch.addActionListener(this);
          Bsearch.setPreferredSize(new Dimension(200,28));
          Breset = new JButton("초기화");
          Breset.setPreferredSize(new Dimension(200,28));
@@ -80,8 +84,23 @@ public class emp_look extends JPanel implements ActionListener{
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
 //         setExtendedState(MAXIMIZED_BOTH);
+         getData(empData.selectEmp());
          EmpRegisterView();
       }   
+   
+	private void getData(List<Map<String, Serializable>> empListData) {
+		
+		for(int i=0; i < empListData.size(); i++) {
+			model1.addRow(new Object[] {
+					
+					empListData.get(i).get("EMP_NUM"),
+					empListData.get(i).get("EMP_NM"),
+					empListData.get(i).get("PH_NUM"),
+					empListData.get(i).get("APPC_DT"),
+					empListData.get(i).get("REG_WRKR_TP")
+			});
+		}
+}
          
    private void EmpRegisterView() {      
          
@@ -124,40 +143,7 @@ public class emp_look extends JPanel implements ActionListener{
          
          add(c);   
          
-         }
-      
-      class TableCell extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
-          
-          public TableCell() {
-              // TODO Auto-generated constructor stub
-              jb = new JButton("수정");
-              jb.addActionListener(e -> {
-            	  emp_re s = new emp_re(new JFrame());
-              });
-           
-          }
-
-		@Override
-		public Object getCellEditorValue() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
-				int row, int column) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
-				int column) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-      }
-      
+         }      
          
       public static void main(String[] args) {   
          new emp_look();
@@ -167,7 +153,16 @@ public class emp_look extends JPanel implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource() == Bsearch) {
+			String search = Tsearch.getText();
+			if(cbSearch.getSelectedItem() == "사원번호") {
+				model1.setRowCount(0);
+				getData(empData.searchEmp1(search));
+			} else if(cbSearch.getSelectedItem() == "휴대폰번호") {
+				model1.setRowCount(0);
+				getData(empData.searchEmp2(search));
+			} 
+		}
 		
 	}
 	

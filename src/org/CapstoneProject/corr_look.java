@@ -1,7 +1,9 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -27,19 +29,19 @@ import javax.swing.table.TableCellRenderer;
 
 public class corr_look extends JPanel implements ActionListener, MouseListener {
 
-   public static String bus_num;
-   private JLabel corr_regist, corr_lookup, corr_lookup2, pur_regist, Lcorr_no, Lcorr_nm, Lcorr_prnm, Lcorr_ph, Lcorr_addr; 
+   public static String corr_num, corr_nm;
+   private JLabel corr_lookup2, pur_regist, Lcorr_no, Lcorr_nm, Lcorr_prnm, Lcorr_ph, Lcorr_addr; 
    private JTextField  Tsearch;      
          
-   private String[] col1 = {"업체번호", "업체명", "대표명", "연락처", "주소", ""};  
-   private String[] search = {"업체번호", "업체명", "대표명"};       
+   private String[] col1 = {"거래처번호", "거래처명", "대표명", "연락처", "주소", ""};  
+   private String[] search = {"거래처번호", "거래처명", "대표명"};       
    
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
    
    private JTable corr_info;
    private JScrollPane scrollpane1;
          
-   private JButton Bsearch,Breset, jb; 
+   private JButton Bsearch, jb; 
    
    private JComboBox<String> cbSearch;      
          
@@ -51,45 +53,32 @@ public class corr_look extends JPanel implements ActionListener, MouseListener {
          gridbaglayout = new GridBagLayout();
          gridbagconstraints = new GridBagConstraints();
          
-         corr_regist = new JLabel("거래처등록");
-         corr_regist.addMouseListener(this);
-         corr_regist.setPreferredSize(new Dimension(200,28));
-         corr_lookup = new JLabel("거래처조회");
-         corr_lookup.setPreferredSize(new Dimension(200,28));
+         
          corr_lookup2 = new JLabel("거래처조회");
-         corr_lookup2.setPreferredSize(new Dimension(200,28));
-         pur_regist = new JLabel("구매등록");
-         pur_regist.setPreferredSize(new Dimension(200,28));
+         corr_lookup2.setFont(new Font("휴먼매직체", Font.BOLD, 40));
+         corr_lookup2.setPreferredSize(new Dimension(200,50));
          
-         Lcorr_no = new JLabel("업체번호");
-         Lcorr_no.setPreferredSize(new Dimension(100,30));
-         Lcorr_nm = new JLabel("업체명");
-         Lcorr_nm.setPreferredSize(new Dimension(100,30));
-         Lcorr_prnm = new JLabel("대표명");
-         Lcorr_prnm.setPreferredSize(new Dimension(100,30));
-         Lcorr_ph = new JLabel("연락처");
-         Lcorr_ph.setPreferredSize(new Dimension(100,30));
-         Lcorr_addr = new JLabel("주소");
-         Lcorr_addr.setPreferredSize(new Dimension(100,30));
-         
-         Tsearch = new JTextField(18);
-         Tsearch.setPreferredSize(new Dimension(100,30));
+         Tsearch = new JTextField(22);
+         Tsearch.setPreferredSize(new Dimension(150,40));
          
          cbSearch = new JComboBox<String>(search);
-         cbSearch.setPreferredSize(new Dimension(200,28));
+         cbSearch.setFont(new Font("휴먼매직체", Font.PLAIN , 22));
+         cbSearch.setPreferredSize(new Dimension(200,40));
+         cbSearch.setBackground(Color.WHITE);
          
          corr_info = new JTable(model1);
+         corr_info.addMouseListener(this);
          scrollpane1 = new JScrollPane(corr_info);
          scrollpane1.setPreferredSize(new Dimension(1000, 300));
          
          Bsearch = new JButton("검색");
-         Bsearch.setPreferredSize(new Dimension(200,28));
-         Breset = new JButton("초기화");
-         Breset.setPreferredSize(new Dimension(200,28));
+         Bsearch.setFont(new Font("휴먼매직체", Font.PLAIN , 20));
+         Bsearch.setPreferredSize(new Dimension(100,40));
+         Bsearch.setBackground(Color.WHITE);
          
          corr_info.getColumnModel().getColumn(5).setCellRenderer(new TableCell());
          corr_info.getColumnModel().getColumn(5).setCellEditor(new TableCell());
-      	   
+      	 
          EmpRegisterView();
     }
    
@@ -133,7 +122,6 @@ public class corr_look extends JPanel implements ActionListener, MouseListener {
          gridbagAdd(Bsearch, 3, 2, 1, 1);
          
          gridbagconstraints.anchor = GridBagConstraints.EAST;
-         gridbagAdd(Breset, 4, 2, 1, 1);
 
 //         setResizable(true);
          getData(corrData.selectcorr());
@@ -163,14 +151,6 @@ public class corr_look extends JPanel implements ActionListener, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
-		if(e.getSource() == corr_regist) {
-
-	      }
-		
-		int row = corr_info.getSelectedRow();
-		int column = corr_info.getSelectedColumn();
-		bus_num = (String) corr_info.getValueAt(row, column);
-		
 	}
 	
 	class TableCell extends AbstractCellEditor implements TableCellEditor, TableCellRenderer{
@@ -178,8 +158,16 @@ public class corr_look extends JPanel implements ActionListener, MouseListener {
         public TableCell() {
             // TODO Auto-generated constructor stub
             jb = new JButton("구매조회");
+            jb.setFocusPainted(false);
+            jb.setBackground(Color.WHITE);
+            
             jb.addActionListener(e -> {
-    			pur_list s = new pur_list(new JFrame());
+            	int row = corr_info.getSelectedRow();
+            	corr_num = "";
+            	corr_num += (String) corr_info.getValueAt(row, 0);
+        		corr_nm = "";
+        		corr_nm += (String) corr_info.getValueAt(row, 1);
+    			new pur_list(new JFrame());
             });
          
         }

@@ -23,13 +23,11 @@ public class ProImage implements MouseListener {
 	private static JLabel[] labels;
 	private File f;
 
-	public static String imgData, imgData2, img, img2, nicknameData, nickname, ctgrData, ctgr, colorData, sizeData,
-			size;
-//	public static String[] colorData, SizeData;
-
+	public static String imgData, imgData2, img, img2, nicknameData, nickname, ctgrData, ctgr, priceData, price;
+	static ArrayList sizeData, colorData;
+	static ArrayList arSize = new ArrayList();
+	static ArrayList arColor = new ArrayList();
 	String ad;
-	
-	static ArrayList ar = new ArrayList();
 
 	public static String getData(List<Map<String, Serializable>> ImageListData) {
 
@@ -63,29 +61,30 @@ public class ProImage implements MouseListener {
 		return ctgr;
 	}
 
-	public static String getData5(List<Map<String, Serializable>> ImageListData) {
-
-//		size = "";
-//		size += ImageListData.get(0).get("SIZ");
+	public static ArrayList getData5(List<Map<String, Serializable>> ImageListData) {
 
 		for (int i = 0; i < ImageListData.size(); i++) {
-			ar.add(new Object[] {
-					ImageListData.get(i).get("SIZ").toString(),
-			});
-		}
-		for(int i = 0; i < ar.size(); i++) {
-			System.out.println(ar.get(i));
-		}
+			arSize.add(ImageListData.get(i).get("SIZ").toString());
+			}
 
-		return size;
+		return arSize;
 	}
 
-	public static String getData6(List<Map<String, Serializable>> ImageListData) {
+	public static ArrayList getData6(List<Map<String, Serializable>> ImageListData) {
 
-		ctgr = "";
-		ctgr += ImageListData.get(0).get("FIRST_CTGR");
+		for (int i = 0; i < ImageListData.size(); i++) {
+			arColor.add(ImageListData.get(i).get("CLR").toString());
+			}
 
-		return ctgr;
+		return arColor;
+	}
+	
+	public static String getData7(List<Map<String, Serializable>> ImageListData) {
+
+		price = "";
+		price += ImageListData.get(0).get("UP");
+
+		return price;
 	}
 
 	public ProImage() {
@@ -154,8 +153,9 @@ public class ProImage implements MouseListener {
 			imgData2 = getData2(ImageData.selectImage(fileName2));
 			nicknameData = getData3(ImageData.selectNickname(fileName2));
 			ctgrData = getData4(ImageData.selectCtgr(fileName2));
-			sizeData = getData6(ImageData.selectSize(fileName2));
-			colorData = getData5(ImageData.selectColor(fileName2));
+			sizeData = getData5(ImageData.selectSize(fileName2));
+			colorData = getData6(ImageData.selectColor(fileName2));
+			priceData = getData7(ImageData.selectPrice(fileName2));
 
 			ProDetail prod = new ProDetail();
 

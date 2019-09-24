@@ -70,8 +70,9 @@ public class CheckId {
 	
 	static List<Map<String, Serializable>> selectlogin1(String sid, String pwd) {
 		
-		quary = "select id, pwd from cust";
-	//	idListData.clear();
+		quary = "select id, pwd, CUST_NUM, CUST_NM CUST_NM, MB_GRA , DISC_RT, POSS_PNT from cust "
+				+ "join mb_gra on cust.mb_gra = mb_gra.gra_tp where ID = '" + sid + "'";
+		idListData.clear();
 	
 		try {
 		
@@ -83,9 +84,14 @@ public class CheckId {
 				
 				iddataSet.put("ID", rs.getString(1)); 
 				iddataSet.put("PWD", rs.getString(2)); 
+				iddataSet.put("CUST_NUM", rs.getString(3)); 
+				iddataSet.put("CUST_NM", rs.getString(4)); 
+				iddataSet.put("MB_GRA", rs.getString(5)); 
+				iddataSet.put("DISC_RT", rs.getString(6)); 
+				iddataSet.put("POSS_PNT", rs.getString(6)); 
 	//			addrdataSet.put("SEQ", rs.getString(2));
 	
-	//			System.out.println(iddataSet);
+				System.out.println(iddataSet);
 				idListData.add(iddataSet);
 				}
 			
@@ -99,8 +105,8 @@ public class CheckId {
 	
 	static List<Map<String, Serializable>> selectlogin2(String sid2, String pwd2) {
 		
-		quary = "select id, pwd from emp";
-	//	idListData.clear();
+		quary = "select id, pwd, emp_num, emp_nm, appc_dt from emp where ID ='"+sid2+"'";
+		idListData.clear();
 	
 		try {
 		
@@ -112,6 +118,9 @@ public class CheckId {
 				
 				iddataSet.put("ID", rs.getString(1)); 
 				iddataSet.put("PWD", rs.getString(2)); 
+				iddataSet.put("emp_num", rs.getString(3)); 
+				iddataSet.put("emp_nm", rs.getString(4)); 
+				iddataSet.put("appc_dt", rs.getString(5)); 
 	//			addrdataSet.put("SEQ", rs.getString(2));
 	
 	//			System.out.println(iddataSet);
@@ -126,6 +135,3 @@ public class CheckId {
 		return idListData;
 		}
 }
-
-
-

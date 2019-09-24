@@ -1,8 +1,10 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -24,14 +26,16 @@ import javax.swing.table.TableCellRenderer;
 
 public class pur_list extends Dialog implements ActionListener {
          
-   private String[] col1 = {"구매번호","구매일자","총금액",""};
+   private static String[] col1 = {"구매번호","구매일자","총금액",""};
    
-   private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
+   private static DefaultTableModel model1 = new DefaultTableModel(col1, 0);
    
    private JTable pur_info;
    private JScrollPane scrollpane1;
          
    private JButton Bpur_regist, Bclose, jb;
+   
+   static String pur_num, pur_num2;
          
    GridBagLayout gridbaglayout;      
    GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
@@ -47,9 +51,15 @@ public class pur_list extends Dialog implements ActionListener {
          
          Bpur_regist = new JButton("구매등록");
          Bpur_regist.addActionListener(this);
+         Bpur_regist.setFont(new Font("휴먼매직체", Font.PLAIN , 20));
+         Bpur_regist.setPreferredSize(new Dimension(100,40));
+         Bpur_regist.setBackground(Color.WHITE);
          
          Bclose = new JButton("닫기");
          Bclose.addActionListener(this);
+         Bclose.setFont(new Font("휴먼매직체", Font.PLAIN , 20));
+         Bclose.setPreferredSize(new Dimension(100,40));
+         Bclose.setBackground(Color.WHITE);
          
          
 //         getDeptData(EmpData.selectDept());
@@ -79,7 +89,10 @@ public class pur_list extends Dialog implements ActionListener {
          gridbagAdd(Bpur_regist,0,1,1,1);
 
 
-         getData(purData.selectpur());
+     	 System.out.println(corr_look.corr_num);
+
+         getData(purData.selectpur(corr_look.corr_num));
+
          pack();
          setResizable(true);
          setVisible(true);
@@ -101,7 +114,9 @@ public class pur_list extends Dialog implements ActionListener {
          
          }
       
-      private void getData(List<Map<String, Serializable>> purListData) {
+      static void getData(List<Map<String, Serializable>> purListData) {
+    	  
+    	  model1.setNumRows(0);
 
 	      for(int i=0; i < purListData.size(); i++) {
 	    	  model1.addRow(new Object[] {
@@ -117,7 +132,6 @@ public class pur_list extends Dialog implements ActionListener {
 	   }
          
       public static void main(String[] args) {  
-    	 System.out.println(corr_look.bus_num);
          new pur_list(new JFrame());
       } 
       
@@ -127,7 +141,13 @@ public class pur_list extends Dialog implements ActionListener {
           public TableCell() {
               // TODO Auto-generated constructor stub
               jb = new JButton("상세내역조회");
+              jb.setBackground(Color.WHITE);
+              jb.setFocusPainted(false);
               jb.addActionListener(e -> {
+            	int row = pur_info.getSelectedRow();
+              	pur_num = "";
+              	pur_num += (String) pur_info.getValueAt(row, 0);
+              	System.out.println(pur_num);
       			pur_brkdwn_list s = new pur_brkdwn_list(new JFrame());
               });
            

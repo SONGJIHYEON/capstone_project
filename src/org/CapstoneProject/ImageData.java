@@ -137,12 +137,12 @@ public class ImageData {
 
 	}
 	
-	static List<Map<String, Serializable>> selectColor(String fileName2) {
+	static List<Map<String, Serializable>> selectSize(String fileName2) {
 
-		quary = "select PRO_NM, CLR, SIZ, APP_ST_DT, APP_END_DT, up from model "
+		quary = "select distinct SIZ from model "
 				+ "join pro on model.MODEL_NUM = pro.MODEL_NUM "
 				+ "join pro_up_rec on PRO.PRO_NUM = PRO_UP_REC.PRO_NUM "
-				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + fileName2 + "'";
+				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + fileName2 + "' order by SIZ asc";
 
 		ImageListData.clear();
 
@@ -154,12 +154,10 @@ public class ImageData {
 
 				ImagedataSet = new HashMap<String, Serializable>();
 
-				ImagedataSet.put("PRO_NM", rs.getString(1)); 
-				ImagedataSet.put("CLR", rs.getString(2)); 
-				ImagedataSet.put("SIZ", rs.getString(3)); 
-				ImagedataSet.put("APP_ST_DT", rs.getString(4)); 
-				ImagedataSet.put("APP_END_DT", rs.getString(5)); 
-				ImagedataSet.put("UP", rs.getString(6)); 
+
+				ImagedataSet.put("SIZ", rs.getString(1)); 
+
+
 
 				ImageListData.add(ImagedataSet);
 //				System.out.println(ImageListData);
@@ -175,12 +173,12 @@ public class ImageData {
 
 	}
 	
-	static List<Map<String, Serializable>> selectSize(String fileName2) {
+	static List<Map<String, Serializable>> selectColor(String fileName2) {
 
-		quary = "select PRO_NM, CLR, SIZ, APP_ST_DT, APP_END_DT, up from model "
+		quary = "select CLR from model "
 				+ "join pro on model.MODEL_NUM = pro.MODEL_NUM "
 				+ "join pro_up_rec on PRO.PRO_NUM = PRO_UP_REC.PRO_NUM "
-				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + fileName2 + "'";
+				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + fileName2 + "' order by clr asc";
 
 		ImageListData.clear();
 
@@ -192,12 +190,41 @@ public class ImageData {
 
 				ImagedataSet = new HashMap<String, Serializable>();
 
-				ImagedataSet.put("PRO_NM", rs.getString(1)); 
-				ImagedataSet.put("CLR", rs.getString(2)); 
-				ImagedataSet.put("SIZ", rs.getString(3)); 
-				ImagedataSet.put("APP_ST_DT", rs.getString(4)); 
-				ImagedataSet.put("APP_END_DT", rs.getString(5)); 
-				ImagedataSet.put("UP", rs.getString(6)); 
+				ImagedataSet.put("CLR", rs.getString(1)); 
+
+
+				ImageListData.add(ImagedataSet);
+//				System.out.println(ImageListData);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return ImageListData;
+
+	}
+	
+	static List<Map<String, Serializable>> selectPrice(String fileName2) {
+
+		quary = "select UP from model "
+				+ "join pro on model.MODEL_NUM = pro.MODEL_NUM "
+				+ "join pro_up_rec on PRO.PRO_NUM = PRO_UP_REC.PRO_NUM "
+				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + fileName2 + "' order by UP asc";
+
+		ImageListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ImagedataSet = new HashMap<String, Serializable>();
+
+				ImagedataSet.put("UP", rs.getString(1)); 
 
 
 				ImageListData.add(ImagedataSet);

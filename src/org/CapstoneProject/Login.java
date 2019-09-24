@@ -1,6 +1,8 @@
 package org.CapstoneProject;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -45,6 +47,8 @@ public class Login extends JFrame implements ActionListener {
 	private JButton BtLogin, BtRegMb, BtFind, Btnonmember;      
 	private JComboBox<String> cbSel;    
 	
+	static String admin_num, admin_nm, admin_appc_dt, admin_id, user_num, user_nm, user_id, user_grade, user_disc_rt, user_point;
+	
 	String sid, sid2, pwd, pwd2, id;
 	         
 	GridBagLayout gridbaglayout;      
@@ -76,6 +80,18 @@ public class Login extends JFrame implements ActionListener {
 				 pwd = "";
 			 }else {
 				 JOptionPane.showMessageDialog(null, "로그인 되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+				 user_id = "";
+				 user_id += idListData.get(0).get("ID");
+				 user_num = "";
+				 user_num += idListData.get(0).get("CUST_NUM");
+				 user_nm = "";
+				 user_nm += idListData.get(0).get("CUST_NM");
+				 user_grade = "";
+				 user_grade += idListData.get(0).get("MB_GRA");
+				 user_disc_rt = "";
+				 user_disc_rt += idListData.get(0).get("DISC_RT");
+				 user_point = "";
+				 user_point += idListData.get(0).get("POSS_PNT");
 				 dispose();
 				 JFrame user_main = new home_user();
 			 	}
@@ -108,50 +124,78 @@ public class Login extends JFrame implements ActionListener {
 				 pwd2 = "";
 			 }else {
 				 JOptionPane.showMessageDialog(null, "로그인 되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+				 admin_id = "";
+				 admin_id += idListData.get(0).get("ID");
+				 admin_num = "";
+				 admin_num += idListData.get(0).get("emp_num");
+				 admin_nm = "";
+				 admin_nm += idListData.get(0).get("emp_nm");
+				 admin_appc_dt = "";
+				 admin_appc_dt += idListData.get(0).get("appc_dt");
 				 dispose();
 				 JFrame admin_main = new home_admin();
 			 	}
 		 	}
-		 }
-
-	
-				 
+		 }	 
 	         
 	public Login() {
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();       
 	         
-	    vLabel1 = new JLabel("Login");     
+	    vLabel1 = new JLabel("Login");
+	    vLabel1.setFont(new Font("휴먼매직체", Font.BOLD, 25));     
 	    vLabel2 = new JLabel("회원가입 하시면 다양한 혜택을 제공받을 수 있습니다.");
+	    vLabel2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 	         
 	    cbSel = new JComboBox<String>(div);
-	    cbSel.setPreferredSize(new Dimension(203, 20));
+	    cbSel.setFont(new Font("휴먼매직체", Font.BOLD , 16));
+	    cbSel.setBackground(Color.WHITE);
+	    cbSel.setPreferredSize(new Dimension(153, 25));
 
-        xId = new JTextField(20);
-        xPwd = new JPasswordField(20);
+        xId = new JTextField(15);
+        xPwd = new JPasswordField(15);
        	                  
         vLabel3 = new JLabel("아직 회원이 아니신가요?");
+        vLabel3.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
         vLabel4 = new JLabel("아이디/비밀번호를 잊으셨나요?");
+        vLabel4.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
         vLabel5= new JLabel("비회원으로 이용하겠습니까?");
+        vLabel5.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 	         
 	         
         BtLogin = new JButton("로그인");
-        BtLogin.setPreferredSize(new Dimension(100, 30));
+        BtLogin.setPreferredSize(new Dimension(120, 30));
+        BtLogin.setFocusPainted(false);
+        BtLogin.setBackground(Color.white);
+        BtLogin.setFont(new Font("휴먼매직체", Font.PLAIN , 17));
         BtLogin.addActionListener(this);
+        
         BtRegMb = new JButton("회원가입");
-        BtRegMb.setPreferredSize(new Dimension(100, 30));
+        BtRegMb.setPreferredSize(new Dimension(120, 30));
         BtRegMb.addActionListener(this);
+        BtRegMb.setFocusPainted(false);
+        BtRegMb.setBackground(Color.white);
+        BtRegMb.setFont(new Font("휴먼매직체", Font.PLAIN , 17));
+        
         BtFind = new JButton("ID/PW 찾기");
-        BtFind.setPreferredSize(new Dimension(100, 30));
+        BtFind.setPreferredSize(new Dimension(120, 30));
         BtFind.addActionListener(this);
+        BtFind.setFocusPainted(false);
+        BtFind.setBackground(Color.white);
+        BtFind.setFont(new Font("휴먼매직체", Font.PLAIN , 17));
+        
         Btnonmember = new JButton("비회원 접속");
-        Btnonmember.setPreferredSize(new Dimension(100, 30));
+        Btnonmember.setPreferredSize(new Dimension(120, 30));
         Btnonmember.addActionListener(this);
+        Btnonmember.setFocusPainted(false);
+        Btnonmember.setBackground(Color.white);
+        Btnonmember.setFont(new Font("휴먼매직체", Font.PLAIN , 17));
 //	         getDeptData(EmpData.selectDept());
 //	         getSvpData(EmpData.selectSpv());
         
+        
         LoginView();
-      }   
+      }    
 	         
 	private void LoginView() {
 		setTitle("Login 화면");
@@ -184,6 +228,7 @@ public class Login extends JFrame implements ActionListener {
         gridbagAdd(Btnonmember, 3, 7, 1, 1);
         
         setExtendedState(MAXIMIZED_BOTH);
+//        pack();
 	    setVisible(true);
 	}
 	private void gridbagAdd(Component c, int x, int y, int w, int h) {   
@@ -219,6 +264,7 @@ public class Login extends JFrame implements ActionListener {
 			sid = xId.getText();
 			pwd = xPwd.getText();			
 			getData(CheckId.selectlogin1(sid, pwd));
+			
 			}
 		}if(cbSel.getSelectedItem() == "관리자") {
 			if(e.getSource() == BtLogin) {
@@ -231,5 +277,3 @@ public class Login extends JFrame implements ActionListener {
 		}
 	}
 }
-	         
-

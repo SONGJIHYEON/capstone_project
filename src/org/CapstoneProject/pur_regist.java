@@ -1,30 +1,38 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class pur_regist extends Dialog implements ActionListener{
 
-   private JLabel pur_regist, Lpur_no, Lcorr_no, Lpur_dt, Ltot_pr; 
-   private JTextField  Tsearch, Tpur_no, Tcorr_no, Tpur_dt, Ttot_pr;      
+   private JLabel pur_regist, Lcorr_nm, Lpur_dt, Ltot_pr; 
+   private JTextField  Tcorr_nm, Tpur_dt, Ttot_pr;      
+   private static String[] col1 = {"마지막번호"};
+   private static DefaultTableModel model1 = new DefaultTableModel(col1, 0);
+   private JTable pur_info;
         
-   private JButton bus_man,pro_man,od_man,emp_man,mb_man,Bregist,Bcancel; 
+   private JButton Bregist,Bcancel; 
    
-   private JComboBox<String> cbSearch;      
-   
-   String bus_num, pur_num, pur_dt;
+   String corr_num, corr_nm, pur_num, pur_dt;
    int tot_pr;
          
    GridBagLayout gridbaglayout;      
@@ -35,21 +43,21 @@ public class pur_regist extends Dialog implements ActionListener{
          gridbaglayout = new GridBagLayout();
          gridbagconstraints = new GridBagConstraints();
          
+         pur_info = new JTable(model1);
+         
          pur_regist = new JLabel("구매등록");
          pur_regist.setPreferredSize(new Dimension(100,30));
-         Lcorr_no = new JLabel("거래처번호");
-         Lcorr_no.setPreferredSize(new Dimension(100,30));
-         Lpur_no = new JLabel("구매번호");
-         Lpur_no.setPreferredSize(new Dimension(100,30));
+         Lcorr_nm = new JLabel("거래처명");
+         Lcorr_nm.setPreferredSize(new Dimension(100,30));
          Lpur_dt = new JLabel("구매일자");
          Lpur_dt.setPreferredSize(new Dimension(100,30));
          Ltot_pr = new JLabel("총금액");
          Ltot_pr.setPreferredSize(new Dimension(100,30));
-         
-         Tpur_no = new JTextField(18);
-         Tpur_no.setPreferredSize(new Dimension(100,30));
-         Tcorr_no = new JTextField(18);
-         Tcorr_no.setPreferredSize(new Dimension(100,30));
+
+         Tcorr_nm = new JTextField(18);
+         Tcorr_nm.setText(corr_look.corr_nm);
+         Tcorr_nm.setEnabled(false);
+         Tcorr_nm.setPreferredSize(new Dimension(100,30));
          Tpur_dt = new JTextField(18);
          Tpur_dt.setPreferredSize(new Dimension(100,30));
          Ttot_pr = new JTextField(18);
@@ -57,8 +65,13 @@ public class pur_regist extends Dialog implements ActionListener{
          
          Bregist = new JButton("등록");
          Bregist.addActionListener(this);
+         Bregist.setFont(new Font("휴먼매직체", Font.PLAIN , 15));
+         Bregist.setBackground(Color.WHITE);
+         
          Bcancel = new JButton("취소");
          Bcancel.addActionListener(this);
+         Bcancel.setFont(new Font("휴먼매직체", Font.PLAIN , 15));
+         Bcancel.setBackground(Color.WHITE);
          
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
@@ -91,13 +104,11 @@ public class pur_regist extends Dialog implements ActionListener{
 //       gridbagAdd(pur_regist, 0, 2, 1, 1);
 //       gridbagAdd(pur_lookup, 0, 1, 1, 1);
          
-         gridbagAdd(Lcorr_no, 0, 1, 1, 1);
-         gridbagAdd(Lpur_no, 0, 2, 1, 1);
+         gridbagAdd(Lcorr_nm, 0, 1, 1, 1);
          gridbagAdd(Lpur_dt, 0, 3, 1, 1);
          gridbagAdd(Ltot_pr, 0, 4, 1, 1);
          
-         gridbagAdd(Tcorr_no, 1, 1, 1, 1);
-         gridbagAdd(Tpur_no, 1, 2, 1, 1);
+         gridbagAdd(Tcorr_nm, 1, 1, 1, 1);
          gridbagAdd(Tpur_dt, 1, 3, 1, 1);
          gridbagAdd(Ttot_pr, 1, 4, 1, 1);
          
@@ -127,6 +138,21 @@ public class pur_regist extends Dialog implements ActionListener{
       public static void main(String[] args) {   
          new pur_regist(new JFrame());
       }
+      
+	static void getData(List<Map<String, Serializable>> purListData) {
+	    	  
+	    	  model1.setNumRows(0);
+	
+		      for(int i=0; i < purListData.size(); i++) {
+		    	  model1.addRow(new Object[] {
+		               
+		    			  purListData.get(i).get("LAST_NUMBER")
+	
+		         });
+		      }
+	
+	
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -140,20 +166,29 @@ public class pur_regist extends Dialog implements ActionListener{
 				    JOptionPane.INFORMATION_MESSAGE);
 					if(result == 0) {
 						//변수에 콤보박스 값 저장
-						pur_num = Tpur_no.getText();
-						bus_num = Tcorr_no.getText();
+						corr_num = corr_look.corr_num;
+						corr_nm = Tcorr_nm.getText();
 						pur_dt = Tpur_dt.getText();
 						tot_pr = Integer.parseInt(Ttot_pr.getText());
 						
-						purData.initpurData(pur_num,bus_num,pur_dt,tot_pr);
-						purData.createpur();
-						JOptionPane.showMessageDialog(null, "구매가 등록되었습니다.", "구매 등록",
-					               JOptionPane.WARNING_MESSAGE);
-						Tpur_no.setText("");
-						Tcorr_no.setText("");
-						Tpur_dt.setText("");
-						Ttot_pr.setText("");
-			
+						if (pur_dt.equals("") || tot_pr == 0 ) {
+							JOptionPane.showMessageDialog(null, "입력되지 않은 항목이 있습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+						} else {
+						
+							purData.initpurData(pur_num,corr_num,pur_dt,tot_pr);
+							purData.createpur();
+							
+					        getData(purData.searchSEQ());
+					        pur_num = "";
+					       	pur_num += (String) pur_info.getValueAt(0, 0);
+							
+							JOptionPane.showMessageDialog(null, "구매가 등록되었습니다.", "구매 등록",
+						               JOptionPane.INFORMATION_MESSAGE);
+							Tpur_dt.setText("");
+							Ttot_pr.setText("");
+							pur_list.getData(purData.selectpur(corr_look.corr_num));
+							dispose();
+						} 
 		}else if(result ==1) {
 			JOptionPane.getRootFrame().dispose(); 
 		}

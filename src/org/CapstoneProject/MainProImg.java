@@ -51,9 +51,9 @@ public class MainProImg extends JFrame {
         
         setLayout(gridbaglayout);
        
-         BackgroundPanel sub = new BackgroundPanel();
+//         BackgroundPanel sub = new BackgroundPanel();
 //         sub.setSize(1377, 768);
-         p = sub;
+//         p = sub;
          add(p);
 //         setLayout(null);
         

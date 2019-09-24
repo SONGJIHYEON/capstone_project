@@ -1,5 +1,6 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class RegMember extends JFrame implements ActionListener {
 	private JLabel vMemId, vMemPw1, vMemPw2, vMemName, vMemBirth, vMemPhone, vMemEmail, vMemAddr1, vMemAddr2, vMemAddr3,
-			vGol;
+			vGol, vRegMember, vSpace;
 	private JTextField xMemId, xMemName, xMemBirth, xMemPhone, xMemEmail1, xMemEmail2, xMemAddr1, xMemAddr2, xMemAddr3;
 	private JPasswordField xMemPw1, xMemPw2;
 	private String[] div = { "naver.com", "hanmail.com", "nate.com", "gmail.com", "직접입력" };
@@ -68,8 +69,8 @@ public class RegMember extends JFrame implements ActionListener {
 			return;
 		} else
 			JOptionPane.showMessageDialog(null, "중복된 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
-			xMemId.setText("");
-			return;
+		xMemId.setText("");
+		return;
 	}
 
 	public void getData2(List<Map<String, Serializable>> MbgraListData) {
@@ -99,50 +100,93 @@ public class RegMember extends JFrame implements ActionListener {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
 
+		vSpace = new JLabel("");
+		vSpace.setFont(new Font("휴먼매직체", Font.BOLD, 35));
+
+		vRegMember = new JLabel("회원가입");
+		vRegMember.setFont(new Font("휴먼매직체", Font.BOLD, 30));
+		vRegMember.setPreferredSize(new Dimension(120, 35));
+
 		vMemId = new JLabel("아이디");
-		xMemId = new JTextField(22);
+		vMemId.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemId = new JTextField(13);
+		xMemId.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		BtCheckId = new JButton("중복확인");
 		BtCheckId.addActionListener(this);
+		BtCheckId.setPreferredSize(new Dimension(120, 28));
+		BtCheckId.setFocusPainted(false);
+		BtCheckId.setBackground(Color.white);
+		BtCheckId.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 
 		vMemPw1 = new JLabel("비밀번호");
+		vMemPw1.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemPw1 = new JPasswordField(22);
+		xMemPw1.setPreferredSize(new Dimension(125, 30));
 
 		vMemPw2 = new JLabel("비밀번호 확인");
+		vMemPw2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemPw2 = new JPasswordField(22);
+		xMemPw2.setPreferredSize(new Dimension(125, 30));
 
 		vMemName = new JLabel("이름");
-		xMemName = new JTextField(22);
+		vMemName.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemName = new JTextField(13);
+		xMemName.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		vMemBirth = new JLabel("생년월일");
-		xMemBirth = new JTextField(22);
+		vMemBirth.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemBirth = new JTextField(13);
+		xMemBirth.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		vMemPhone = new JLabel("휴대폰 번호");
-		xMemPhone = new JTextField(22);
+		vMemPhone.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemPhone = new JTextField(13);
+		xMemPhone.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		vMemEmail = new JLabel("이메일");
+		vMemEmail.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		vGol = new JLabel("@");
 		xMemEmail1 = new JTextField(10);
 		xMemEmail2 = new JTextField(10);
 		CbEmail = new JComboBox<String>(div);
 		CbEmail.addActionListener(this);
-//		CbEmail = new JComboBox(div);
 
 		vMemAddr1 = new JLabel("주소");
-		xMemAddr1 = new JTextField(22);
+		vMemAddr1.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemAddr1 = new JTextField(13);
+		xMemAddr1.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+
 		BtSearchAddr = new JButton("우편번호 검색");
 		BtSearchAddr.addActionListener(this);
-		vMemAddr2 = new JLabel("기본주소");
-		vMemAddr2.setFont(new Font("serif", Font.PLAIN, 12));
-		vMemAddr3 = new JLabel("상세주소");
-		vMemAddr3.setFont(new Font("serif", Font.PLAIN, 12));
+		BtSearchAddr.setPreferredSize(new Dimension(120, 28));
+		BtSearchAddr.setFocusPainted(false);
+		BtSearchAddr.setBackground(Color.white);
+		BtSearchAddr.setFont(new Font("휴먼매직체", Font.PLAIN, 15));
 
-		xMemAddr2 = new JTextField(22);
-		xMemAddr3 = new JTextField(22);
+		vMemAddr2 = new JLabel("기본주소");
+		vMemAddr2.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		vMemAddr3 = new JLabel("상세주소");
+		vMemAddr3.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+
+		xMemAddr2 = new JTextField(13);
+		xMemAddr2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemAddr3 = new JTextField(13);
+		xMemAddr3.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		BtRegist = new JButton("확인");
 		BtRegist.addActionListener(this);
+		BtRegist.setPreferredSize(new Dimension(65, 25));
+		BtRegist.setFocusPainted(false);
+		BtRegist.setBackground(Color.white);
+		BtRegist.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+
 		BtCancel = new JButton("취소");
+		BtCancel.addActionListener(this);
+		BtCancel.setPreferredSize(new Dimension(65, 25));
+		BtCancel.setFocusPainted(false);
+		BtCancel.setBackground(Color.white);
+		BtCancel.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 
 		RegMemberView();
 	}

@@ -16,12 +16,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+
+import org.CapstoneProject.Nonmember.RandomId;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class emp_re extends JFrame implements ActionListener {
 
@@ -34,11 +38,11 @@ public class emp_re extends JFrame implements ActionListener {
 	private String[] reg_tp = { "스타일리스트", "웹디자이너", "포토그래퍼", "물류관리담당", "고객센터담당" };
 	private String[] empty = { "" };
 
-	private JButton Bregist, Bcancel, BtSearchAddr, BtCheckId;
+	private JButton Bregist, Bcancel, BtSearchAddr, BtCheckId, Bemp_num;
 
 	private JComboBox<String> CBemp_tp, CBreg_tp;
 
-	String EMP_NO, EMP_NM, EMP_DT, EMP_PH_NUM, EMP_TP, EMP_ADDR, REG_TP, REG_ID, REG_PW, sid, sid2;
+	String EMP_NO, EMP_NM, EMP_DT, EMP_PH_NUM, EMP_TP, EMP_ADDR, REG_TP, REG_ID, REG_PW, sid, sid2, EMP_NUM;
 
 	int close, intid;
 
@@ -54,12 +58,11 @@ public class emp_re extends JFrame implements ActionListener {
 
 		if (intid == 0) {
 			JOptionPane.showMessageDialog(null, "사용가능한 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
-			Treg_id.setText("");
 			return;
 		} else
 			JOptionPane.showMessageDialog(null, "중복된 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
-			Treg_id.setText("");
-			return;
+		Treg_id.setText("");
+		return;
 	}
 
 	public emp_re(JFrame fr) {
@@ -100,8 +103,8 @@ public class emp_re extends JFrame implements ActionListener {
 		CBreg_tp = new JComboBox<String>(reg_tp);
 		CBreg_tp.setPreferredSize(new Dimension(100, 30));
 
-//         Temp_no = new JTextField(22);
-//         Temp_no.setPreferredSize(new Dimension(100,30));
+		Temp_no = new JTextField(22);
+		Temp_no.setPreferredSize(new Dimension(100, 30));
 		Temp_nm = new JTextField(22);
 		Temp_nm.setPreferredSize(new Dimension(100, 30));
 		Temp_dt = new JTextField(22);
@@ -120,6 +123,8 @@ public class emp_re extends JFrame implements ActionListener {
 		Treg_pw = new JTextField(22);
 		Treg_pw.setPreferredSize(new Dimension(100, 30));
 
+		Bemp_num = new JButton("사원번호 생성");
+		Bemp_num.addActionListener(this);
 		Bregist = new JButton("등록");
 		Bregist.setPreferredSize(new Dimension(100, 28));
 		Bregist.addActionListener(this);
@@ -151,7 +156,7 @@ public class emp_re extends JFrame implements ActionListener {
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 
 		gridbagAdd(mb_regist2, 1, 1, 1, 1);
-//         gridbagAdd(Lemp_no, 1, 2, 1, 1);
+		gridbagAdd(Lemp_no, 1, 2, 1, 1);
 		gridbagAdd(Lemp_nm, 1, 3, 1, 1);
 		gridbagAdd(Lemp_dt, 1, 4, 1, 1);
 		gridbagAdd(Lemp_ph_num, 1, 5, 1, 1);
@@ -160,7 +165,8 @@ public class emp_re extends JFrame implements ActionListener {
 		gridbagAdd(Lreg_tp, 1, 10, 1, 1);
 		gridbagAdd(Lreg_id, 1, 11, 1, 1);
 		gridbagAdd(Lreg_pw, 1, 12, 1, 1);
-//         gridbagAdd(Temp_no, 2, 2, 1, 1);
+		gridbagAdd(Temp_no, 2, 2, 1, 1);
+		gridbagAdd(Bemp_num, 3, 2, 1, 1);
 		gridbagAdd(Temp_nm, 2, 3, 1, 1);
 		gridbagAdd(Temp_dt, 2, 4, 1, 1);
 		gridbagAdd(Temp_ph_num, 2, 5, 1, 1);
@@ -200,6 +206,11 @@ public class emp_re extends JFrame implements ActionListener {
 		add(c);
 
 	}
+	
+	public class RandomId {
+		Random r = new Random();
+		int x = (r.nextInt(900000)+100000);
+	}
 
 	public static void main(String[] args) {
 		new emp_re(new JFrame());
@@ -207,8 +218,16 @@ public class emp_re extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == Bemp_num) {
+			RandomId rid = new RandomId();
+			JOptionPane.showMessageDialog(null, "사원번호는 " + rid.x + " 입니다");
+			String x = Integer.toString(rid.x);
+			Temp_no.setText(x);			
+		}		
 		if (e.getSource() == CBemp_tp) {
 			if (CBemp_tp.getSelectedItem() == "정규직") {
+				BtCheckId.setEnabled(true);
+				BtCheckId.setVisible(true);
 				CBreg_tp.setEnabled(true);
 				CBreg_tp.setVisible(true);
 				Lreg_tp.setVisible(true);
@@ -217,7 +236,9 @@ public class emp_re extends JFrame implements ActionListener {
 				Treg_id.setVisible(true);
 				Treg_pw.setVisible(true);
 			} else if (CBemp_tp.getSelectedItem() == "계약직") {
-//				CBreg_tp = new JComboBox<String>(empty);				
+//				CBreg_tp = new JComboBox<String>(empty);		
+				BtCheckId.setEnabled(false);
+				BtCheckId.setVisible(false);
 				CBreg_tp.setEnabled(false);
 				CBreg_tp.setVisible(false);
 				Lreg_tp.setVisible(false);
@@ -233,7 +254,7 @@ public class emp_re extends JFrame implements ActionListener {
 			if (result == 0) {
 				// 변수에 콤보박스 값 저장
 
-//						EMP_NO = Temp_no.getText();
+				EMP_NUM = Temp_no.getText();
 				EMP_NM = Temp_nm.getText();
 				EMP_DT = Temp_dt.getText();
 				EMP_PH_NUM = Temp_ph_num.getText();
@@ -245,18 +266,22 @@ public class emp_re extends JFrame implements ActionListener {
 				}
 				REG_ID = Treg_id.getText();
 				REG_PW = Treg_pw.getText();
-
-				empData.initempData(EMP_NM, EMP_DT, EMP_PH_NUM, EMP_TP, EMP_ADDR, REG_TP, REG_ID, REG_PW);
-				empData.createemp();
-				JOptionPane.showMessageDialog(null, "사원이 등록되었습니다.", "사원 등록", JOptionPane.WARNING_MESSAGE);
-//						Temp_no.setText("");
-//						Temp_nm.setText("");
-//						Temp_dt.setText("");
-//						Temp_ph_num.setText("");
-//						Temp_addr.setText("");
-//						Treg_id.setText("");
-//						Treg_pw.setText("");
-
+				if (EMP_NUM.equals("") || EMP_NM.equals("") || EMP_DT.equals("") || EMP_ADDR.equals("") || EMP_PH_NUM.equals("")
+						|| EMP_TP.equals("")) {
+					JOptionPane.showMessageDialog(null, "입력되지 않은 항목이 있습니다.", "오류", JOptionPane.ERROR_MESSAGE);
+				} else {
+					empData.initempData(EMP_NUM, EMP_NM, EMP_DT, EMP_PH_NUM, EMP_TP, EMP_ADDR, REG_TP, REG_ID, REG_PW);
+					empData.createemp();
+					JOptionPane.showMessageDialog(null, "사원이 등록되었습니다.", "사원 등록", JOptionPane.WARNING_MESSAGE);
+							Temp_no.setText("");
+							Temp_nm.setText("");
+							Temp_dt.setText("");
+							Temp_ph_num.setText("");
+							Temp_addr.setText("");
+							Treg_id.setText("");
+							Treg_pw.setText("");
+					dispose();
+				}
 			} else if (result == 1) {
 				JOptionPane.getRootFrame().dispose();
 			}
@@ -277,8 +302,6 @@ public class emp_re extends JFrame implements ActionListener {
 			} else {
 				getData(empData.selectid(sid));
 			}
-			Treg_id.setText("");
-
 		}
 
 	}
