@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -32,9 +33,9 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class ProDetail extends JFrame implements ActionListener, MouseListener {
-	
+
 	private JLabel vProImg, vProNm, vPrice, vColor, vSize, vOption, vAllPrice;
-	
+
 	private JTextField xPrice, xOption, xAllPrice;
 
 	private String[] size1 = { "90", "95", "100", "105", "110" };
@@ -42,41 +43,72 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	private String[] size3 = { "250", "255", "260", "265", "270", "275", "280", "285" };
 	private String[] color = { "BLACK", "BLUE", "CYAN", "DARK_GRAY", "GRAY", "GREEN", "LIGHT_GRAY", "ORANGE", "PINK",
 			"RED", "WHITE", "YELLOW" };
-	
-	private JComboBox<String> Cbsize, Cbcolor;
+
+	private JComboBox<String> Cbsize, Cbcolor, Cbcolor2;
 	private Icon icon;
 
 	private JTable eDept, eSpv;
 	private JScrollPane scrollpane1, scrollpane2;
 
-	private JButton BtPurchae, BtBasket, BtPlus, BtMinus;
+	private JButton Btpurchase, BtBasket, BtPlus, BtMinus;
 	private JTabbedPane t;
 	private JTextArea ta;
 	private JPanel p, p1, p2;
-	
-	String option, allprice, img, img2, nickname, ctgr, price, price2;
-	static ArrayList<String> arSize, arColor;
+
+	String option, allprice, img, img2, nickname, ctgr, price, price2, modelname, up_price, user_id, user_num, pro_num;
+	private String[] Basic_clr = {"[필수] 선택"};
+	static ArrayList arColor = new ArrayList();
+	static ArrayList<String> arSize;
 
 	int intprice, intoption, intallprice;
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 	List<Map<String, Serializable>> ImageListData;
-	
-	public ProDetail()  {
+
+	public String getData(List<Map<String, Serializable>> ImageListData) {
+
+		up_price = "";
+		up_price += ImageListData.get(0).get("UP").toString();
+		System.out.println(up_price);
+
+		return up_price;
+	}
+
+	public static ArrayList getData2(List<Map<String, Serializable>> ImageListData) { // 동적 배열에 색상 추가
+		arColor.add("[필수] 선택");
+		arColor.add("----------");
+		for (int i = 0; i < ImageListData.size(); i++) {
+			arColor.add(ImageListData.get(i).get("CLR").toString());
+		}
+
+		return arColor;
+	}
+
+	public String getData3(List<Map<String, Serializable>> ImageListData) {
+
+		pro_num = "";
+		pro_num += ImageListData.get(0).get("PRO_NUM");
+		System.out.println(pro_num);
+
+		return pro_num;
+	}
+
+	public ProDetail() {
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
-		
+
 		img = ProImage.img;
 		img2 = ProImage.img2;
 		nickname = ProImage.nickname;
 		ctgr = ProImage.ctgr;
 		arSize = ProImage.arSize;
-		arColor = ProImage.arColor;
+//		arColor = ProImage.arColor;
 		price = ProImage.price;
-		
+		modelname = ProImage.modelname;
+
 //		System.out.println(price);
-		
+
 		icon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\" + img + ".jpg");
 
 		vProImg = new JLabel(icon);
@@ -105,20 +137,26 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		BtMinus = new JButton("▼");
 		BtMinus.setPreferredSize(new Dimension(45, 20));
 		BtMinus.addActionListener(this);
-		BtPurchae = new JButton("구매하기");
+		Btpurchase = new JButton("구매하기");
+		Btpurchase.addActionListener(this);
 		BtBasket = new JButton("장바구니");
-		
+		BtBasket.addActionListener(this);
+
 		Cbsize = new JComboBox<String>(arSize.toArray(new String[arSize.size()]));
+		Cbsize.setPreferredSize(new Dimension(120,20));
 		Cbsize.addActionListener(this);
-		Cbcolor = new JComboBox<String>(arColor.toArray(new String[arColor.size()]));
+		
+		Cbcolor = new JComboBox<String>(Basic_clr);
+		Cbcolor.setPreferredSize(new Dimension(120,20));
 		Cbcolor.addActionListener(this);
+		Cbcolor.addMouseListener(this);
 
 		p1 = new JPanel();
 		ta = new JTextArea(22, 30);
 		ta.setLineWrap(true);
 		scrollpane1 = new JScrollPane(ta);
 		scrollpane1.setPreferredSize(new Dimension(430, 400));
-		
+
 		p1.add(scrollpane1);
 		p1.setPreferredSize(new Dimension(430, 400));
 
@@ -128,7 +166,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		t = new JTabbedPane();
 		t.add("상품상세", p1);
 		t.add("상품사이즈", p2);
-		
+
 		p = new JPanel();
 		p.add(t);
 
@@ -136,7 +174,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	}
 
 	private void ProDetailView() {
-		setTitle("Login 화면");
+		setTitle("장바구니");
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 //	    gridbagconstraints.ipadx = 7;
@@ -159,7 +197,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		gridbagAdd(p, 0, 7, 10, 10);
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
-		gridbagAdd(BtPurchae, 3, 6, 1, 1);
+		gridbagAdd(Btpurchase, 3, 6, 1, 1);
 		gridbagAdd(xOption, 3, 4, 2, 1);
 		gridbagAdd(Cbsize, 3, 1, 1, 1);
 		gridbagAdd(Cbcolor, 3, 2, 1, 1);
@@ -198,7 +236,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 			int p = Integer.parseInt(xOption.getText());
 			p++;
 			xOption.setText(p + "");
-			
+
 			price2 = xPrice.getText();
 			intprice = Integer.parseInt(price2);
 			option = xOption.getText();
@@ -209,13 +247,13 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 			allprice = Integer.toString(intallprice);
 
 			xAllPrice.setText(allprice);
-			
+
 		} else if (e.getSource() == BtMinus) {
 			if (Integer.parseInt(xOption.getText()) > 1) {
 				int m = Integer.parseInt(xOption.getText());
 				m--;
 				xOption.setText(m + "");
-				
+
 				price = xPrice.getText();
 				intprice = Integer.parseInt(price);
 				option = xOption.getText();
@@ -227,10 +265,47 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 
 				xAllPrice.setText(allprice);
 			}
-		}if(e.getSource() == Cbsize) {
+		}
+		if (e.getSource() == Cbsize) {
 			String selectSize = Cbsize.getSelectedItem().toString();
-		}if(e.getSource() == Cbcolor) {
+			if (!selectSize.equals("-----")) {
+				getData2(ImageData.selectColor2(selectSize));
+				Cbcolor.setModel(new DefaultComboBoxModel(arColor.toArray()));
+				Cbcolor.setPreferredSize(new Dimension(120,20));
+
+
+			} else {
+//				Cbcolor2 = new JComboBox<String>(Basic_clr);
+			}
+			arColor = new ArrayList();
+		}
+		if (e.getSource() == Cbcolor) {
+			String selectSize = Cbsize.getSelectedItem().toString();
 			String selectColor = Cbcolor.getSelectedItem().toString();
+			String proName = modelname + "_" + selectSize + "_" + selectColor;
+			getData(ImageData.selectPrice(proName));
+			getData3(ImageData.selectProNum(proName));
+			System.out.println(proName);
+			xPrice.setText(up_price);
+		} else if (e.getSource() == BtBasket) {
+			user_id = Login.user_id;
+			user_num = Login.user_num;
+			String bk_nickname = vProNm.getText();
+			String bk_option = xOption.getText();
+			String bk_price = xPrice.getText();
+			String bk_allPrice = xAllPrice.getText();
+			double bk_point = Integer.parseInt(xAllPrice.getText()) * 0.02;
+			BasketData.createBasket(user_num, pro_num, bk_option, bk_price, bk_allPrice, bk_point);
+			int check = JOptionPane.showConfirmDialog(null, "장바구니에 등록되었습니다. 장바구니로 이동하시겠습니까?", "",
+					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+			if (check == 0) {
+				new Basket();
+			}else
+				return;
+
+		} else if (e.getSource() == Btpurchase) {
+			new MemOrdPg();
+
 		}
 	}
 
@@ -241,7 +316,6 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-
 
 	}
 

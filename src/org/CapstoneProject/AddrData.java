@@ -83,13 +83,6 @@ static List<Map<String, Serializable>> selectAddr() {
 				addrdataSet.put("BUNJI", rs.getString(7));
 				addrdataSet.put("BLDG", rs.getString(8));
 				addrdataSet.put("ADDR", rs.getString(9));
-//				custdataSet.put("비밀번호", rs.getString(6));
-//				custdataSet.put("생년월일", rs.getString(7));
-//				custdataSet.put("주소", rs.getString(8));
-//				custdataSet.put("고객등급", rs.getString(9));
-//				custdataSet.put("보유포인트", rs.getString(10));
-//				custdataSet.put("할인시작일", rs.getString(11));
-//				custdataSet.put("할인종료일", rs.getString(12));
 				
 				//System.out.println(addrdataSet);
 				addrListData.add(addrdataSet);

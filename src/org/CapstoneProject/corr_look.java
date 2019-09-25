@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class corr_look extends JPanel implements ActionListener, MouseListener {
+public class corr_look extends JFrame implements ActionListener, MouseListener {
 
    public static String corr_num, corr_nm;
    private JLabel corr_lookup2, pur_regist, Lcorr_no, Lcorr_nm, Lcorr_prnm, Lcorr_ph, Lcorr_addr; 

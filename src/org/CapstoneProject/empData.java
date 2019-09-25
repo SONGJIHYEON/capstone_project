@@ -57,6 +57,38 @@ public class empData {
 
 	}
 
+	static List<Map<String, Serializable>> selectid(String sid) {
+
+		quary = "select count(id) from emp where id = '" + sid + "'";
+
+		empListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+
+			while (rs.next()) {
+
+				empDataSet = new HashMap<String, Serializable>();
+
+				empDataSet.put("ID", rs.getString(1));
+//				addrdataSet.put("SEQ", rs.getString(2));
+
+//				System.out.println(iddataSet);
+				empListData.add(empDataSet);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return empListData;
+
+	}
+	
 	static List<Map<String, Serializable>> selectEmp() {
 
 		quary = "select EMP_NUM, EMP_NM, PH_NUM, APPC_DT, REG_WRKR_TP from emp";
@@ -91,37 +123,6 @@ public class empData {
 
 	}
 
-	static List<Map<String, Serializable>> selectid(String sid) {
-
-		quary = "select count(id) from emp where id = '" + sid + "'";
-
-		empListData.clear();
-
-		try {
-
-			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-			rs = pstm.executeQuery();
-
-			while (rs.next()) {
-
-				empDataSet = new HashMap<String, Serializable>();
-
-				empDataSet.put("ID", rs.getString(1));
-//				addrdataSet.put("SEQ", rs.getString(2));
-
-//				System.out.println(iddataSet);
-				empListData.add(empDataSet);
-
-			}
-
-		} catch (SQLException sqle) {
-			System.out.println("select문에서 예외 발생");
-			sqle.printStackTrace();
-		}
-
-		return empListData;
-
-	}
 	static List<Map<String, Serializable>> searchEmp1(String search) {
 
 		quary = "select *from emp where EMP_NM like '%" + search + "%'";
@@ -156,6 +157,7 @@ public class empData {
 		return empListData;
 
 	}
+	
 	static List<Map<String, Serializable>> searchEmp2(String search) {
 
 		quary = "select *from emp where PH_NUM like '%" + search + "%'";

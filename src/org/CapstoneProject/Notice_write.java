@@ -213,7 +213,7 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 		if(e.getSource() == bCancel) {
 			dispose();
 		} else 	if(e.getSource() == bRegist) {
-			String writer = Login.ad_nm;
+			String writer = Login.admin_nm;
 			int result = JOptionPane.showConfirmDialog(null, "공지사항을 등록하시겠습니까?", "공지사항 등록 확인", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 			if(result == 0) {
 				NoticeData.createN(tTitle.getText(), tContent.getText(), writer);

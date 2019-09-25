@@ -27,7 +27,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-public class RegModel extends JPanel implements ActionListener {
+public class RegModel extends JFrame implements ActionListener {
 	
 //	private static final int MAXIMIZED_BOTH = 0;
 	private JLabel vRegModel2, vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelExp, vModelNick;

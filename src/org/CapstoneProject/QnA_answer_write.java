@@ -83,7 +83,7 @@ public class QnA_answer_write extends Dialog implements ActionListener, MouseLis
 		tTitle.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		
 		tWriter = new JTextField(5);
-		tWriter.setText(Login.ad_nm);
+		tWriter.setText(Login.admin_nm);
 		tWriter.setHorizontalAlignment(JTextField.CENTER);
 		tWriter.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
@@ -218,7 +218,7 @@ public class QnA_answer_write extends Dialog implements ActionListener, MouseLis
 		if(e.getSource() == bCancel) {
 			dispose();
 		} else 	if(e.getSource() == bRegist) {
-			String writer = Login.ad_nm;
+			String writer = Login.admin_nm;
 			String POST_NUM = QnA_admin.POST_NUM + "-re";
 			int result = JOptionPane.showConfirmDialog(null, "답변을 등록하시겠습니까?", "답변 등록 확인", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 			if(result == 0) {

@@ -2,7 +2,9 @@ package org.CapstoneProject;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
@@ -15,15 +17,20 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class ProImage implements MouseListener {
+public class ProImage extends JPanel implements MouseListener {
+
+	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	private static Icon icon;
 	private static JLabel label1;
 	private static JLabel[] labels;
 	private File f;
 
-	public static String imgData, imgData2, img, img2, nicknameData, nickname, ctgrData, ctgr, priceData, price;
+	public static String imgData, imgData2, img, img2, nicknameData, nickname, ctgrData, ctgr, priceData, price,
+			modelnameData, modelname;
 	static ArrayList sizeData, colorData;
 	static ArrayList arSize = new ArrayList();
 	static ArrayList arColor = new ArrayList();
@@ -62,10 +69,13 @@ public class ProImage implements MouseListener {
 	}
 
 	public static ArrayList getData5(List<Map<String, Serializable>> ImageListData) {
+		arSize.add("[필수] 선택");
+		arSize.add("----------");
 
 		for (int i = 0; i < ImageListData.size(); i++) {
+
 			arSize.add(ImageListData.get(i).get("SIZ").toString());
-			}
+		}
 
 		return arSize;
 	}
@@ -74,20 +84,33 @@ public class ProImage implements MouseListener {
 
 		for (int i = 0; i < ImageListData.size(); i++) {
 			arColor.add(ImageListData.get(i).get("CLR").toString());
-			}
+		}
 
 		return arColor;
 	}
-	
+
 	public static String getData7(List<Map<String, Serializable>> ImageListData) {
 
 		price = "";
-		price += ImageListData.get(0).get("UP");
+		price += ImageListData.get(0).get("UP").toString();
 
 		return price;
 	}
 
+	public static String getData8(List<Map<String, Serializable>> ImageListData) {
+
+		modelname = "";
+		modelname += ImageListData.get(0).get("MODEL_NM");
+
+		System.out.println(modelname);
+
+		return modelname;
+	}
+
 	public ProImage() {
+
+		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
+
 		ad = "C:\\Users\\ssong\\Desktop\\img\\REP_Da1.jpg";
 		f = new File(ad);
 		icon = new ImageIcon(ad);
@@ -102,6 +125,7 @@ public class ProImage implements MouseListener {
 		labels[1] = makeLabel(JLabel.TOP, JLabel.CENTER, "2");
 		labels[2] = makeLabel(JLabel.TOP, JLabel.RIGHT, "3");
 		labels[3] = makeLabel(JLabel.CENTER, JLabel.LEFT, "4");
+		labels[3].addMouseListener(this);
 		labels[4] = makeLabel(JLabel.CENTER, JLabel.CENTER, "1");
 		labels[5] = makeLabel(JLabel.CENTER, JLabel.RIGHT, "1");
 		labels[6] = makeLabel(JLabel.BOTTOM, JLabel.LEFT, "1");
@@ -115,17 +139,26 @@ public class ProImage implements MouseListener {
 		//
 		// labels[2].setIconTextGap(15);
 		// labels[3].setIconTextGap(0);
+		
+	      JPanel Panel = new JPanel();
+	      Panel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
+	      for (int i = 0; i < 9; i++)
+	         Panel.add(labels[i]);
+	      // c.add(labels[8]);
+	      Panel.add(label1);
+	      add(Panel);
+	      setVisible(true);
 
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Container c = frame.getContentPane();
-		c.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
-		for (int i = 0; i < 9; i++)
-			c.add(labels[i]);
-		// c.add(labels[8]);
-		c.add(label1);
-		frame.setSize(350, 150);
-		frame.setVisible(true);
+//		JFrame frame = new JFrame();
+//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		Container c = frame.getContentPane();
+//		c.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
+//		for (int i = 0; i < 9; i++)
+//			c.add(labels[i]);
+//		// c.add(labels[8]);
+//		c.add(label1);
+//		frame.setSize(350, 150);
+//		frame.setVisible(true);
 	}
 
 	public static void main(String[] args) {
@@ -143,7 +176,7 @@ public class ProImage implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getSource() == labels[0]) {
+		if (e.getSource() == labels[3]) {
 			String fileName = f.getName();
 			int pos = fileName.lastIndexOf(".");
 			String fileName2 = fileName.substring(0, pos);
@@ -155,9 +188,12 @@ public class ProImage implements MouseListener {
 			ctgrData = getData4(ImageData.selectCtgr(fileName2));
 			sizeData = getData5(ImageData.selectSize(fileName2));
 			colorData = getData6(ImageData.selectColor(fileName2));
-			priceData = getData7(ImageData.selectPrice(fileName2));
+			priceData = getData7(ImageData.selectBasicPrice(fileName2));
+			modelnameData = getData8(ImageData.selectModelname(fileName2));
 
 			ProDetail prod = new ProDetail();
+			JOptionPane.showMessageDialog(null, "사이즈와 색상을 반드시 선택하여주세요. 각 사이즈와 색상별로 가격이 상이합니다.", "",
+					JOptionPane.INFORMATION_MESSAGE);
 
 		}
 		// TODO Auto-generated method stub
