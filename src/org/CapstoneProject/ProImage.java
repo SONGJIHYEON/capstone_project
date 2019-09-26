@@ -140,7 +140,7 @@ public class ProImage extends JPanel implements MouseListener {
 
 		Pimg = new JPanel();
 		Pimg.setSize(d.width, d.height);
-		Pimg.setLayout(new ModifiedFlowLayout(ModifiedFlowLayout.CENTER, 100, 50));
+		Pimg.setLayout(new ModifiedFlowLayout(ModifiedFlowLayout.CENTER, 30, 50));
 
 		for (int i = 0; i < arModelImg.size(); i++) {
 			ModelImg2[i] = arModelImg.get(i);
@@ -151,7 +151,7 @@ public class ProImage extends JPanel implements MouseListener {
 			f = new File(ad);
 			originIcon = new ImageIcon(ad);
 			originImg = originIcon.getImage();
-			changedImg = originImg.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+			changedImg = originImg.getScaledInstance(180, 180, Image.SCALE_SMOOTH);
 			Icon = new ImageIcon(changedImg);
 			ImgLabels[i] = makeLabel(JLabel.BOTTOM, JLabel.CENTER, ModelNick2[i]);
 			ImgLabels[i].addMouseListener(this);
@@ -160,7 +160,7 @@ public class ProImage extends JPanel implements MouseListener {
 
 		Pimg.setSize(d.width, d.height - 100);
 		scroll = new JScrollPane(Pimg);
-		scroll.setPreferredSize(new Dimension(d.width - 200, d.height-200));
+		scroll.setPreferredSize(new Dimension(d.width - 200, d.height - 200));
 		add(scroll);
 		setVisible(true);
 
