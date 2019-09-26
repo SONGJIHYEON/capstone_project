@@ -359,5 +359,37 @@ public class ImageData {
 		return ImageListData;
 
 	}
+	 static List<Map<String, Serializable>> registModel() {
+
+         quary = "select MODEL_IMG1, MODEL_NICK from model "
+               + "order by MODEL_IMG1 ASC";
+         
+         ImageListData.clear();
+
+         try {
+            System.out.println(quary);
+            pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+
+               ImagedataSet = new HashMap<String, Serializable>();
+
+               ImagedataSet.put("MODEL_IMG1", rs.getString(1));
+               ImagedataSet.put("MODEL_NICK", rs.getString(2));
+
+               ImageListData.add(ImagedataSet);
+//               System.out.println(ImageListData);
+
+            }
+
+         } catch (SQLException sqle) {
+            System.out.println("select문에서 예외 발생");
+            sqle.printStackTrace();
+         }
+
+         return ImageListData;
+
+      }
+
 
 }

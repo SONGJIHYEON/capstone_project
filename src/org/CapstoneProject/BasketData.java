@@ -37,7 +37,7 @@ public class BasketData {
 		System.out.println(quary);
 		try {
 			pstm = conn.prepareStatement(quary);
-			pstm.executeQuery();
+			pstm.executeQuery(); 	
 		} catch (SQLException sqle) {
 			System.out.println("select문에서 예외 발생");
 			sqle.printStackTrace();

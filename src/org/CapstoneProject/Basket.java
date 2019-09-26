@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,59 +29,62 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class Basket extends JFrame {
+public class Basket extends JFrame implements MouseListener {
 
 	private JLabel vProPrice, vDiscout, vPrice;
 	private JTextField xProPrice, xDiscout, xPrice;
 
 	private String[] col1 = { "이미지", "상품정보", "수량", "단가", "금액", "포인트", "삭제" };
-//	private String[] col2 = {"부서명", "성명"};      
+//   private String[] col2 = {"부서명", "성명"};      
 	private String[] div = { "관리자", "유저" }; // 사원구분 콤보박스의 목록
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
-//	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
+//   private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
 
 	private JTable tProInfo;
 	private JScrollPane scrollpane1;
 
 	private JButton BtOrder, BtShopping, BtDelBasket, del;
-//	private JComboBox<String> cbSel;      
+//   private JComboBox<String> cbSel;      
 
-	int check;
-	static double sum2;
-	static String pro_price;
-	static ArrayList<String> ar = new ArrayList<String>();
+	int check, row;
+	static double sum2, sum3;
+	static String pro_price, pro_price2;
+	String ar[];
+//   static ArrayList<String> ar;
+	static ArrayList<String> ar2 = new ArrayList<String>();
 	static Double sum[];
-
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
 	private void getData(List<Map<String, Serializable>> BasketListData) {
+		model1.setRowCount(0);
+		ar = new String[BasketListData.size()];
+		sum2 = 0;
 		for (int i = 0; i < BasketListData.size(); i++) {
-			model1.addRow(new Object[] { 
-					BasketListData.get(i).get("MODEL_IMG1"),
-//					BasketListData.get(i).get("MODEL_NICK"),					
+			sum2 = sum2 + Double.valueOf(BasketListData.get(i).get("PR").toString());
+			model1.addRow(new Object[] {
+					BasketListData.get(i).get("MODEL_IMG1"),					
 					BasketListData.get(i).get("PRO_NM"), 
 					BasketListData.get(i).get("QUANT"),
 					BasketListData.get(i).get("UP"),
 					BasketListData.get(i).get("PR"),
 					BasketListData.get(i).get("POINT"), });
 		}
-		for (int i = 0; i < tProInfo.getRowCount(); i++) {
-			ar.add(tProInfo.getValueAt(i, 4).toString());
-		}
-		for (int i = 0; i < ar.size(); i++) {
-			Double sum[] = new Double[ar.size()];
-			sum[i] = Double.valueOf(ar.get(i));
-			sum2 = sum2 + sum[i];
-		}
+//      for (int i = 0; i < tProInfo.getRowCount(); i++) {
+//         ar.add(tProInfo.getValueAt(i, 4).toString());
+//      }
+//      for (int i = 0; i <  ar.size(); i++) {
+//         Double sum[] = new Double[ar.size()];
+//         sum[i] = Double.valueOf(ar.get(i));
+//         sum2 = sum2 + sum[i];
+//      }
 		pro_price = String.valueOf(sum2);
 		xProPrice.setText(pro_price);
 	}
 
 	public Basket() {
-		
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
@@ -170,16 +175,32 @@ public class Basket extends JFrame {
 
 			del.addActionListener(e -> {
 				String pro_nm = (String) tProInfo.getValueAt(tProInfo.getSelectedRow(), 1);
-				System.out.println(pro_nm);
+				System.out.println("*");
 				check = JOptionPane.showConfirmDialog(null, "해당 상품을 장바구니에서 삭제하시겠습니까?", "삭제 확인",
 						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				BasketData.deleteBasket(tProInfo.getValueAt(row, 1).toString());
+				model1.removeRow(row);
+				getData(BasketData.selectBasket());
 
-				for (int i = 0; i < tProInfo.getRowCount(); i++) {
-					if (check == 0 && pro_nm.equals(tProInfo.getValueAt(i, 1))) {
-						model1.removeRow(i);
-						BasketData.deleteBasket(pro_nm);
-					}
-				}
+//            sum2 = sum2-Double.valueOf(tProInfo.getValueAt(row, 4).toString());
+//            for (int i = 0; i < tProInfo.getRowCount(); i++) {
+//               if (check == 0 && pro_nm.equals(tProInfo.getValueAt(i, 1))) {
+//                  model1.removeRow(i);
+//                  BasketData.deleteBasket(pro_nm);
+//               }
+//            }
+
+//        	ar2 = new ArrayList<String>();
+//            for (int i = 0; i < tProInfo.getRowCount(); i++) {
+//               ar2.add(tProInfo.getValueAt(i, 4).toString());
+//            }
+//            for (int i = 0; i < ar2.size(); i++) {
+//               Double sum2[] = new Double[ar2.size()];
+//               sum2[i] = Double.valueOf(ar2.get(i));
+//               sum3 = sum3 + sum2[i];
+//            }
+//            pro_price2 = String.valueOf(sum2);
+//            xProPrice.setText(pro_price2);
 			});
 		}
 
@@ -205,14 +226,46 @@ public class Basket extends JFrame {
 
 	}
 
-//	DefaultTableCellRenderer dcr = new DefaultTableCellRenderer() {
-//		public Component getTableCellRendererComponent // 셀렌더러
-//		(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-//			JCheckBox check = new JCheckBox();
-//			check.setSelected(((Boolean) value).booleanValue());
-//			check.setHorizontalAlignment(JLabel.CENTER);
-//			return check;
-//		}
-//	};
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == tProInfo) {
+			row = tProInfo.getSelectedRow();
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+//   DefaultTableCellRenderer dcr = new DefaultTableCellRenderer() {
+//      public Component getTableCellRendererComponent // 셀렌더러
+//      (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+//         JCheckBox check = new JCheckBox();
+//         check.setSelected(((Boolean) value).booleanValue());
+//         check.setHorizontalAlignment(JLabel.CENTER);
+//         return check;
+//      }
+//   };
 
 }

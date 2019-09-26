@@ -1,9 +1,13 @@
 package org.CapstoneProject;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -19,21 +23,28 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
 public class ProImage extends JPanel implements MouseListener {
 
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-	private static Icon icon;
+
+	private static Image originImg, changedImg;
+	private static ImageIcon originIcon, Icon;
 	private static JLabel label1;
-	private static JLabel[] labels;
+	private static JLabel[] ImgLabels, NickLabels;
 	private File f;
+	JPanel Pimg;
+	JScrollPane scroll;
 
 	public static String imgData, imgData2, img, img2, nicknameData, nickname, ctgrData, ctgr, priceData, price,
 			modelnameData, modelname;
-	static ArrayList sizeData, colorData;
-	static ArrayList arSize = new ArrayList();
-	static ArrayList arColor = new ArrayList();
+	static ArrayList<String> sizeData, colorData, ModelImgData, ModelNickData;
+	static ArrayList<String> arModelImg = new ArrayList<String>();
+	static ArrayList<String> arModelNick = new ArrayList<String>();
+	static ArrayList<String> arSize = new ArrayList<String>();
+	static ArrayList<String> arColor = new ArrayList<String>();
 	String ad;
 
 	public static String getData(List<Map<String, Serializable>> ImageListData) {
@@ -102,63 +113,57 @@ public class ProImage extends JPanel implements MouseListener {
 		modelname = "";
 		modelname += ImageListData.get(0).get("MODEL_NM");
 
-		System.out.println(modelname);
-
 		return modelname;
+	}
+
+	public static void getData9(List<Map<String, Serializable>> ImageListData) {
+
+		for (int i = 0; i < ImageListData.size(); i++) {
+
+			arModelImg.add(ImageListData.get(i).get("MODEL_IMG1").toString());
+			arModelNick.add(ImageListData.get(i).get("MODEL_NICK").toString());
+		}
+
+//		return 0;
 	}
 
 	public ProImage() {
 
-		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
+//		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
+		getData9(ImageData.registModel());
 
-		ad = "C:\\Users\\ssong\\Desktop\\img\\REP_Da1.jpg";
-		f = new File(ad);
-		icon = new ImageIcon(ad);
+		String ModelImg2[] = new String[arModelImg.size()];
+		ImgLabels = new JLabel[arModelImg.size()];
 
-		labels = new JLabel[9];
+		String ModelNick2[] = new String[arModelNick.size()];
+		NickLabels = new JLabel[arModelImg.size()];
 
-		label1 = new JLabel("гоюл");
-		label1.addMouseListener(this);
+		Pimg = new JPanel();
+		Pimg.setSize(d.width, d.height);
+		Pimg.setLayout(new ModifiedFlowLayout(ModifiedFlowLayout.CENTER, 100, 50));
 
-		labels[0] = makeLabel(JLabel.TOP, JLabel.LEFT, "1");
-		labels[0].addMouseListener(this);
-		labels[1] = makeLabel(JLabel.TOP, JLabel.CENTER, "2");
-		labels[2] = makeLabel(JLabel.TOP, JLabel.RIGHT, "3");
-		labels[3] = makeLabel(JLabel.CENTER, JLabel.LEFT, "4");
-		labels[3].addMouseListener(this);
-		labels[4] = makeLabel(JLabel.CENTER, JLabel.CENTER, "1");
-		labels[5] = makeLabel(JLabel.CENTER, JLabel.RIGHT, "1");
-		labels[6] = makeLabel(JLabel.BOTTOM, JLabel.LEFT, "1");
-		labels[7] = makeLabel(JLabel.BOTTOM, JLabel.CENTER, "aa");
-		labels[8] = makeLabel(JLabel.BOTTOM, JLabel.RIGHT, "bb");
+		for (int i = 0; i < arModelImg.size(); i++) {
+			ModelImg2[i] = arModelImg.get(i);
+			ModelNick2[i] = arModelNick.get(i);
 
-		// labels[0].setEnabled(false);
-		//
-		// labels[1].setDisabledIcon(new ImageIcon("2.gif"));
-		// labels[1].setEnabled(false);
-		//
-		// labels[2].setIconTextGap(15);
-		// labels[3].setIconTextGap(0);
-		
-	      JPanel Panel = new JPanel();
-	      Panel.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
-	      for (int i = 0; i < 9; i++)
-	         Panel.add(labels[i]);
-	      // c.add(labels[8]);
-	      Panel.add(label1);
-	      add(Panel);
-	      setVisible(true);
+			ad = "C:\\Users\\ssong\\Desktop\\img\\" + ModelImg2[i] + ".jpg";
+			System.out.println(ad);
+			f = new File(ad);
+			originIcon = new ImageIcon(ad);
+			originImg = originIcon.getImage();
+			changedImg = originImg.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+			Icon = new ImageIcon(changedImg);
+			ImgLabels[i] = makeLabel(JLabel.BOTTOM, JLabel.CENTER, ModelNick2[i]);
+			ImgLabels[i].addMouseListener(this);
+			Pimg.add(ImgLabels[i]);
+		}
 
-//		JFrame frame = new JFrame();
-//		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//		Container c = frame.getContentPane();
-//		c.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
-//		for (int i = 0; i < 9; i++)
-//			c.add(labels[i]);
-//		// c.add(labels[8]);
-//		c.add(label1);
-//		frame.setSize(350, 150);
-//		frame.setVisible(true);
+		Pimg.setSize(d.width, d.height - 100);
+		scroll = new JScrollPane(Pimg);
+		scroll.setPreferredSize(new Dimension(d.width - 200, d.height-200));
+		add(scroll);
+		setVisible(true);
+
 	}
 
 	public static void main(String[] args) {
@@ -167,7 +172,7 @@ public class ProImage extends JPanel implements MouseListener {
 	}
 
 	protected static JLabel makeLabel(int vert, int horiz, String Text) {
-		JLabel l = new JLabel(Text, icon, SwingConstants.CENTER);
+		JLabel l = new JLabel(Text, Icon, SwingConstants.CENTER);
 		l.setVerticalTextPosition(vert);
 		l.setHorizontalTextPosition(horiz);
 		l.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -176,7 +181,7 @@ public class ProImage extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getSource() == labels[3]) {
+		if (e.getSource() == ImgLabels[0]) {
 			String fileName = f.getName();
 			int pos = fileName.lastIndexOf(".");
 			String fileName2 = fileName.substring(0, pos);
