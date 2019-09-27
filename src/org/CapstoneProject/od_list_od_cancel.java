@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -25,8 +27,8 @@ public class od_list_od_cancel extends JPanel implements ActionListener, MouseLi
          
    private JTextField  Tsearch;      
          
-   private String[] col1 = {"No", "ÁÖ¹®¹øÈ£", "ÁÖ¹®ÀÚ¸í", "ÁÖ¹®ÀÏ½Ã", "Ãë¼Ò¿Ï·á"};  
-   private String[] search = {"ÁÖ¹®¹øÈ£", "ÁÖ¹®ÀÚ¸í"};      
+   private String[] col1 = {"No", "ì£¼ë¬¸ë²ˆí˜¸", "ì£¼ë¬¸ìëª…", "ì£¼ë¬¸ì¼ì‹œ", "ì·¨ì†Œì™„ë£Œ"};  
+   private String[] search = {"ì£¼ë¬¸ë²ˆí˜¸", "ì£¼ë¬¸ìëª…"};      
          
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
          
@@ -37,14 +39,14 @@ public class od_list_od_cancel extends JPanel implements ActionListener, MouseLi
    private JComboBox<String> cbSearch;      
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public od_list_od_cancel() {      
          
          gridbaglayout = new GridBagLayout();
          gridbagconstraints = new GridBagConstraints();
          
-         od_cancel = new JLabel("ÁÖ¹®°ü¸®(ÁÖ¹®Ãë¼Ò)");
+         od_cancel = new JLabel("ì£¼ë¬¸ê´€ë¦¬(ì£¼ë¬¸ì·¨ì†Œ)");
          od_cancel.setPreferredSize(new Dimension(200,28));
          
          cbSearch = new JComboBox<String>(search);
@@ -58,9 +60,9 @@ public class od_list_od_cancel extends JPanel implements ActionListener, MouseLi
          
          scrollpane1.setPreferredSize(new Dimension(1000, 300));
          
-         Bsearch = new JButton("°Ë»ö");
+         Bsearch = new JButton("ê²€ìƒ‰");
          Bsearch.setPreferredSize(new Dimension(100,28));
-         reset = new JButton("ÃÊ±âÈ­");
+         reset = new JButton("ì´ˆê¸°í™”");
          reset.setPreferredSize(new Dimension(100,28));
          
          EmpRegisterView();
@@ -95,13 +97,13 @@ public class od_list_od_cancel extends JPanel implements ActionListener, MouseLi
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          
@@ -147,3 +149,4 @@ public class od_list_od_cancel extends JPanel implements ActionListener, MouseLi
 	}   
          
 }
+

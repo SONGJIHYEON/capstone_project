@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -26,13 +28,13 @@ public class ProData {
 	
 	public static List<Map<String, Serializable>> ProListData = new ArrayList<Map<String, Serializable>>();
 	
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initProData(String pro_NUM, String pro_CTGR_NUM, String pro_NM, String pro_EXP) {
 
 	}
 	
 		
-	/* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+	/* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
 	static void createPro(String Pro_num, String PRO_NM, String CLR, String SIZ, String SIZ_DET_INFO) {
 		
 		
@@ -44,7 +46,7 @@ public class ProData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -79,7 +81,7 @@ static List<Map<String, Serializable>> selectPro() {
 			
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		
@@ -117,7 +119,7 @@ static List<Map<String, Serializable>> searchPro1(String search) {
 			
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		
@@ -151,7 +153,7 @@ static List<Map<String, Serializable>> searchPro2(String search) {
 		
 		
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		return ProListData;
@@ -187,14 +189,50 @@ static List<Map<String, Serializable>> searchPro3(String search) {
 		
 		
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 	
 		return ProListData;
 	
 	}
+
+	static List<Map<String, Serializable>> selectProMod() {
+		
+		quary = "select PRO_NUM, MODEL_NM, PRO_NM, CLR, SIZ from pro join model on pro.MODEL_NUM = model.MODEL_NUM order by PRO_NM asc";
+	
+	ProListData.clear();
+	
+	try {
+	System.out.println(quary);
+		pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+		rs = pstm.executeQuery();			
+		while(rs.next()){
+			
+			ProdataSet = new HashMap<String, Serializable>();
+			
+			ProdataSet.put("PRO_NUM", rs.getString(1)); 
+			ProdataSet.put("MODEL_NM", rs.getString(2));
+			ProdataSet.put("PRO_NM", rs.getString(3));
+			ProdataSet.put("CLR", rs.getString(4));
+			ProdataSet.put("SIZ", rs.getString(5));
+	
+	//			ProdataSet.put("FIRST_CTGR", rs.getString(2)); 
+	
+	
+			ProListData.add(ProdataSet);
+	//			System.out.println(ProListData);
+			
+		} 
+		
+		
+	} catch (SQLException sqle) {
+		System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
+			sqle.printStackTrace();
+		}
+		
+		return ProListData;
+		
+	}
 }
-
-
 

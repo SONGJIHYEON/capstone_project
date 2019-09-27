@@ -29,20 +29,20 @@ public class mb_gra extends JFrame implements ActionListener {
    
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public mb_gra() {      
          
          gridbaglayout = new GridBagLayout();
          gridbagconstraints = new GridBagConstraints();
          
-         mb_gra = new JLabel("µî±Ş°ü¸®");
+         mb_gra = new JLabel("ë“±ê¸‰ê´€ë¦¬");
          mb_gra.setPreferredSize(new Dimension(100,28));
-         gra_s = new JLabel("Sµî±Ş");
+         gra_s = new JLabel("Së“±ê¸‰");
          gra_s.setPreferredSize(new Dimension(100,28));
-         gra_v = new JLabel("Vµî±Ş");
+         gra_v = new JLabel("Vë“±ê¸‰");
          gra_v.setPreferredSize(new Dimension(100,28));
-         gra_f = new JLabel("Fµî±Ş");
+         gra_f = new JLabel("Fë“±ê¸‰");
          gra_f.setPreferredSize(new Dimension(100,28));
          
          Tgra_s = new JTextField(5);
@@ -53,11 +53,11 @@ public class mb_gra extends JFrame implements ActionListener {
          Tgra_f.setPreferredSize(new Dimension(100,28));
          
         
-         BmodifyS = new JButton("¼öÁ¤");
+         BmodifyS = new JButton("ìˆ˜ì •");
          BmodifyS.setPreferredSize(new Dimension(100,28));
-         BmodifyV = new JButton("¼öÁ¤");
+         BmodifyV = new JButton("ìˆ˜ì •");
          BmodifyV.setPreferredSize(new Dimension(100,28));
-         BmodifyF = new JButton("¼öÁ¤");
+         BmodifyF = new JButton("ìˆ˜ì •");
          BmodifyF.setPreferredSize(new Dimension(100,28));
 
          BmodifyS.addActionListener(this);
@@ -106,13 +106,13 @@ public class mb_gra extends JFrame implements ActionListener {
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          

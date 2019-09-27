@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -15,10 +17,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class od_list_detail extends JFrame {
          
-   private String[] col1 = {"ÁÖ¹®¹øÈ£","ÁÖ¹®ÀÏ½Ã","ÁÖ¹®»óÅÂ"};
-   private String[] col2 = {"ÃÑ ÁÖ¹®±İ¾×","ÃÑ ÇÒÀÎ±İ¾×","»ç¿ë Àû¸³±İ","ÃÑ °áÁ¦ ±İ¾×","°áÁ¦ ¼ö´Ü"};
-   private String[] col3 = {"ÀÌ¹ÌÁö","»óÇ° Á¤º¸","¼ö·®","±İ¾×","ÁÖ¹®»óÅÂ"};
-   private String[] col4 = {"¿î¼ÛÀå¹øÈ£","¼ö·ÉÀÎ","¿¬¶ôÃ³","ÁÖ¼Ò"};
+   private String[] col1 = {"ì£¼ë¬¸ë²ˆí˜¸","ì£¼ë¬¸ì¼ì‹œ","ì£¼ë¬¸ìƒíƒœ"};
+   private String[] col2 = {"ì´ ì£¼ë¬¸ê¸ˆì•¡","ì´ í• ì¸ê¸ˆì•¡","ì‚¬ìš© ì ë¦½ê¸ˆ","ì´ ê²°ì œ ê¸ˆì•¡","ê²°ì œ ìˆ˜ë‹¨"};
+   private String[] col3 = {"ì´ë¯¸ì§€","ìƒí’ˆ ì •ë³´","ìˆ˜ëŸ‰","ê¸ˆì•¡","ì£¼ë¬¸ìƒíƒœ"};
+   private String[] col4 = {"ìš´ì†¡ì¥ë²ˆí˜¸","ìˆ˜ë ¹ì¸","ì—°ë½ì²˜","ì£¼ì†Œ"};
    
    private JLabel Lod_info, Lpay_info, Lod_pro_info, Ldel_info;
    
@@ -35,20 +37,20 @@ public class od_list_detail extends JFrame {
    private JButton close;      
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public od_list_detail() {      
          
          gridbaglayout = new GridBagLayout();
          gridbagconstraints = new GridBagConstraints();
          
-         Lod_info = new JLabel("ÁÖ¹®Á¤º¸");
+         Lod_info = new JLabel("ì£¼ë¬¸ì •ë³´");
          Lod_info.setPreferredSize(new Dimension(200,28));
-         Lpay_info = new JLabel("°áÁ¦Á¤º¸");
+         Lpay_info = new JLabel("ê²°ì œì •ë³´");
          Lpay_info.setPreferredSize(new Dimension(200,28));
-         Lod_pro_info = new JLabel("ÁÖ¹®»óÇ°Á¤º¸");
+         Lod_pro_info = new JLabel("ì£¼ë¬¸ìƒí’ˆì •ë³´");
          Lod_pro_info.setPreferredSize(new Dimension(200,28));
-         Ldel_info = new JLabel("¹è¼ÛÁ¤º¸");
+         Ldel_info = new JLabel("ë°°ì†¡ì •ë³´");
          Ldel_info.setPreferredSize(new Dimension(200,28));
        
          od_info = new JTable(model1);
@@ -71,7 +73,7 @@ public class od_list_detail extends JFrame {
          Tsearch = new JTextField();
          Tsearch.setPreferredSize(new Dimension(200,28));
          
-         close = new JButton("´İ±â");
+         close = new JButton("ë‹«ê¸°");
          close.setPreferredSize(new Dimension(100,28));
          
 //         getDeptData(EmpData.selectDept());
@@ -82,7 +84,7 @@ public class od_list_detail extends JFrame {
          
    private void EmpRegisterView() {      
          
-         setTitle("ÁÖ¹®³»¿ª»ó¼¼");
+         setTitle("ì£¼ë¬¸ë‚´ì—­ìƒì„¸");
          
          gridbagconstraints.anchor = GridBagConstraints.EAST;
 
@@ -113,13 +115,13 @@ public class od_list_detail extends JFrame {
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          

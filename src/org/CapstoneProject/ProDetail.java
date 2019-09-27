@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -5,6 +6,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,7 +47,8 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 			"RED", "WHITE", "YELLOW" };
 
 	private JComboBox<String> Cbsize, Cbcolor, Cbcolor2;
-	private Icon icon;
+	private static Image originImg, changedImg;
+	private static ImageIcon originIcon, Icon;
 
 	private JTable eDept, eSpv;
 	private JScrollPane scrollpane1, scrollpane2;
@@ -55,15 +58,19 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	private JTextArea ta;
 	private JPanel p, p1, p2;
 
-	String option, allprice, img, img2, nickname, ctgr, price, price2, modelname, up_price, user_id, user_num, pro_num;
-	private String[] Basic_clr = {"[ÇÊ¼ö] ¼±ÅÃ"};
+	String ad, option, allprice, img, img2, nickname, ctgr, price, price2, modelname, up_price, user_id, user_num,
+			pro_num, selectSize, selectColor;
+	
+	static String mb_disc_rt;
+
+	private String[] Basic_clr = { "[í•„ìˆ˜] ì„ íƒ" };
 	static ArrayList arColor = new ArrayList();
 	static ArrayList<String> arSize;
 
 	int intprice, intoption, intallprice;
 
 	GridBagLayout gridbaglayout;
-	GridBagConstraints gridbagconstraints; // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+	GridBagConstraints gridbagconstraints; // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
 	List<Map<String, Serializable>> ImageListData;
 
 	public String getData(List<Map<String, Serializable>> ImageListData) {
@@ -75,13 +82,12 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		return up_price;
 	}
 
-	public static ArrayList getData2(List<Map<String, Serializable>> ImageListData) { // µ¿Àû ¹è¿­¿¡ »ö»ó Ãß°¡
-		arColor.add("[ÇÊ¼ö] ¼±ÅÃ");
+	public static ArrayList getData2(List<Map<String, Serializable>> ImageListData) { // ë™ì  ë°°ì—´ì— ìƒ‰ìƒ ì¶”ê°€
+		arColor.add("[í•„ìˆ˜] ì„ íƒ");
 		arColor.add("----------");
 		for (int i = 0; i < ImageListData.size(); i++) {
 			arColor.add(ImageListData.get(i).get("CLR").toString());
 		}
-
 		return arColor;
 	}
 
@@ -92,6 +98,16 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		System.out.println(pro_num);
 
 		return pro_num;
+	}
+	
+	public String getData4(List<Map<String, Serializable>> CustListData) {
+
+		mb_disc_rt = "";
+		mb_disc_rt += CustListData.get(0).get("DISC_RT").toString();
+		System.out.println(mb_disc_rt);
+		
+
+		return mb_disc_rt;
 	}
 
 	public ProDetail() {
@@ -109,14 +125,19 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 
 //		System.out.println(price);
 
-		icon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\" + img + ".jpg");
+		ad = "C:\\Users\\ssong\\Desktop\\img\\" + img + ".jpg";
 
-		vProImg = new JLabel(icon);
-		vPrice = new JLabel("´Ü°¡");
-		vColor = new JLabel("»ö»ó");
-		vSize = new JLabel("»çÀÌÁî");
-		vOption = new JLabel("±¸¸Å ¼ö·®");
-		vAllPrice = new JLabel("ÃÑ »óÇ°°¡°İ");
+		originIcon = new ImageIcon(ad);
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+		Icon = new ImageIcon(changedImg);
+
+		vProImg = new JLabel(Icon);
+		vPrice = new JLabel("ë‹¨ê°€");
+		vColor = new JLabel("ìƒ‰ìƒ");
+		vSize = new JLabel("ì‚¬ì´ì¦ˆ");
+		vOption = new JLabel("êµ¬ë§¤ ìˆ˜ëŸ‰");
+		vAllPrice = new JLabel("ì´ ìƒí’ˆê°€ê²©");
 		vProNm = new JLabel(nickname);
 
 //	    cbSel = new JComboBox<String>(div);
@@ -131,23 +152,23 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		xAllPrice.addMouseListener(this);
 		xAllPrice.setText(xPrice.getText());
 
-		BtPlus = new JButton("¡ã");
+		BtPlus = new JButton("â–²");
 		BtPlus.setPreferredSize(new Dimension(45, 20));
 		BtPlus.addActionListener(this);
-		BtMinus = new JButton("¡å");
+		BtMinus = new JButton("â–¼");
 		BtMinus.setPreferredSize(new Dimension(45, 20));
 		BtMinus.addActionListener(this);
-		Btpurchase = new JButton("±¸¸ÅÇÏ±â");
+		Btpurchase = new JButton("êµ¬ë§¤í•˜ê¸°");
 		Btpurchase.addActionListener(this);
-		BtBasket = new JButton("Àå¹Ù±¸´Ï");
+		BtBasket = new JButton("ì¥ë°”êµ¬ë‹ˆ");
 		BtBasket.addActionListener(this);
 
 		Cbsize = new JComboBox<String>(arSize.toArray(new String[arSize.size()]));
-		Cbsize.setPreferredSize(new Dimension(120,20));
+		Cbsize.setPreferredSize(new Dimension(120, 20));
 		Cbsize.addActionListener(this);
-		
+
 		Cbcolor = new JComboBox<String>(Basic_clr);
-		Cbcolor.setPreferredSize(new Dimension(120,20));
+		Cbcolor.setPreferredSize(new Dimension(120, 20));
 		Cbcolor.addActionListener(this);
 		Cbcolor.addMouseListener(this);
 
@@ -164,8 +185,8 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		p2.setPreferredSize(new Dimension(430, 400));
 
 		t = new JTabbedPane();
-		t.add("»óÇ°»ó¼¼", p1);
-		t.add("»óÇ°»çÀÌÁî", p2);
+		t.add("ìƒí’ˆìƒì„¸", p1);
+		t.add("ìƒí’ˆì‚¬ì´ì¦ˆ", p2);
 
 		p = new JPanel();
 		p.add(t);
@@ -174,7 +195,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	}
 
 	private void ProDetailView() {
-		setTitle("Àå¹Ù±¸´Ï");
+		setTitle("ì¥ë°”êµ¬ë‹ˆ");
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 //	    gridbagconstraints.ipadx = 7;
@@ -215,12 +236,12 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	private void gridbagAdd(Component c, int x, int y, int w, int h) {
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c);
 
@@ -271,12 +292,21 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 			if (!selectSize.equals("-----")) {
 				getData2(ImageData.selectColor2(selectSize));
 				Cbcolor.setModel(new DefaultComboBoxModel(arColor.toArray()));
-				Cbcolor.setPreferredSize(new Dimension(120,20));
+				Cbcolor.setPreferredSize(new Dimension(120, 20));
+				arColor = null;
 
-
-			} else {
-//				Cbcolor2 = new JComboBox<String>(Basic_clr);
 			}
+			price = xPrice.getText();
+			intprice = Integer.parseInt(price);
+			option = xOption.getText();
+			intoption = Integer.parseInt(option);
+
+			intallprice = intprice * intoption;
+
+			allprice = Integer.toString(intallprice);
+
+			xAllPrice.setText(allprice);
+			xAllPrice.setText(allprice);
 			arColor = new ArrayList();
 		}
 		if (e.getSource() == Cbcolor) {
@@ -287,26 +317,43 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 			getData3(ImageData.selectProNum(proName));
 			System.out.println(proName);
 			xPrice.setText(up_price);
+			price = xPrice.getText();
+			intprice = Integer.parseInt(price);
+			option = xOption.getText();
+			intoption = Integer.parseInt(option);
+
+			intallprice = intprice * intoption;
+
+			allprice = Integer.toString(intallprice);
+
+			xAllPrice.setText(allprice);
+			xAllPrice.setText(allprice);
 		} else if (e.getSource() == BtBasket) {
-			user_id = Login.user_id;
-			user_num = Login.user_num;
-			String bk_nickname = vProNm.getText();
-			String bk_option = xOption.getText();
-			String bk_price = xPrice.getText();
-			String bk_allPrice = xAllPrice.getText();
-			double bk_point = Integer.parseInt(xAllPrice.getText()) * 0.02;
-			BasketData.createBasket(user_num, pro_num, bk_option, bk_price, bk_allPrice, bk_point);
-			int check = JOptionPane.showConfirmDialog(null, "Àå¹Ù±¸´Ï¿¡ µî·ÏµÇ¾ú½À´Ï´Ù. Àå¹Ù±¸´Ï·Î ÀÌµ¿ÇÏ½Ã°Ú½À´Ï±î?", "",
-					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-			if (check == 0) {
-				new Basket();
+			if (!Cbsize.getSelectedItem().toString().equals("[í•„ìˆ˜] ì„ íƒ")
+					&& !Cbsize.getSelectedItem().toString().equals("----------")
+					&& !Cbcolor.getSelectedItem().toString().equals("[í•„ìˆ˜] ì„ íƒ")
+					&& !Cbcolor.getSelectedItem().toString().equals("----------")) {
+				user_id = Login.user_id;
+				user_num = Login.user_num;
+				String bk_nickname = vProNm.getText();
+				String bk_option = xOption.getText();
+				String bk_price = xPrice.getText();
+				String bk_allPrice = xAllPrice.getText();
+				double bk_point = Integer.parseInt(xAllPrice.getText()) * 0.02;
+				BasketData.createBasket(user_num, pro_num, bk_option, bk_price, bk_allPrice, bk_point);
+				getData4(CustData.selectCustGra(user_id));
+				int check = JOptionPane.showConfirmDialog(null, "ì¥ë°”êµ¬ë‹ˆì— ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤. ì¥ë°”êµ¬ë‹ˆë¡œ ì´ë™í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "",
+						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				if (check == 0) {
+					new Basket();
+				} else
+					return;
 			}else
-				return;
+				JOptionPane.showMessageDialog(null, "ì‚¬ì´ì¦ˆ ë˜ëŠ” ìƒ‰ìƒì„ ì„ íƒí•˜ì—¬ ì£¼ì„¸ìš”");
 
 		} else if (e.getSource() == Btpurchase) {
 			new MemOrdPg();
-
-		}
+		} 
 	}
 
 	@Override

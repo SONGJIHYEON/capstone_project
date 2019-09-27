@@ -35,9 +35,9 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 	private JLabel vLabel1, vLabel2, vLabel3, vLabel4, vLabel5, vId, vPwd;   
 	private JTextField xEmpName, xEmpPhone, xhEmpRegist, xEmpHireDate, xDeptName, xEmpSal, xSpvName, xEmpAnin, xEmpComm, xId, xPwd;      
 	   
-	private String[] col1 = {"ºÎ¼­¸í", "ºÎ¼­À§Ä¡"};      
-	private String[] col2 = {"ºÎ¼­¸í", "¼º¸í"};      
-	private String[] div = {"À¯Àú", "°ü¸®ÀÚ"}; // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+	private String[] col1 = {"ë¶€ì„œëª…", "ë¶€ì„œìœ„ì¹˜"};      
+	private String[] col2 = {"ë¶€ì„œëª…", "ì„±ëª…"};      
+	private String[] div = {"ìœ ì €", "ê´€ë¦¬ì"}; // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 	         
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);      
 	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -54,7 +54,7 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 	String sid, sid2, pwd, pwd2, id;
 	         
 	GridBagLayout gridbaglayout;      
-	GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+	GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
 	
 	private void getData(List<Map<String, Serializable>> idListData) {
 		 HashMap<Serializable, Serializable> id = new HashMap<Serializable, Serializable>();	
@@ -68,20 +68,20 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 		 }
 
 		 if(!id.containsKey(sid)) {
-			 JOptionPane.showMessageDialog(null, "µî·ÏµÇÁö ¾ÊÀº IDÀÔ´Ï´Ù", "", JOptionPane.ERROR_MESSAGE);
+			 JOptionPane.showMessageDialog(null, "ë“±ë¡ë˜ì§€ ì•Šì€ IDì…ë‹ˆë‹¤", "", JOptionPane.ERROR_MESSAGE);
 			 xId.setText("");
 			 xPwd.setText("");
 			 sid = "";
 			 pwd = "";
 		 }else {
 			 if(!id.get(sid).equals(pwd)) {
-				 JOptionPane.showMessageDialog(null, "ÀÔ·ÂÇÏ½Å ID¿Í ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù", "", JOptionPane.ERROR_MESSAGE);
+				 JOptionPane.showMessageDialog(null, "ì…ë ¥í•˜ì‹  IDì™€ ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤", "", JOptionPane.ERROR_MESSAGE);
 				 xId.setText("");
 				 xPwd.setText("");
 				 sid = "";
 				 pwd = "";
 			 }else {
-				 JOptionPane.showMessageDialog(null, "·Î±×ÀÎ µÇ¾ú½À´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+				 JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ ë˜ì—ˆìŠµë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 				 user_id = "";
 				 user_id += idListData.get(0).get("ID");
 				 user_num = "";
@@ -112,20 +112,20 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 		 }
 
 		 if(!id.containsKey(sid2)) {
-			 JOptionPane.showMessageDialog(null, "µî·ÏµÇÁö ¾ÊÀº IDÀÔ´Ï´Ù", "", JOptionPane.ERROR_MESSAGE);
+			 JOptionPane.showMessageDialog(null, "ë“±ë¡ë˜ì§€ ì•Šì€ IDì…ë‹ˆë‹¤", "", JOptionPane.ERROR_MESSAGE);
 			 xId.setText("");
 			 xPwd.setText("");
 			 sid2 = "";
 			 pwd2 = "";
 		 }else {
 			 if(!id.get(sid2).equals(pwd2)) {
-				 JOptionPane.showMessageDialog(null, "ÀÔ·ÂÇÏ½Å ID¿Í ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù", "", JOptionPane.ERROR_MESSAGE);
+				 JOptionPane.showMessageDialog(null, "ì…ë ¥í•˜ì‹  IDì™€ ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤", "", JOptionPane.ERROR_MESSAGE);
 				 xId.setText("");
 				 xPwd.setText("");
 				 sid2 = "";
 				 pwd2 = "";
 			 }else {
-				 JOptionPane.showMessageDialog(null, "·Î±×ÀÎ µÇ¾ú½À´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+				 JOptionPane.showMessageDialog(null, "ë¡œê·¸ì¸ ë˜ì—ˆìŠµë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 				 admin_id = "";
 				 admin_id += idListData.get(0).get("ID");
 				 admin_num = "";
@@ -135,7 +135,7 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 				 admin_appc_dt = "";
 				 admin_appc_dt += idListData.get(0).get("appc_dt");
 				 dispose();
-				 JFrame admin_main = new home_admin();
+				 JFrame admin_main = new manager_main();
 			 	}
 		 	}
 		 }	 
@@ -145,53 +145,53 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 		gridbagconstraints = new GridBagConstraints();       
 	         
 	    vLabel1 = new JLabel("Login");
-	    vLabel1.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));     
-	    vLabel2 = new JLabel("È¸¿ø°¡ÀÔ ÇÏ½Ã¸é ´Ù¾çÇÑ ÇıÅÃÀ» Á¦°ø¹ŞÀ» ¼ö ÀÖ½À´Ï´Ù.");
-	    vLabel2.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+	    vLabel1.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));     
+	    vLabel2 = new JLabel("íšŒì›ê°€ì… í•˜ì‹œë©´ ë‹¤ì–‘í•œ í˜œíƒì„ ì œê³µë°›ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
+	    vLabel2.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 	         
 	    cbSel = new JComboBox<String>(div);
-	    cbSel.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD , 16));
+	    cbSel.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD , 16));
 	    cbSel.setBackground(Color.WHITE);
 	    cbSel.setPreferredSize(new Dimension(153, 25));
 
         xId = new JTextField(15);
         xPwd = new JPasswordField(15);
        	                  
-        vLabel3 = new JLabel("¾ÆÁ÷ È¸¿øÀÌ ¾Æ´Ï½Å°¡¿ä?");
-        vLabel3.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-        vLabel4 = new JLabel("¾ÆÀÌµğ/ºñ¹Ğ¹øÈ£¸¦ ÀØÀ¸¼Ì³ª¿ä?");
-        vLabel4.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-        vLabel5= new JLabel("ºñÈ¸¿øÀ¸·Î ÀÌ¿ëÇÏ°Ú½À´Ï±î?");
-        vLabel5.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
+        vLabel3 = new JLabel("ì•„ì§ íšŒì›ì´ ì•„ë‹ˆì‹ ê°€ìš”?");
+        vLabel3.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+        vLabel4 = new JLabel("ì•„ì´ë””/ë¹„ë°€ë²ˆí˜¸ë¥¼ ìŠìœ¼ì…¨ë‚˜ìš”?");
+        vLabel4.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+        vLabel5= new JLabel("ë¹„íšŒì›ìœ¼ë¡œ ì´ìš©í•˜ê² ìŠµë‹ˆê¹Œ?");
+        vLabel5.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
 	         
 	         
-        BtLogin = new JButton("·Î±×ÀÎ");
+        BtLogin = new JButton("ë¡œê·¸ì¸");
         BtLogin.setPreferredSize(new Dimension(120, 30));
         BtLogin.setFocusPainted(false);
         BtLogin.setBackground(Color.white);
-        BtLogin.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 17));
+        BtLogin.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 17));
         BtLogin.addActionListener(this);
         
-        BtRegMb = new JButton("È¸¿ø°¡ÀÔ");
+        BtRegMb = new JButton("íšŒì›ê°€ì…");
         BtRegMb.setPreferredSize(new Dimension(120, 30));
         BtRegMb.addActionListener(this);
         BtRegMb.setFocusPainted(false);
         BtRegMb.setBackground(Color.white);
-        BtRegMb.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 17));
+        BtRegMb.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 17));
         
-        BtFind = new JButton("ID/PW Ã£±â");
+        BtFind = new JButton("ID/PW ì°¾ê¸°");
         BtFind.setPreferredSize(new Dimension(120, 30));
         BtFind.addActionListener(this);
         BtFind.setFocusPainted(false);
         BtFind.setBackground(Color.white);
-        BtFind.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 17));
+        BtFind.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 17));
         
-        Btnonmember = new JButton("ºñÈ¸¿ø Á¢¼Ó");
+        Btnonmember = new JButton("ë¹„íšŒì› ì ‘ì†");
         Btnonmember.setPreferredSize(new Dimension(120, 30));
         Btnonmember.addActionListener(this);
         Btnonmember.setFocusPainted(false);
         Btnonmember.setBackground(Color.white);
-        Btnonmember.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 17));
+        Btnonmember.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 17));
 //	         getDeptData(EmpData.selectDept());
 //	         getSvpData(EmpData.selectSpv());
         
@@ -200,7 +200,7 @@ public class Login extends JFrame implements ActionListener, MouseListener{
       }    
 	         
 	private void LoginView() {
-		setTitle("Login È­¸é");
+		setTitle("Login í™”ë©´");
 	         
 	    gridbagconstraints.anchor = GridBagConstraints.WEST;
 //	    gridbagconstraints.ipadx = 7;
@@ -236,12 +236,12 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 	private void gridbagAdd(Component c, int x, int y, int w, int h) {   
 		gridbagconstraints.gridx = x;
         gridbagconstraints.gridy = y; 
-	            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+	            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 	         
         gridbagconstraints.gridwidth  = w;
         gridbagconstraints.gridheight = h;
 	               
-        gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+        gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 	         
         add(c);   
 	         
@@ -259,7 +259,7 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 			Find f = new Find(new JFrame());
 		} else if(e.getSource() == Btnonmember) {
 			Nonmember n = new Nonmember(new JFrame());
-		}if(cbSel.getSelectedItem() == "À¯Àú") {
+		}if(cbSel.getSelectedItem() == "ìœ ì €") {
 			if(e.getSource() == BtLogin) {
 			sid = "";
 			pwd = "";
@@ -268,7 +268,7 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 			getData(CheckId.selectlogin1(sid, pwd));
 			
 			}
-		}if(cbSel.getSelectedItem() == "°ü¸®ÀÚ") {
+		}if(cbSel.getSelectedItem() == "ê´€ë¦¬ì") {
 			if(e.getSource() == BtLogin) {
 				sid2 = "";
 				pwd2 = "";

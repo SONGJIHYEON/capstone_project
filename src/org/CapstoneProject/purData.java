@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -26,19 +28,19 @@ public class purData {
    
    public static List<Map<String, Serializable>> purListData = new ArrayList<Map<String, Serializable>>();
    
-   /* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+   /* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
    public static void initpurData(String PUR_NUM, String CORR_NUM, String PUR_DT, int TOT_PR) {
       
-      purData.put("±¸¸Å¹øÈ£", CORR_NUM);
-      purData.put("°Å·¡Ã³¹øÈ£", CORR_NUM);
-      purData.put("±¸¸ÅÀÏÀÚ", PUR_DT);
-      purData.put("ÃÑ±İ¾×", TOT_PR);
+      purData.put("êµ¬ë§¤ë²ˆí˜¸", CORR_NUM);
+      purData.put("ê±°ë˜ì²˜ë²ˆí˜¸", CORR_NUM);
+      purData.put("êµ¬ë§¤ì¼ì", PUR_DT);
+      purData.put("ì´ê¸ˆì•¡", TOT_PR);
 
    }
    
    static void createpur() {
       
-      quary = "INSERT INTO PUR VALUES(SEQ_PUR_NUM.NEXTVAL,'"+ purData.get("°Å·¡Ã³¹øÈ£") + "', '"+ purData.get("±¸¸ÅÀÏÀÚ") + "' ," + purData.get("ÃÑ±İ¾×") + ")";
+      quary = "INSERT INTO PUR VALUES(SEQ_PUR_NUM.NEXTVAL,'"+ purData.get("ê±°ë˜ì²˜ë²ˆí˜¸") + "', '"+ purData.get("êµ¬ë§¤ì¼ì") + "' ," + purData.get("ì´ê¸ˆì•¡") + ")";
       
       quary_commit = "commit";
       
@@ -47,14 +49,14 @@ public class purData {
          pstm.executeQuery();
 
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
       try {
          pstm = conn.prepareStatement(quary_commit);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -83,7 +85,7 @@ public class purData {
             
             
          } catch (SQLException sqle) {
-            System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+            System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
             sqle.printStackTrace();
          }
       return purListData;
@@ -98,14 +100,14 @@ public class purData {
          pstm = conn.prepareStatement(quary);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
       try {
          pstm = conn.prepareStatement(quary_commit);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -140,7 +142,7 @@ static List<Map<String, Serializable>> selectpur(String corr_num) {
          
          
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
       
@@ -149,6 +151,4 @@ static List<Map<String, Serializable>> selectpur(String corr_num) {
    }
 
 }
-
-
 

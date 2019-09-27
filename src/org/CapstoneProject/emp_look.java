@@ -23,14 +23,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class emp_look extends JFrame implements ActionListener {
+public class emp_look extends JPanel implements ActionListener {
 
 	private JLabel emp_lookup, Lemp_no, Lemp_nm, Lemp_dt, Lemp_ph_num, Lemp_tp, Lemp_addr;
 
 	private JTextField Tsearch;
 
-	private String[] col1 = { "»ç¿ø¹øÈ£", "»ç¿ø¸í", "ÈŞ´ëÆù¹øÈ£", "ÀÔ»çÀÏ", "»ç¿ø±¸ºĞ" };
-	private String[] search = { "»ç¿ø¹øÈ£", "ÈŞ´ëÆù¹øÈ£" };
+	private String[] col1 = { "ì‚¬ì›ë²ˆí˜¸", "ì‚¬ì›ëª…", "íœ´ëŒ€í°ë²ˆí˜¸", "ì…ì‚¬ì¼", "ì‚¬ì›êµ¬ë¶„" };
+	private String[] search = { "ì‚¬ì›ë²ˆí˜¸", "íœ´ëŒ€í°ë²ˆí˜¸" };
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 
@@ -42,26 +42,26 @@ public class emp_look extends JFrame implements ActionListener {
 	private JComboBox<String> cbSearch;
 
 	GridBagLayout gridbaglayout;
-	GridBagConstraints gridbagconstraints; // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+	GridBagConstraints gridbagconstraints; // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
 
 	public emp_look() {
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		emp_lookup = new JLabel("»ç¿øÁ¶È¸");
+		emp_lookup = new JLabel("ì‚¬ì›ì¡°íšŒ");
 		emp_lookup.setPreferredSize(new Dimension(100, 30));
-		Lemp_no = new JLabel("»ç¿ø¹øÈ£");
+		Lemp_no = new JLabel("ì‚¬ì›ë²ˆí˜¸");
 		Lemp_no.setPreferredSize(new Dimension(100, 30));
-		Lemp_nm = new JLabel("»ç¿ø¸í");
+		Lemp_nm = new JLabel("ì‚¬ì›ëª…");
 		Lemp_nm.setPreferredSize(new Dimension(100, 30));
-		Lemp_dt = new JLabel("ÀÔ»çÀÏÀÚ");
+		Lemp_dt = new JLabel("ì…ì‚¬ì¼ì");
 		Lemp_dt.setPreferredSize(new Dimension(100, 30));
-		Lemp_ph_num = new JLabel("ÈŞ´ëÆù ¹øÈ£");
+		Lemp_ph_num = new JLabel("íœ´ëŒ€í° ë²ˆí˜¸");
 		Lemp_ph_num.setPreferredSize(new Dimension(100, 30));
-		Lemp_addr = new JLabel("ÁÖ¼Ò");
+		Lemp_addr = new JLabel("ì£¼ì†Œ");
 		Lemp_addr.setPreferredSize(new Dimension(100, 30));
-		Lemp_tp = new JLabel("»ç¿ø±¸ºĞ");
+		Lemp_tp = new JLabel("ì‚¬ì›êµ¬ë¶„");
 		Lemp_tp.setPreferredSize(new Dimension(100, 30));
 
 		Tsearch = new JTextField(18);
@@ -74,10 +74,10 @@ public class emp_look extends JFrame implements ActionListener {
 		scrollpane1 = new JScrollPane(emp_info);
 		scrollpane1.setPreferredSize(new Dimension(1000, 300));
 
-		Bsearch = new JButton("°Ë»ö");
+		Bsearch = new JButton("ê²€ìƒ‰");
 		Bsearch.addActionListener(this);
 		Bsearch.setPreferredSize(new Dimension(200, 28));
-		Breset = new JButton("ÃÊ±âÈ­");
+		Breset = new JButton("ì´ˆê¸°í™”");
 		Breset.setPreferredSize(new Dimension(200, 28));
 
 //         getDeptData(EmpData.selectDept());
@@ -102,7 +102,7 @@ public class emp_look extends JFrame implements ActionListener {
 
 	private void EmpRegisterView() {
 
-//         setTitle("»ç¿øÁ¶È¸");
+//         setTitle("ì‚¬ì›ì¡°íšŒ");
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -131,12 +131,12 @@ public class emp_look extends JFrame implements ActionListener {
 
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c);
 
@@ -150,10 +150,10 @@ public class emp_look extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == Bsearch) {
 			String search = Tsearch.getText();
-			if (cbSearch.getSelectedItem() == "»ç¿ø¹øÈ£") {
+			if (cbSearch.getSelectedItem() == "ì‚¬ì›ë²ˆí˜¸") {
 				model1.setRowCount(0);
 				getData(empData.searchEmp1(search));
-			} else if (cbSearch.getSelectedItem() == "ÈŞ´ëÆù¹øÈ£") {
+			} else if (cbSearch.getSelectedItem() == "íœ´ëŒ€í°ë²ˆí˜¸") {
 				model1.setRowCount(0);
 				getData(empData.searchEmp2(search));
 			}

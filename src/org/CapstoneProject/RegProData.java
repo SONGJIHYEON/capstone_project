@@ -1,3 +1,4 @@
+  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -26,19 +27,19 @@ public class RegProData {
 	
 	public static List<Map<String, Serializable>> proListData = new ArrayList<Map<String, Serializable>>();
 	
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initproData(String pro_NUM, String pro_CTGR_NUM, String pro_NM, String pro_EXP) {
 
-		prodata.put("¸ğµ¨¹øÈ£", pro_NUM);
-		prodata.put("¸ğµ¨ºĞ·ù¹øÈ£", pro_CTGR_NUM);
-		prodata.put("¸ğµ¨ÀÌ¸§", pro_NM);
-		prodata.put("¸ğµ¨»ó¼¼Á¤º¸", pro_EXP);
-//		prodata.put("¸ğµ¨»ó¼¼Á¤º¸", pro_EXP);
-//		prodata.put("¸ğµ¨»ó¼¼Á¤º¸", pro_EXP);
+		prodata.put("ëª¨ë¸ë²ˆí˜¸", pro_NUM);
+		prodata.put("ëª¨ë¸ë¶„ë¥˜ë²ˆí˜¸", pro_CTGR_NUM);
+		prodata.put("ëª¨ë¸ì´ë¦„", pro_NM);
+		prodata.put("ëª¨ë¸ìƒì„¸ì •ë³´", pro_EXP);
+//		prodata.put("ëª¨ë¸ìƒì„¸ì •ë³´", pro_EXP);
+//		prodata.put("ëª¨ë¸ìƒì„¸ì •ë³´", pro_EXP);
 	}
 	
 		
-	/* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+	/* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
 	static void createpro(String model_num, String PRO_NM, String CLR, String SIZ) {
 		
 		
@@ -50,12 +51,10 @@ public class RegProData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
 	}
 }
-
-
 

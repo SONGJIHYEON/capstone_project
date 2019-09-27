@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -26,7 +28,7 @@ public class pur_regist extends Dialog implements ActionListener{
 
    private JLabel pur_regist, Lcorr_nm, Lpur_dt, Ltot_pr; 
    private JTextField  Tcorr_nm, Tpur_dt, Ttot_pr;      
-   private static String[] col1 = {"¸¶Áö¸·¹øÈ£"};
+   private static String[] col1 = {"ë§ˆì§€ë§‰ë²ˆí˜¸"};
    private static DefaultTableModel model1 = new DefaultTableModel(col1, 0);
    private JTable pur_info;
         
@@ -36,7 +38,7 @@ public class pur_regist extends Dialog implements ActionListener{
    int tot_pr;
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public pur_regist(JFrame fr) {      
 	   super(fr, "", true);
@@ -45,13 +47,13 @@ public class pur_regist extends Dialog implements ActionListener{
          
          pur_info = new JTable(model1);
          
-         pur_regist = new JLabel("±¸¸Åµî·Ï");
+         pur_regist = new JLabel("êµ¬ë§¤ë“±ë¡");
          pur_regist.setPreferredSize(new Dimension(100,30));
-         Lcorr_nm = new JLabel("°Å·¡Ã³¸í");
+         Lcorr_nm = new JLabel("ê±°ë˜ì²˜ëª…");
          Lcorr_nm.setPreferredSize(new Dimension(100,30));
-         Lpur_dt = new JLabel("±¸¸ÅÀÏÀÚ");
+         Lpur_dt = new JLabel("êµ¬ë§¤ì¼ì");
          Lpur_dt.setPreferredSize(new Dimension(100,30));
-         Ltot_pr = new JLabel("ÃÑ±İ¾×");
+         Ltot_pr = new JLabel("ì´ê¸ˆì•¡");
          Ltot_pr.setPreferredSize(new Dimension(100,30));
 
          Tcorr_nm = new JTextField(18);
@@ -63,14 +65,14 @@ public class pur_regist extends Dialog implements ActionListener{
          Ttot_pr = new JTextField(18);
          Ttot_pr.setPreferredSize(new Dimension(100,30));
          
-         Bregist = new JButton("µî·Ï");
+         Bregist = new JButton("ë“±ë¡");
          Bregist.addActionListener(this);
-         Bregist.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 15));
+         Bregist.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 15));
          Bregist.setBackground(Color.WHITE);
          
-         Bcancel = new JButton("Ãë¼Ò");
+         Bcancel = new JButton("ì·¨ì†Œ");
          Bcancel.addActionListener(this);
-         Bcancel.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 15));
+         Bcancel.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 15));
          Bcancel.setBackground(Color.WHITE);
          
 //         getDeptData(EmpData.selectDept());
@@ -81,7 +83,7 @@ public class pur_regist extends Dialog implements ActionListener{
          
    private void EmpRegisterView() {      
          
-         setTitle("±¸¸Åµî·Ï");
+         setTitle("êµ¬ë§¤ë“±ë¡");
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -123,13 +125,13 @@ public class pur_regist extends Dialog implements ActionListener{
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          
@@ -162,17 +164,17 @@ public class pur_regist extends Dialog implements ActionListener{
 	      }
 		else if(e.getSource() == Bregist) {
 			
-			int result = JOptionPane.showConfirmDialog(null, "ÇØ´ç ±¸¸Å¸¦ µî·ÏÇÏ½Ã°Ú½À´Ï±î?", "±¸¸Å µî·Ï È®ÀÎ", JOptionPane.YES_NO_OPTION,
+			int result = JOptionPane.showConfirmDialog(null, "í•´ë‹¹ êµ¬ë§¤ë¥¼ ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "êµ¬ë§¤ ë“±ë¡ í™•ì¸", JOptionPane.YES_NO_OPTION,
 				    JOptionPane.INFORMATION_MESSAGE);
 					if(result == 0) {
-						//º¯¼ö¿¡ ÄŞº¸¹Ú½º °ª ÀúÀå
+						//ë³€ìˆ˜ì— ì½¤ë³´ë°•ìŠ¤ ê°’ ì €ì¥
 						corr_num = corr_look.corr_num;
 						corr_nm = Tcorr_nm.getText();
 						pur_dt = Tpur_dt.getText();
 						tot_pr = Integer.parseInt(Ttot_pr.getText());
 						
 						if (pur_dt.equals("") || tot_pr == 0 ) {
-							JOptionPane.showMessageDialog(null, "ÀÔ·ÂµÇÁö ¾ÊÀº Ç×¸ñÀÌ ÀÖ½À´Ï´Ù.", "¿À·ù", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "ì…ë ¥ë˜ì§€ ì•Šì€ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.", "ì˜¤ë¥˜", JOptionPane.ERROR_MESSAGE);
 						} else {
 						
 							purData.initpurData(pur_num,corr_num,pur_dt,tot_pr);
@@ -182,7 +184,7 @@ public class pur_regist extends Dialog implements ActionListener{
 					        pur_num = "";
 					       	pur_num += (String) pur_info.getValueAt(0, 0);
 							
-							JOptionPane.showMessageDialog(null, "±¸¸Å°¡ µî·ÏµÇ¾ú½À´Ï´Ù.", "±¸¸Å µî·Ï",
+							JOptionPane.showMessageDialog(null, "êµ¬ë§¤ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.", "êµ¬ë§¤ ë“±ë¡",
 						               JOptionPane.INFORMATION_MESSAGE);
 							Tpur_dt.setText("");
 							Ttot_pr.setText("");
@@ -196,3 +198,4 @@ public class pur_regist extends Dialog implements ActionListener{
 	} 
 	}
 }
+

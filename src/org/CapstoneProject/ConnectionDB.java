@@ -1,25 +1,25 @@
 package org.CapstoneProject;
 
 /** 
-DB¿¬°áÇÏ±â 
+DBì—°ê²°í•˜ê¸° 
 */
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
- ±âº»ÀûÀÎ DB¸¦ ¿¬°áÇÏ´Â Å¬·¡½º·Î jdbcµå¶óÀÌ¹ö¸¦ ÅëÇÏ¿© ÀÚ¹Ù¿Í DB¸¦ ¿¬°áÇÏ°í DBÀÇ °èÁ¤À» Á¢¼ÓÇÑ´Ù
+ ê¸°ë³¸ì ì¸ DBë¥¼ ì—°ê²°í•˜ëŠ” í´ë˜ìŠ¤ë¡œ jdbcë“œë¼ì´ë²„ë¥¼ í†µí•˜ì—¬ ìë°”ì™€ DBë¥¼ ì—°ê²°í•˜ê³  DBì˜ ê³„ì •ì„ ì ‘ì†í•œë‹¤
  */
 
 public class ConnectionDB {
-	private static final String URL="jdbc:oracle:thin:@localhost:1521:XE";	// ¿¬°áÇÏ´Â DBÀÇ ÁÖ¼ÒÁ¤º¸
-	private static final String USER="shop";	//¿¬°áÇÏ´Â DBÀÇ °èÁ¤Á¤º¸
-	private static final String PASSWORD = "1234"; // ¿¬°áÇÏ´Â DB°èÁ¤ÀÇ ÆĞ½º¿öµåÁ¤º¸
+	private static final String URL="jdbc:oracle:thin:@localhost:1521:XE";	// ì—°ê²°í•˜ëŠ” DBì˜ ì£¼ì†Œì •ë³´
+	private static final String USER="shop";	//ì—°ê²°í•˜ëŠ” DBì˜ ê³„ì •ì •ë³´
+	private static final String PASSWORD = "1234"; // ì—°ê²°í•˜ëŠ” DBê³„ì •ì˜ íŒ¨ìŠ¤ì›Œë“œì •ë³´
 	
-	private static Connection conn = null;	//jdbc¸¦ ÅëÇØ ÀÚ¹Ù¿Í DB¸¦ ¿¬°áÇØÁÖ´Â Å¬·¡½º °´Ã¼
+	private static Connection conn = null;	//jdbcë¥¼ í†µí•´ ìë°”ì™€ DBë¥¼ ì—°ê²°í•´ì£¼ëŠ” í´ë˜ìŠ¤ ê°ì²´
 	
 	static {
-		// jdbcµå¶óÀÌ¹ö¸¦ ÅëÇÏ¿© ¿¬°áÇÏ°íÀÚÇÏ´Â DBÀÇ ÁÖ¼Ò, °èÁ¤, ºñ¹Ğ¹øÈ£ Á¤º¸¸¦ ³Ñ°ÜÁÖ¾î DB¿¡ Á¢¼Ó
+		// jdbcë“œë¼ì´ë²„ë¥¼ í†µí•˜ì—¬ ì—°ê²°í•˜ê³ ìí•˜ëŠ” DBì˜ ì£¼ì†Œ, ê³„ì •, ë¹„ë°€ë²ˆí˜¸ ì •ë³´ë¥¼ ë„˜ê²¨ì£¼ì–´ DBì— ì ‘ì†
 		try {
 			 Class.forName("oracle.jdbc.driver.OracleDriver");
 			 conn = DriverManager.getConnection(URL, USER, PASSWORD);

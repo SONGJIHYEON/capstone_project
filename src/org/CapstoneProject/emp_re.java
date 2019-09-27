@@ -27,15 +27,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class emp_re extends JFrame implements ActionListener {
+public class emp_re extends JPanel implements ActionListener {
 
 	private JLabel mb_regist, mb_lookup, mb_regist2, Lemp_no, Lemp_nm, Lemp_dt, Lemp_ph_num, Lemp_tp, Lemp_addr,
 			Lemp_addr1, Lemp_addr2, Lreg_tp, Lreg_id, Lreg_pw;
 
 	private JTextField Temp_no, Temp_nm, Temp_dt, Temp_ph_num, Temp_addr, Temp_addr1, Temp_addr2, Treg_id, Treg_pw;
 
-	private String[] emp_tp = { "Á¤±ÔÁ÷", "°è¾àÁ÷" };
-	private String[] reg_tp = { "½ºÅ¸ÀÏ¸®½ºÆ®", "À¥µğÀÚÀÌ³Ê", "Æ÷Åä±×·¡ÆÛ", "¹°·ù°ü¸®´ã´ç", "°í°´¼¾ÅÍ´ã´ç" };
+	private String[] emp_tp = { "ì •ê·œì§", "ê³„ì•½ì§" };
+	private String[] reg_tp = { "ìŠ¤íƒ€ì¼ë¦¬ìŠ¤íŠ¸", "ì›¹ë””ìì´ë„ˆ", "í¬í† ê·¸ë˜í¼", "ë¬¼ë¥˜ê´€ë¦¬ë‹´ë‹¹", "ê³ ê°ì„¼í„°ë‹´ë‹¹" };
 	private String[] empty = { "" };
 
 	private JButton Bregist, Bcancel, BtSearchAddr, BtCheckId, Bemp_num;
@@ -47,7 +47,7 @@ public class emp_re extends JFrame implements ActionListener {
 	int close, intid;
 
 	GridBagLayout gridbaglayout;
-	GridBagConstraints gridbagconstraints; // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+	GridBagConstraints gridbagconstraints; // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
 
 	private void getData(List<Map<String, Serializable>> empListData) {
 
@@ -57,44 +57,44 @@ public class emp_re extends JFrame implements ActionListener {
 		intid = Integer.parseInt(sid2);
 
 		if (intid == 0) {
-			JOptionPane.showMessageDialog(null, "»ç¿ë°¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ì‚¬ìš©ê°€ëŠ¥í•œ ì•„ì´ë”” ì…ë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		} else
-			JOptionPane.showMessageDialog(null, "Áßº¹µÈ ¾ÆÀÌµğ ÀÔ´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ì¤‘ë³µëœ ì•„ì´ë”” ì…ë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 		Treg_id.setText("");
 		return;
 	}
 
-	public emp_re(JFrame fr) {
+	public emp_re() {
 //	     super(fr, "", true);
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		mb_regist2 = new JLabel("»ç¿øµî·Ï");
+		mb_regist2 = new JLabel("ì‚¬ì›ë“±ë¡");
 		mb_regist2.setPreferredSize(new Dimension(200, 28));
 
-		Lemp_no = new JLabel("»ç¿ø¹øÈ£");
+		Lemp_no = new JLabel("ì‚¬ì›ë²ˆí˜¸");
 		Lemp_no.setPreferredSize(new Dimension(100, 30));
-		Lemp_nm = new JLabel("»ç¿ø¸í");
+		Lemp_nm = new JLabel("ì‚¬ì›ëª…");
 		Lemp_nm.setPreferredSize(new Dimension(100, 30));
-		Lemp_dt = new JLabel("ÀÔ»çÀÏÀÚ(8ÀÚ)");
+		Lemp_dt = new JLabel("ì…ì‚¬ì¼ì(8ì)");
 		Lemp_dt.setPreferredSize(new Dimension(100, 30));
-		Lemp_ph_num = new JLabel("ÈŞ´ëÆù ¹øÈ£");
+		Lemp_ph_num = new JLabel("íœ´ëŒ€í° ë²ˆí˜¸");
 		Lemp_ph_num.setPreferredSize(new Dimension(100, 30));
-		Lemp_tp = new JLabel("»ç¿ø±¸ºĞ");
+		Lemp_tp = new JLabel("ì‚¬ì›êµ¬ë¶„");
 		Lemp_tp.setPreferredSize(new Dimension(100, 30));
-		Lemp_addr = new JLabel("ÁÖ¼Ò");
+		Lemp_addr = new JLabel("ì£¼ì†Œ");
 		Lemp_addr.setPreferredSize(new Dimension(100, 30));
-		Lemp_addr1 = new JLabel("±âº»ÁÖ¼Ò");
+		Lemp_addr1 = new JLabel("ê¸°ë³¸ì£¼ì†Œ");
 		Lemp_addr1.setFont(new Font("serif", Font.PLAIN, 12));
-		Lemp_addr2 = new JLabel("»ó¼¼ÁÖ¼Ò");
+		Lemp_addr2 = new JLabel("ìƒì„¸ì£¼ì†Œ");
 		Lemp_addr2.setFont(new Font("serif", Font.PLAIN, 12));
-		Lreg_tp = new JLabel("Á¤±ÔÁ÷ ±¸ºĞ");
+		Lreg_tp = new JLabel("ì •ê·œì§ êµ¬ë¶„");
 		Lreg_tp.setPreferredSize(new Dimension(100, 30));
-		Lreg_id = new JLabel("¾ÆÀÌµğ");
+		Lreg_id = new JLabel("ì•„ì´ë””");
 		Lreg_id.setPreferredSize(new Dimension(100, 30));
-		Lreg_pw = new JLabel("ÃÊ±â ºñ¹Ğ¹øÈ£");
+		Lreg_pw = new JLabel("ì´ˆê¸° ë¹„ë°€ë²ˆí˜¸");
 		Lreg_pw.setPreferredSize(new Dimension(100, 30));
 
 		CBemp_tp = new JComboBox<String>(emp_tp);
@@ -123,17 +123,17 @@ public class emp_re extends JFrame implements ActionListener {
 		Treg_pw = new JTextField(22);
 		Treg_pw.setPreferredSize(new Dimension(100, 30));
 
-		Bemp_num = new JButton("»ç¿ø¹øÈ£ »ı¼º");
+		Bemp_num = new JButton("ì‚¬ì›ë²ˆí˜¸ ìƒì„±");
 		Bemp_num.addActionListener(this);
-		Bregist = new JButton("µî·Ï");
+		Bregist = new JButton("ë“±ë¡");
 		Bregist.setPreferredSize(new Dimension(100, 28));
 		Bregist.addActionListener(this);
-		Bcancel = new JButton("Ãë¼Ò");
+		Bcancel = new JButton("ì·¨ì†Œ");
 		Bcancel.setPreferredSize(new Dimension(100, 28));
 		Bcancel.addActionListener(this);
-		BtSearchAddr = new JButton("¿ìÆí¹øÈ£ °Ë»ö");
+		BtSearchAddr = new JButton("ìš°í¸ë²ˆí˜¸ ê²€ìƒ‰");
 		BtSearchAddr.addActionListener(this);
-		BtCheckId = new JButton("Áßº¹°Ë»ç");
+		BtCheckId = new JButton("ì¤‘ë³µê²€ì‚¬");
 		BtCheckId.addActionListener(this);
 
 		CBreg_tp.setEnabled(true);
@@ -196,12 +196,12 @@ public class emp_re extends JFrame implements ActionListener {
 
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c);
 
@@ -213,19 +213,19 @@ public class emp_re extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new emp_re(new JFrame());
+		new emp_re();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == Bemp_num) {
 			RandomId rid = new RandomId();
-			JOptionPane.showMessageDialog(null, "»ç¿ø¹øÈ£´Â " + rid.x + " ÀÔ´Ï´Ù");
+			JOptionPane.showMessageDialog(null, "ì‚¬ì›ë²ˆí˜¸ëŠ” " + rid.x + " ì…ë‹ˆë‹¤");
 			String x = Integer.toString(rid.x);
 			Temp_no.setText(x);			
 		}		
 		if (e.getSource() == CBemp_tp) {
-			if (CBemp_tp.getSelectedItem() == "Á¤±ÔÁ÷") {
+			if (CBemp_tp.getSelectedItem() == "ì •ê·œì§") {
 				BtCheckId.setEnabled(true);
 				BtCheckId.setVisible(true);
 				CBreg_tp.setEnabled(true);
@@ -235,7 +235,7 @@ public class emp_re extends JFrame implements ActionListener {
 				Lreg_pw.setVisible(true);
 				Treg_id.setVisible(true);
 				Treg_pw.setVisible(true);
-			} else if (CBemp_tp.getSelectedItem() == "°è¾àÁ÷") {
+			} else if (CBemp_tp.getSelectedItem() == "ê³„ì•½ì§") {
 //				CBreg_tp = new JComboBox<String>(empty);		
 				BtCheckId.setEnabled(false);
 				BtCheckId.setVisible(false);
@@ -249,10 +249,10 @@ public class emp_re extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == Bregist) {
 
-			int result = JOptionPane.showConfirmDialog(null, "ÇØ´ç »ç¿ø Á¤º¸¸¦ µî·ÏÇÏ½Ã°Ú½À´Ï±î?", "»ç¿ø µî·Ï È®ÀÎ",
+			int result = JOptionPane.showConfirmDialog(null, "í•´ë‹¹ ì‚¬ì› ì •ë³´ë¥¼ ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ì‚¬ì› ë“±ë¡ í™•ì¸",
 					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 			if (result == 0) {
-				// º¯¼ö¿¡ ÄŞº¸¹Ú½º °ª ÀúÀå
+				// ë³€ìˆ˜ì— ì½¤ë³´ë°•ìŠ¤ ê°’ ì €ì¥
 
 				EMP_NUM = Temp_no.getText();
 				EMP_NM = Temp_nm.getText();
@@ -261,18 +261,18 @@ public class emp_re extends JFrame implements ActionListener {
 				EMP_TP = (String) CBemp_tp.getSelectedItem();
 				EMP_ADDR = Temp_addr1.getText() + Temp_addr2.getText();
 				REG_TP = (String) CBreg_tp.getSelectedItem();
-				if (EMP_TP == "°è¾àÁ÷") {
+				if (EMP_TP == "ê³„ì•½ì§") {
 					REG_TP = "";
 				}
 				REG_ID = Treg_id.getText();
 				REG_PW = Treg_pw.getText();
 				if (EMP_NUM.equals("") || EMP_NM.equals("") || EMP_DT.equals("") || EMP_ADDR.equals("") || EMP_PH_NUM.equals("")
 						|| EMP_TP.equals("")) {
-					JOptionPane.showMessageDialog(null, "ÀÔ·ÂµÇÁö ¾ÊÀº Ç×¸ñÀÌ ÀÖ½À´Ï´Ù.", "¿À·ù", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ì…ë ¥ë˜ì§€ ì•Šì€ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.", "ì˜¤ë¥˜", JOptionPane.ERROR_MESSAGE);
 				} else {
 					empData.initempData(EMP_NUM, EMP_NM, EMP_DT, EMP_PH_NUM, EMP_TP, EMP_ADDR, REG_TP, REG_ID, REG_PW);
 					empData.createemp();
-					JOptionPane.showMessageDialog(null, "»ç¿øÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.", "»ç¿ø µî·Ï", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ì‚¬ì›ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.", "ì‚¬ì› ë“±ë¡", JOptionPane.WARNING_MESSAGE);
 							Temp_no.setText("");
 							Temp_nm.setText("");
 							Temp_dt.setText("");
@@ -280,7 +280,6 @@ public class emp_re extends JFrame implements ActionListener {
 							Temp_addr.setText("");
 							Treg_id.setText("");
 							Treg_pw.setText("");
-					dispose();
 				}
 			} else if (result == 1) {
 				JOptionPane.getRootFrame().dispose();
@@ -298,7 +297,7 @@ public class emp_re extends JFrame implements ActionListener {
 			sid += Treg_id.getText();
 			System.out.println(sid);
 			if (sid.equals("")) {
-				JOptionPane.showMessageDialog(null, "ID¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.", "ID¹ÌÀÔ·Â", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "IDë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.", "IDë¯¸ì…ë ¥", JOptionPane.WARNING_MESSAGE);
 			} else {
 				getData(empData.selectid(sid));
 			}

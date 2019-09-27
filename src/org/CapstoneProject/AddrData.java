@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -26,7 +27,7 @@ public class AddrData {
 	
 	public static List<Map<String, Serializable>> addrListData = new ArrayList<Map<String, Serializable>>();
 	
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initCustData(String ZIPCODE, String SEQ, String SIDO, String GUGUN, String DONG, String RI, String BUNJI,
 			String BLDG, String ADDR) {
 
@@ -39,21 +40,21 @@ public class AddrData {
 //		addrdata.put("A", TEL);
 //		addrdata.put("A", TEL);
 //		addrdata.put("A", TEL);
-//		custdata.put("ÁÖ¼Ò", sADDR);
+//		custdata.put("ì£¼ì†Œ", sADDR);
 
 	}
 	
 		
-//	/* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+//	/* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
 //	static void createCust() {
-//		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, ID, PWD, BD, ADDR, CUST_TP) VALUES(103,'" + custdata.get("°í°´¸í") + "','" + custdata.get("ÈŞ´ëÆù¹øÈ£") + "','"
-//				+ custdata.get("¾ÆÀÌµğ") + "','" + custdata.get("ºñ¹Ğ¹øÈ£") + "','" + custdata.get("»ı³â¿ùÀÏ") + "','" + custdata.get("ÁÖ¼Ò") + "','1')";
+//		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, ID, PWD, BD, ADDR, CUST_TP) VALUES(103,'" + custdata.get("ê³ ê°ëª…") + "','" + custdata.get("íœ´ëŒ€í°ë²ˆí˜¸") + "','"
+//				+ custdata.get("ì•„ì´ë””") + "','" + custdata.get("ë¹„ë°€ë²ˆí˜¸") + "','" + custdata.get("ìƒë…„ì›”ì¼") + "','" + custdata.get("ì£¼ì†Œ") + "','1')";
 //	System.out.println(quary);
 //		try {
 //			pstm = conn.prepareStatement(quary);
 //			pstm.executeQuery();
 //		} catch (SQLException sqle) {
-//			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+//			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 //			sqle.printStackTrace();
 //		}
 //
@@ -92,7 +93,7 @@ static List<Map<String, Serializable>> selectAddr() {
 			
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		
@@ -122,13 +123,13 @@ static List<Map<String, Serializable>> SearchAddr(String search) {
 			addrdataSet.put("BUNJI", rs.getString(7));
 			addrdataSet.put("BLDG", rs.getString(8));
 			addrdataSet.put("ADDR", rs.getString(9));
-//			custdataSet.put("ºñ¹Ğ¹øÈ£", rs.getString(6));
-//			custdataSet.put("»ı³â¿ùÀÏ", rs.getString(7));
-//			custdataSet.put("ÁÖ¼Ò", rs.getString(8));
-//			custdataSet.put("°í°´µî±Ş", rs.getString(9));
-//			custdataSet.put("º¸À¯Æ÷ÀÎÆ®", rs.getString(10));
-//			custdataSet.put("ÇÒÀÎ½ÃÀÛÀÏ", rs.getString(11));
-//			custdataSet.put("ÇÒÀÎÁ¾·áÀÏ", rs.getString(12));
+//			custdataSet.put("ë¹„ë°€ë²ˆí˜¸", rs.getString(6));
+//			custdataSet.put("ìƒë…„ì›”ì¼", rs.getString(7));
+//			custdataSet.put("ì£¼ì†Œ", rs.getString(8));
+//			custdataSet.put("ê³ ê°ë“±ê¸‰", rs.getString(9));
+//			custdataSet.put("ë³´ìœ í¬ì¸íŠ¸", rs.getString(10));
+//			custdataSet.put("í• ì¸ì‹œì‘ì¼", rs.getString(11));
+//			custdataSet.put("í• ì¸ì¢…ë£Œì¼", rs.getString(12));
 			
 //			System.out.println(addrdataSet);
 			addrListData.add(addrdataSet);
@@ -138,15 +139,11 @@ static List<Map<String, Serializable>> SearchAddr(String search) {
 		
 		
 	} catch (SQLException sqle) {
-		System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+		System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 		sqle.printStackTrace();
 	}
 	
 	return addrListData;
 	}
 }
-
-
-
-
 

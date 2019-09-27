@@ -26,17 +26,17 @@ public class FindData {
 	
 	public static List<Map<String, Serializable>> findListData = new ArrayList<Map<String, Serializable>>();
 	
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initCustData(String sid) {
 
-		finddata.put("¾ÆÀÌµğ", sid);
+		finddata.put("ì•„ì´ë””", sid);
 //		addrdata.put("A", NAME);
 	}
 //	
 	
 	static List<Map<String, Serializable>> findid(String name, String phone ) {
 			
-			quary = "select count(id) from cust where CUST_TP = 'È¸¿ø' and cust_nm = '" + name + "' and PH_NUM = "+ phone +"";
+			quary = "select count(id) from cust where CUST_TP = 'íšŒì›' and cust_nm = '" + name + "' and PH_NUM = "+ phone +"";
 	
 			findListData.clear();
 			
@@ -59,7 +59,7 @@ public class FindData {
 				} 
 				
 			} catch (SQLException sqle) {
-				System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+				System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 				sqle.printStackTrace();
 			}
 			
@@ -69,7 +69,7 @@ public class FindData {
 	
 	static List<Map<String, Serializable>> findid2(String name, String phone ) {
 		
-		quary = "select id from cust where CUST_TP = 'È¸¿ø' and cust_nm = '" + name + "' and PH_NUM = "+ phone +"";
+		quary = "select id from cust where CUST_TP = 'íšŒì›' and cust_nm = '" + name + "' and PH_NUM = "+ phone +"";
 
 		findListData.clear();
 		
@@ -92,7 +92,7 @@ public class FindData {
 			} 
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		
@@ -102,7 +102,7 @@ public class FindData {
 	
 	static List<Map<String, Serializable>> findpwd(String id, String name, String phone ) {
 		
-		quary = "select count(pwd) from cust where CUST_TP = 'È¸¿ø' and id = '" + id + "' and cust_nm = '" + name + "' and "
+		quary = "select count(pwd) from cust where CUST_TP = 'íšŒì›' and id = '" + id + "' and cust_nm = '" + name + "' and "
 				+ "PH_NUM = "+ phone +"";
 
 		findListData.clear();
@@ -126,7 +126,7 @@ public class FindData {
 			} 
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		
@@ -136,7 +136,7 @@ public class FindData {
 	
 static List<Map<String, Serializable>> findpwd2(String id, String name, String phone ) {
 		
-		quary = "select pwd from cust where CUST_TP = 'È¸¿ø' and id = '" + id + "' and cust_nm = '" + name + "' and "
+		quary = "select pwd from cust where CUST_TP = 'íšŒì›' and id = '" + id + "' and cust_nm = '" + name + "' and "
 				+ "PH_NUM = "+ phone +"";
 
 		findListData.clear();
@@ -160,7 +160,7 @@ static List<Map<String, Serializable>> findpwd2(String id, String name, String p
 			} 
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		
@@ -168,8 +168,3 @@ static List<Map<String, Serializable>> findpwd2(String id, String name, String p
 		
 	}
 }
-	
-
-
-
-

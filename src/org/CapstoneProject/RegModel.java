@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -27,19 +28,19 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 
-public class RegModel extends JFrame implements ActionListener {
+public class RegModel extends JPanel implements ActionListener {
 	
 //	private static final int MAXIMIZED_BOTH = 0;
 	private JLabel vRegModel2, vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelExp, vModelNick;
 	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelNick;
 //	private JTextArea xModelImage;
 
-	private String[] ctgr1 = {"»óÀÇ", "ÇÏÀÇ", "¾Æ¿ìÅÍ", "¼ÅÃ÷", "½Å¹ß"};
-	private String[] ctgr2_1 = {"¸ÇÅõ¸Ç", "¹İÆÈT", "±äÆÈT", "ÈÄµå", "´ÏÆ®"};
-	private String[] ctgr2_2 = {"Ã»¹ÙÁö", "½½·¢½º", "¸é¹ÙÁö", "¿îµ¿º¹", "¹İ¹ÙÁö"}; 
-	private String[] ctgr2_3 = {"ÄÚÆ®", "°¡µğ°Ç", "Á¶³¢", "Áı¾÷", "Á¡ÆÛ", "ÆĞµù", "¾ß»ó", "ÀçÅ¶"};
-	private String[] ctgr2_4 = {"½ºÆ®¶óÀÌÇÁ", "Ã¼Å©", "±äÆÈ¼ÅÃ÷", "¹İÆÈ¼ÅÃ÷"};
-	private String[] ctgr2_5 = {"½º´ÏÄ¿Áî", "¿îµ¿È­", "·ÎÆÛ", "±¸µÎ", "¿öÄ¿", "ºÎÃ÷", "»÷µé", "½½¸®ÆÛ"};     // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+	private String[] ctgr1 = {"ìƒì˜", "í•˜ì˜", "ì•„ìš°í„°", "ì…”ì¸ ", "ì‹ ë°œ"};
+	private String[] ctgr2_1 = {"ë§¨íˆ¬ë§¨", "ë°˜íŒ”T", "ê¸´íŒ”T", "í›„ë“œ", "ë‹ˆíŠ¸"};
+	private String[] ctgr2_2 = {"ì²­ë°”ì§€", "ìŠ¬ë™ìŠ¤", "ë©´ë°”ì§€", "ìš´ë™ë³µ", "ë°˜ë°”ì§€"}; 
+	private String[] ctgr2_3 = {"ì½”íŠ¸", "ê°€ë””ê±´", "ì¡°ë¼", "ì§‘ì—…", "ì í¼", "íŒ¨ë”©", "ì•¼ìƒ", "ì¬í‚·"};
+	private String[] ctgr2_4 = {"ìŠ¤íŠ¸ë¼ì´í”„", "ì²´í¬", "ê¸´íŒ”ì…”ì¸ ", "ë°˜íŒ”ì…”ì¸ "};
+	private String[] ctgr2_5 = {"ìŠ¤ë‹ˆì»¤ì¦ˆ", "ìš´ë™í™”", "ë¡œí¼", "êµ¬ë‘", "ì›Œì»¤", "ë¶€ì¸ ", "ìƒŒë“¤", "ìŠ¬ë¦¬í¼"};     // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 //	         
 //	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
 //	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -74,12 +75,12 @@ public class RegModel extends JFrame implements ActionListener {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints(); 
 		        
-		vRegModel2 = new JLabel("¸ğµ¨µî·Ï");
+		vRegModel2 = new JLabel("ëª¨ë¸ë“±ë¡");
 		vRegModel2.setPreferredSize(new Dimension(200,28));
-        vModelNick = new JLabel("¸ğµ¨º°Äª");
+        vModelNick = new JLabel("ëª¨ë¸ë³„ì¹­");
 		vRegModel2.setPreferredSize(new Dimension(200,28));
         
-		vModelNm = new JLabel("¸ğµ¨¸í");
+		vModelNm = new JLabel("ëª¨ë¸ëª…");
 
 		xModelNm = new JTextField(20);
 		xModelCode = new JTextField(20);
@@ -90,27 +91,27 @@ public class RegModel extends JFrame implements ActionListener {
 //		xModelSize = new JTextField(20);
 		
 		
-		vModelCode = new JLabel("¸ğµ¨ÄÚµå");
+		vModelCode = new JLabel("ëª¨ë¸ì½”ë“œ");
 		
-		vModelCtgr1 = new JLabel("1Â÷ºĞ·ù");
+		vModelCtgr1 = new JLabel("1ì°¨ë¶„ë¥˜");
 		Cbctgr1 = new JComboBox<String>(ctgr1);
 		Cbctgr1.setPreferredSize(new Dimension(200,28));
 		Cbctgr1.addActionListener(this);
 		Cbctgr2 = new JComboBox<String>(ctgr2_1);
 		Cbctgr2.setPreferredSize(new Dimension(200,28));
 		Cbctgr2.addActionListener(this);
-		vModelCtgr2 = new JLabel("2Â÷ºĞ·ù");
-		vModelExp = new JLabel("¸ğµ¨»ó¼¼»çÀÌÁî");
-//		vModelSize = new JLabel("¸ğµ¨ »ó¼¼»çÀÌÁî");
+		vModelCtgr2 = new JLabel("2ì°¨ë¶„ë¥˜");
+		vModelExp = new JLabel("ëª¨ë¸ìƒì„¸ì‚¬ì´ì¦ˆ");
+//		vModelSize = new JLabel("ëª¨ë¸ ìƒì„¸ì‚¬ì´ì¦ˆ");
 
-		BtCode = new JButton("ÄÚµå»ı¼º");
+		BtCode = new JButton("ì½”ë“œìƒì„±");
 		BtCode.addActionListener(this);
 		
-//		BtSearch = new JButton("°Ë»ö");
+//		BtSearch = new JButton("ê²€ìƒ‰");
 //		BtSearch.setPreferredSize(new Dimension(100,28));
-		BtReg = new JButton("µî·Ï");
+		BtReg = new JButton("ë“±ë¡");
 		BtReg.addActionListener(this);
-		BtCancel = new JButton("´İ±â");
+		BtCancel = new JButton("ë‹«ê¸°");
 
 
 		RegModelView();
@@ -118,7 +119,7 @@ public class RegModel extends JFrame implements ActionListener {
 	
 	private void RegModelView() {
 
-//		setTitle("È¨ÆäÀÌÁö °ü¸®ÀÚ");
+//		setTitle("í™ˆí˜ì´ì§€ ê´€ë¦¬ì");
 
 
 		setLayout(gbl);
@@ -169,13 +170,13 @@ public class RegModel extends JFrame implements ActionListener {
 		
 		gbc.gridx = x;
 		gbc.gridy = y; 
-		//°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+		//ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 		
 		gbc.gridwidth  = w;
 		gbc.gridheight = h;
 		
 		
-		gbl.setConstraints(c, gbc); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+		gbl.setConstraints(c, gbc); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 		
 		add(c);   
 		
@@ -199,19 +200,19 @@ public class RegModel extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == Cbctgr1) {
 //			getData(ModelData.selectModel());
-			if(Cbctgr1.getSelectedItem().toString() == "»óÀÇ") {
+			if(Cbctgr1.getSelectedItem().toString() == "ìƒì˜") {
 				DefaultComboBoxModel model = new DefaultComboBoxModel(ctgr2_1);
 				Cbctgr2.setModel( model );
-			}else if(Cbctgr1.getSelectedItem().toString() == "ÇÏÀÇ") {
+			}else if(Cbctgr1.getSelectedItem().toString() == "í•˜ì˜") {
 				DefaultComboBoxModel model = new DefaultComboBoxModel(ctgr2_2);
 				Cbctgr2.setModel( model );
-			}else if(Cbctgr1.getSelectedItem().toString() == "¾Æ¿ìÅÍ") {
+			}else if(Cbctgr1.getSelectedItem().toString() == "ì•„ìš°í„°") {
 				DefaultComboBoxModel model = new DefaultComboBoxModel(ctgr2_3);
 				Cbctgr2.setModel( model );
-			}else if(Cbctgr1.getSelectedItem().toString() == "¼ÅÃ÷") {
+			}else if(Cbctgr1.getSelectedItem().toString() == "ì…”ì¸ ") {
 				DefaultComboBoxModel model = new DefaultComboBoxModel(ctgr2_4);
 				Cbctgr2.setModel( model );
-			}else if(Cbctgr1.getSelectedItem().toString() == "½Å¹ß") {
+			}else if(Cbctgr1.getSelectedItem().toString() == "ì‹ ë°œ") {
 				DefaultComboBoxModel model = new DefaultComboBoxModel(ctgr2_5);
 				Cbctgr2.setModel( model );
 			}
@@ -234,17 +235,18 @@ public class RegModel extends JFrame implements ActionListener {
 		} 
 		
 		if(e.getSource() == BtReg) {
-			if(a == "»óÀÇ") {
+			if(a == "ìƒì˜") {
 				getData(ModelData.selectModelNum1(a, b));
-			}else if(a == "ÇÏÀÇ") {
+			}else if(a == "í•˜ì˜") {
 				getData(ModelData.selectModelNum2(a, b));
-			}else if(a == "¾Æ¿ìÅÍ") {
+			}else if(a == "ì•„ìš°í„°") {
 				getData(ModelData.selectModelNum3(a, b));
-			}else if(a == "¼ÅÃ÷") {
+			}else if(a == "ì…”ì¸ ") {
 				getData(ModelData.selectModelNum4(a, b));
-			}else if(a == "½Å¹ß") {
+			}else if(a == "ì‹ ë°œ") {
 				getData(ModelData.selectModelNum5(a, b));
 			}
 		}			
 	}
 }
+

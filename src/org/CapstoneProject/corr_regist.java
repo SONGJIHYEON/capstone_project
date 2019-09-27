@@ -19,177 +19,171 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class corr_regist extends JPanel implements ActionListener{
+public class corr_regist extends JPanel implements ActionListener {
 
-   private JLabel vMemAddr1,vMemAddr2,vMemAddr3, corr_regist2, Lcorr_nm, Lcorr_prnm, Lcorr_ph, Lcorr_addr; 
-   private JTextField  xMemAddr1,xMemAddr2,xMemAddr3, Tcorr_nm, Tcorr_prnm, Tcorr_ph, Tcorr_addr;      
-        
-   private JButton BtSearchAddr,Bregist; 
-   
-   String bus_num, bus_nm, rep_nm, bus_tel, addr;
-         
-   GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
-         
-   public corr_regist() {      
-         gridbaglayout = new GridBagLayout();
-         gridbagconstraints = new GridBagConstraints();
-         
-         corr_regist2 = new JLabel("°Å·¡Ã³µî·Ï");
-         corr_regist2.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
-         corr_regist2.setPreferredSize(new Dimension(200,28));
-         
-         Lcorr_nm = new JLabel("¾÷Ã¼¸í");
-         Lcorr_nm.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-         Lcorr_nm.setHorizontalAlignment(JLabel.CENTER);
-         Lcorr_nm.setPreferredSize(new Dimension(100,30));
-         Lcorr_prnm = new JLabel("´ëÇ¥¸í");
-         Lcorr_prnm.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-         Lcorr_prnm.setHorizontalAlignment(JLabel.CENTER);
-         Lcorr_prnm.setPreferredSize(new Dimension(100,30));
-         Lcorr_ph = new JLabel("¿¬¶ôÃ³");
-         Lcorr_ph.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-         Lcorr_ph.setHorizontalAlignment(JLabel.CENTER);
-         Lcorr_ph.setPreferredSize(new Dimension(100,30));
-         Lcorr_addr = new JLabel("ÁÖ¼Ò");
-         Lcorr_addr.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-         Lcorr_addr.setHorizontalAlignment(JLabel.CENTER);
-         Lcorr_addr.setPreferredSize(new Dimension(100,30));
-         
-         Tcorr_nm = new JTextField(18);
-         Tcorr_nm.setPreferredSize(new Dimension(100,30));
-         Tcorr_nm.setHorizontalAlignment(SwingConstants.CENTER);
-         Tcorr_prnm = new JTextField(18);
-         Tcorr_prnm.setPreferredSize(new Dimension(100,30));
-         Tcorr_ph = new JTextField(18);
-         Tcorr_ph.setPreferredSize(new Dimension(100,30));
-         Tcorr_addr = new JTextField(18);
-         Tcorr_addr.setPreferredSize(new Dimension(100,30));
-         
-         vMemAddr1 = new JLabel("ÁÖ¼Ò");
-         vMemAddr1.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-         vMemAddr1.setHorizontalAlignment(JLabel.CENTER);
-         vMemAddr1.setPreferredSize(new Dimension(100,30));
- 		 xMemAddr1 = new JTextField(18);
- 		 xMemAddr1.setPreferredSize(new Dimension(100,30));
- 		 
- 		 BtSearchAddr = new JButton("¿ìÆí¹øÈ£ °Ë»ö");
- 		 BtSearchAddr.setBackground(Color.WHITE);
- 		 BtSearchAddr.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 17));
- 		 BtSearchAddr.setPreferredSize(new Dimension(150,30));
- 		 BtSearchAddr.addActionListener(this);
- 		 
- 		 vMemAddr2 = new JLabel("±âº»ÁÖ¼Ò");
-         vMemAddr2.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-         vMemAddr2.setHorizontalAlignment(JLabel.CENTER);
-         vMemAddr2.setPreferredSize(new Dimension(100,30));
- 	 	 vMemAddr3 = new JLabel("»ó¼¼ÁÖ¼Ò");
-         vMemAddr3.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-         vMemAddr3.setHorizontalAlignment(JLabel.CENTER);
-         vMemAddr3.setPreferredSize(new Dimension(100,30));
- 	   	 xMemAddr2 = new JTextField(18);
- 	   	 xMemAddr2.setPreferredSize(new Dimension(100,30));
-		 xMemAddr3 = new JTextField(18);
-		 xMemAddr3.setPreferredSize(new Dimension(100,30));
-         
-         Bregist = new JButton("µî·Ï");
-         Bregist.setBackground(Color.WHITE);
-         Bregist.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 17));
-         Bregist.setPreferredSize(new Dimension(100,30));
-         Bregist.addActionListener(this);
-         
-         EmpRegisterView();
-      }   
-         
-   private void EmpRegisterView() {      
-         
-         gridbagconstraints.anchor = GridBagConstraints.WEST;
-//         gridbagconstraints.ipadx = 7;
-//         
-//         gridbagconstraints.weightx=1.0;
-//         gridbagconstraints.weighty=1.0;
-         
-         setLayout(gridbaglayout);
-         gridbagconstraints.anchor = GridBagConstraints.CENTER;
+	private JLabel vMemAddr1, vMemAddr2, vMemAddr3, corr_regist2, Lcorr_nm, Lcorr_prnm, Lcorr_ph, Lcorr_addr, vSpace;
+	private JTextField xMemAddr1, xMemAddr2, xMemAddr3, Tcorr_nm, Tcorr_prnm, Tcorr_ph, Tcorr_addr;
 
-         gridbagAdd(Bregist, 1, 9, 2, 1);
-         gridbagAdd(corr_regist2, 1, 1, 1, 1);
-         
-         gridbagconstraints.anchor = GridBagConstraints.WEST;
+	private JButton BtSearchAddr, Bregist;
 
-         gridbagAdd(Lcorr_nm, 1, 3, 1, 1);
-         gridbagAdd(Lcorr_prnm, 1, 4, 1, 1);
-         gridbagAdd(Lcorr_ph, 1, 5, 1, 1);
-         gridbagAdd(vMemAddr1, 1, 6, 1, 1);
-         gridbagAdd(vMemAddr2, 1, 7, 1, 1);
-         gridbagAdd(vMemAddr3, 1, 8, 1, 1);
-         
-         gridbagAdd(Tcorr_nm, 2, 3, 1, 1);
-         gridbagAdd(Tcorr_prnm, 2, 4, 1, 1);
-         gridbagAdd(Tcorr_ph, 2, 5, 1, 1);
-         gridbagAdd(xMemAddr1, 2, 6, 1, 1);
-         gridbagAdd(xMemAddr2, 2, 7, 1, 1);
-         gridbagAdd(xMemAddr3, 2, 8, 1, 1);
-         
-         gridbagAdd(BtSearchAddr, 3, 6, 1, 1);
-         
-         gridbagconstraints.anchor = GridBagConstraints.EAST;
-         
-         setVisible(true);
-      }   
-         
-      private void gridbagAdd(Component c, int x, int y, int w, int h) {   
-         
-         gridbagconstraints.gridx = x;
-         gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
-         
-         gridbagconstraints.gridwidth  = w;
-         gridbagconstraints.gridheight = h;
-              
-               
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
-         
-         add(c);   
-         
-         }   
-         
-      public static void main(String[] args) {   
-         new corr_regist();
-      }
+	String bus_num, bus_nm, rep_nm, bus_tel, addr;
+
+	GridBagLayout gridbaglayout;
+	GridBagConstraints gridbagconstraints; // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
+
+	public corr_regist() {
+		gridbaglayout = new GridBagLayout();
+		gridbagconstraints = new GridBagConstraints();
+		
+		vSpace = new JLabel("");
+		vSpace.setPreferredSize(new Dimension(200, 28));
+
+		corr_regist2 = new JLabel("ê±°ë˜ì²˜ë“±ë¡");
+		corr_regist2.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
+		corr_regist2.setPreferredSize(new Dimension(200, 30));
+
+		Lcorr_nm = new JLabel("ì—…ì²´ëª…");
+		Lcorr_nm.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		Lcorr_nm.setHorizontalAlignment(JLabel.CENTER);
+		Lcorr_nm.setPreferredSize(new Dimension(100, 30));
+		Lcorr_prnm = new JLabel("ëŒ€í‘œëª…");
+		Lcorr_prnm.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		Lcorr_prnm.setHorizontalAlignment(JLabel.CENTER);
+		Lcorr_prnm.setPreferredSize(new Dimension(100, 30));
+		Lcorr_ph = new JLabel("ì—°ë½ì²˜");
+		Lcorr_ph.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		Lcorr_ph.setHorizontalAlignment(JLabel.CENTER);
+		Lcorr_ph.setPreferredSize(new Dimension(100, 30));
+		Lcorr_addr = new JLabel("ì£¼ì†Œ");
+		Lcorr_addr.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		Lcorr_addr.setHorizontalAlignment(JLabel.CENTER);
+		Lcorr_addr.setPreferredSize(new Dimension(100, 30));
+
+		Tcorr_nm = new JTextField(18);
+		Tcorr_nm.setPreferredSize(new Dimension(100, 30));
+		Tcorr_prnm = new JTextField(18);
+		Tcorr_prnm.setPreferredSize(new Dimension(100, 30));
+		Tcorr_ph = new JTextField(18);
+		Tcorr_ph.setPreferredSize(new Dimension(100, 30));
+		Tcorr_addr = new JTextField(18);
+		Tcorr_addr.setPreferredSize(new Dimension(100, 30));
+
+		vMemAddr1 = new JLabel("ì£¼ì†Œ");
+		vMemAddr1.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		vMemAddr1.setHorizontalAlignment(JLabel.CENTER);
+		vMemAddr1.setPreferredSize(new Dimension(100, 30));
+		xMemAddr1 = new JTextField(18);
+		xMemAddr1.setPreferredSize(new Dimension(100, 30));
+
+		BtSearchAddr = new JButton("ìš°í¸ë²ˆí˜¸ ê²€ìƒ‰");
+		BtSearchAddr.setBackground(Color.WHITE);
+		BtSearchAddr.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 17));
+		BtSearchAddr.setPreferredSize(new Dimension(150, 30));
+		BtSearchAddr.addActionListener(this);
+
+		vMemAddr2 = new JLabel("ê¸°ë³¸ì£¼ì†Œ");
+		vMemAddr2.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		vMemAddr2.setHorizontalAlignment(JLabel.CENTER);
+		vMemAddr2.setPreferredSize(new Dimension(100, 30));
+		vMemAddr3 = new JLabel("ìƒì„¸ì£¼ì†Œ");
+		vMemAddr3.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		vMemAddr3.setHorizontalAlignment(JLabel.CENTER);
+		vMemAddr3.setPreferredSize(new Dimension(100, 30));
+		xMemAddr2 = new JTextField(18);
+		xMemAddr2.setPreferredSize(new Dimension(100, 30));
+		xMemAddr3 = new JTextField(18);
+		xMemAddr3.setPreferredSize(new Dimension(100, 30));
+
+		Bregist = new JButton("ë“±ë¡");
+		Bregist.setBackground(Color.WHITE);
+		Bregist.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 17));
+		Bregist.setPreferredSize(new Dimension(100, 30));
+		Bregist.addActionListener(this);
+
+		EmpRegisterView();
+	}
+
+	private void EmpRegisterView() {
+
+		setLayout(gridbaglayout);
+		gridbagconstraints.anchor = GridBagConstraints.CENTER;
+
+		gridbagAdd(Lcorr_nm, 1, 3, 1, 1);
+		gridbagAdd(Lcorr_prnm, 1, 4, 1, 1);
+		gridbagAdd(Lcorr_ph, 1, 5, 1, 1);
+		gridbagAdd(vMemAddr1, 1, 6, 1, 1);
+		gridbagAdd(vMemAddr2, 1, 7, 1, 1);
+		gridbagAdd(vMemAddr3, 1, 8, 1, 1);
+		gridbagAdd(Bregist, 2, 10, 1, 1);
+
+		gridbagconstraints.anchor = GridBagConstraints.WEST;
+
+		gridbagAdd(corr_regist2, 1, 1, 2, 1);
+
+		gridbagAdd(BtSearchAddr, 3, 6, 1, 1);
+
+		gridbagconstraints.anchor = GridBagConstraints.EAST;
+		gridbagAdd(Tcorr_nm, 2, 3, 1, 1);
+		gridbagAdd(Tcorr_prnm, 2, 4, 1, 1);
+		gridbagAdd(Tcorr_ph, 2, 5, 1, 1);
+		gridbagAdd(xMemAddr1, 2, 6, 1, 1);
+		gridbagAdd(xMemAddr2, 2, 7, 1, 1);
+		gridbagAdd(xMemAddr3, 2, 8, 1, 1);
+		gridbagAdd(vSpace, 2, 9, 1, 1);
+
+		setVisible(true);
+	}
+
+	private void gridbagAdd(Component c, int x, int y, int w, int h) {
+
+		gridbagconstraints.gridx = x;
+		gridbagconstraints.gridy = y;
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
+
+		gridbagconstraints.gridwidth = w;
+		gridbagconstraints.gridheight = h;
+
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
+
+		add(c);
+
+	}
+
+	public static void main(String[] args) {
+		new corr_regist();
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == Bregist) {
-			
-			int result = JOptionPane.showConfirmDialog(null, "ÇØ´ç °Å·¡Ã³¸¦ µî·ÏÇÏ½Ã°Ú½À´Ï±î?", "°Å·¡Ã³ µî·Ï È®ÀÎ", JOptionPane.YES_NO_OPTION,
-				    JOptionPane.INFORMATION_MESSAGE);
-					if(result == 0) {
-						//º¯¼ö¿¡ ÄŞº¸¹Ú½º °ª ÀúÀå
-						bus_nm = Tcorr_nm.getText();
-						rep_nm = Tcorr_prnm.getText();
-						bus_tel = Tcorr_ph.getText();
-						addr = xMemAddr2.getText() + " " + xMemAddr3.getText();
-						
-						if (bus_nm.equals("") || rep_nm.equals("") || bus_tel.equals("") || addr.equals("")) {
-							JOptionPane.showMessageDialog(null, "ÀÔ·ÂµÇÁö ¾ÊÀº Ç×¸ñÀÌ ÀÖ½À´Ï´Ù.", "¿À·ù", JOptionPane.ERROR_MESSAGE);
-						} else {
-						
-							corrData.initcorrData(bus_nm,rep_nm,bus_tel, addr);
-							corrData.createcorr();
-							JOptionPane.showMessageDialog(null, "°Å·¡Ã³°¡ µî·ÏµÇ¾ú½À´Ï´Ù.", "°Å·¡Ã³ µî·Ï",
-						               JOptionPane.INFORMATION_MESSAGE);
-							Tcorr_nm.setText("");
-							Tcorr_prnm.setText("");
-							Tcorr_ph.setText("");
-							Tcorr_addr.setText("");
-						} 
-			
-					}else if(result ==1) {
-						JOptionPane.getRootFrame().dispose(); 
-					}
-		}else if(e.getSource() == BtSearchAddr) {
+		if (e.getSource() == Bregist) {
+
+			int result = JOptionPane.showConfirmDialog(null, "í•´ë‹¹ ê±°ë˜ì²˜ë¥¼ ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ê±°ë˜ì²˜ ë“±ë¡ í™•ì¸",
+					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+			if (result == 0) {
+				// ë³€ìˆ˜ì— ì½¤ë³´ë°•ìŠ¤ ê°’ ì €ì¥
+				bus_nm = Tcorr_nm.getText();
+				rep_nm = Tcorr_prnm.getText();
+				bus_tel = Tcorr_ph.getText();
+				addr = xMemAddr2.getText() + " " + xMemAddr3.getText();
+
+				if (bus_nm.equals("") || rep_nm.equals("") || bus_tel.equals("") || addr.equals("")) {
+					JOptionPane.showMessageDialog(null, "ì…ë ¥ë˜ì§€ ì•Šì€ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.", "ì˜¤ë¥˜", JOptionPane.ERROR_MESSAGE);
+				} else {
+
+					corrData.initcorrData(bus_nm, rep_nm, bus_tel, addr);
+					corrData.createcorr();
+					JOptionPane.showMessageDialog(null, "ê±°ë˜ì²˜ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.", "ê±°ë˜ì²˜ ë“±ë¡", JOptionPane.INFORMATION_MESSAGE);
+					Tcorr_nm.setText("");
+					Tcorr_prnm.setText("");
+					Tcorr_ph.setText("");
+					Tcorr_addr.setText("");
+				}
+
+			} else if (result == 1) {
+				JOptionPane.getRootFrame().dispose();
+			}
+		} else if (e.getSource() == BtSearchAddr) {
 			Address s = new Address(new JFrame());
 			xMemAddr1.setText(s.zipcode);
 			xMemAddr2.setText(s.addr);

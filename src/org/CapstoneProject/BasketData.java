@@ -23,12 +23,12 @@ public class BasketData {
 
 	public static List<Map<String, Serializable>> BasketListData = new ArrayList<Map<String, Serializable>>();
 
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initBasketData(String pro_NUM, String pro_CTGR_NUM, String pro_NM, String pro_EXP) {
 
 	}
 
-	/* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+	/* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
 	static void createBasket(String user_num, String pro_num, String bk_option, String bk_price, String bk_allPrice, double bk_point) {
 
 		quary = "insert into bsk values ('" + user_num + "', '" + pro_num + "', '" + bk_option + "', '" + bk_price + "', '"
@@ -39,7 +39,7 @@ public class BasketData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery(); 	
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -58,7 +58,27 @@ public class BasketData {
 			rs = pstm.executeQuery();
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
+			sqle.printStackTrace();
+		}
+
+		return BasketListData;
+
+	}
+	
+	static List<Map<String, Serializable>> deleteBasket2(String cust_num) {
+
+		quary = "delete from bsk where cust_num = '" + cust_num + "'";
+
+		BasketListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+
+		} catch (SQLException sqle) {
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -95,7 +115,7 @@ public class BasketData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 

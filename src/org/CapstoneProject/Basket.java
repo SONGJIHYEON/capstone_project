@@ -29,14 +29,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class Basket extends JFrame implements MouseListener {
+public class Basket extends JFrame implements MouseListener, ActionListener {
 
 	private JLabel vProPrice, vDiscout, vPrice;
 	private JTextField xProPrice, xDiscout, xPrice;
 
-	private String[] col1 = { "ÀÌ¹ÌÁö", "»óÇ°Á¤º¸", "¼ö·®", "´Ü°¡", "±İ¾×", "Æ÷ÀÎÆ®", "»èÁ¦" };
-//   private String[] col2 = {"ºÎ¼­¸í", "¼º¸í"};      
-	private String[] div = { "°ü¸®ÀÚ", "À¯Àú" }; // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+	private String[] col1 = { "ì´ë¯¸ì§€", "ìƒí’ˆì •ë³´", "ìˆ˜ëŸ‰", "ë‹¨ê°€", "ê¸ˆì•¡", "í¬ì¸íŠ¸", "ì‚­ì œ" };
+//   private String[] col2 = {"ë¶€ì„œëª…", "ì„±ëª…"};      
+	private String[] div = { "ê´€ë¦¬ì", "ìœ ì €" }; // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 //   private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -55,8 +55,11 @@ public class Basket extends JFrame implements MouseListener {
 	static ArrayList<String> ar2 = new ArrayList<String>();
 	static Double sum[];
 
+	String mb_disc_rt, cust_num;
+	double disc_rt, price;
+	
 	GridBagLayout gridbaglayout;
-	GridBagConstraints gridbagconstraints; // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+	GridBagConstraints gridbagconstraints; // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
 
 	private void getData(List<Map<String, Serializable>> BasketListData) {
 		model1.setRowCount(0);
@@ -64,48 +67,51 @@ public class Basket extends JFrame implements MouseListener {
 		sum2 = 0;
 		for (int i = 0; i < BasketListData.size(); i++) {
 			sum2 = sum2 + Double.valueOf(BasketListData.get(i).get("PR").toString());
-			model1.addRow(new Object[] {
-					BasketListData.get(i).get("MODEL_IMG1"),					
-					BasketListData.get(i).get("PRO_NM"), 
-					BasketListData.get(i).get("QUANT"),
+			model1.addRow(new Object[] { 
+					BasketListData.get(i).get("MODEL_IMG1"), 
+					BasketListData.get(i).get("PRO_NM"),					
+					BasketListData.get(i).get("QUANT"), 
 					BasketListData.get(i).get("UP"),
-					BasketListData.get(i).get("PR"),
+					BasketListData.get(i).get("PR"), 
 					BasketListData.get(i).get("POINT"), });
 		}
-//      for (int i = 0; i < tProInfo.getRowCount(); i++) {
-//         ar.add(tProInfo.getValueAt(i, 4).toString());
-//      }
-//      for (int i = 0; i <  ar.size(); i++) {
-//         Double sum[] = new Double[ar.size()];
-//         sum[i] = Double.valueOf(ar.get(i));
-//         sum2 = sum2 + sum[i];
-//      }
 		pro_price = String.valueOf(sum2);
 		xProPrice.setText(pro_price);
+		xDiscout.setText(mb_disc_rt + "%");
+		disc_rt = Double.valueOf(ProDetail.mb_disc_rt) * 0.01;
+		price = sum2 -(sum2 * disc_rt);
+		xPrice.setText(String.valueOf(price));
+		
 	}
 
 	public Basket() {
+		mb_disc_rt = ProDetail.mb_disc_rt;
+		System.out.println(mb_disc_rt);
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		vProPrice = new JLabel("ÃÑ »óÇ°°¡°İ");
-		vDiscout = new JLabel("µî±Ş ÇÒÀÎ");
-		vPrice = new JLabel("ÃÖÁ¾ ±İ¾×");
+		vProPrice = new JLabel("ì´ ìƒí’ˆê°€ê²©");
+		vDiscout = new JLabel("ë“±ê¸‰ í• ì¸");
+		vPrice = new JLabel("ìµœì¢… ê¸ˆì•¡");
 
 		xProPrice = new JTextField(10);
 		xDiscout = new JTextField(10);
+		xDiscout.setEnabled(false);
+		xDiscout.setText(mb_disc_rt + "%");
 		xPrice = new JTextField(10);
 
 		tProInfo = new JTable(model1);
 		scrollpane1 = new JScrollPane(tProInfo);
 		scrollpane1.setPreferredSize(new Dimension(750, 100));
 
-		BtOrder = new JButton("ÁÖ¹®ÇÏ±â");
+		BtOrder = new JButton("ì£¼ë¬¸í•˜ê¸°");
 //        BtOrder.setPreferredSize(new Dimension(130,28));
-		BtShopping = new JButton("¼îÇÎ °è¼ÓÇÏ±â");
+		BtShopping = new JButton("ì‡¼í•‘ ê³„ì†í•˜ê¸°");
 		BtShopping.setPreferredSize(new Dimension(130, 28));
-		BtDelBasket = new JButton("Àå¹Ù±¸´Ï ºñ¿ì±â");
+		BtShopping.addActionListener(this);
+		BtDelBasket = new JButton("ì¥ë°”êµ¬ë‹ˆ ë¹„ìš°ê¸°");
+		BtDelBasket.addActionListener(this);
 		BtDelBasket.setPreferredSize(new Dimension(130, 28));
 //        regist.addActionListener(this);
 
@@ -118,7 +124,7 @@ public class Basket extends JFrame implements MouseListener {
 
 	private void BasketView() {
 
-		setTitle("Àå¹Ù±¸´Ï");
+		setTitle("ì¥ë°”êµ¬ë‹ˆ");
 
 //        gridbagconstraints.ipadx = 7;
 //        
@@ -148,12 +154,12 @@ public class Basket extends JFrame implements MouseListener {
 	private void gridbagAdd(Component c, int x, int y, int w, int h) {
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c);
 
@@ -175,32 +181,11 @@ public class Basket extends JFrame implements MouseListener {
 
 			del.addActionListener(e -> {
 				String pro_nm = (String) tProInfo.getValueAt(tProInfo.getSelectedRow(), 1);
-				System.out.println("*");
-				check = JOptionPane.showConfirmDialog(null, "ÇØ´ç »óÇ°À» Àå¹Ù±¸´Ï¿¡¼­ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î?", "»èÁ¦ È®ÀÎ",
-						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
 				BasketData.deleteBasket(tProInfo.getValueAt(row, 1).toString());
 				model1.removeRow(row);
 				getData(BasketData.selectBasket());
 
-//            sum2 = sum2-Double.valueOf(tProInfo.getValueAt(row, 4).toString());
-//            for (int i = 0; i < tProInfo.getRowCount(); i++) {
-//               if (check == 0 && pro_nm.equals(tProInfo.getValueAt(i, 1))) {
-//                  model1.removeRow(i);
-//                  BasketData.deleteBasket(pro_nm);
-//               }
-//            }
-
-//        	ar2 = new ArrayList<String>();
-//            for (int i = 0; i < tProInfo.getRowCount(); i++) {
-//               ar2.add(tProInfo.getValueAt(i, 4).toString());
-//            }
-//            for (int i = 0; i < ar2.size(); i++) {
-//               Double sum2[] = new Double[ar2.size()];
-//               sum2[i] = Double.valueOf(ar2.get(i));
-//               sum3 = sum3 + sum2[i];
-//            }
-//            pro_price2 = String.valueOf(sum2);
-//            xProPrice.setText(pro_price2);
 			});
 		}
 
@@ -258,14 +243,22 @@ public class Basket extends JFrame implements MouseListener {
 
 	}
 
-//   DefaultTableCellRenderer dcr = new DefaultTableCellRenderer() {
-//      public Component getTableCellRendererComponent // ¼¿·»´õ·¯
-//      (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-//         JCheckBox check = new JCheckBox();
-//         check.setSelected(((Boolean) value).booleanValue());
-//         check.setHorizontalAlignment(JLabel.CENTER);
-//         return check;
-//      }
-//   };
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == BtShopping) {
+			new home_user();
+		}else if (e.getSource() == BtDelBasket) {
+			int check = JOptionPane.showConfirmDialog(null, "ì¥ë°”êµ¬ë‹ˆì— ë‹´ê¸´ ëª¨ë“  ìƒí’ˆì„ ì§€ìš°ì‹œê² ìŠµë‹ˆê¹Œ?", "", JOptionPane.YES_NO_OPTION, 
+					JOptionPane.INFORMATION_MESSAGE);
+			if(check == 0) {
+				cust_num = Login.user_num;
+				BasketData.deleteBasket2(cust_num);
+				model1.removeRow(row);
+				getData(BasketData.selectBasket());
+
+			}
+		}
+		
+	}
 
 }

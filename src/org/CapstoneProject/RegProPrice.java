@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -111,12 +113,12 @@ public class RegProPrice extends JPanel implements ActionListener {
 		vProPrice2 = new JLabel("상품단가");
 		vProSell = new JLabel("상품판매량");
 		vProSellPrice = new JLabel("상품 매출액");
-		vexPrice = new JLabel("기존단가");
-		vexStDate = new JLabel("기존시작일자");
-		vexEndDate = new JLabel("기존종료일자");
+		vexPrice = new JLabel("적용단가");
+		vexStDate = new JLabel("적용시작일");
+		vexEndDate = new JLabel("적용종료일");
 		vModPrice = new JLabel("변경단가");
-		vModStDate = new JLabel("변경시작일자");
-		vModEndDate = new JLabel("변경종료일자");
+		vModStDate = new JLabel("변경시작일");
+		vModEndDate = new JLabel("변경종료일");
 
 		
 		BtPro = new JButton("상품명 가져오기");
@@ -220,3 +222,4 @@ public class RegProPrice extends JPanel implements ActionListener {
 
 	}
 }
+

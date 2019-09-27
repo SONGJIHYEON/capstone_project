@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -37,6 +39,7 @@ public class ProImage extends JPanel implements MouseListener {
 	private File f;
 	JPanel Pimg;
 	JScrollPane scroll;
+	static public String fileName;
 
 	public static String imgData, imgData2, img, img2, nicknameData, nickname, ctgrData, ctgr, priceData, price,
 			modelnameData, modelname;
@@ -80,7 +83,9 @@ public class ProImage extends JPanel implements MouseListener {
 	}
 
 	public static ArrayList getData5(List<Map<String, Serializable>> ImageListData) {
-		arSize.add("[ÇÊ¼ö] ¼±ÅÃ");
+		arSize = new ArrayList<String>(); 
+		
+		arSize.add("[í•„ìˆ˜] ì„ íƒ");
 		arSize.add("----------");
 
 		for (int i = 0; i < ImageListData.size(); i++) {
@@ -102,6 +107,11 @@ public class ProImage extends JPanel implements MouseListener {
 
 	public static String getData7(List<Map<String, Serializable>> ImageListData) {
 
+		if(ImageData.error == 1) {
+			JOptionPane.showMessageDialog(null, "ë“±ë¡ëœ ìƒí’ˆì´ ì—†ìŠµë‹ˆë‹¤.", "",
+					JOptionPane.ERROR_MESSAGE);
+			System.exit(0);
+		}
 		price = "";
 		price += ImageListData.get(0).get("UP").toString();
 
@@ -125,6 +135,20 @@ public class ProImage extends JPanel implements MouseListener {
 		}
 
 //		return 0;
+	}
+	
+	public static void getData10(List<Map<String, Serializable>> ImageListData) {
+
+		if(ImageListData.get(0).get("up").toString().equals("0")){
+			JOptionPane.showMessageDialog(null, "ì¤€ë¹„ì¤‘ì¸ ìƒí’ˆì…ë‹ˆë‹¤.", "",
+					JOptionPane.ERROR_MESSAGE);
+		}else {
+            priceData = getData7(ImageData.selectBasicPrice(fileName));
+            ProDetail prod = new ProDetail();
+			JOptionPane.showMessageDialog(null, "ì‚¬ì´ì¦ˆì™€ ìƒ‰ìƒì„ ë°˜ë“œì‹œ ì„ íƒí•˜ì—¬ì£¼ì„¸ìš”. ê° ì‚¬ì´ì¦ˆì™€ ìƒ‰ìƒë³„ë¡œ ê°€ê²©ì´ ìƒì´í•©ë‹ˆë‹¤.", "",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
+		return;
 	}
 
 	public ProImage() {
@@ -181,28 +205,24 @@ public class ProImage extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getSource() == ImgLabels[0]) {
-			String fileName = f.getName();
-			int pos = fileName.lastIndexOf(".");
-			String fileName2 = fileName.substring(0, pos);
-			System.out.println(fileName2);
-
-			imgData = getData(ImageData.selectImage(fileName2));
-			imgData2 = getData2(ImageData.selectImage(fileName2));
-			nicknameData = getData3(ImageData.selectNickname(fileName2));
-			ctgrData = getData4(ImageData.selectCtgr(fileName2));
-			sizeData = getData5(ImageData.selectSize(fileName2));
-			colorData = getData6(ImageData.selectColor(fileName2));
-			priceData = getData7(ImageData.selectBasicPrice(fileName2));
-			modelnameData = getData8(ImageData.selectModelname(fileName2));
-
-			ProDetail prod = new ProDetail();
-			JOptionPane.showMessageDialog(null, "»çÀÌÁî¿Í »ö»óÀ» ¹İµå½Ã ¼±ÅÃÇÏ¿©ÁÖ¼¼¿ä. °¢ »çÀÌÁî¿Í »ö»óº°·Î °¡°İÀÌ »óÀÌÇÕ´Ï´Ù.", "",
-					JOptionPane.INFORMATION_MESSAGE);
-
+		for(int i = 0; i < arModelImg.size() ;i++) {
+	         if (e.getSource() == ImgLabels[i]) {
+	            fileName = arModelImg.get(i).toString();
+//	            int pos = fileName.lastIndexOf(".");
+//	            String fileName2 = fileName.substring(0, pos);
+	            System.out.println(fileName);
+	         
+	            imgData = getData(ImageData.selectImage(fileName));
+	            imgData2 = getData2(ImageData.selectImage(fileName));
+	            nicknameData = getData3(ImageData.selectNickname(fileName));
+	            ctgrData = getData4(ImageData.selectCtgr(fileName));
+	            sizeData = getData5(ImageData.selectSize(fileName));
+	            colorData = getData6(ImageData.selectColor(fileName));
+	            modelnameData = getData8(ImageData.selectModelname(fileName));
+	            getData10(ImageData.countBasicPrice(fileName));
+	        }
 		}
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -229,3 +249,4 @@ public class ProImage extends JPanel implements MouseListener {
 
 	}
 }
+

@@ -1,3 +1,4 @@
+  
 package org.CapstoneProject;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -19,14 +20,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class Mypage extends JFrame implements ActionListener {   
+public class Mypage extends JPanel implements ActionListener {   
 	private JLabel vMypage, vAllPoint, vUsedPoint, vSerPoint, vAllMoney, v1, v2, v3, v4, v5, vGrade, vDiscount;  
 	         
 	private JTextField xGrade1, xGrade2, xDiscount, xAllPoint, xUsedPoint, xSerPoint, xAllMoney;
 	   
-	private String[] col1 = {"ºÎ¼­¸í", "ºÎ¼­À§Ä¡"};      
-	private String[] col2 = {"ºÎ¼­¸í", "¼º¸í"};      
-	private String[] div = {"°ü¸®ÀÚ", "À¯Àú"}; // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+	private String[] col1 = {"ë¶€ì„œëª…", "ë¶€ì„œìœ„ì¹˜"};      
+	private String[] col2 = {"ë¶€ì„œëª…", "ì„±ëª…"};      
+	private String[] div = {"ê´€ë¦¬ì", "ìœ ì €"}; // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 	         
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);      
 	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -41,7 +42,7 @@ public class Mypage extends JFrame implements ActionListener {
 	private JComboBox<String> cbSel;      
 	         
 	GridBagLayout gridbaglayout;      
-	GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+	GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
 	         
 	public Mypage() {
 		user_grade = Login.user_grade;
@@ -51,15 +52,15 @@ public class Mypage extends JFrame implements ActionListener {
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();       
 		
-		vMypage = new JLabel("¸¶ÀÌ ÆäÀÌÁö");
-		vAllPoint = new JLabel("ÃÑ Æ÷ÀÎÆ®");
-		vUsedPoint = new JLabel("»ç¿ëÇÑ Æ÷ÀÎÆ®");
-		vSerPoint = new JLabel("»ç¿ë°¡´É Æ÷ÀÎÆ®");
-		vAllMoney = new JLabel("ÃÑ ÁÖ¹®±İ¾×");
-		v1 = new JLabel("°í°´´ÔÀº ÇöÀç");
-		v2 = new JLabel("µî±Ş ÀÔ´Ï´Ù.");
-		v3 = new JLabel("»óÇ° ±¸¸Å½Ã");
-		v4 = new JLabel("Ãß°¡ÇÒÀÎÇıÅÃÀ» ¹ŞÀ¸½Ç ¼ö ÀÖ½À´Ï´Ù");
+		vMypage = new JLabel("ë§ˆì´ í˜ì´ì§€");
+		vAllPoint = new JLabel("ì´ í¬ì¸íŠ¸");
+		vUsedPoint = new JLabel("ì‚¬ìš©í•œ í¬ì¸íŠ¸");
+		vSerPoint = new JLabel("ì‚¬ìš©ê°€ëŠ¥ í¬ì¸íŠ¸");
+		vAllMoney = new JLabel("ì´ ì£¼ë¬¸ê¸ˆì•¡");
+		v1 = new JLabel("ê³ ê°ë‹˜ì€ í˜„ì¬");
+		v2 = new JLabel("ë“±ê¸‰ ì…ë‹ˆë‹¤.");
+		v3 = new JLabel("ìƒí’ˆ êµ¬ë§¤ì‹œ");
+		v4 = new JLabel("ì¶”ê°€í• ì¸í˜œíƒì„ ë°›ìœ¼ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤");
 		v5 = new JLabel(user_grade);
 		v5.setFont(new Font("", Font.BOLD, 20));
 	         
@@ -76,10 +77,10 @@ public class Mypage extends JFrame implements ActionListener {
 		xAllMoney = new JTextField(20);
 	    
         
-        BtChange = new JButton("³» Á¤º¸º¯°æ");
+        BtChange = new JButton("ë‚´ ì •ë³´ë³€ê²½");
         BtChange.addActionListener(this);
-        BtOrder = new JButton("ÁÖ¹® ³»¿ª");
-        BtPostView = new JButton("³» °Ô½Ã±Û º¸±â");
+        BtOrder = new JButton("ì£¼ë¬¸ ë‚´ì—­");
+        BtPostView = new JButton("ë‚´ ê²Œì‹œê¸€ ë³´ê¸°");
         
 //	         getDeptData(EmpData.selectDept());
 //	         getSvpData(EmpData.selectSpv());
@@ -88,7 +89,7 @@ public class Mypage extends JFrame implements ActionListener {
       }   
 	         
 	private void MypageView() {
-		setTitle("Login È­¸é");
+//		setTitle("Login í™”ë©´");
 	         
 	    gridbagconstraints.anchor = GridBagConstraints.WEST;
 //	    gridbagconstraints.ipadx = 7;
@@ -124,18 +125,18 @@ public class Mypage extends JFrame implements ActionListener {
         gridbagAdd(v2, 3, 2, 2, 1);
         gridbagAdd(v4, 3, 3, 2, 1);
 
-        setExtendedState(MAXIMIZED_BOTH);
+//        setExtendedState(MAXIMIZED_BOTH);
 	    setVisible(true);
 	}
 	private void gridbagAdd(Component c, int x, int y, int w, int h) {   
 		gridbagconstraints.gridx = x;
         gridbagconstraints.gridy = y; 
-	            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+	            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 	         
         gridbagconstraints.gridwidth  = w;
         gridbagconstraints.gridheight = h;
 	               
-        gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+        gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 	         
         add(c);   
 	         
@@ -153,4 +154,3 @@ public class Mypage extends JFrame implements ActionListener {
 	}   
 }
 	         
-

@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -23,20 +25,20 @@ public class NoticeData {
 
 	public static List<Map<String, Serializable>> NoticeListData = new ArrayList<Map<String, Serializable>>();
 
-	/* Notice°Ô½Ã±ÛÀÌ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* Noticeê²Œì‹œê¸€ì´ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initNoticeData( ) {
 
 	}
 
 	static void createN(String Title, String content, String writer ) {
-		quary = "INSERT INTO POST_MSG VALUES (SEQ_NPOST_NUM.NEXTVAL, '°øÁö»çÇ×', '"+Title+"', to_char(sysdate, 'yyyy-mm-dd'), '"+content+"', "
+		quary = "INSERT INTO POST_MSG VALUES (SEQ_NPOST_NUM.NEXTVAL, 'ê³µì§€ì‚¬í•­', '"+Title+"', to_char(sysdate, 'yyyy-mm-dd'), '"+content+"', "
 				+ " null, null, null, '"+writer+"')";
 
 		try {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -51,7 +53,7 @@ public class NoticeData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -61,7 +63,7 @@ public class NoticeData {
 
 		quary = " SELECT  POST_MSG_NUM, POST_MSG_TIT,WRITER_NM, WRT_DATE "
 				+ "FROM  POST_MSG "
-				+ "WHERE POST_BRD_TP = '°øÁö»çÇ×' "
+				+ "WHERE POST_BRD_TP = 'ê³µì§€ì‚¬í•­' "
 				+ "ORDER BY WRT_DATE ASC";
 
 		NoticeListData.clear();
@@ -85,14 +87,14 @@ public class NoticeData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
 		return NoticeListData;
 
 	}
-	// Notice »ó¼¼Á¤º¸
+	// Notice ìƒì„¸ì •ë³´
 	static List<Map<String, Serializable>> searchNotice(String POST_NUM) {
 			
 			quary = "select POST_MSG_TIT, CUST_NM, WRT_DATE, POST_MSG_CON "
@@ -121,7 +123,7 @@ public class NoticeData {
 				
 				
 			} catch (SQLException sqle) {
-				System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+				System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 				sqle.printStackTrace();
 			}
 			
@@ -155,7 +157,7 @@ public class NoticeData {
 			
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		

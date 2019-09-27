@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -31,26 +32,26 @@ public class ModelCtgr extends JFrame implements MouseListener, ActionListener {
 
 //	private JPasswordField xMemPw1, xMemPw2;
 
-//  private String[] div = {"Á¤±ÔÁ÷", "ÀÓ½ÃÁ÷", "°è¾àÁ÷"};      // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
-	private String[] col1 = {"1Â÷ ºĞ·ù"};     
+//  private String[] div = {"ì •ê·œì§", "ì„ì‹œì§", "ê³„ì•½ì§"};      // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
+	private String[] col1 = {"1ì°¨ ë¶„ë¥˜"};     
 	private Object[][] col1_1 ={
-			{"»óÀÇ"}, {"ÇÏÀÇ"}, {"¼ÅÃ÷"}, {"¾Æ¿ìÅÍ"}, {"½Å¹ß"}   
+			{"ìƒì˜"}, {"í•˜ì˜"}, {"ì…”ì¸ "}, {"ì•„ìš°í„°"}, {"ì‹ ë°œ"}   
 	};
-	private String[] col2 = {"2Â÷ ºĞ·ù"};  
+	private String[] col2 = {"2ì°¨ ë¶„ë¥˜"};  
 	private Object[][] col2_1 ={
-			{"¸ÇÅõ¸Ç"}, {"¹İÆÈ"}, {"±äÆÈ"}, {"´ÏÆ®"}, {"ÈÄµå"}   
+			{"ë§¨íˆ¬ë§¨"}, {"ë°˜íŒ”"}, {"ê¸´íŒ”"}, {"ë‹ˆíŠ¸"}, {"í›„ë“œ"}   
 	};
 	private Object[][] col2_2 ={
-			{"Ã»¹ÙÁö"}, {"½½·¢½º"}, {"¸é¹ÙÁö"}, {"¿îµ¿º¹"}, {"¹İ¹ÙÁö"}   
+			{"ì²­ë°”ì§€"}, {"ìŠ¬ë™ìŠ¤"}, {"ë©´ë°”ì§€"}, {"ìš´ë™ë³µ"}, {"ë°˜ë°”ì§€"}   
 	};
 	private Object[][] col2_3 ={
-			{"ÄÚÆ®"}, {"°¡µğ°Ç"}, {"Á¶³¢"}, {"Áı¾÷"}, {"ÆĞµù"}, {"Á¡ÆÛ"}, {"¾ß»ó"}, {"ÀçÅ¶"}  
+			{"ì½”íŠ¸"}, {"ê°€ë””ê±´"}, {"ì¡°ë¼"}, {"ì§‘ì—…"}, {"íŒ¨ë”©"}, {"ì í¼"}, {"ì•¼ìƒ"}, {"ì¬í‚·"}  
 	};
 	private Object[][] col2_4 ={
-			{"¹İÆÈ¼ÅÃ÷"}, {"Ã¼Å©"}, {"±äÆÈ¼ÅÃ÷"}, {"½ºÆ®¶óÀÌÇÁ"}
+			{"ë°˜íŒ”ì…”ì¸ "}, {"ì²´í¬"}, {"ê¸´íŒ”ì…”ì¸ "}, {"ìŠ¤íŠ¸ë¼ì´í”„"}
 	};
 	private Object[][] col2_5 ={
-			{"½ºÆ¼Ä¿Áî"}, {"¿îµ¿È­"}, {"½½¸®ÆÛ"}, {"·ÎÆÛ"}, {"±¸µÎ"}, {"¿öÄ¿"}, {"ºÎÃ÷"}, {"»÷µé"}     
+			{"ìŠ¤í‹°ì»¤ì¦ˆ"}, {"ìš´ë™í™”"}, {"ìŠ¬ë¦¬í¼"}, {"ë¡œí¼"}, {"êµ¬ë‘"}, {"ì›Œì»¤"}, {"ë¶€ì¸ "}, {"ìƒŒë“¤"}     
 	};
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1_1, col1);  
@@ -93,39 +94,39 @@ public class ModelCtgr extends JFrame implements MouseListener, ActionListener {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints(); 
 		
-		vRegModel = new JLabel("¸ğµ¨µî·Ï");
+		vRegModel = new JLabel("ëª¨ë¸ë“±ë¡");
 		vRegModel.setPreferredSize(new Dimension(200,28));
-		vAdminModel = new JLabel("¸ğµ¨°Ë»ö");
+		vAdminModel = new JLabel("ëª¨ë¸ê²€ìƒ‰");
 		vAdminModel.setPreferredSize(new Dimension(200,28));
-		vModelCtgr = new JLabel("¸ğµ¨ºĞ·ù");
+		vModelCtgr = new JLabel("ëª¨ë¸ë¶„ë¥˜");
 		vModelCtgr.setPreferredSize(new Dimension(200,28));
-		vRegModel2 = new JLabel("¸ğµ¨ºĞ·ù");
+		vRegModel2 = new JLabel("ëª¨ë¸ë¶„ë¥˜");
 		vRegModel2.setPreferredSize(new Dimension(200,28));
-		vRegPro = new JLabel("»óÇ°µî·Ï");
+		vRegPro = new JLabel("ìƒí’ˆë“±ë¡");
 		vRegPro.setPreferredSize(new Dimension(200,28));
-		vAdminPro = new JLabel("»óÇ°°ü¸®");
+		vAdminPro = new JLabel("ìƒí’ˆê´€ë¦¬");
 		vAdminPro.setPreferredSize(new Dimension(200,28));
-		vProUp = new JLabel("»óÇ°´Ü°¡º¯°æ");
+		vProUp = new JLabel("ìƒí’ˆë‹¨ê°€ë³€ê²½");
         vProUp.setPreferredSize(new Dimension(200,28));
         
 
-		BtBussMan = new JButton("°Å·¡°ü¸®");
+		BtBussMan = new JButton("ê±°ë˜ê´€ë¦¬");
 		BtBussMan.setPreferredSize(new Dimension(200,28));
-		BtProMan = new JButton("¸ğµ¨/»óÇ°°ü¸®");
+		BtProMan = new JButton("ëª¨ë¸/ìƒí’ˆê´€ë¦¬");
 		BtProMan.setPreferredSize(new Dimension(200,28));
 //        cancel.addActionListener(this);
-		BtOdMan = new JButton("ÁÖ¹®°ü¸®");
+		BtOdMan = new JButton("ì£¼ë¬¸ê´€ë¦¬");
 		BtOdMan.setPreferredSize(new Dimension(200,28));
-		BtMbMan = new JButton("È¸¿ø°ü¸®");
+		BtMbMan = new JButton("íšŒì›ê´€ë¦¬");
 		BtMbMan.setPreferredSize(new Dimension(200,28));
-		BtEmpMan = new JButton("Á÷¿ø°ü¸®");
+		BtEmpMan = new JButton("ì§ì›ê´€ë¦¬");
 		BtEmpMan.setPreferredSize(new Dimension(200,28));
-		BtImg = new JButton("Ã·ºÎÇÏ±â");
-//		BtSearch = new JButton("°Ë»ö");
+		BtImg = new JButton("ì²¨ë¶€í•˜ê¸°");
+//		BtSearch = new JButton("ê²€ìƒ‰");
 //		BtSearch.setPreferredSize(new Dimension(100,28));
-		BtReg = new JButton("µî·Ï");
+		BtReg = new JButton("ë“±ë¡");
 		BtReg.addActionListener(this);
-		BtCancel = new JButton("´İ±â");
+		BtCancel = new JButton("ë‹«ê¸°");
 //		
 		tCtgr1 = new JTable(model1);
 		tCtgr1.addMouseListener(this);
@@ -146,7 +147,7 @@ public class ModelCtgr extends JFrame implements MouseListener, ActionListener {
 	private void ModelCtgrView() {
 
 
-		setTitle("È¨ÆäÀÌÁö °ü¸®ÀÚ");
+		setTitle("í™ˆí˜ì´ì§€ ê´€ë¦¬ì");
 
 
 		setLayout(gbl);
@@ -186,13 +187,13 @@ public class ModelCtgr extends JFrame implements MouseListener, ActionListener {
 		
 		gbc.gridx = x;
 		gbc.gridy = y; 
-		//°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+		//ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 		
 		gbc.gridwidth  = w;
 		gbc.gridheight = h;
 		
 		
-		gbl.setConstraints(c, gbc); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+		gbl.setConstraints(c, gbc); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 		
 		add(c);  
 		
@@ -304,3 +305,4 @@ public class ModelCtgr extends JFrame implements MouseListener, ActionListener {
 			}
 		}
 }
+

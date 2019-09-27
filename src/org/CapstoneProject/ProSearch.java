@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -36,10 +38,10 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 	private JLabel vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelExp, vModelSize;
 	private JTextField xModelNm, xModelCode, xModelCtgr1, xModelCtgr2, xModelExp, xModelSize, xSearch;
 	
-	private String[] col1 = {"»óÇ°¹øÈ£", "»óÇ°¸í", "»çÀÌÁî", "»ö»ó"};      
-	private String[] search = {"»óÇ°¸í", "»çÀÌÁî", "»ö»ó"};    
+	private String[] col1 = {"ìƒí’ˆë²ˆí˜¸", "ìƒí’ˆëª…", "ì‚¬ì´ì¦ˆ", "ìƒ‰ìƒ"};      
+	private String[] search = {"ìƒí’ˆëª…", "ì‚¬ì´ì¦ˆ", "ìƒ‰ìƒ"};    
 	
-//  private String[] div = {"Á¤±ÔÁ÷", "ÀÓ½ÃÁ÷", "°è¾àÁ÷"};      // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+//  private String[] div = {"ì •ê·œì§", "ì„ì‹œì§", "ê³„ì•½ì§"};      // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 //	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
 
 	private JTable tModelInfo;    
@@ -71,13 +73,13 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
         scrollpane1 = new JScrollPane(tModelInfo);
         scrollpane1.setPreferredSize(new Dimension(700, 300));
 		
-		BtSearch = new JButton("°Ë»ö");
+		BtSearch = new JButton("ê²€ìƒ‰");
 		BtSearch.addActionListener(this);
 		BtSearch.setPreferredSize(new Dimension(100,28));
-		BtReg = new JButton("µî·Ï");
+		BtReg = new JButton("ë“±ë¡");
 		BtReg.addActionListener(this);
 		BtReg.setPreferredSize(new Dimension(100,28));
-//		BtCancel = new JButton("´İ±â");
+//		BtCancel = new JButton("ë‹«ê¸°");
 		
 		
 		getData(ProData.selectPro());
@@ -102,7 +104,7 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 
 //		setExtendedState(MAXIMIZED_BOTH);
 
-		setTitle("È¨ÆäÀÌÁö °ü¸®ÀÚ");
+		setTitle("í™ˆí˜ì´ì§€ ê´€ë¦¬ì");
 
 
 		setLayout(gbl);
@@ -136,13 +138,13 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 		
 		gbc.gridx = x;
 		gbc.gridy = y; 
-		//°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+		//ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 		
 		gbc.gridwidth  = w;
 		gbc.gridheight = h;
 		
 		
-		gbl.setConstraints(c, gbc); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+		gbl.setConstraints(c, gbc); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 		
 		add(c);   
 		
@@ -163,13 +165,13 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 		
 		if(e.getSource() == BtSearch) {
 			String search = xSearch.getText();
-			if(CbSearch.getSelectedItem() == "»óÇ°¸í") {
+			if(CbSearch.getSelectedItem() == "ìƒí’ˆëª…") {
 				model1.setRowCount(0);
 				getData(ProData.searchPro1(search));
-			} else if(CbSearch.getSelectedItem() == "»çÀÌÁî") {
+			} else if(CbSearch.getSelectedItem() == "ì‚¬ì´ì¦ˆ") {
 				model1.setRowCount(0);
 				getData(ProData.searchPro2(search));
-			} else if(CbSearch.getSelectedItem() == "»ö»ó") {
+			} else if(CbSearch.getSelectedItem() == "ìƒ‰ìƒ") {
 				model1.setRowCount(0);
 				getData(ProData.searchPro3(search));
 			}
@@ -218,5 +220,3 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 	}   
 }	
 
-	
-			

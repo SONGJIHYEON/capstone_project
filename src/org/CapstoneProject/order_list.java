@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -15,13 +17,13 @@ public class order_list extends JFrame {
          
    private JTextField xIdfield, xPwfield; 
               
-   private String[] div = {"°ü¸®ÀÚ", "À¯Áö"};      // ·Î±×ÀÎ À¯Çü
+   private String[] div = {"ê´€ë¦¬ì", "ìœ ì§€"};      // ë¡œê·¸ì¸ ìœ í˜•
          
    private JButton Login, cancel2, cancel3, cancel4;      
    private JComboBox<String> cbEmpClass;      
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public order_list() {      
          
@@ -32,22 +34,22 @@ public class order_list extends JFrame {
          
          vLogin = new JLabel("LOGIN");
          
-         vLogtext = new JLabel("È¸¿ø°¡ÀÔ ÇÏ½Ã¸é ´Ù¾çÇÑ ÇıÅÃÀ» Á¦°ø¹ŞÀ» ¼ö ÀÖ½À´Ï´Ù.");
+         vLogtext = new JLabel("íšŒì›ê°€ì… í•˜ì‹œë©´ ë‹¤ì–‘í•œ í˜œíƒì„ ì œê³µë°›ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
          
          xIdfield = new JTextField(15);
          xPwfield = new JTextField(15);
-         vQuestion1 = new JLabel("¾ÆÁ÷ È¸¿øÀÌ ¾Æ´Ï½Å°¡¿ä?");
-         vQuestion2 = new JLabel("¾ÆÀÌµğ ºñ¹Ğ¹øÈ£¸¦ ÀØÀ¸¼Ì³ª¿ä?");
-         vQuestion3 = new JLabel("ºñÈ¸¿øÀ¸·Î ÀÌ¿ëÇÏ½Ã°Ú½À´Ï±î?");
+         vQuestion1 = new JLabel("ì•„ì§ íšŒì›ì´ ì•„ë‹ˆì‹ ê°€ìš”?");
+         vQuestion2 = new JLabel("ì•„ì´ë”” ë¹„ë°€ë²ˆí˜¸ë¥¼ ìŠìœ¼ì…¨ë‚˜ìš”?");
+         vQuestion3 = new JLabel("ë¹„íšŒì›ìœ¼ë¡œ ì´ìš©í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
         
          cbEmpClass = new JComboBox<String>(div);
          
-         Login = new JButton("·Î±×ÀÎ");
+         Login = new JButton("ë¡œê·¸ì¸");
 //         regist.addActionListener(this);
 //         cancel.addActionListener(this);
-         cancel2 = new JButton("È¸¿ø°¡ÀÔ");
-         cancel3 = new JButton("ID/PW Ã£±â");
-         cancel4 = new JButton("ºñÈ¸¿ø Á¢¼Ó");
+         cancel2 = new JButton("íšŒì›ê°€ì…");
+         cancel3 = new JButton("ID/PW ì°¾ê¸°");
+         cancel4 = new JButton("ë¹„íšŒì› ì ‘ì†");
          
          
 //         getDeptData(EmpData.selectDept());
@@ -57,7 +59,7 @@ public class order_list extends JFrame {
          
    private void EmpRegisterView() {      
          
-         setTitle("·Î±×ÀÎÈ­¸é");
+         setTitle("ë¡œê·¸ì¸í™”ë©´");
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
          gridbagconstraints.ipadx = 7;
@@ -92,13 +94,13 @@ public class order_list extends JFrame {
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          
@@ -109,3 +111,4 @@ public class order_list extends JFrame {
       }   
          
 }
+

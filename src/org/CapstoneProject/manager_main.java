@@ -1,12 +1,6 @@
 package org.CapstoneProject;
 
 import java.awt.*;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -34,538 +28,544 @@ import javax.swing.border.LineBorder;
 import org.CapstoneProject.RegPro;
 
 public class manager_main extends JFrame implements ActionListener, MouseListener {
-   
-   static JPanel menu_b = new JPanel();
-   
-   Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-   
-   JMenuBar MenuBar = new JMenuBar();
-   //∞≈∑°√≥ ∏ﬁ¥∫
-   JMenu Mn_corr = new JMenu("    ∞≈∑°√≥    ");
-   JMenuItem corr_look = new JMenuItem("   ∞≈∑°√≥¡∂»∏  ");
-   JMenuItem corr_regist = new JMenuItem("   ∞≈∑°√≥µÓ∑œ  ");
-   //ªÛ«∞ ∏ﬁ¥∫
-   JMenu Mn_pro = new JMenu("     ªÛ«∞     ");
-   JMenuItem model_look = new JMenuItem(" ∏µ®¡∂»∏  ");
-   JMenuItem model_regist = new JMenuItem(" ∏µ®µÓ∑œ  ");
-   JMenuItem pro_look = new JMenuItem(" ªÛ«∞¡∂»∏  ");
-   JMenuItem pro_regist = new JMenuItem(" ªÛ«∞µÓ∑œ  ");
-   JMenuItem pro_up_rec = new JMenuItem(" ªÛ«∞¥‹∞°∞¸∏Æ");
-   
-   //¡÷πÆ ∏ﬁ¥∫ 
-   JMenu Mn_Od = new JMenu("     ¡÷πÆ     ");
-   JMenuItem Od_deposit = new JMenuItem("   ≈Î¿ÂπÃ¿‘±› ");
-   JMenuItem Od_pre = new JMenuItem("   ªÛ«∞¡ÿ∫Ò¡ﬂ ");
-   JMenuItem Od_change = new JMenuItem(" ±≥»Ø");
-   JMenuItem Od_refund = new JMenuItem(" »Ø∫“");
-   JMenuItem Od_cancel = new JMenuItem(" √Îº“");
-   //ªÁø¯ ∏ﬁ¥∫
-   JMenu Mn_Emp = new JMenu("     ªÁø¯     ");
-   JMenuItem Emp_look = new JMenuItem("    ªÁø¯¡∂»∏   ");
-   JMenuItem Emp_regist = new JMenuItem("    ªÁø¯µÓ∑œ   ");
-   JMenuItem Emp_modify = new JMenuItem("    ªÁø¯ºˆ¡§   ");
-   //»∏ø¯ ∏ﬁ¥∫
-   JMenu Mn_Mb = new JMenu("     »∏ø¯     ");
-   JMenuItem Mb_look = new JMenuItem("    »∏ø¯¡∂»∏   ");
-   JMenuItem Mb_grade = new JMenuItem("    µÓ±ﬁ∞¸∏Æ   ");
-   //¿Ã∫•∆Æ
-   
-   JMenu Mn_EVT = new JMenu("    ¿Ã∫•∆Æ    ");
-   JMenuItem EVT_look = new JMenuItem("   ¿Ã∫•∆Æ¡∂»∏  ");
-   JMenuItem EVT_regist = new JMenuItem("   ¿Ã∫•∆ÆµÓ∑œ  ");
-   
-   JMenu Close = new JMenu(" ¥›±‚ ");
-   JMenu Home = new JMenu(" »® ");
-   
-   BufferedImage img = null;
-   
+
+	static JPanel menu_b = new JPanel();
+
+	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+	Container win = getContentPane();
+	
+	static JPanel N_A = new Notice_admin();
+	static String click = "H";
+
+	JMenuBar MenuBar = new JMenuBar();
+	// Í±∞ÎûòÏ≤ò Î©îÎâ¥
+	JMenu Mn_corr = new JMenu("    Í±∞ÎûòÏ≤ò    ");
+	JMenuItem corr_look = new JMenuItem("   Í±∞ÎûòÏ≤òÏ°∞Ìöå  ");
+	JMenuItem corr_regist = new JMenuItem("   Í±∞ÎûòÏ≤òÎì±Î°ù  ");
+	// ÏÉÅÌíà Î©îÎâ¥
+	JMenu Mn_pro = new JMenu("     ÏÉÅÌíà     ");
+	JMenuItem model_look = new JMenuItem(" Î™®Îç∏Ï°∞Ìöå  ");
+	JMenuItem model_regist = new JMenuItem(" Î™®Îç∏Îì±Î°ù  ");
+	JMenuItem pro_look = new JMenuItem(" ÏÉÅÌíàÏ°∞Ìöå  ");
+	JMenuItem pro_regist = new JMenuItem(" ÏÉÅÌíàÎì±Î°ù  ");
+	JMenuItem pro_up_rec = new JMenuItem(" ÏÉÅÌíàÎã®Í∞ÄÍ¥ÄÎ¶¨");
+
+	// Ï£ºÎ¨∏ Î©îÎâ¥
+	JMenu Mn_Od = new JMenu("     Ï£ºÎ¨∏     ");
+	JMenuItem Od_list = new JMenuItem("    Ï£ºÎ¨∏Î™©Î°ù    ");
+	JMenuItem Od_deli = new JMenuItem("    Î∞∞ÏÜ°Î™©Î°ù    ");
+	JMenuItem Od_change = new JMenuItem("    ÍµêÌôò    ");
+	JMenuItem Od_refund = new JMenuItem("    ÌôòÎ∂à    ");
+	// ÏÇ¨Ïõê Î©îÎâ¥
+	JMenu Mn_Emp = new JMenu("     ÏÇ¨Ïõê     ");
+	JMenuItem Emp_look = new JMenuItem("    ÏÇ¨ÏõêÏ°∞Ìöå   ");
+	JMenuItem Emp_regist = new JMenuItem("    ÏÇ¨ÏõêÎì±Î°ù   ");
+	JMenuItem Emp_modify = new JMenuItem("    ÏÇ¨ÏõêÏàòÏ†ï   ");
+	// ÌöåÏõê Î©îÎâ¥
+	JMenu Mn_Mb = new JMenu("     ÌöåÏõê     ");
+	JMenuItem Mb_look = new JMenuItem("    ÌöåÏõêÏ°∞Ìöå   ");
+	JMenuItem Mb_grade = new JMenuItem("    Îì±Í∏âÍ∏∞Î≥∏Ï†ïÎ≥¥   ");
+	// Ïù¥Î≤§Ìä∏
+
+	JMenu Mn_EVT = new JMenu("    Ïù¥Î≤§Ìä∏    ");
+	JMenuItem EVT_look = new JMenuItem("   Ïù¥Î≤§Ìä∏Ï°∞Ìöå  ");
+	JMenuItem EVT_regist = new JMenuItem("   Ïù¥Î≤§Ìä∏Îì±Î°ù  ");
+
+	JMenu Mn_Post = new JMenu(" Í≤åÏãúÌåê ");
+	JMenuItem Post_Notice = new JMenuItem("Í≥µÏßÄÏÇ¨Ìï≠");
+	JMenuItem Post_QnA = new JMenuItem("QnA");
+	JMenuItem Post_Nomal = new JMenuItem("ÏùºÎ∞òÍ≤åÏãúÌåê");
+	
+
+	JMenu Close = new JMenu(" Î°úÍ∑∏ÏïÑÏõÉ ");
+
+	BufferedImage img = null;
+
 //   JButton Close;
-   
-   
-   GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag∑π¿Ãæ∆øÙø° ƒƒ∆˜≥Õ∆Æ¿« ¿ßƒ°∏¶ ¿‚æ∆¡÷¥¬ ø™«“
-         
-   public manager_main() {      
-      
-         gridbaglayout = new GridBagLayout();
-         gridbagconstraints = new GridBagConstraints();
-         
 
-         corr_look.addActionListener(this);
-         corr_regist.addActionListener(this);
-         model_look.addActionListener(this);
-         model_regist.addActionListener(this);
-         pro_look.addActionListener(this);
-         pro_regist.addActionListener(this);
-         pro_up_rec.addActionListener(this);
-         Od_deposit.addActionListener(this);
-         Od_pre.addActionListener(this);
-         Od_change.addActionListener(this);
-         Od_refund.addActionListener(this);
-         Od_cancel.addActionListener(this);
-         Emp_look.addActionListener(this);
-         Emp_regist.addActionListener(this);
-         Emp_modify.addActionListener(this);
-         Mb_look.addActionListener(this);
-         Mb_grade.addActionListener(this);
-         EVT_look.addActionListener(this);
-         EVT_regist.addActionListener(this);
-         Close.addMouseListener(this);
-         Home.addMouseListener(this);
-         
-         Mn_corr.add(corr_look);
-         Mn_corr.add(corr_regist);
-         
-         Mn_pro.add(model_look);
-         Mn_pro.add(model_regist);
-         Mn_pro.add(pro_look);
-         Mn_pro.add(pro_regist);
-         Mn_pro.add(pro_up_rec);
+	GridBagLayout gridbaglayout;
+	GridBagConstraints gridbagconstraints; // gridbagÎ†àÏù¥ÏïÑÏõÉÏóê Ïª¥Ìè¨ÎÑåÌä∏Ïùò ÏúÑÏπòÎ•º Ïû°ÏïÑÏ£ºÎäî Ïó≠Ìï†
 
-         Mn_Od.add(Od_deposit);
-         Mn_Od.add(Od_pre);
-         Mn_Od.add(Od_change);
-         Mn_Od.add(Od_refund);
-         Mn_Od.add(Od_cancel);
-         
-         Mn_Emp.add(Emp_look);
-         Mn_Emp.add(Emp_regist);
-         Mn_Emp.add(Emp_modify);
-         
-         Mn_Mb.add(Mb_look);
-         Mn_Mb.add(Mb_grade);
-         
-         Mn_EVT.add(EVT_look);
-         Mn_EVT.add(EVT_regist);
+	public manager_main() {
 
-         MenuBar.add(Home);
-         MenuBar.add(Mn_corr);
-         MenuBar.add(Mn_pro);
-         MenuBar.add(Mn_Od);
-         MenuBar.add(Mn_Emp);
-         MenuBar.add(Mn_Mb);
-         MenuBar.add(Mn_EVT);
-         MenuBar.add(Close);
-         
+		gridbaglayout = new GridBagLayout();
+		gridbagconstraints = new GridBagConstraints();
 
-         MenuBar.setBounds(0, 0, 1377, 40);
-         
-         menu_b.add(MenuBar);
-         
-//         Close = new JButton("¥›±‚");
-         
-         
-         
+		corr_look.addActionListener(this);
+		corr_regist.addActionListener(this);
+		model_look.addActionListener(this);
+		model_regist.addActionListener(this);
+		pro_look.addActionListener(this);
+		pro_regist.addActionListener(this);
+		pro_up_rec.addActionListener(this);
+		Od_list.addActionListener(this);
+		Od_deli.addActionListener(this);
+		Od_change.addActionListener(this);
+		Od_refund.addActionListener(this);
+		Emp_look.addActionListener(this);
+		Emp_regist.addActionListener(this);
+		Emp_modify.addActionListener(this);
+		Mb_look.addActionListener(this);
+		Mb_grade.addActionListener(this);
+		EVT_look.addActionListener(this);
+		EVT_regist.addActionListener(this);
+		Close.addMouseListener(this);
+		Mn_Post.addMouseListener(this);
+		Post_Notice.addMouseListener(this);
+		Post_QnA.addMouseListener(this);
+		Post_Nomal.addMouseListener(this);
+
+		Mn_corr.add(corr_look);
+		Mn_corr.add(corr_regist);
+
+		Mn_pro.add(model_look);
+		Mn_pro.add(model_regist);
+		Mn_pro.add(pro_look);
+		Mn_pro.add(pro_regist);
+		Mn_pro.add(pro_up_rec);
+
+		Mn_Od.add(Od_list);
+		Mn_Od.add(Od_deli);
+		Mn_Od.add(Od_change);
+		Mn_Od.add(Od_refund);
+
+		Mn_Emp.add(Emp_look);
+		Mn_Emp.add(Emp_regist);
+		Mn_Emp.add(Emp_modify);
+
+		Mn_Mb.add(Mb_look);
+		Mn_Mb.add(Mb_grade);
+
+		Mn_EVT.add(EVT_look);
+		Mn_EVT.add(EVT_regist);
+		
+		Mn_Post.add(Post_Notice);
+		Mn_Post.add(Post_QnA);
+		Mn_Post.add(Post_Nomal);
+
+		MenuBar.add(Mn_corr);
+		MenuBar.add(Mn_pro);
+		MenuBar.add(Mn_Od);
+		MenuBar.add(Mn_Emp);
+		MenuBar.add(Mn_Mb);
+		MenuBar.add(Mn_EVT);
+		MenuBar.add(Mn_Post);
+		MenuBar.add(Close);
+
+		MenuBar.setBounds(0, 0, 1377, 40);
+
+		menu_b.add(MenuBar);
+
+//         Close = new JButton("Îã´Í∏∞");
+
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
-//         setExtendedState(MAXIMIZED_BOTH);
-         EmpRegisterView();
-      }   
-         
-   private void EmpRegisterView() {      
-         
-         setTitle("∞¸∏Æ¿⁄ ∏ﬁ¿Œ»≠∏È");
-         setSize(d.width, d.height);
-         //≈©±‚º≥¡§
-         //∞≈∑°√≥ ∏ﬁ¥∫
-         MenuBar.setBounds(0, 0, 1050, 40);
-         Mn_corr.setBorder(new LineBorder(new Color(0, 0, 0)));
-         Mn_corr.setHorizontalAlignment(SwingConstants.CENTER);
-         Mn_corr.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
+         setExtendedState(MAXIMIZED_BOTH);
+		EmpRegisterView();
+	}
 
-         corr_look.setBackground(new Color(255, 255, 255));
-         corr_look.setHorizontalAlignment(SwingConstants.TRAILING);
-         corr_look.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+	private void EmpRegisterView() {
 
-         corr_regist.setBackground(new Color(255, 255, 255));
-         corr_regist.setHorizontalAlignment(SwingConstants.TRAILING);
-         corr_regist.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         //ªÛ«∞∏ﬁ¥∫
-         Mn_pro.setBorder(new LineBorder(new Color(0, 0, 0)));
-         Mn_pro.setHorizontalAlignment(SwingConstants.CENTER);
-         Mn_pro.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
-         
-         model_look.setBackground(new Color(255, 255, 255));
-         model_look.setHorizontalAlignment(SwingConstants.TRAILING);
-         model_look.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         model_regist.setBackground(new Color(255, 255, 255));
-         model_regist.setHorizontalAlignment(SwingConstants.TRAILING);
-         model_regist.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		setTitle("Í¥ÄÎ¶¨Ïûê Î©îÏù∏ÌôîÎ©¥");
+//		setSize(d.width, d.height);
+		// ÌÅ¨Í∏∞ÏÑ§Ï†ï
+		// Í±∞ÎûòÏ≤ò Î©îÎâ¥
+		MenuBar.setBounds(0, 0, d.width, 50);
+		Mn_corr.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_corr.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_corr.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_corr.setFont(new Font("Ìú¥Î®ºÎß§ÏßÅÏ≤¥", Font.BOLD, 25));
+		Mn_corr.addMouseListener(this);
 
-         pro_look.setBackground(new Color(255, 255, 255));
-         pro_look.setHorizontalAlignment(SwingConstants.TRAILING);
-         pro_look.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         pro_regist.setBackground(new Color(255, 255, 255));
-         pro_regist.setHorizontalAlignment(SwingConstants.TRAILING);
-         pro_regist.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         pro_up_rec.setBackground(new Color(255, 255, 255));
-         pro_up_rec.setHorizontalAlignment(SwingConstants.TRAILING);
-         pro_up_rec.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         //¡÷πÆ ∏ﬁ¥∫
-         Mn_Od.setBorder(new LineBorder(new Color(0, 0, 0)));
-         Mn_Od.setHorizontalAlignment(SwingConstants.CENTER);
-         Mn_Od.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
+		corr_look.setBackground(new Color(255, 255, 255));
+		corr_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		corr_look.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
 
-         Od_deposit.setBackground(new Color(255, 255, 255));
-         Od_deposit.setHorizontalAlignment(SwingConstants.TRAILING);
-         Od_deposit.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		corr_regist.setBackground(new Color(255, 255, 255));
+		corr_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		corr_regist.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
 
-         Od_pre.setBackground(new Color(255, 255, 255));
-         Od_pre.setHorizontalAlignment(SwingConstants.TRAILING);
-         Od_pre.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		// ÏÉÅÌíàÎ©îÎâ¥
+		Mn_pro.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_pro.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_pro.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_pro.setFont(new Font("Ìú¥Î®ºÎß§ÏßÅÏ≤¥", Font.BOLD, 25));
+		Mn_pro.addMouseListener(this);
 
-         Od_change.setBackground(new Color(255, 255, 255));
-         Od_change.setHorizontalAlignment(SwingConstants.TRAILING);
-         Od_change.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         Od_change.setHorizontalAlignment(JLabel.CENTER);
- 
-         Od_refund.setBackground(new Color(255, 255, 255));
-         Od_refund.setHorizontalAlignment(SwingConstants.TRAILING);
-         Od_refund.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         Od_refund.setHorizontalAlignment(JLabel.CENTER);
+		model_look.setBackground(new Color(255, 255, 255));
+		model_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		model_look.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
 
-         Od_cancel.setBackground(new Color(255, 255, 255));
-         Od_cancel.setHorizontalAlignment(SwingConstants.TRAILING);
-         Od_cancel.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         Od_cancel.setHorizontalAlignment(JLabel.CENTER);
-         
-         //ªÁø¯∏ﬁ¥∫
-         Mn_Emp.setBorder(new LineBorder(new Color(0, 0, 0)));
-         Mn_Emp.setHorizontalAlignment(SwingConstants.CENTER);
-         Mn_Emp.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
+		model_regist.setBackground(new Color(255, 255, 255));
+		model_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		model_regist.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
 
-         Emp_look.setBackground(new Color(255, 255, 255)); 
-         Emp_look.setHorizontalAlignment(SwingConstants.TRAILING);
-         Emp_look.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		pro_look.setBackground(new Color(255, 255, 255));
+		pro_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		pro_look.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
 
-         Emp_regist.setBackground(new Color(255, 255, 255));
-         Emp_regist.setHorizontalAlignment(SwingConstants.TRAILING);
-         Emp_regist.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         Emp_modify.setBackground(new Color(255, 255, 255));
-         Emp_modify.setHorizontalAlignment(SwingConstants.TRAILING);
-         Emp_modify.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         //»∏ø¯∏ﬁ¥∫
-         Mn_Mb.setBorder(new LineBorder(new Color(0, 0, 0)));
-         Mn_Mb.setHorizontalAlignment(SwingConstants.CENTER);
-         Mn_Mb.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
+		pro_regist.setBackground(new Color(255, 255, 255));
+		pro_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		pro_regist.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
 
-         Mb_look.setBackground(new Color(255, 255, 255));
-         Mb_look.setHorizontalAlignment(SwingConstants.TRAILING);
-         Mb_look.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		pro_up_rec.setBackground(new Color(255, 255, 255));
+		pro_up_rec.setHorizontalAlignment(SwingConstants.TRAILING);
+		pro_up_rec.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
 
-         Mb_grade.setBackground(new Color(255, 255, 255));
-         Mb_grade.setHorizontalAlignment(SwingConstants.TRAILING);
-         Mb_grade.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         //¿Ã∫•∆Æ∏ﬁ¥∫
-         Mn_EVT.setBorder(new LineBorder(new Color(0, 0, 0)));
-         Mn_EVT.setHorizontalAlignment(SwingConstants.CENTER);
-         Mn_EVT.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
+		// Ï£ºÎ¨∏ Î©îÎâ¥
+		Mn_Od.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Od.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_Od.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Od.setFont(new Font("Ìú¥Î®ºÎß§ÏßÅÏ≤¥", Font.BOLD, 25));
+		Mn_Od.addMouseListener(this);
 
-         EVT_look.setBackground(new Color(255, 255, 255));
-         EVT_look.setHorizontalAlignment(SwingConstants.TRAILING);
-         EVT_look.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
+		Od_list.setBackground(new Color(255, 255, 255));
+		Od_list.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_list.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
 
-         EVT_regist.setBackground(new Color(255, 255, 255));
-         EVT_regist.setHorizontalAlignment(SwingConstants.TRAILING);
-         EVT_regist.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 20));
-         
-         Home.setBorder(new LineBorder(new Color(0, 0, 0)));
-         Home.setHorizontalAlignment(SwingConstants.CENTER);
-         Home.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
-         
-         Close.setBorder(new LineBorder(new Color(0, 0, 0)));
-         Close.setHorizontalAlignment(SwingConstants.CENTER);
-         Close.setFont(new Font("∏º¿∫ ∞ÌµÒ", Font.BOLD, 25));
-         
+		Od_deli.setBackground(new Color(255, 255, 255));
+		Od_deli.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_deli.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		Od_change.setBackground(new Color(255, 255, 255));
+		Od_change.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_change.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+		Od_change.setHorizontalAlignment(JLabel.CENTER);
+
+		Od_refund.setBackground(new Color(255, 255, 255));
+		Od_refund.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_refund.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+		Od_refund.setHorizontalAlignment(JLabel.CENTER);
+
+		// ÏÇ¨ÏõêÎ©îÎâ¥
+		Mn_Emp.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Emp.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_Emp.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Emp.setFont(new Font("Ìú¥Î®ºÎß§ÏßÅÏ≤¥", Font.BOLD, 25));
+		Mn_Emp.addMouseListener(this);
+
+		Emp_look.setBackground(new Color(255, 255, 255));
+		Emp_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		Emp_look.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		Emp_regist.setBackground(new Color(255, 255, 255));
+		Emp_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		Emp_regist.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		Emp_modify.setBackground(new Color(255, 255, 255));
+		Emp_modify.setHorizontalAlignment(SwingConstants.TRAILING);
+		Emp_modify.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		// ÌöåÏõêÎ©îÎâ¥
+		Mn_Mb.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Mb.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_Mb.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Mb.setFont(new Font("Ìú¥Î®ºÎß§ÏßÅÏ≤¥", Font.BOLD, 25));
+		Mn_Mb.addMouseListener(this);
+
+		Mb_look.setBackground(new Color(255, 255, 255));
+		Mb_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		Mb_look.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		Mb_grade.setBackground(new Color(255, 255, 255));
+		Mb_grade.setHorizontalAlignment(SwingConstants.TRAILING);
+		Mb_grade.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		// Ïù¥Î≤§Ìä∏Î©îÎâ¥
+		Mn_EVT.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_EVT.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_EVT.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_EVT.setFont(new Font("Ìú¥Î®ºÎß§ÏßÅÏ≤¥", Font.BOLD, 25));
+		Mn_EVT.addMouseListener(this);
+
+		EVT_look.setBackground(new Color(255, 255, 255));
+		EVT_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		EVT_look.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		EVT_regist.setBackground(new Color(255, 255, 255));
+		EVT_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		EVT_regist.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		Mn_Post.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Post.setPreferredSize(new Dimension(d.width * 1/8, Mn_Post.getPreferredSize().height));
+		Mn_Post.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Post.setFont(new Font("Ìú¥Î®ºÎß§ÏßÅÏ≤¥", Font.BOLD, 25));
+		Mn_Post.addMouseListener(this);
+		
+		Post_Notice.setBackground(new Color(255, 255, 255));
+		Post_Notice.setHorizontalAlignment(SwingConstants.TRAILING);
+		Post_Notice.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		Post_QnA.setBackground(new Color(255, 255, 255));
+		Post_QnA.setHorizontalAlignment(SwingConstants.TRAILING);
+		Post_QnA.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		Post_Nomal.setBackground(new Color(255, 255, 255));
+		Post_Nomal.setHorizontalAlignment(SwingConstants.TRAILING);
+		Post_Nomal.setFont(new Font("ÎßëÏùÄ Í≥†Îîï", Font.BOLD, 20));
+
+		Close.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Close.setPreferredSize(new Dimension(d.width * 1/8, Mn_Post.getPreferredSize().height));
+		Close.setHorizontalAlignment(SwingConstants.CENTER);
+		Close.setFont(new Font("Ìú¥Î®ºÎß§ÏßÅÏ≤¥", Font.BOLD, 25));
+		Close.addMouseListener(this);
+
 //         try {
-//            img = ImageIO.read(new File("C:\\Users\\kibum\\Desktop\\∏ﬁ¿Œ πË∞Ê.png"));
+//            img = ImageIO.read(new File("C:\\Users\\kibum\\Desktop\\Î©îÏù∏ Î∞∞Í≤Ω.png"));
 //         } catch (IOException e) {
-//            JOptionPane.showMessageDialog(null, "¿ÃπÃ¡ˆ ∫“∑Øø¿±‚ Ω«∆–");
+//            JOptionPane.showMessageDialog(null, "Ïù¥ÎØ∏ÏßÄ Î∂àÎü¨Ïò§Í∏∞ Ïã§Ìå®");
 //            System.exit(0);
 //         }
-         
-         BackgroundPanel sub = new BackgroundPanel();
-         sub.setSize(d.width, d.height-40);
-         add(sub);
-         setLayout(null);
-         
-         add(MenuBar);
+
+		BackgroundPanel sub = new BackgroundPanel();
+		sub.setSize(d.width, d.height - 40);
+		add(sub);
+		setLayout(null);
+
+		add(MenuBar);
 //         add(Close);
-        
-         setResizable(false);
-         setVisible(true);
-      }   
-         
-      private void gridbagAdd(Component c, int x, int y, int w, int h) {   
-         
-         gridbagconstraints.gridx = x;
-         gridbagconstraints.gridy = y; 
-            //∞°¿Â øﬁ¬  ¿ß gridx, gridy∞™¿∫ 0    
-         
-         gridbagconstraints.gridwidth  = w;
-         gridbagconstraints.gridheight = h;
-              
-               
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ƒƒ∆˜≥Õ∆Æ∏¶ ƒƒ∆˜≥Õ∆Æ ¿ßƒ°+≈©±‚ ¡§∫∏ø° µ˚∂Û GridBagLayoutø° πËƒ°   
-         
-         add(c);   
-         
-         }
-      class BackgroundPanel extends JPanel{
-         public void paint(Graphics g) {
-            g.drawImage(img, 0, 40, d.width, d.height, null);
-            setOpaque(true);
-         }
-      }
 
-      public static void main(String[] args) {
-             
-         JFrame win = new manager_main();
-         
-      }
-      
+		setResizable(false);
+		setVisible(true);
+	}
 
-      public void actionPerformed(ActionEvent e) {
-         if(e.getSource() == corr_look){
-              getContentPane().removeAll();
-              JPanel Pcorr_look = new corr_look();
-              add(MenuBar);
-              Dimension d = getSize();
-              Pcorr_look.setBounds(0, 40, d.width, d.height);
-              add(Pcorr_look);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == corr_regist){
-              getContentPane().removeAll();
-              JPanel Pcorr_regist = new corr_regist();
-              add(MenuBar);
-              Dimension d = getSize();
-              Pcorr_regist.setBounds(0, 40, d.width, d.height);
-              add(Pcorr_regist);
-              repaint();
-              revalidate();
-           }
-         //
-         else if(e.getSource() == model_look){
-              getContentPane().removeAll();
-              JPanel Pmodel_look = new ManModel();
-              add(MenuBar);
-              Dimension d = getSize();
-              Pmodel_look.setBounds(0, 40, d.width, d.height);
-              add(Pmodel_look);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == model_regist){
-              getContentPane().removeAll();
-              JPanel Pmodel_regist = new RegModel();
-              add(MenuBar);
-              Dimension d = getSize();
-              Pmodel_regist.setBounds(0, 40, d.width, d.height);
-              add(Pmodel_regist);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == pro_look){
-              getContentPane().removeAll();
-              JPanel Ppro_look = new ManPro();
-              add(MenuBar);
-              Dimension d = getSize();
-              Ppro_look.setBounds(0, 40, d.width, d.height);
-              add(Ppro_look);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == pro_regist){
-              getContentPane().removeAll();
+	private void gridbagAdd(Component c, int x, int y, int w, int h) {
+
+		gridbagconstraints.gridx = x;
+		gridbagconstraints.gridy = y;
+		// Í∞ÄÏû• ÏôºÏ™Ω ÏúÑ gridx, gridyÍ∞íÏùÄ 0
+
+		gridbagconstraints.gridwidth = w;
+		gridbagconstraints.gridheight = h;
+
+		gridbaglayout.setConstraints(c, gridbagconstraints); // Ïª¥Ìè¨ÎÑåÌä∏Î•º Ïª¥Ìè¨ÎÑåÌä∏ ÏúÑÏπò+ÌÅ¨Í∏∞ Ï†ïÎ≥¥Ïóê Îî∞Îùº GridBagLayoutÏóê Î∞∞Ïπò
+
+		add(c);
+
+	}
+
+	class BackgroundPanel extends JPanel {
+		public void paint(Graphics g) {
+			g.drawImage(img, 0, 40, d.width, d.height, null);
+			setOpaque(true);
+		}
+	}
+
+	public static void main(String[] args) {
+
+		JFrame win = new manager_main();
+
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == corr_look) {
+			getContentPane().removeAll();
+			JPanel Pcorr_look = new corr_look();
+			add(MenuBar);
+			Dimension d = getSize();
+			Pcorr_look.setBounds(0, 40, d.width, d.height);
+			add(Pcorr_look);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == corr_regist) {
+			getContentPane().removeAll();
+			JPanel Pcorr_regist = new corr_regist();
+			add(MenuBar);
+			Dimension d = getSize();
+			Pcorr_regist.setBounds(0, 40, d.width, d.height);
+			add(Pcorr_regist);
+			repaint();
+			revalidate();
+		}
+		//
+		else if (e.getSource() == model_look) {
+			getContentPane().removeAll();
+			JPanel Pmodel_look = new ManModel();
+			add(MenuBar);
+			Dimension d = getSize();
+			Pmodel_look.setBounds(0, 40, d.width, d.height);
+			add(Pmodel_look);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == model_regist) {
+			getContentPane().removeAll();
+			JPanel Pmodel_regist = new RegModel();
+			add(MenuBar);
+			Dimension d = getSize();
+			Pmodel_regist.setBounds(0, 40, d.width, d.height);
+			add(Pmodel_regist);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == pro_look) {
+			getContentPane().removeAll();
+			JPanel Ppro_look = new ManPro();
+			add(MenuBar);
+			Dimension d = getSize();
+			Ppro_look.setBounds(0, 40, d.width, d.height);
+			add(Ppro_look);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == pro_regist) {
+			getContentPane().removeAll();
 //              JPanel Ppro_regist = new RegPro();
-              add(MenuBar);
-              Dimension d = getSize();
+			add(MenuBar);
+			Dimension d = getSize();
 //              Ppro_regist.setBounds(0, 40, d.width, d.height);
 //              add(Ppro_regist);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == pro_up_rec){
-              getContentPane().removeAll();
-              JPanel Ppro_up_rec = new RegProPrice();
-              add(MenuBar);
-              Dimension d = getSize();
-              Ppro_up_rec.setBounds(0, 40, d.width, d.height);
-              add(Ppro_up_rec);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == Od_deposit){
-            getContentPane().removeAll();
-              JPanel POd_deposit = new od_list_no_deposit();
-              add(MenuBar);
-              Dimension d = getSize();
-              POd_deposit.setBounds(0, 40, d.width, d.height);
-              add(POd_deposit);
-              repaint();
-              revalidate();
-           } 
-         else if(e.getSource() == Od_pre){
-            getContentPane().removeAll();
-              JPanel POd_pre = new od_list_pre_pro();
-              add(MenuBar);
-              Dimension d = getSize();
-              POd_pre.setBounds(0, 40, d.width, d.height);
-              add(POd_pre);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == Od_change){
-            getContentPane().removeAll();
-              JPanel POd_change = new od_list_change();
-              add(MenuBar);
-              Dimension d = getSize();
-              POd_change.setBounds(0, 40, d.width, d.height);
-              add(POd_change);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == Od_refund){
-            getContentPane().removeAll();
-              JPanel POd_refund = new od_list_od_refund();
-              add(MenuBar);
-              Dimension d = getSize();
-              POd_refund.setBounds(0, 40, d.width, d.height);
-              add(POd_refund);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == Od_cancel){
-            getContentPane().removeAll();
-              JPanel POd_cancel = new od_list_od_cancel();
-              add(MenuBar);
-              Dimension d = getSize();
-              POd_cancel.setBounds(0, 40, d.width, d.height);
-              add(POd_cancel);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == Emp_look){
-            getContentPane().removeAll();
-              JPanel PEmp_look = new emp_look();
-              add(MenuBar);
-              Dimension d = getSize();
-              PEmp_look.setBounds(0, 40, d.width, d.height);
-              add(PEmp_look);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == Emp_regist){
-            getContentPane().removeAll();
-              JPanel PEmp_regist = new emp_re();
-              add(MenuBar);
-              Dimension d = getSize();
-              PEmp_regist.setBounds(0, 40, d.width, d.height);
-              add(PEmp_regist);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == Emp_modify){
-             getContentPane().removeAll();
-               JPanel PEmp_regist = new emp_modify();
-               add(MenuBar);
-               Dimension d = getSize();
-               PEmp_regist.setBounds(0, 40, d.width, d.height);
-               add(PEmp_regist);
-               repaint();
-               revalidate();
-            }
-         else if(e.getSource() == Mb_look){
-            getContentPane().removeAll();
-              JPanel PMb_look = new mb_look();
-              add(MenuBar);
-              Dimension d = getSize();
-              PMb_look.setBounds(0, 40, d.width, d.height);
-              add(PMb_look);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == Mb_grade){
-            getContentPane().removeAll();
+			repaint();
+			revalidate();
+		} else if (e.getSource() == pro_up_rec) {
+			getContentPane().removeAll();
+			JPanel Ppro_up_rec = new RegProPrice();
+			add(MenuBar);
+			Dimension d = getSize();
+			Ppro_up_rec.setBounds(0, 40, d.width, d.height);
+			add(Ppro_up_rec);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Od_list) {
+			getContentPane().removeAll();
+			JPanel POd_deposit = new od_list_no_deposit();
+			add(MenuBar);
+			Dimension d = getSize();
+			POd_deposit.setBounds(0, 40, d.width, d.height);
+			add(POd_deposit);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Od_deli) {
+			getContentPane().removeAll();
+			JPanel POd_pre = new od_list_pre_pro();
+			add(MenuBar);
+			Dimension d = getSize();
+			POd_pre.setBounds(0, 40, d.width, d.height);
+			add(POd_pre);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Od_change) {
+			getContentPane().removeAll();
+			JPanel POd_change = new od_list_change();
+			add(MenuBar);
+			Dimension d = getSize();
+			POd_change.setBounds(0, 40, d.width, d.height);
+			add(POd_change);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Od_refund) {
+			getContentPane().removeAll();
+			JPanel POd_refund = new od_list_od_refund();
+			add(MenuBar);
+			Dimension d = getSize();
+			POd_refund.setBounds(0, 40, d.width, d.height);
+			add(POd_refund);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Emp_look) {
+			getContentPane().removeAll();
+			JPanel PEmp_look = new emp_look();
+			add(MenuBar);
+			Dimension d = getSize();
+			PEmp_look.setBounds(0, 40, d.width, d.height);
+			add(PEmp_look);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Emp_regist) {
+			getContentPane().removeAll();
+			JPanel PEmp_regist = new emp_re();
+			add(MenuBar);
+			Dimension d = getSize();
+			PEmp_regist.setBounds(0, 40, d.width, d.height);
+			add(PEmp_regist);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Emp_modify) {
+			getContentPane().removeAll();
+			JPanel PEmp_regist = new emp_modify();
+			add(MenuBar);
+			Dimension d = getSize();
+			PEmp_regist.setBounds(0, 40, d.width, d.height);
+			add(PEmp_regist);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Mb_look) {
+			getContentPane().removeAll();
+			JPanel PMb_look = new mb_look();
+			add(MenuBar);
+			Dimension d = getSize();
+			PMb_look.setBounds(0, 40, d.width, d.height);
+			add(PMb_look);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Mb_grade) {
+			getContentPane().removeAll();
 //              JPanel PMb_gra = new mb_gra();
-              add(MenuBar);
-              Dimension d = getSize();
+			add(MenuBar);
+			Dimension d = getSize();
 //              PMb_gra.setBounds(0, 40, d.width, d.height);
 //              add(PMb_gra);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == EVT_look){
-            getContentPane().removeAll();
-              JPanel PEvt_look = new evt_look();
-              add(MenuBar);
-              Dimension d = getSize();
-              PEvt_look.setBounds(0, 40, d.width, d.height);
-              add(PEvt_look);
-              repaint();
-              revalidate();
-           }
-         else if(e.getSource() == EVT_regist){
-            getContentPane().removeAll();
-              JPanel PEvt_regist = new evt_regist();
-              add(MenuBar);
-              Dimension d = getSize();
-              PEvt_regist.setBounds(0, 40, d.width, d.height);
-              add(PEvt_regist);
-              repaint();
-              revalidate();
-           }
-      }
+			repaint();
+			revalidate();
+		} else if (e.getSource() == EVT_look) {
+			getContentPane().removeAll();
+			JPanel PEvt_look = new evt_look();
+			add(MenuBar);
+			Dimension d = getSize();
+			PEvt_look.setBounds(0, 40, d.width, d.height);
+			add(PEvt_look);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == EVT_regist) {
+			getContentPane().removeAll();
+			JPanel PEvt_regist = new evt_regist();
+			add(MenuBar);
+			Dimension d = getSize();
+			PEvt_regist.setBounds(0, 40, d.width, d.height);
+			add(PEvt_regist);
+			repaint();
+			revalidate();
+		}
+	}
 
-   @Override
-   public void mouseClicked(MouseEvent e) {
-      // TODO Auto-generated method stub
-      if(e.getSource() == Close){
-         dispose();
-        } else if(e.getSource() == Home){
-           getContentPane().removeAll();
-           BackgroundPanel sub = new BackgroundPanel();
-            sub.setSize(d.width, d.height-40);
-            add(sub);
-            add(MenuBar);
-            setResizable(false);
-            setVisible(true);
-        }
-      
-   }
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getSource() == Close) {
+			dispose();
+			JFrame win = new Login();
+		} else if(e.getSource() == Mn_Post) {
+			getContentPane().removeAll();
+			add(MenuBar);
+			Dimension d = getSize();
+			N_A.setBounds(0, 40, d.width, d.height);
+        	add(N_A);
+        	repaint();
+        	revalidate();
+			
+		}
 
-   @Override
-   public void mousePressed(MouseEvent e) {
-      // TODO Auto-generated method stub
-      
-   }
+	}
 
-   @Override
-   public void mouseReleased(MouseEvent e) {
-      // TODO Auto-generated method stub
-      
-   }
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
 
-   @Override
-   public void mouseEntered(MouseEvent e) {
-      // TODO Auto-generated method stub
-      
-   }
+	}
 
-   @Override
-   public void mouseExited(MouseEvent e) {
-      // TODO Auto-generated method stub
-      
-   }
-         
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

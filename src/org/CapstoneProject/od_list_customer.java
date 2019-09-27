@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -15,8 +17,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class od_list_customer extends JFrame {
          
-   private String[] col1 = {"ÁÖ¹®ÀÏÀÚ","ÁÖ¹®¹øÈ£","ÀÌ¹ÌÁö","»óÇ°¸í","¼ö·®","±İ¾×","ÁÖ¹®»óÅÂ"}; 
-   private String[] search = {"ÁÖ¹®¹øÈ£","»óÇ°¸í","ÁÖ¹®»óÅÂ"};
+   private String[] col1 = {"ì£¼ë¬¸ì¼ì","ì£¼ë¬¸ë²ˆí˜¸","ì´ë¯¸ì§€","ìƒí’ˆëª…","ìˆ˜ëŸ‰","ê¸ˆì•¡","ì£¼ë¬¸ìƒíƒœ"}; 
+   private String[] search = {"ì£¼ë¬¸ë²ˆí˜¸","ìƒí’ˆëª…","ì£¼ë¬¸ìƒíƒœ"};
    
    private JTextField  Tsearch;
    
@@ -30,7 +32,7 @@ public class od_list_customer extends JFrame {
    private JButton close, Bsearch, Bprevious;      
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public od_list_customer() {      
          
@@ -48,13 +50,13 @@ public class od_list_customer extends JFrame {
          Tsearch = new JTextField();
          Tsearch.setPreferredSize(new Dimension(200,28));
          
-         Bsearch = new JButton("°Ë»ö");
+         Bsearch = new JButton("ê²€ìƒ‰");
          Bsearch.setPreferredSize(new Dimension(70,28));
          
-         Bprevious = new JButton("ÀÌÀü");
+         Bprevious = new JButton("ì´ì „");
          Bprevious.setPreferredSize(new Dimension(100,28));
          
-         close = new JButton("´İ±â");
+         close = new JButton("ë‹«ê¸°");
          close.setPreferredSize(new Dimension(100,28));
          
 //         getDeptData(EmpData.selectDept());
@@ -65,7 +67,7 @@ public class od_list_customer extends JFrame {
          
    private void EmpRegisterView() {      
          
-         setTitle("ÁÖ¹®³»¿ª(°í°´)");
+         setTitle("ì£¼ë¬¸ë‚´ì—­(ê³ ê°)");
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
 
@@ -87,13 +89,13 @@ public class od_list_customer extends JFrame {
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          
@@ -104,3 +106,4 @@ public class od_list_customer extends JFrame {
       }   
          
 }
+

@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -26,32 +28,32 @@ public class ModelCtgrData {
 	
 	public static List<Map<String, Serializable>> ModelCtgrListData = new ArrayList<Map<String, Serializable>>();
 	
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initModelCtgrData(int ModelCtgrNum, String FIRST_CTGR, String TOP_CLOTH_CTGR, String BOT_CLOTH_CTGR, 
 			String OUTER_CTGR, String SHIR_CTGR, String SHOOSE_CTGR) {
 
-		ModelCtgrdata.put("¸ğµ¨ºĞ·ù¹øÈ£", ModelCtgrNum);
-		ModelCtgrdata.put("1Â÷ºĞ·ù", FIRST_CTGR);
-		ModelCtgrdata.put("»óÀÇºĞ·ù", TOP_CLOTH_CTGR);
-		ModelCtgrdata.put("ÇÏÀÇºĞ·ù", BOT_CLOTH_CTGR);
-		ModelCtgrdata.put("¾Æ¿ìÅÍºĞ·ù", OUTER_CTGR);
-		ModelCtgrdata.put("¼ÅÃ÷ºĞ·ù", SHIR_CTGR);
-		ModelCtgrdata.put("½Å¹ßºĞ·ù", SHOOSE_CTGR);
+		ModelCtgrdata.put("ëª¨ë¸ë¶„ë¥˜ë²ˆí˜¸", ModelCtgrNum);
+		ModelCtgrdata.put("1ì°¨ë¶„ë¥˜", FIRST_CTGR);
+		ModelCtgrdata.put("ìƒì˜ë¶„ë¥˜", TOP_CLOTH_CTGR);
+		ModelCtgrdata.put("í•˜ì˜ë¶„ë¥˜", BOT_CLOTH_CTGR);
+		ModelCtgrdata.put("ì•„ìš°í„°ë¶„ë¥˜", OUTER_CTGR);
+		ModelCtgrdata.put("ì…”ì¸ ë¶„ë¥˜", SHIR_CTGR);
+		ModelCtgrdata.put("ì‹ ë°œë¶„ë¥˜", SHOOSE_CTGR);
 //		custdata.put("A", TEL);
 //		custdata.put("A", TEL);
 //		custdata.put("A", TEL);
-//		custdata.put("ÁÖ¼Ò", scust);
+//		custdata.put("ì£¼ì†Œ", scust);
 
 	}
 	
 		
-	/* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+	/* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
 	static void createModelCtgr() {
 		
 		
 		quary = "insert into model_ctgr (MODEL_CTGR_NUM,FIRST_CTGR,TOP_CLOTH_CTGR,BOT_CLOTH_CTGR,OUTER_CTGR,SHIR_CTGR,SHOOSE_CTGR) "
-				+ "values ('"+ModelCtgrdata.get("¸ğµ¨ºĞ·ù¹øÈ£")+"', '" + ModelCtgrdata.get("1Â÷ºĞ·ù") + "', '" + ModelCtgrdata.get("»óÀÇºĞ·ù") + "',"
-						+ " "+ModelCtgrdata.get("ÇÏÀÇºĞ·ù")+", "+ModelCtgrdata.get("¾Æ¿ìÅÍºĞ·ù")+", "+ModelCtgrdata.get("¼ÅÃ÷ºĞ·ù")+", "+ModelCtgrdata.get("½Å¹ßºĞ·ù")+")";
+				+ "values ('"+ModelCtgrdata.get("ëª¨ë¸ë¶„ë¥˜ë²ˆí˜¸")+"', '" + ModelCtgrdata.get("1ì°¨ë¶„ë¥˜") + "', '" + ModelCtgrdata.get("ìƒì˜ë¶„ë¥˜") + "',"
+						+ " "+ModelCtgrdata.get("í•˜ì˜ë¶„ë¥˜")+", "+ModelCtgrdata.get("ì•„ìš°í„°ë¶„ë¥˜")+", "+ModelCtgrdata.get("ì…”ì¸ ë¶„ë¥˜")+", "+ModelCtgrdata.get("ì‹ ë°œë¶„ë¥˜")+")";
 		
 		
 		System.out.println(quary);
@@ -59,7 +61,7 @@ public class ModelCtgrData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -99,7 +101,7 @@ public class ModelCtgrData {
 //			
 //			
 //		} catch (SQLException sqle) {
-//			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+//			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 //			sqle.printStackTrace();
 //		}
 //		
@@ -107,6 +109,4 @@ public class ModelCtgrData {
 //		
 //	}
 }
-
-
 

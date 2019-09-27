@@ -46,18 +46,18 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
 	JMenuBar MenuBar1 = new JMenuBar();
 	   
 	JMenuBar MenuBar = new JMenuBar();
-	JMenu Home = new JMenu(" È¨ ");
-	JMenu Mn_Manage = new JMenu(" ¼îÇÎ¸ô°ü¸® ");
-	JMenu Mn_Center = new JMenu(" °í°´¼¾ÅÍ ");
-	JMenu Mn_Basket = new JMenu(" Àå¹Ù±¸´Ï ");
-	JMenu Mn_Mypage = new JMenu(" ¸¶ÀÌÆäÀÌÁö ");
-	JMenu Mn_Logout = new JMenu(" ·Î±×¾Æ¿ô ");
+	JMenu Home = new JMenu(" í™ˆ ");
+	JMenu Mn_Manage = new JMenu(" ì‡¼í•‘ëª°ê´€ë¦¬ ");
+	JMenu Mn_Center = new JMenu(" ê³ ê°ì„¼í„° ");
+	JMenu Mn_Basket = new JMenu(" ì¥ë°”êµ¬ë‹ˆ ");
+	JMenu Mn_Mypage = new JMenu(" ë§ˆì´í˜ì´ì§€ ");
+	JMenu Mn_Logout = new JMenu(" ë¡œê·¸ì•„ì›ƒ ");
 	   
 	private JLabel vCenter, vSpace,vSpace2,vSpace3, vNotice, vQnA, vReview;
 
-	private static String[] col1 = {"Á¦¸ñ", "ÀÛ¼ºÀÚ", "ÀÛ¼ºÀÏ"}; 
-	private static String[] col2 = {"Á¦¸ñ", "ÀÛ¼ºÀÚ", "ÀÛ¼ºÀÏ"};   
-	private static String[] col3 = {"Á¦¸ñ", "ÀÛ¼ºÀÚ", "ÀÛ¼ºÀÏ"};   
+	private static String[] col1 = {"ì œëª©", "ì‘ì„±ì", "ì‘ì„±ì¼"}; 
+	private static String[] col2 = {"ì œëª©", "ì‘ì„±ì", "ì‘ì„±ì¼"};   
+	private static String[] col3 = {"ì œëª©", "ì‘ì„±ì", "ì‘ì„±ì¼"};   
 	
 	private static DefaultTableModel model1 = new DefaultTableModel(col1, 0){ 
 		 public boolean isCellEditable(int row, int column){
@@ -112,9 +112,9 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
         MenuBar.add(Mn_Mypage);
         MenuBar.add(Mn_Logout);
         
-        vCenter = new JLabel("°í°´ ¼¾ÅÍ");
+        vCenter = new JLabel("ê³ ê° ì„¼í„°");
         vCenter.setSize(100, 100);
-        vCenter.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 30));
+        vCenter.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 30));
         
         vSpace = new JLabel("");
         vSpace.setPreferredSize(new Dimension(50, 50));
@@ -123,29 +123,29 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
         vSpace3 = new JLabel("");
         vSpace2.setPreferredSize(new Dimension(50, 50));
         
-        vNotice = new JLabel("°øÁö»çÇ×");
-        vNotice.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+        vNotice = new JLabel("ê³µì§€ì‚¬í•­");
+        vNotice.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
         vQnA = new JLabel("QnA");
-        vQnA.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
-        vReview = new JLabel("ÈÄ±â°Ô½ÃÆÇ");
-        vReview.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+        vQnA.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
+        vReview = new JLabel("í›„ê¸°ê²Œì‹œíŒ");
+        vReview.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
         
-        bN_More = new JButton("´õº¸±â");
-        bN_More.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+        bN_More = new JButton("ë”ë³´ê¸°");
+        bN_More.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
         bN_More.setBorderPainted(false);
         bN_More.setContentAreaFilled(false);
         bN_More.setFocusPainted(false);
         bN_More.addActionListener(this);
         
-        bQ_More = new JButton("´õº¸±â");
-        bQ_More.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+        bQ_More = new JButton("ë”ë³´ê¸°");
+        bQ_More.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
         bQ_More.setBorderPainted(false);
         bQ_More.setContentAreaFilled(false);
         bQ_More.setFocusPainted(false);
         bQ_More.addActionListener(this);
         
-        bR_More = new JButton("´õº¸±â");
-        bR_More.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+        bR_More = new JButton("ë”ë³´ê¸°");
+        bR_More.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
         bR_More.setBorderPainted(false);
         bR_More.setContentAreaFilled(false);
         bR_More.setFocusPainted(false);
@@ -166,10 +166,10 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
 		Scroll3.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		Scroll3.setPreferredSize(new Dimension(300, 300));
 
-		home_adminView();
+		manager_mainView();
 	}
 	
-	private void home_adminView() {
+	private void manager_mainView() {
 
 		
 		setLayout(gridbaglayout);
@@ -178,22 +178,22 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
 
 		Home.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Home.setHorizontalAlignment(SwingConstants.CENTER);
-		Home.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+		Home.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 		Mn_Manage.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Manage.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Manage.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+		Mn_Manage.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 		Mn_Center.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Center.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Center.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+		Mn_Center.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 		Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Basket.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+		Mn_Basket.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 		Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Mypage.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+		Mn_Mypage.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 		Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Logout.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+		Mn_Logout.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 		
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
@@ -228,12 +228,12 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
 		
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c); 
 		
@@ -277,8 +277,8 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == bN_More) {
-			 switch (home_admin.click) {
-	            case "H":	home_admin.C_A.removeAll();
+			 switch (manager_main.click) {
+	            case "H":	manager_main.C_A.removeAll();
 	            			N_A = new Notice_admin();
 	            			N_A.setBounds(0, 100, d.width, d.height - 100);
 	        				add(N_A);
@@ -305,8 +305,8 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
        	
 		} else 	if (e.getSource() == bQ_More) {
 			
-			 switch (home_admin.click) {
-	            case "H":	home_admin.C_A.removeAll();
+			 switch (manager_main.click) {
+	            case "H":	manager_main.C_A.removeAll();
 			    			Q_A = new QnA_admin();
 			    			Q_A.setBounds(0, 100, d.width, d.height - 100);
 							add(Q_A);
@@ -333,7 +333,4 @@ public class Center_admin extends JPanel implements ActionListener, MouseListene
        	
 		}
 	}
-}	
-
-	
-			
+}

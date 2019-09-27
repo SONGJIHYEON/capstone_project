@@ -30,7 +30,7 @@ public class Address extends Dialog implements ActionListener, MouseListener{
          
    private JTextField  Tsearch, Temp_no, Temp_nm, Temp_resi_num, Temp_dt, Temp_ph_num, Temp_mail, Temp_addr;      
          
-   private String[] col1 = {"¿ìÆí¹øÈ£", "ÀÏ·Ã¹øÈ£", "½Ãµµ", "½Ã±º±¸", "À¾¸éµ¿", "¸®", "¹øÁö", "¾ÆÆÄÆ®/°Ç¹°¸í", "ÁÖ¼Ò"};        
+   private String[] col1 = {"ìš°í¸ë²ˆí˜¸", "ì¼ë ¨ë²ˆí˜¸", "ì‹œë„", "ì‹œêµ°êµ¬", "ìë©´ë™", "ë¦¬", "ë²ˆì§€", "ì•„íŒŒíŠ¸/ê±´ë¬¼ëª…", "ì£¼ì†Œ"};        
    
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
    
@@ -45,7 +45,7 @@ public class Address extends Dialog implements ActionListener, MouseListener{
    int close;
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public Address(JFrame fr) {      
          super(fr, "", true);
@@ -62,13 +62,13 @@ public class Address extends Dialog implements ActionListener, MouseListener{
          scrollpane1.setPreferredSize(new Dimension(1000, 300));
          
          
-         Bsearch = new JButton("°Ë»ö");
+         Bsearch = new JButton("ê²€ìƒ‰");
          Bsearch.addActionListener(this);
          Bsearch.setPreferredSize(new Dimension(200,28));
          
-         BtCancel = new JButton("´İ±â");
+         BtCancel = new JButton("ë‹«ê¸°");
          BtCancel.addActionListener(this);
-         BtConfirm = new JButton("È®ÀÎ");
+         BtConfirm = new JButton("í™•ì¸");
          BtConfirm.addActionListener(this);
          
          getData(AddrData.selectAddr());
@@ -97,7 +97,7 @@ public class Address extends Dialog implements ActionListener, MouseListener{
 }
          
    private void addressView() {      
-         setTitle("ÁÖ¼Ò°Ë»ö");
+         setTitle("ì£¼ì†Œê²€ìƒ‰");
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -126,13 +126,13 @@ public class Address extends Dialog implements ActionListener, MouseListener{
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-         gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+         gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          
@@ -201,7 +201,7 @@ public class Address extends Dialog implements ActionListener, MouseListener{
 //      public void actionPerformed(ActionEvent e) {
 //		// TODO Auto-generated method stub
 //		if(e.getSource() == Bsearch) {
-//			JOptionPane.showConfirmDialog(null, "°í°´À¸·Î µî·ÏÇÏ½Ã°Ú½À´Ï±î?", "µî·Ï È®ÀÎ", JOptionPane.YES_NO_OPTION,
+//			JOptionPane.showConfirmDialog(null, "ê³ ê°ìœ¼ë¡œ ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ë“±ë¡ í™•ì¸", JOptionPane.YES_NO_OPTION,
 //		               JOptionPane.INFORMATION_MESSAGE);
 //
 //			if(close == 0) {

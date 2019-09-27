@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -23,20 +24,20 @@ public class QnAData {
 
 	public static List<Map<String, Serializable>> QnAListData = new ArrayList<Map<String, Serializable>>();
 
-	/* QnA°Ô½Ã±ÛÀÌ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* QnAê²Œì‹œê¸€ì´ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initQnAData( ) {
 
 	}
 
 	static void createQ(String Title, String content, String writer ) {
 		quary = "INSERT INTO POST_MSG VALUES (SEQ_QPOST_NUM.NEXTVAL, 'QnA', '"+Title+"', to_char(sysdate, 'yyyy-mm-dd'), '"+content+"', "
-				+ "  '¹®ÀÇ', null, null, '"+writer+"')";
+				+ "  'ë¬¸ì˜', null, null, '"+writer+"')";
 
 		try {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -44,12 +45,12 @@ public class QnAData {
 
 	static void createA(String POST_NUM, String Title, String content, String writer ) {
 		quary = "INSERT INTO POST_MSG VALUES ('"+POST_NUM+"', 'QnA', '"+Title+"', to_char(sysdate, 'yyyy-mm-dd'), '"+content+"', "
-				+ "  '¹®ÀÇ', null, null, '"+writer+"')";
+				+ "  'ë¬¸ì˜', null, null, '"+writer+"')";
 		try {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -84,14 +85,14 @@ public class QnAData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
 		return QnAListData;
 
 	}
-	// QnA »ó¼¼Á¤º¸
+	// QnA ìƒì„¸ì •ë³´
 	static List<Map<String, Serializable>> searchQnA(String POST_NUM) {
 			
 			quary = "select POST_MSG_TIT, WRITER_NM, WRT_DATE, POST_MSG_CON "
@@ -119,7 +120,7 @@ public class QnAData {
 				
 				
 			} catch (SQLException sqle) {
-				System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+				System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 				sqle.printStackTrace();
 			}
 			
@@ -154,7 +155,7 @@ public class QnAData {
 			
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		
@@ -165,3 +166,4 @@ public class QnAData {
 	
 
 }
+

@@ -35,10 +35,10 @@ public class ModiMember extends JFrame implements ActionListener {
 			vGol;
 	private JTextField xMemId, xMemName, xMemBirth, xMemPhone, xMemEmail1, xMemEmail2, xMemAddr1, xMemAddr2, xMemAddr3;
 	private JPasswordField xMemPw1, xMemPw2;
-	private String[] div = { "naver.com", "hanmail.com", "nate.com", "gmail.com", "Á÷Á¢ÀÔ·Â" };
-//	   private String[] col1 = {"ºÎ¼­¸í", "ºÎ¼­À§Ä¡"};      
-//	   private String[] col2 = {"ºÎ¼­¸í", "¼º¸í"};      
-//	   private String[] div = {"Á¤±ÔÁ÷", "ÀÓ½ÃÁ÷", "°è¾àÁ÷"};      // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+	private String[] div = { "naver.com", "hanmail.com", "nate.com", "gmail.com", "ì§ì ‘ì…ë ¥" };
+//	   private String[] col1 = {"ë¶€ì„œëª…", "ë¶€ì„œìœ„ì¹˜"};      
+//	   private String[] col2 = {"ë¶€ì„œëª…", "ì„±ëª…"};      
+//	   private String[] div = {"ì •ê·œì§", "ì„ì‹œì§", "ê³„ì•½ì§"};      // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 
 //	   private DefaultTableModel model1 = new DefaultTableModel(col1, 0);      
 //	   private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -64,10 +64,10 @@ public class ModiMember extends JFrame implements ActionListener {
 		intid = Integer.parseInt(sid2);
 
 		if (intid == 0) {
-			JOptionPane.showMessageDialog(null, "»ç¿ë°¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ì‚¬ìš©ê°€ëŠ¥í•œ ì•„ì´ë”” ì…ë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		} else
-			JOptionPane.showMessageDialog(null, "Áßº¹µÈ ¾ÆÀÌµğ ÀÔ´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ì¤‘ë³µëœ ì•„ì´ë”” ì…ë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 			xMemId.setText("");
 			return;
 	}
@@ -102,32 +102,32 @@ public class ModiMember extends JFrame implements ActionListener {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
 
-		vMemId = new JLabel("¾ÆÀÌµğ");
+		vMemId = new JLabel("ì•„ì´ë””");
 		xMemId = new JTextField(22);
 		xMemId.setText(user_id);
 		xMemId.setEnabled(false);
 
-//		BtCheckId = new JButton("Áßº¹È®ÀÎ");
+//		BtCheckId = new JButton("ì¤‘ë³µí™•ì¸");
 //		BtCheckId.addActionListener(this);
 
-		vMemPw1 = new JLabel("ºñ¹Ğ¹øÈ£");
+		vMemPw1 = new JLabel("ë¹„ë°€ë²ˆí˜¸");
 		xMemPw1 = new JPasswordField(22);
 
-		vMemPw2 = new JLabel("ºñ¹Ğ¹øÈ£ È®ÀÎ");
+		vMemPw2 = new JLabel("ë¹„ë°€ë²ˆí˜¸ í™•ì¸");
 		xMemPw2 = new JPasswordField(22);
 
-		vMemName = new JLabel("ÀÌ¸§");
+		vMemName = new JLabel("ì´ë¦„");
 		xMemName = new JTextField(22);
 		xMemName.setText(user_nm);
 		xMemName.setEnabled(false);
 
-		vMemBirth = new JLabel("»ı³â¿ùÀÏ");
+		vMemBirth = new JLabel("ìƒë…„ì›”ì¼");
 		xMemBirth = new JTextField(22);
 
-		vMemPhone = new JLabel("ÈŞ´ëÆù ¹øÈ£");
+		vMemPhone = new JLabel("íœ´ëŒ€í° ë²ˆí˜¸");
 		xMemPhone = new JTextField(22);
 
-		vMemEmail = new JLabel("ÀÌ¸ŞÀÏ");
+		vMemEmail = new JLabel("ì´ë©”ì¼");
 		vGol = new JLabel("@");
 		xMemEmail1 = new JTextField(10);
 		xMemEmail2 = new JTextField(10);
@@ -135,28 +135,28 @@ public class ModiMember extends JFrame implements ActionListener {
 		CbEmail.addActionListener(this);
 //		CbEmail = new JComboBox(div);
 
-		vMemAddr1 = new JLabel("ÁÖ¼Ò");
+		vMemAddr1 = new JLabel("ì£¼ì†Œ");
 		xMemAddr1 = new JTextField(22);
-		BtSearchAddr = new JButton("¿ìÆí¹øÈ£ °Ë»ö");
+		BtSearchAddr = new JButton("ìš°í¸ë²ˆí˜¸ ê²€ìƒ‰");
 		BtSearchAddr.addActionListener(this);
-		vMemAddr2 = new JLabel("±âº»ÁÖ¼Ò");
+		vMemAddr2 = new JLabel("ê¸°ë³¸ì£¼ì†Œ");
 		vMemAddr2.setFont(new Font("serif", Font.PLAIN, 12));
-		vMemAddr3 = new JLabel("»ó¼¼ÁÖ¼Ò");
+		vMemAddr3 = new JLabel("ìƒì„¸ì£¼ì†Œ");
 		vMemAddr3.setFont(new Font("serif", Font.PLAIN, 12));
 
 		xMemAddr2 = new JTextField(22);
 		xMemAddr3 = new JTextField(22);
 
-		BtRegist = new JButton("¼öÁ¤");
+		BtRegist = new JButton("ìˆ˜ì •");
 		BtRegist.addActionListener(this);
-		BtCancel = new JButton("Ãë¼Ò");
+		BtCancel = new JButton("ì·¨ì†Œ");
 
 		ModiMemberView();
 	}
 
 	private void ModiMemberView() {
 		setExtendedState(MAXIMIZED_BOTH);
-		setTitle("È¸¿ø°¡ÀÔ");
+		setTitle("íšŒì›ê°€ì…");
 
 		setLayout(gbl);
 
@@ -206,12 +206,12 @@ public class ModiMember extends JFrame implements ActionListener {
 
 		gbc.gridx = x;
 		gbc.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gbc.gridwidth = w;
 		gbc.gridheight = h;
 
-		gbl.setConstraints(c, gbc); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gbl.setConstraints(c, gbc); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c);
 
@@ -227,7 +227,7 @@ public class ModiMember extends JFrame implements ActionListener {
 //			sid = "";
 //			sid += xMemId.getText();
 //			if (sid.equals("")) {
-//				JOptionPane.showMessageDialog(null, "ID¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.", "ID¹ÌÀÔ·Â", JOptionPane.WARNING_MESSAGE);
+//				JOptionPane.showMessageDialog(null, "IDë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.", "IDë¯¸ì…ë ¥", JOptionPane.WARNING_MESSAGE);
 //			} else {
 //				CheckId.initCustData(sid);
 //				getData1(CheckId.selectid());
@@ -240,10 +240,10 @@ public class ModiMember extends JFrame implements ActionListener {
 		System.out.println(xMemAddr2.getText() + " " + xMemAddr3.getText());
 		if (e.getSource() == BtRegist) {
 			if (!(pw1.equals(pw2))) {
-				JOptionPane.showMessageDialog(null, "ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù", "¿À·ù", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤", "ì˜¤ë¥˜", JOptionPane.ERROR_MESSAGE);
 				return;
 			} else
-				check = JOptionPane.showConfirmDialog(null, "È¸¿øÁ¤º¸¸¦ ¼öÁ¤ ÇÏ½Ã°Ú½À´Ï±î?", "µî·Ï È®ÀÎ", JOptionPane.YES_NO_OPTION,
+				check = JOptionPane.showConfirmDialog(null, "íšŒì›ì •ë³´ë¥¼ ìˆ˜ì • í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ë“±ë¡ í™•ì¸", JOptionPane.YES_NO_OPTION,
 						JOptionPane.INFORMATION_MESSAGE);
 			if (check == 0) {
 				ID = "";
@@ -259,10 +259,10 @@ public class ModiMember extends JFrame implements ActionListener {
 				ADDR = "";
 				ADDR = xMemAddr2.getText() + " " + xMemAddr3.getText();
 				if (PWD.equals("") || BD.equals("") || PH_NUM.equals("") || ADDR.equals("")) {
-					JOptionPane.showMessageDialog(null, "ÀÔ·ÂµÇÁö ¾ÊÀº Ç×¸ñÀÌ ÀÖ½À´Ï´Ù.", "¿À·ù", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ì…ë ¥ë˜ì§€ ì•Šì€ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.", "ì˜¤ë¥˜", JOptionPane.ERROR_MESSAGE);
 				} else {
 					CustData.changeCust(PWD, BD, PH_NUM, ADDR, ID);
-					JOptionPane.showMessageDialog(null, "È¸¿øÁ¤º¸°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "íšŒì›ì •ë³´ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
 			} else

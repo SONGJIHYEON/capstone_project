@@ -23,17 +23,17 @@ public class evtData {
 
    public static List<Map<String, Serializable>> evtListData = new ArrayList<Map<String, Serializable>>();
 
-   /* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+   /* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
    public static void initevtData(String evt_NO, String evt_tp, String evt_st_dt, String evt_fn_dt, String evt_gift,
          int evt_point, int evt_sale) {
 
-      evtData.put("ÀÌº¥Æ®¹øÈ£", evt_NO);
-      evtData.put("ÀÌº¥Æ®±¸ºĞ", evt_tp);
-      evtData.put("ÀÌº¥Æ®½ÃÀÛÀÏÀÚ", evt_st_dt);
-      evtData.put("ÀÌº¥Æ®Á¾·áÀÏÀÚ", evt_fn_dt);
-      evtData.put("ÁõÁ¤¸ğµ¨", evt_gift);
-      evtData.put("ÁõÁ¤Æ÷ÀÎÆ®", evt_point);
-      evtData.put("ÇÒÀÎÀ²", evt_sale);
+      evtData.put("ì´ë²¤íŠ¸ë²ˆí˜¸", evt_NO);
+      evtData.put("ì´ë²¤íŠ¸êµ¬ë¶„", evt_tp);
+      evtData.put("ì´ë²¤íŠ¸ì‹œì‘ì¼ì", evt_st_dt);
+      evtData.put("ì´ë²¤íŠ¸ì¢…ë£Œì¼ì", evt_fn_dt);
+      evtData.put("ì¦ì •ëª¨ë¸", evt_gift);
+      evtData.put("ì¦ì •í¬ì¸íŠ¸", evt_point);
+      evtData.put("í• ì¸ìœ¨", evt_sale);
 
    }
 
@@ -45,7 +45,7 @@ public class evtData {
          pstm = conn.prepareStatement(quary);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -59,7 +59,7 @@ public class evtData {
          pstm = conn.prepareStatement(quary);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -73,7 +73,7 @@ public class evtData {
          pstm = conn.prepareStatement(quary);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -86,7 +86,7 @@ public class evtData {
          pstm = conn.prepareStatement(quary);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -120,7 +120,7 @@ public class evtData {
          }
 
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -156,7 +156,7 @@ public class evtData {
          }
 
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -192,46 +192,12 @@ public class evtData {
          }
 
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
       return evtListData;
 
    }
-//static List<Map<String, Serializable>> SearchAddr(String search) {
-//   
-//   quary = "select * from zipcode where addr like '%"+search+"%'";
-//   
-//   evtListData.clear();
-//   
-//   try {
-//   
-//      pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-//      rs = pstm.executeQuery();         
-//      while(rs.next()){
-//         
-//         evtDataSet = new HashMap<String, Serializable>();
-//
-//         evtDataSet.put("ZIPCODE", rs.getString(1)); 
-//         evtDataSet.put("SEQ", rs.getString(2));
-//         evtDataSet.put("SIDO", rs.getString(3));
-//         evtDataSet.put("GUGUN", rs.getString(4));
-//         evtDataSet.put("DONG", rs.getString(5));
-//         
-//         //System.out.println(addrdataSet);
-//         evtListData.add(evtDataSet);
-//         
-//         
-//      } 
-//      
-//      
-//   } catch (SQLException sqle) {
-//      System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
-//      sqle.printStackTrace();
-//   }
-//   
-//   return evtListData;
-//   
-//}
+
 }

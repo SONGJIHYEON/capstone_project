@@ -1,3 +1,4 @@
+ 
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -23,27 +24,27 @@ public class empData {
 
 	public static List<Map<String, Serializable>> empListData = new ArrayList<Map<String, Serializable>>();
 
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initempData(String EMP_NUM, String EMP_NM, String EMP_DT, String EMP_PH_NUM, String EMP_TP,
 			String EMP_ADDR, String REG_TP, String REG_ID, String REG_PW) {
 
-		empData.put("»ç¿ø¹øÈ£", EMP_NUM);
-		empData.put("»ç¿ø¸í", EMP_NM);
-		empData.put("»ç¿øÁÖ¼Ò", EMP_ADDR);
-		empData.put("ÈŞ´ëÆù¹øÈ£", EMP_PH_NUM);
-		empData.put("ÀÔ»çÀÏÀÚ", EMP_DT);
-		empData.put("»ç¿ø±¸ºĞ", EMP_TP);
-		empData.put("Á¤±ÔÁ÷±¸ºĞ", REG_TP);
-		empData.put("»ç¿øID", REG_ID);
-		empData.put("ÃÊ±âºñ¹Ğ¹øÈ£", REG_PW);
+		empData.put("ì‚¬ì›ë²ˆí˜¸", EMP_NUM);
+		empData.put("ì‚¬ì›ëª…", EMP_NM);
+		empData.put("ì‚¬ì›ì£¼ì†Œ", EMP_ADDR);
+		empData.put("íœ´ëŒ€í°ë²ˆí˜¸", EMP_PH_NUM);
+		empData.put("ì…ì‚¬ì¼ì", EMP_DT);
+		empData.put("ì‚¬ì›êµ¬ë¶„", EMP_TP);
+		empData.put("ì •ê·œì§êµ¬ë¶„", REG_TP);
+		empData.put("ì‚¬ì›ID", REG_ID);
+		empData.put("ì´ˆê¸°ë¹„ë°€ë²ˆí˜¸", REG_PW);
 
 	}
 
 	static void createemp() {
-		quary = "INSERT INTO emp VALUES('" + empData.get("»ç¿ø¹øÈ£") + "', '" + empData.get("»ç¿ø¸í") + "', '"
-				+ empData.get("»ç¿øÁÖ¼Ò") + "', " + " '" + empData.get("ÈŞ´ëÆù¹øÈ£") + "' , to_date('" + empData.get("ÀÔ»çÀÏÀÚ")
-				+ "', 'YYYY-MM-DD'), '" + empData.get("»ç¿ø±¸ºĞ") + "', " + "  '" + empData.get("»ç¿øID") + "', '"
-				+ empData.get("Á¤±ÔÁ÷±¸ºĞ") + "', '" + empData.get("ÃÊ±âºñ¹Ğ¹øÈ£") + "')";
+		quary = "INSERT INTO emp VALUES('" + empData.get("ì‚¬ì›ë²ˆí˜¸") + "', '" + empData.get("ì‚¬ì›ëª…") + "', '"
+				+ empData.get("ì‚¬ì›ì£¼ì†Œ") + "', " + " '" + empData.get("íœ´ëŒ€í°ë²ˆí˜¸") + "' , to_date('" + empData.get("ì…ì‚¬ì¼ì")
+				+ "', 'YYYY-MM-DD'), '" + empData.get("ì‚¬ì›êµ¬ë¶„") + "', " + "  '" + empData.get("ì‚¬ì›ID") + "', '"
+				+ empData.get("ì •ê·œì§êµ¬ë¶„") + "', '" + empData.get("ì´ˆê¸°ë¹„ë°€ë²ˆí˜¸") + "')";
 
 		System.out.println(quary);
 
@@ -51,7 +52,7 @@ public class empData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -81,7 +82,7 @@ public class empData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -115,7 +116,7 @@ public class empData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -150,7 +151,7 @@ public class empData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -185,7 +186,7 @@ public class empData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -193,3 +194,4 @@ public class empData {
 
 	}
 }
+

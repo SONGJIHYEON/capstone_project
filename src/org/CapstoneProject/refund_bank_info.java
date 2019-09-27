@@ -1,3 +1,4 @@
+  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class refund_bank_info extends JFrame {
          
-   private String[] col1 = {"È¯ºÒ°èÁÂÀºÇà", "È¯ºÒ°èÁÂ¹øÈ£", "¿¹±İÁÖ", "È¯ºÒ±İ¾×"}; 
+   private String[] col1 = {"í™˜ë¶ˆê³„ì¢Œì€í–‰", "í™˜ë¶ˆê³„ì¢Œë²ˆí˜¸", "ì˜ˆê¸ˆì£¼", "í™˜ë¶ˆê¸ˆì•¡"}; 
          
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
          
@@ -25,7 +26,7 @@ public class refund_bank_info extends JFrame {
    private JButton close;      
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public refund_bank_info() {      
          
@@ -37,7 +38,7 @@ public class refund_bank_info extends JFrame {
          scrollpane1 = new JScrollPane(od_info);
          scrollpane1.setPreferredSize(new Dimension(500, 100));
          
-         close = new JButton("´İ±â");
+         close = new JButton("ë‹«ê¸°");
          close.setPreferredSize(new Dimension(100,28));
          
 //         getDeptData(EmpData.selectDept());
@@ -48,7 +49,7 @@ public class refund_bank_info extends JFrame {
          
    private void EmpRegisterView() {      
          
-         setTitle("È¯ºÒ°èÁÂÁ¤º¸");
+         setTitle("í™˜ë¶ˆê³„ì¢Œì •ë³´");
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -71,13 +72,13 @@ public class refund_bank_info extends JFrame {
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          
@@ -88,3 +89,4 @@ public class refund_bank_info extends JFrame {
       }   
          
 }
+

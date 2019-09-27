@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -26,34 +28,34 @@ public class pur_brkdwn_Data {
    
    public static List<Map<String, Serializable>> pur_brkdwnListData = new ArrayList<Map<String, Serializable>>();
    
-   /* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+   /* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
    public static void initpur_brkdwn_Data(String PUR_NUM, String PRO_NUM, int PUR_QUANT, int PUR_UP, int PR) {
 
-      pur_brkdwn_Data.put("±¸¸Å¹øÈ£", PUR_NUM);
-      pur_brkdwn_Data.put("»óÇ°¹øÈ£", PRO_NUM);
-      pur_brkdwn_Data.put("±¸¸Å¼ö·®", PUR_QUANT);
-      pur_brkdwn_Data.put("±¸¸Å´Ü°¡", PUR_UP);
-      pur_brkdwn_Data.put("±İ¾×", PR);
+      pur_brkdwn_Data.put("êµ¬ë§¤ë²ˆí˜¸", PUR_NUM);
+      pur_brkdwn_Data.put("ìƒí’ˆë²ˆí˜¸", PRO_NUM);
+      pur_brkdwn_Data.put("êµ¬ë§¤ìˆ˜ëŸ‰", PUR_QUANT);
+      pur_brkdwn_Data.put("êµ¬ë§¤ë‹¨ê°€", PUR_UP);
+      pur_brkdwn_Data.put("ê¸ˆì•¡", PR);
 
    }
    
    static void createpur_brkdwn_Data() {
-      quary = "INSERT INTO PUR_BRKDWN VALUES('"+ pur_brkdwn_Data.get("±¸¸Å¹øÈ£") + "', SEQ_PUR_BRKDWN_NUM.NEXTVAL ,"
-            + " '"+ pur_brkdwn_Data.get("»óÇ°¹øÈ£") + "' ," + pur_brkdwn_Data.get("±¸¸Å¼ö·®") + ", " + pur_brkdwn_Data.get("±¸¸Å´Ü°¡") + ", " + pur_brkdwn_Data.get("±İ¾×") + ")";
+      quary = "INSERT INTO PUR_BRKDWN VALUES('"+ pur_brkdwn_Data.get("êµ¬ë§¤ë²ˆí˜¸") + "', SEQ_PUR_BRKDWN_NUM.NEXTVAL ,"
+            + " '"+ pur_brkdwn_Data.get("ìƒí’ˆë²ˆí˜¸") + "' ," + pur_brkdwn_Data.get("êµ¬ë§¤ìˆ˜ëŸ‰") + ", " + pur_brkdwn_Data.get("êµ¬ë§¤ë‹¨ê°€") + ", " + pur_brkdwn_Data.get("ê¸ˆì•¡") + ")";
    
       quary_commit = "commit";
       try {
          pstm = conn.prepareStatement(quary);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
       try {
          pstm = conn.prepareStatement(quary_commit);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -93,7 +95,7 @@ static List<Map<String, Serializable>> selectpur_brkdwn_Data (String pur_num) {
          
          
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
       
@@ -102,6 +104,4 @@ static List<Map<String, Serializable>> selectpur_brkdwn_Data (String pur_num) {
    }
 
 }
-
-
 

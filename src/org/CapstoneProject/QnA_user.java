@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -44,8 +45,8 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 	private JLabel vQnA;
 	private JTextField Tsearch;
 
-	private static String[] col1 = {"No", "À¯Çü", "Á¦¸ñ", "ÀÛ¼ºÀÚ", "ÀÛ¼ºÀÏ"};  
-	private String[] search = {"Á¦¸ñ", "ÀÛ¼ºÀÏ"};                
+	private static String[] col1 = {"No", "ìœ í˜•", "ì œëª©", "ì‘ì„±ì", "ì‘ì„±ì¼"};  
+	private String[] search = {"ì œëª©", "ì‘ì„±ì¼"};                
 	
 	private static DefaultTableModel model1 = new DefaultTableModel(col1, 0){ 
 		 public boolean isCellEditable(int row, int column){
@@ -71,36 +72,36 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 		gridbagconstraints = new GridBagConstraints(); 
         
         vQnA = new JLabel("QnA");
-        vQnA.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+        vQnA.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
         
-        bWrite = new JButton("±Û¾²±â");
+        bWrite = new JButton("ê¸€ì“°ê¸°");
         bWrite.setFocusPainted(false);
         bWrite.setForeground(Color.white);
         bWrite.setBackground(Color.black);
         bWrite.setPreferredSize(new Dimension(100,40));
         bWrite.addActionListener(this);
-        bWrite.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 22));
+        bWrite.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 22));
         
-        bSearch = new JButton("°Ë»ö");
+        bSearch = new JButton("ê²€ìƒ‰");
         bSearch.setFocusPainted(false);
         bSearch.setBackground(Color.white);
         bSearch.setPreferredSize(new Dimension(80,40));
-        bSearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD , 22));
+        bSearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD , 22));
         
-        bPrevious = new JButton("ÀÌÀü");
+        bPrevious = new JButton("ì´ì „");
         bPrevious.setFocusPainted(false);
         bPrevious.setBackground(Color.white);
         bPrevious.setPreferredSize(new Dimension(80,40));
         bPrevious.addActionListener(this);
-        bPrevious.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD , 22));
+        bPrevious.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD , 22));
         
         cbSearch = new JComboBox<String>(search);
-        cbSearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 22));
+        cbSearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 22));
         cbSearch.setPreferredSize(new Dimension(100,40));
         cbSearch.setBackground(Color.WHITE);
         
         Tsearch = new JTextField(15);
-        Tsearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+        Tsearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
         Tsearch.setPreferredSize(new Dimension(150,41));
 
 		tQnA = new JTable(model1);
@@ -123,22 +124,22 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 
 //		Home.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Home.setHorizontalAlignment(SwingConstants.CENTER);
-//		Home.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Home.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Manage.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Manage.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Manage.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Manage.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Center.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Center.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Center.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Center.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Basket.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Basket.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Mypage.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Mypage.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Logout.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Logout.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 		
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
@@ -165,12 +166,12 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 		
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c); 
 		
@@ -257,5 +258,3 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 	}   
 }	
 
-	
-			

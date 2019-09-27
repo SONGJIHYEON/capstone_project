@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -28,9 +30,9 @@ public class NonOrdPg extends JFrame {
 	private JTextField  xOrdName, xAddr, xPhone, xRecipiant, xRecipAddr, xRecipPhone, xDeliveMsg, xGradeDis, xUsedPoint,
 	xProPrice, xAllDiscout, xPrice, xDepositNm, xDepositBk, xOrderPw, xOrderPw2;;         
 	   
-	private String[] col1 = {"no", "ÀÌ¹ÌÁö", "»óÇ°Á¤º¸", "¼ö·®", "¹è¼Ûºñ", "±İ¾×", "¼±ÅÃ"};
-	private String[] col2 = {"³óÇù", "±¹¹ÎÀºÇà", "¿ì¸®ÀºÇà", "¼öÇù"};      
-	private String[] div = {"°ü¸®ÀÚ", "À¯Àú"}; // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+	private String[] col1 = {"no", "ì´ë¯¸ì§€", "ìƒí’ˆì •ë³´", "ìˆ˜ëŸ‰", "ë°°ì†¡ë¹„", "ê¸ˆì•¡", "ì„ íƒ"};
+	private String[] col2 = {"ë†í˜‘", "êµ­ë¯¼ì€í–‰", "ìš°ë¦¬ì€í–‰", "ìˆ˜í˜‘"};      
+	private String[] div = {"ê´€ë¦¬ì", "ìœ ì €"}; // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 	         
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);      
 //	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -45,31 +47,31 @@ public class NonOrdPg extends JFrame {
 	private JComboBox<String> cbBk;      
 	         
 	GridBagLayout gridbaglayout;      
-	GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+	GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
 	         
 	public NonOrdPg() {
 		
         gridbaglayout = new GridBagLayout();
         gridbagconstraints = new GridBagConstraints();
         
-        vOrdName = new JLabel("ÁÖ¹®ÀÚ¸í");
-        vAddr = new JLabel("ÁÖ¹®ÀÚ ÁÖ¼Ò");
-        vPhone = new JLabel("ÈŞ´ë¹øÈ£");
-        vOrderPw = new JLabel("ÁÖ¹®Á¶È¸ ºñ¹Ğ¹øÈ£");
-        vOrderPw2 = new JLabel("ÁÖ¹®Á¶È¸ ºñ¹Ğ¹øÈ£ È®ÀÎ");
-        vOpDeliv = new JLabel("¹è¼ÛÁö ¼±ÅÃ");
-        vRecipiant = new JLabel("¼ö·ÉÀÎ¸í");
-        vRecipAddr = new JLabel("¼ö·É ÁÖ¼Ò");
-        vRecipPhone = new JLabel("¼ö·ÉÀÎ ÈŞ´ë¹øÈ£");
-        vDeliveMsg = new JLabel("¹è¼Û ¸Ş½ÃÁö");
-        vGradeDis = new JLabel("µî±Ş ÇÒÀÎ");
-        vUsedPoint = new JLabel("»ç¿ë Æ÷ÀÎÆ®");
-        vPoint = new JLabel("º¸À¯ Æ÷ÀÎÆ®");
-        vProPrice = new JLabel("ÃÑ »óÇ°°¡°İ");
-        vAllDiscout = new JLabel("ÃÑ ÇÒÀÎ±İ¾×");
-        vPrice = new JLabel("°áÁ¦ °¡°İ");
-        vDepositNm = new JLabel("ÀÔ±İÀÚ¸í");
-        vDepositBk = new JLabel("ÀÔ±İÀºÇà");
+        vOrdName = new JLabel("ì£¼ë¬¸ìëª…");
+        vAddr = new JLabel("ì£¼ë¬¸ì ì£¼ì†Œ");
+        vPhone = new JLabel("íœ´ëŒ€ë²ˆí˜¸");
+        vOrderPw = new JLabel("ì£¼ë¬¸ì¡°íšŒ ë¹„ë°€ë²ˆí˜¸");
+        vOrderPw2 = new JLabel("ì£¼ë¬¸ì¡°íšŒ ë¹„ë°€ë²ˆí˜¸ í™•ì¸");
+        vOpDeliv = new JLabel("ë°°ì†¡ì§€ ì„ íƒ");
+        vRecipiant = new JLabel("ìˆ˜ë ¹ì¸ëª…");
+        vRecipAddr = new JLabel("ìˆ˜ë ¹ ì£¼ì†Œ");
+        vRecipPhone = new JLabel("ìˆ˜ë ¹ì¸ íœ´ëŒ€ë²ˆí˜¸");
+        vDeliveMsg = new JLabel("ë°°ì†¡ ë©”ì‹œì§€");
+        vGradeDis = new JLabel("ë“±ê¸‰ í• ì¸");
+        vUsedPoint = new JLabel("ì‚¬ìš© í¬ì¸íŠ¸");
+        vPoint = new JLabel("ë³´ìœ  í¬ì¸íŠ¸");
+        vProPrice = new JLabel("ì´ ìƒí’ˆê°€ê²©");
+        vAllDiscout = new JLabel("ì´ í• ì¸ê¸ˆì•¡");
+        vPrice = new JLabel("ê²°ì œ ê°€ê²©");
+        vDepositNm = new JLabel("ì…ê¸ˆìëª…");
+        vDepositBk = new JLabel("ì…ê¸ˆì€í–‰");
         v1 = new JLabel("");
         v1.setPreferredSize(new Dimension(50, 28));
 
@@ -94,8 +96,8 @@ public class NonOrdPg extends JFrame {
 //        scrollpane1.setRowHeaderView(tProInfo);
         scrollpane1.setPreferredSize(new Dimension(750, 100));
         
-        rSameAddr = new JRadioButton("ÁÖ¹®ÀÚ¿Í µ¿ÀÏ");
-        rNewAddr = new JRadioButton("»õ·Î¿î ¹è¼ÛÁö");
+        rSameAddr = new JRadioButton("ì£¼ë¬¸ìì™€ ë™ì¼");
+        rNewAddr = new JRadioButton("ìƒˆë¡œìš´ ë°°ì†¡ì§€");
         BtRadio = new ButtonGroup();
         BtRadio.add(rNewAddr);
         BtRadio.add(rSameAddr);
@@ -103,9 +105,9 @@ public class NonOrdPg extends JFrame {
         pRadio.add(rNewAddr);
         pRadio.add(rSameAddr);
         
-        rBank = new JRadioButton("°èÁÂÀÌÃ¼");
-        rCard = new JRadioButton("½Å¿ëÄ«µå");
-        rDeposit = new JRadioButton("¹«ÅëÀå ÀÔ±İ");
+        rBank = new JRadioButton("ê³„ì¢Œì´ì²´");
+        rCard = new JRadioButton("ì‹ ìš©ì¹´ë“œ");
+        rDeposit = new JRadioButton("ë¬´í†µì¥ ì…ê¸ˆ");
         BtRadio2 = new ButtonGroup();
         BtRadio2.add(rBank);
         BtRadio2.add(rCard);
@@ -117,9 +119,9 @@ public class NonOrdPg extends JFrame {
         
         cbBk = new JComboBox<String>(col2);
         cbBk.setPreferredSize(new Dimension(100, 28));
-        BtOrder = new JButton("ÁÖ¹®ÇÏ±â");
+        BtOrder = new JButton("ì£¼ë¬¸í•˜ê¸°");
 //        BtOrder.setPreferredSize(new Dimension(130,28));
-        BtBack = new JButton("ÀÌÀü ÆäÀÌÁö");
+        BtBack = new JButton("ì´ì „ í˜ì´ì§€");
 
 //        regist.addActionListener(this);
         
@@ -128,7 +130,7 @@ public class NonOrdPg extends JFrame {
 	         
 	private void NonOrdPgView() {
 		
-        setTitle("»ç¿ø µî·Ï");
+        setTitle("ì‚¬ì› ë“±ë¡");
         
 //        gridbagconstraints.ipadx = 7;
 //        
@@ -196,12 +198,12 @@ public class NonOrdPg extends JFrame {
 	private void gridbagAdd(Component c, int x, int y, int w, int h) {   
 		gridbagconstraints.gridx = x;
         gridbagconstraints.gridy = y; 
-	            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+	            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 	         
         gridbagconstraints.gridwidth  = w;
         gridbagconstraints.gridheight = h;
 	               
-        gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+        gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 	         
         add(c);   
 	         
@@ -222,5 +224,4 @@ public class NonOrdPg extends JFrame {
 //		}
 //	}
 }
-	         
 

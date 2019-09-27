@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class corr_pur extends Dialog implements ActionListener {
          
-   private String[] col1 = {"±¸¸Å¹øÈ£","³»¿ª¹øÈ£","»óÇ°¹øÈ£","±¸¸Å¼ö·®","±¸¸Å´Ü°¡","ÃÑ±İ¾×","±¸¸ÅÀÏÀÚ"}; 
+   private String[] col1 = {"êµ¬ë§¤ë²ˆí˜¸","ë‚´ì—­ë²ˆí˜¸","ìƒí’ˆë²ˆí˜¸","êµ¬ë§¤ìˆ˜ëŸ‰","êµ¬ë§¤ë‹¨ê°€","ì´ê¸ˆì•¡","êµ¬ë§¤ì¼ì"}; 
        
          
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
@@ -31,7 +31,7 @@ public class corr_pur extends Dialog implements ActionListener {
    private JButton close;      
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public corr_pur(JFrame fr) {      
 	   super(fr, "", true);
@@ -43,7 +43,7 @@ public class corr_pur extends Dialog implements ActionListener {
          scrollpane1 = new JScrollPane(od_info);
          scrollpane1.setPreferredSize(new Dimension(1000, 300));
          
-         close = new JButton("´İ±â");
+         close = new JButton("ë‹«ê¸°");
          close.addActionListener(this);
          close.setPreferredSize(new Dimension(100,28));
          
@@ -55,7 +55,7 @@ public class corr_pur extends Dialog implements ActionListener {
          
    private void EmpRegisterView() {      
          
-         setTitle("°Å·¡Ã³ ±¸¸Å³»¿ª");
+         setTitle("ê±°ë˜ì²˜ êµ¬ë§¤ë‚´ì—­");
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
          
@@ -73,13 +73,13 @@ public class corr_pur extends Dialog implements ActionListener {
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          

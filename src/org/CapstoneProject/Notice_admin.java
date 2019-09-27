@@ -44,8 +44,8 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 	private JLabel vNotice;
 	private JTextField Tsearch;
 
-	private static String[] col1 = {"No", "Á¦¸ñ", "ÀÛ¼ºÀÚ", "ÀÛ¼ºÀÏ"};  
-	private String[] search = {"Á¦¸ñ", "ÀÛ¼ºÀÏ"};                
+	private static String[] col1 = {"No", "ì œëª©", "ì‘ì„±ì", "ì‘ì„±ì¼"};  
+	private String[] search = {"ì œëª©", "ì‘ì„±ì¼"};                
 	
 	private static DefaultTableModel model1 = new DefaultTableModel(col1, 0){ 
 		 public boolean isCellEditable(int row, int column){
@@ -70,41 +70,41 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints(); 
         
-        vNotice = new JLabel("°øÁö»çÇ×");
-        vNotice.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+        vNotice = new JLabel("ê³µì§€ì‚¬í•­");
+        vNotice.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
         
-        bWrite = new JButton("±Û¾²±â");
+        bWrite = new JButton("ê¸€ì“°ê¸°");
         bWrite.setFocusPainted(false);
         bWrite.setForeground(Color.white);
         bWrite.setBackground(Color.black);
         bWrite.setPreferredSize(new Dimension(100,40));
-        bWrite.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 22));
+        bWrite.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 22));
         bWrite.addActionListener(this);
         
-        bSearch = new JButton("°Ë»ö");
+        bSearch = new JButton("ê²€ìƒ‰");
         bSearch.setFocusPainted(false);
         bSearch.setBackground(Color.white);
         bSearch.setPreferredSize(new Dimension(80,40));
-        bSearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD , 22));
+        bSearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD , 22));
         
-        bPrevious = new JButton("ÀÌÀü");
+        bPrevious = new JButton("ì´ì „");
         bPrevious.setFocusPainted(false);
         bPrevious.setBackground(Color.white);
         bPrevious.setPreferredSize(new Dimension(80,40));
         bPrevious.addActionListener(this);
-        bPrevious.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD , 22));
+        bPrevious.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD , 22));
         
         cbSearch = new JComboBox<String>(search);
-        cbSearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 22));
+        cbSearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 22));
         cbSearch.setPreferredSize(new Dimension(100,40));
         cbSearch.setBackground(Color.WHITE);
         
         Tsearch = new JTextField(15);
-        Tsearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+        Tsearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
         Tsearch.setPreferredSize(new Dimension(150,41));
 
 		tNotice = new JTable(model1);
-		tNotice.getColumnModel().getColumn(0).setPreferredWidth(100);  //JTable ÀÇ ÄÃ·³ ±æÀÌ Á¶Àı
+		tNotice.getColumnModel().getColumn(0).setPreferredWidth(100);  //JTable ì˜ ì»¬ëŸ¼ ê¸¸ì´ ì¡°ì ˆ
 		tNotice.getColumnModel().getColumn(1).setPreferredWidth(700);
 		tNotice.getColumnModel().getColumn(2).setPreferredWidth(100);
 		tNotice.getColumnModel().getColumn(3).setPreferredWidth(100);
@@ -146,12 +146,12 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 		
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c); 
 		
@@ -223,8 +223,8 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 		
 		if(e.getSource() == bPrevious) {
 			
-			Center_admin.N_A.removeAll();
-			home_admin.click = "N";
+			manager_main.N_A.removeAll();
+			manager_main.click = "N";
 			C_A = new Center_admin();
 			C_A.setBounds(0, 100, d.width, d.height - 100);
         	add(C_A);
@@ -237,6 +237,3 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 		
 	}   
 }	
-
-	
-			

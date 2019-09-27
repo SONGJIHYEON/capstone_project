@@ -10,184 +10,171 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
 public class corrData {
-   
-   public static Connection conn = ConnectionDB.getConnection();
-   static String quary;
-   static PreparedStatement pstm = null;
-   static ResultSet rs = null;
-   
 
-   public static Map<String, Serializable > corrData = new HashMap<String, Serializable>();
-   
-   public static Map<String, Serializable > corrDataSet;
-   
-   public static List<Map<String, Serializable>> corrListData = new ArrayList<Map<String, Serializable>>();
-   
-   /* ∞Ì∞¥π¯»£∞° ¿÷¥¬ ∏µ≈© ∏ÆΩ∫∆Æ ±∏º∫ */
-   public static void initcorrData(String BUS_NM, String REP_NM, String BUS_TEL,
-         String ADDR) {
+	public static Connection conn = ConnectionDB.getConnection();
+	static String quary;
+	static PreparedStatement pstm = null;
+	static ResultSet rs = null;
 
-      corrData.put("∞≈∑°√≥∏Ì", BUS_NM);
-      corrData.put("¥Î«•∏Ì", REP_NM);
-      corrData.put("ø¨∂Ù√≥", BUS_TEL);
-      corrData.put("¡÷º“", ADDR);
-      
+	public static Map<String, Serializable> corrData = new HashMap<String, Serializable>();
 
-   }
-   
-   static void createcorr() {
-      quary = "INSERT INTO CORR "
-            + "VALUES(SEQ_CORR_NUM.NEXTVAL ,'" + corrData.get("∞≈∑°√≥∏Ì") + "','" + corrData.get("¥Î«•∏Ì") + "','" + corrData.get("ø¨∂Ù√≥") + "','" + corrData.get("¡÷º“") + "')";
-   
-      try {
-         pstm = conn.prepareStatement(quary);
-         pstm.executeQuery();
-      } catch (SQLException sqle) {
-         System.out.println("selectπÆø°º≠ øπø‹ πﬂª˝");
-         sqle.printStackTrace();
-      }
+	public static Map<String, Serializable> corrDataSet;
 
-   }
-   
-   
-static List<Map<String, Serializable>> selectcorr() {
-      
-      quary = "select * from CORR";
-      
-      corrListData.clear();
-      
-      try {
-      
-         pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-         rs = pstm.executeQuery();         
-         while(rs.next()){
-            
-            corrDataSet = new HashMap<String, Serializable>();
+	public static List<Map<String, Serializable>> corrListData = new ArrayList<Map<String, Serializable>>();
 
-            corrDataSet.put("BUS_NUM", rs.getString(1)); 
-            corrDataSet.put("BUS_NM", rs.getString(2));
-            corrDataSet.put("REP_NM", rs.getString(3));
-            corrDataSet.put("BUS_TEL", rs.getString(4));
-            corrDataSet.put("ADDR", rs.getString(5));
-            
-            
-            //System.out.println(addrdataSet);
-            corrListData.add(corrDataSet);
-            
-            
-         } 
-         
-         
-      } catch (SQLException sqle) {
-         System.out.println("selectπÆø°º≠ øπø‹ πﬂª˝");
-         sqle.printStackTrace();
-      }
-      
-      return corrListData;
-      
-   }
+	/* Í≥†Í∞ùÎ≤àÌò∏Í∞Ä ÏûàÎäî ÎßÅÌÅ¨ Î¶¨Ïä§Ìä∏ Íµ¨ÏÑ± */
+	public static void initcorrData(String BUS_NM, String REP_NM, String BUS_TEL, String ADDR) {
 
-   static List<Map<String, Serializable>> searchCorr1(String search) {
-      
-      quary = "select * from corr where BUS_NUM like '%"+search+"%'";
-   
-      corrListData.clear();
-   
-      try {
-         System.out.println(quary);
-         pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-         rs = pstm.executeQuery();         
-         while(rs.next()){
-         
-            corrDataSet = new HashMap<String, Serializable>();
-         
-            corrDataSet.put("BUS_NUM", rs.getString(1)); 
-               corrDataSet.put("BUS_NM", rs.getString(2));
-               corrDataSet.put("REP_NM", rs.getString(3));
-               corrDataSet.put("BUS_TEL", rs.getString(4));
-               corrDataSet.put("ADDR", rs.getString(5));
-   
-            corrListData.add(corrDataSet);
-   //         System.out.println(ProListData);
-         
-         } 
-      
-      
-      } catch (SQLException sqle) {
-         System.out.println("selectπÆø°º≠ øπø‹ πﬂª˝");
-         sqle.printStackTrace();
-      }
-      return corrListData;
-   }
-   static List<Map<String, Serializable>> searchCorr2(String search) {
-      
-      quary = "select * from corr where BUS_NM like '%"+search+"%'";
-   
-      corrListData.clear();
-   
-      try {
-         System.out.println(quary);
-         pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-         rs = pstm.executeQuery();         
-         while(rs.next()){
-         
-            corrDataSet = new HashMap<String, Serializable>();
-         
-            corrDataSet.put("BUS_NUM", rs.getString(1)); 
-               corrDataSet.put("BUS_NM", rs.getString(2));
-               corrDataSet.put("REP_NM", rs.getString(3));
-               corrDataSet.put("BUS_TEL", rs.getString(4));
-               corrDataSet.put("ADDR", rs.getString(5));
-   
-            corrListData.add(corrDataSet);
-   //         System.out.println(ProListData);
-         
-         } 
-      
-      
-      } catch (SQLException sqle) {
-         System.out.println("selectπÆø°º≠ øπø‹ πﬂª˝");
-         sqle.printStackTrace();
-      }
-      return corrListData;
-   }
-   static List<Map<String, Serializable>> searchCorr3(String search) {
-      
-      quary = "select * from corr where REP_NM like '%"+search+"%'";
-   
-      corrListData.clear();
-   
-      try {
-         System.out.println(quary);
-         pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-         rs = pstm.executeQuery();         
-         while(rs.next()){
-         
-            corrDataSet = new HashMap<String, Serializable>();
-         
-            corrDataSet.put("BUS_NUM", rs.getString(1)); 
-               corrDataSet.put("BUS_NM", rs.getString(2));
-               corrDataSet.put("REP_NM", rs.getString(3));
-               corrDataSet.put("BUS_TEL", rs.getString(4));
-               corrDataSet.put("ADDR", rs.getString(5));
-   
-            corrListData.add(corrDataSet);
-   //         System.out.println(ProListData);
-         
-         } 
-      
-      
-      } catch (SQLException sqle) {
-         System.out.println("selectπÆø°º≠ øπø‹ πﬂª˝");
-         sqle.printStackTrace();
-      }
-      return corrListData;
-   }
+		corrData.put("Í±∞ÎûòÏ≤òÎ™Ö", BUS_NM);
+		corrData.put("ÎåÄÌëúÎ™Ö", REP_NM);
+		corrData.put("Ïó∞ÎùΩÏ≤ò", BUS_TEL);
+		corrData.put("Ï£ºÏÜå", ADDR);
+
+	}
+
+	static void createcorr() {
+		quary = "INSERT INTO CORR " + "VALUES(SEQ_CORR_NUM.NEXTVAL ,'" + corrData.get("Í±∞ÎûòÏ≤òÎ™Ö") + "','"
+				+ corrData.get("ÎåÄÌëúÎ™Ö") + "','" + corrData.get("Ïó∞ÎùΩÏ≤ò") + "','" + corrData.get("Ï£ºÏÜå") + "')";
+
+		try {
+			pstm = conn.prepareStatement(quary);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("selectÎ¨∏ÏóêÏÑú ÏòàÏô∏ Î∞úÏÉù");
+			sqle.printStackTrace();
+		}
+
+	}
+
+	static List<Map<String, Serializable>> selectcorr() {
+
+		quary = "select * from CORR";
+
+		corrListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				corrDataSet = new HashMap<String, Serializable>();
+
+				corrDataSet.put("BUS_NUM", rs.getString(1));
+				corrDataSet.put("BUS_NM", rs.getString(2));
+				corrDataSet.put("REP_NM", rs.getString(3));
+				corrDataSet.put("BUS_TEL", rs.getString(4));
+				corrDataSet.put("ADDR", rs.getString(5));
+
+				// System.out.println(addrdataSet);
+				corrListData.add(corrDataSet);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("selectÎ¨∏ÏóêÏÑú ÏòàÏô∏ Î∞úÏÉù");
+			sqle.printStackTrace();
+		}
+
+		return corrListData;
+
+	}
+
+	static List<Map<String, Serializable>> searchCorr1(String search) {
+
+		quary = "select * from corr where BUS_NUM like '%" + search + "%'";
+
+		corrListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				corrDataSet = new HashMap<String, Serializable>();
+
+				corrDataSet.put("BUS_NUM", rs.getString(1));
+				corrDataSet.put("BUS_NM", rs.getString(2));
+				corrDataSet.put("REP_NM", rs.getString(3));
+				corrDataSet.put("BUS_TEL", rs.getString(4));
+				corrDataSet.put("ADDR", rs.getString(5));
+
+				corrListData.add(corrDataSet);
+				// System.out.println(ProListData);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("selectÎ¨∏ÏóêÏÑú ÏòàÏô∏ Î∞úÏÉù");
+			sqle.printStackTrace();
+		}
+		return corrListData;
+	}
+
+	static List<Map<String, Serializable>> searchCorr2(String search) {
+
+		quary = "select * from corr where BUS_NM like '%" + search + "%'";
+
+		corrListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				corrDataSet = new HashMap<String, Serializable>();
+
+				corrDataSet.put("BUS_NUM", rs.getString(1));
+				corrDataSet.put("BUS_NM", rs.getString(2));
+				corrDataSet.put("REP_NM", rs.getString(3));
+				corrDataSet.put("BUS_TEL", rs.getString(4));
+				corrDataSet.put("ADDR", rs.getString(5));
+
+				corrListData.add(corrDataSet);
+				// System.out.println(ProListData);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("selectÎ¨∏ÏóêÏÑú ÏòàÏô∏ Î∞úÏÉù");
+			sqle.printStackTrace();
+		}
+		return corrListData;
+	}
+
+	static List<Map<String, Serializable>> searchCorr3(String search) {
+
+		quary = "select * from corr where REP_NM like '%" + search + "%'";
+
+		corrListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				corrDataSet = new HashMap<String, Serializable>();
+
+				corrDataSet.put("BUS_NUM", rs.getString(1));
+				corrDataSet.put("BUS_NM", rs.getString(2));
+				corrDataSet.put("REP_NM", rs.getString(3));
+				corrDataSet.put("BUS_TEL", rs.getString(4));
+				corrDataSet.put("ADDR", rs.getString(5));
+
+				corrListData.add(corrDataSet);
+				// System.out.println(ProListData);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("selectÎ¨∏ÏóêÏÑú ÏòàÏô∏ Î∞úÏÉù");
+			sqle.printStackTrace();
+		}
+		return corrListData;
+	}
 
 }
-
-
-

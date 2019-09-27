@@ -29,8 +29,8 @@ public class evt_look extends JPanel implements ActionListener {
 
    private JTextField Tsearch;
 
-   private String[] col1 = { "ÀÌº¥Æ®±¸ºĞ", "½ÃÀÛÀÏÀÚ", "Á¾·áÀÏÀÚ", "ÇØ´ç¸ğµ¨¸í", "ÇÒÀÎÀ²", "Æ÷ÀÎÆ®" };
-   private String[] search = { "ÀÌº¥Æ®±¸ºĞ", "ÀÌº¥Æ®´ë»ó¸ğµ¨¸í" };
+   private String[] col1 = { "ì´ë²¤íŠ¸êµ¬ë¶„", "ì‹œì‘ì¼ì", "ì¢…ë£Œì¼ì", "í•´ë‹¹ëª¨ë¸ëª…", "í• ì¸ìœ¨", "í¬ì¸íŠ¸" };
+   private String[] search = { "ì´ë²¤íŠ¸êµ¬ë¶„", "ì´ë²¤íŠ¸ëŒ€ìƒëª¨ë¸ëª…" };
 
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 
@@ -44,14 +44,14 @@ public class evt_look extends JPanel implements ActionListener {
    String model_nm;
 
    GridBagLayout gridbaglayout;
-   GridBagConstraints gridbagconstraints; // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints; // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
 
    public evt_look() {
 
       gridbaglayout = new GridBagLayout();
       gridbagconstraints = new GridBagConstraints();
 
-      evt_lookup = new JLabel("ÀÌº¥Æ® Á¶È¸");
+      evt_lookup = new JLabel("ì´ë²¤íŠ¸ ì¡°íšŒ");
       evt_lookup.setPreferredSize(new Dimension(100, 30));
 
       Tsearch = new JTextField(18);
@@ -64,10 +64,10 @@ public class evt_look extends JPanel implements ActionListener {
       scrollpane1 = new JScrollPane(evt_info);
       scrollpane1.setPreferredSize(new Dimension(1000, 300));
 
-      Bsearch = new JButton("°Ë»ö");
+      Bsearch = new JButton("ê²€ìƒ‰");
       Bsearch.addActionListener(this);
       Bsearch.setPreferredSize(new Dimension(200, 28));
-//         Breset = new JButton("ÃÊ±âÈ­");
+//         Breset = new JButton("ì´ˆê¸°í™”");
 //         Breset.setPreferredSize(new Dimension(200,28));
 
 //         evt_info.getColumnModel().getColumns(4).setCellRenderer(new TableCell());
@@ -117,12 +117,12 @@ public class evt_look extends JPanel implements ActionListener {
 
       gridbagconstraints.gridx = x;
       gridbagconstraints.gridy = y;
-      // °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+      // ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
       gridbagconstraints.gridwidth = w;
       gridbagconstraints.gridheight = h;
 
-      gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+      gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
       add(c);
 
@@ -136,10 +136,10 @@ public class evt_look extends JPanel implements ActionListener {
    public void actionPerformed(ActionEvent e) {
       if (e.getSource() == Bsearch) {
          String search = Tsearch.getText();
-         if(cbSearch.getSelectedItem() == "ÀÌº¥Æ®±¸ºĞ") {
+         if(cbSearch.getSelectedItem() == "ì´ë²¤íŠ¸êµ¬ë¶„") {
             model1.setRowCount(0);
             getData(evtData.selectevt1(search));
-         }else if(cbSearch.getSelectedItem() == "ÀÌº¥Æ®´ë»ó¸ğµ¨¸í") {
+         }else if(cbSearch.getSelectedItem() == "ì´ë²¤íŠ¸ëŒ€ìƒëª¨ë¸ëª…") {
             model1.setRowCount(0);
             getData(evtData.selectevt2(search));
          }

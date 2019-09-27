@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -24,6 +26,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
@@ -36,10 +39,10 @@ public class RegMember extends JFrame implements ActionListener {
 			vGol, vRegMember, vSpace;
 	private JTextField xMemId, xMemName, xMemBirth, xMemPhone, xMemEmail1, xMemEmail2, xMemAddr1, xMemAddr2, xMemAddr3;
 	private JPasswordField xMemPw1, xMemPw2;
-	private String[] div = { "naver.com", "hanmail.com", "nate.com", "gmail.com", "Á÷Á¢ÀÔ·Â" };
-//	   private String[] col1 = {"ºÎ¼­¸í", "ºÎ¼­À§Ä¡"};      
-//	   private String[] col2 = {"ºÎ¼­¸í", "¼º¸í"};      
-//	   private String[] div = {"Á¤±ÔÁ÷", "ÀÓ½ÃÁ÷", "°è¾àÁ÷"};      // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+	private String[] div = { "naver.com", "hanmail.com", "nate.com", "gmail.com", "ì§ì ‘ì…ë ¥" };
+//	   private String[] col1 = {"ë¶€ì„œëª…", "ë¶€ì„œìœ„ì¹˜"};      
+//	   private String[] col2 = {"ë¶€ì„œëª…", "ì„±ëª…"};      
+//	   private String[] div = {"ì •ê·œì§", "ì„ì‹œì§", "ê³„ì•½ì§"};      // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 
 //	   private DefaultTableModel model1 = new DefaultTableModel(col1, 0);      
 //	   private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -49,6 +52,8 @@ public class RegMember extends JFrame implements ActionListener {
 
 	private JButton BtCheckId, BtSearchAddr, BtRegist, BtCancel;
 	private JComboBox CbEmail;
+	
+	JPanel Bt = new JPanel();
 
 	String sid, sid2, ID, CUST_NM, PH_NUM, ADDR, BD, PWD, STdate;
 //	static String STdate;
@@ -65,10 +70,10 @@ public class RegMember extends JFrame implements ActionListener {
 		intid = Integer.parseInt(sid2);
 
 		if (intid == 0) {
-			JOptionPane.showMessageDialog(null, "»ç¿ë°¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ì‚¬ìš©ê°€ëŠ¥í•œ ì•„ì´ë”” ì…ë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 			return;
 		} else
-			JOptionPane.showMessageDialog(null, "Áßº¹µÈ ¾ÆÀÌµğ ÀÔ´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ì¤‘ë³µëœ ì•„ì´ë”” ì…ë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 		xMemId.setText("");
 		return;
 	}
@@ -101,99 +106,102 @@ public class RegMember extends JFrame implements ActionListener {
 		gbc = new GridBagConstraints();
 
 		vSpace = new JLabel("");
-		vSpace.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 35));
+		vSpace.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 35));
 
-		vRegMember = new JLabel("È¸¿ø°¡ÀÔ");
-		vRegMember.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 30));
+		vRegMember = new JLabel("íšŒì›ê°€ì…");
+		vRegMember.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 30));
 		vRegMember.setPreferredSize(new Dimension(120, 35));
 
-		vMemId = new JLabel("¾ÆÀÌµğ");
-		vMemId.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		vMemId = new JLabel("ì•„ì´ë””");
+		vMemId.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		xMemId = new JTextField(13);
-		xMemId.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		xMemId.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 
-		BtCheckId = new JButton("Áßº¹È®ÀÎ");
+		BtCheckId = new JButton("ì¤‘ë³µí™•ì¸");
 		BtCheckId.addActionListener(this);
 		BtCheckId.setPreferredSize(new Dimension(120, 28));
 		BtCheckId.setFocusPainted(false);
 		BtCheckId.setBackground(Color.white);
-		BtCheckId.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
+		BtCheckId.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
 
-		vMemPw1 = new JLabel("ºñ¹Ğ¹øÈ£");
-		vMemPw1.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		vMemPw1 = new JLabel("ë¹„ë°€ë²ˆí˜¸");
+		vMemPw1.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		xMemPw1 = new JPasswordField(22);
 		xMemPw1.setPreferredSize(new Dimension(125, 30));
 
-		vMemPw2 = new JLabel("ºñ¹Ğ¹øÈ£ È®ÀÎ");
-		vMemPw2.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		vMemPw2 = new JLabel("ë¹„ë°€ë²ˆí˜¸ í™•ì¸");
+		vMemPw2.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		xMemPw2 = new JPasswordField(22);
 		xMemPw2.setPreferredSize(new Dimension(125, 30));
 
-		vMemName = new JLabel("ÀÌ¸§");
-		vMemName.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		vMemName = new JLabel("ì´ë¦„");
+		vMemName.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		xMemName = new JTextField(13);
-		xMemName.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		xMemName.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 
-		vMemBirth = new JLabel("»ı³â¿ùÀÏ");
-		vMemBirth.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		vMemBirth = new JLabel("ìƒë…„ì›”ì¼");
+		vMemBirth.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		xMemBirth = new JTextField(13);
-		xMemBirth.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		xMemBirth.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 
-		vMemPhone = new JLabel("ÈŞ´ëÆù ¹øÈ£");
-		vMemPhone.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		vMemPhone = new JLabel("íœ´ëŒ€í° ë²ˆí˜¸");
+		vMemPhone.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		xMemPhone = new JTextField(13);
-		xMemPhone.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		xMemPhone.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 
-		vMemEmail = new JLabel("ÀÌ¸ŞÀÏ");
-		vMemEmail.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		vMemEmail = new JLabel("ì´ë©”ì¼");
+		vMemEmail.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		vGol = new JLabel("@");
 		xMemEmail1 = new JTextField(10);
 		xMemEmail2 = new JTextField(10);
 		CbEmail = new JComboBox<String>(div);
 		CbEmail.addActionListener(this);
 
-		vMemAddr1 = new JLabel("ÁÖ¼Ò");
-		vMemAddr1.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		vMemAddr1 = new JLabel("ìš°í¸ë²ˆí˜¸");
+		vMemAddr1.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		xMemAddr1 = new JTextField(13);
-		xMemAddr1.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		xMemAddr1.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 
-		BtSearchAddr = new JButton("¿ìÆí¹øÈ£ °Ë»ö");
+		BtSearchAddr = new JButton("ìš°í¸ë²ˆí˜¸ ê²€ìƒ‰");
 		BtSearchAddr.addActionListener(this);
 		BtSearchAddr.setPreferredSize(new Dimension(120, 28));
 		BtSearchAddr.setFocusPainted(false);
 		BtSearchAddr.setBackground(Color.white);
-		BtSearchAddr.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 15));
+		BtSearchAddr.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 15));
 
-		vMemAddr2 = new JLabel("±âº»ÁÖ¼Ò");
-		vMemAddr2.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
-		vMemAddr3 = new JLabel("»ó¼¼ÁÖ¼Ò");
-		vMemAddr3.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
+		vMemAddr2 = new JLabel("ê¸°ë³¸ì£¼ì†Œ");
+		vMemAddr2.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		vMemAddr3 = new JLabel("ìƒì„¸ì£¼ì†Œ");
+		vMemAddr3.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
 
 		xMemAddr2 = new JTextField(13);
-		xMemAddr2.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		xMemAddr2.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		xMemAddr3 = new JTextField(13);
-		xMemAddr3.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		xMemAddr3.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 
-		BtRegist = new JButton("È®ÀÎ");
+		BtRegist = new JButton("í™•ì¸");
 		BtRegist.addActionListener(this);
 		BtRegist.setPreferredSize(new Dimension(65, 25));
 		BtRegist.setFocusPainted(false);
 		BtRegist.setBackground(Color.white);
-		BtRegist.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
+		BtRegist.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
 
-		BtCancel = new JButton("Ãë¼Ò");
+		BtCancel = new JButton("ì·¨ì†Œ");
 		BtCancel.addActionListener(this);
 		BtCancel.setPreferredSize(new Dimension(65, 25));
 		BtCancel.setFocusPainted(false);
 		BtCancel.setBackground(Color.white);
-		BtCancel.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 17));
+		BtCancel.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 17));
+		
+		Bt.add(BtRegist);
+		Bt.add(BtCancel);
 
 		RegMemberView();
 	}
 
 	private void RegMemberView() {
 		setExtendedState(MAXIMIZED_BOTH);
-		setTitle("È¸¿ø°¡ÀÔ");
+		setTitle("íšŒì›ê°€ì…");
 
 		setLayout(gbl);
 
@@ -216,8 +224,8 @@ public class RegMember extends JFrame implements ActionListener {
 		gridbagAdd(vMemAddr1, 0, 6, 1, 1);
 		gridbagAdd(xMemAddr1, 1, 6, 3, 1);
 		gridbagAdd(BtSearchAddr, 4, 6, 1, 1);
-		gridbagAdd(vMemAddr2, 4, 7, 1, 1);
-		gridbagAdd(vMemAddr3, 4, 8, 1, 1);
+		gridbagAdd(vMemAddr2, 0, 7, 1, 1);
+		gridbagAdd(vMemAddr3, 0, 8, 1, 1);
 		gridbagAdd(xMemAddr2, 1, 7, 3, 1);
 		gridbagAdd(xMemAddr3, 1, 8, 3, 1);
 //	    gridbagAdd(vGol, 2, 6, 1, 1);
@@ -243,12 +251,12 @@ public class RegMember extends JFrame implements ActionListener {
 
 		gbc.gridx = x;
 		gbc.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gbc.gridwidth = w;
 		gbc.gridheight = h;
 
-		gbl.setConstraints(c, gbc); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gbl.setConstraints(c, gbc); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c);
 
@@ -264,7 +272,7 @@ public class RegMember extends JFrame implements ActionListener {
 			sid = "";
 			sid += xMemId.getText();
 			if (sid.equals("")) {
-				JOptionPane.showMessageDialog(null, "ID¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä.", "ID¹ÌÀÔ·Â", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "IDë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”.", "IDë¯¸ì…ë ¥", JOptionPane.WARNING_MESSAGE);
 			} else {
 				CheckId.initCustData(sid);
 				getData1(CheckId.selectid());
@@ -277,10 +285,10 @@ public class RegMember extends JFrame implements ActionListener {
 		System.out.println(xMemAddr2.getText() + " " + xMemAddr3.getText());
 		if (e.getSource() == BtRegist) {
 			if (!(pw1.equals(pw2))) {
-				JOptionPane.showMessageDialog(null, "ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù", "¿À·ù", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤", "ì˜¤ë¥˜", JOptionPane.ERROR_MESSAGE);
 				return;
 			} else
-				check = JOptionPane.showConfirmDialog(null, "È¸¿ø°¡ÀÔ ÇÏ½Ã°Ú½À´Ï±î?", "µî·Ï È®ÀÎ", JOptionPane.YES_NO_OPTION,
+				check = JOptionPane.showConfirmDialog(null, "íšŒì›ê°€ì… í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ë“±ë¡ í™•ì¸", JOptionPane.YES_NO_OPTION,
 						JOptionPane.INFORMATION_MESSAGE);
 			if (check == 0) {
 				ID = "";
@@ -297,10 +305,10 @@ public class RegMember extends JFrame implements ActionListener {
 				ADDR = xMemAddr2.getText() + " " + xMemAddr3.getText();
 				if (ID.equals("") || PWD.equals("") || CUST_NM.equals("") || BD.equals("") || PH_NUM.equals("")
 						|| ADDR.equals("")) {
-					JOptionPane.showMessageDialog(null, "ÀÔ·ÂµÇÁö ¾ÊÀº Ç×¸ñÀÌ ÀÖ½À´Ï´Ù.", "¿À·ù", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "ì…ë ¥ë˜ì§€ ì•Šì€ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.", "ì˜¤ë¥˜", JOptionPane.ERROR_MESSAGE);
 				} else {
 					getData2(MbgraData.Mbgra());
-					JOptionPane.showMessageDialog(null, "È¸¿øÀ¸·Î °¡ÀÔµÇ¾ú½À´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "íšŒì›ìœ¼ë¡œ ê°€ì…ë˜ì—ˆìŠµë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}
 			} else
@@ -309,7 +317,10 @@ public class RegMember extends JFrame implements ActionListener {
 			Address s = new Address(new JFrame());
 			xMemAddr1.setText(s.zipcode);
 			xMemAddr2.setText(s.addr);
+		}else if (e.getSource() == BtCancel) {
+			dispose();
 		}
 
 	}
 }
+

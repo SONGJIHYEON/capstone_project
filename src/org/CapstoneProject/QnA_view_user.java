@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -43,12 +45,12 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	   
 //	JMenuBar MenuBar = new JMenuBar();
-//	JMenu Home = new JMenu(" È¨ ");
-//	JMenu Mn_Manage = new JMenu(" ¼îÇÎ¸ô°ü¸® ");
-//	JMenu Mn_Center = new JMenu(" °í°´¼¾ÅÍ ");
-//	JMenu Mn_Basket = new JMenu(" Àå¹Ù±¸´Ï ");
-//	JMenu Mn_Mypage = new JMenu(" ¸¶ÀÌÆäÀÌÁö ");
-//	JMenu Mn_Logout = new JMenu(" ·Î±×¾Æ¿ô ");
+//	JMenu Home = new JMenu(" í™ˆ ");
+//	JMenu Mn_Manage = new JMenu(" ì‡¼í•‘ëª°ê´€ë¦¬ ");
+//	JMenu Mn_Center = new JMenu(" ê³ ê°ì„¼í„° ");
+//	JMenu Mn_Basket = new JMenu(" ì¥ë°”êµ¬ë‹ˆ ");
+//	JMenu Mn_Mypage = new JMenu(" ë§ˆì´í˜ì´ì§€ ");
+//	JMenu Mn_Logout = new JMenu(" ë¡œê·¸ì•„ì›ƒ ");
 	   
 	private JLabel vTitle, vContent, vSpace1, vSpace2, vWriter, vDate;
 	private JTextField tTitle, tWriter, tDate;
@@ -72,18 +74,18 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints(); 
 		
-		vTitle = new JLabel("Á¦¸ñ");
-		vTitle.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
+		vTitle = new JLabel("ì œëª©");
+		vTitle.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
 		vTitle.setPreferredSize(new Dimension(100,40));
-		vContent = new JLabel("³»¿ë");
-		vContent.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
+		vContent = new JLabel("ë‚´ìš©");
+		vContent.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
 		vContent.setPreferredSize(new Dimension(100,40));
-		vWriter = new JLabel("ÀÛ¼ºÀÚ");
-		vWriter.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
+		vWriter = new JLabel("ì‘ì„±ì");
+		vWriter.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
 		vWriter.setPreferredSize(new Dimension(100,40));
-		vDate = new JLabel("ÀÛ¼ºÀÏ");
+		vDate = new JLabel("ì‘ì„±ì¼");
 		vDate.setHorizontalAlignment(JLabel.CENTER);
-		vDate.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
+		vDate.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
 		vDate.setPreferredSize(new Dimension(100,40));
 		
 		vSpace1 = new JLabel("");
@@ -92,23 +94,23 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 		vSpace2.setPreferredSize(new Dimension(100,20));
 		
 		tTitle = new JTextField(20);
-		tTitle.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		tTitle.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		tWriter = new JTextField(5);
-		tWriter.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		tWriter.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		tDate = new JTextField(9);
-		tDate.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		tDate.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		
 		tContent = new JTextArea(15, 20);
 		tContent.setLineWrap(true);
-		tContent.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		tContent.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		Scroll = new JScrollPane(tContent);
 		
-		bClose = new JButton("´İ±â");
+		bClose = new JButton("ë‹«ê¸°");
 		bClose.addActionListener(this);
 		bClose.setFocusPainted(false);
 		bClose.setBackground(Color.white);
 		bClose.setPreferredSize(new Dimension(80,30));
-		bClose.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD , 17));
+		bClose.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD , 17));
 
 		tTitle.setEnabled(false);
 		tWriter.setEnabled(false);
@@ -142,7 +144,7 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 	
 	private void home_adminView() {
 
-		setTitle("È¨ÆäÀÌÁö °ü¸®ÀÚ");
+		setTitle("í™ˆí˜ì´ì§€ ê´€ë¦¬ì");
 		
 		setLayout(gridbaglayout);
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
@@ -171,12 +173,12 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 		
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c); 
 		
@@ -235,5 +237,3 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 	}   
 }	
 
-	
-			

@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -42,12 +44,12 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	   
 //	JMenuBar MenuBar = new JMenuBar();
-//	JMenu Home = new JMenu(" È¨ ");
-//	JMenu Mn_Manage = new JMenu(" ¼îÇÎ¸ô°ü¸® ");
-//	JMenu Mn_Center = new JMenu(" °í°´¼¾ÅÍ ");
-//	JMenu Mn_Basket = new JMenu(" Àå¹Ù±¸´Ï ");
-//	JMenu Mn_Mypage = new JMenu(" ¸¶ÀÌÆäÀÌÁö ");
-//	JMenu Mn_Logout = new JMenu(" ·Î±×¾Æ¿ô ");
+//	JMenu Home = new JMenu(" í™ˆ ");
+//	JMenu Mn_Manage = new JMenu(" ì‡¼í•‘ëª°ê´€ë¦¬ ");
+//	JMenu Mn_Center = new JMenu(" ê³ ê°ì„¼í„° ");
+//	JMenu Mn_Basket = new JMenu(" ì¥ë°”êµ¬ë‹ˆ ");
+//	JMenu Mn_Mypage = new JMenu(" ë§ˆì´í˜ì´ì§€ ");
+//	JMenu Mn_Logout = new JMenu(" ë¡œê·¸ì•„ì›ƒ ");
 	   
 	private JLabel vTitle, vContent, vSpace1, vSpace2, vWriter, vDate;
 	private JTextField tTitle, tWriter, tDate;
@@ -66,18 +68,18 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints(); 
 		
-		vTitle = new JLabel("Á¦¸ñ");
-		vTitle.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
+		vTitle = new JLabel("ì œëª©");
+		vTitle.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
 		vTitle.setPreferredSize(new Dimension(100,40));
-		vContent = new JLabel("³»¿ë");
-		vContent.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
+		vContent = new JLabel("ë‚´ìš©");
+		vContent.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
 		vContent.setPreferredSize(new Dimension(100,40));
-		vWriter = new JLabel("ÀÛ¼ºÀÚ");
-		vWriter.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
+		vWriter = new JLabel("ì‘ì„±ì");
+		vWriter.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
 		vWriter.setPreferredSize(new Dimension(100,40));
-		vDate = new JLabel("ÀÛ¼ºÀÏ");
+		vDate = new JLabel("ì‘ì„±ì¼");
 		vDate.setHorizontalAlignment(JLabel.CENTER);
-		vDate.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 20));
+		vDate.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 20));
 		vDate.setPreferredSize(new Dimension(100,40));
 		
 		vSpace1 = new JLabel("");
@@ -86,11 +88,11 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 		vSpace2.setPreferredSize(new Dimension(100,20));
 		
 		tTitle = new JTextField(20);
-		tTitle.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		tTitle.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		tWriter = new JTextField(5);
 		tWriter.setText(Login.user_nm);
 		tWriter.setHorizontalAlignment(JTextField.CENTER);
-		tWriter.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		tWriter.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c1 = Calendar.getInstance();
@@ -99,26 +101,26 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 		tDate = new JTextField(9);
 		tDate.setText(strToday);
 		tDate.setHorizontalAlignment(JTextField.CENTER);
-		tDate.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		tDate.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		
 		tContent = new JTextArea(15, 20);
 		tContent.setLineWrap(true);
-		tContent.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN, 20));
+		tContent.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN, 20));
 		Scroll = new JScrollPane(tContent);
 		
-		bRegist = new JButton("µî·Ï");
+		bRegist = new JButton("ë“±ë¡");
 		bRegist.addActionListener(this);
 		bRegist.setFocusPainted(false);
 		bRegist.setBackground(Color.white);
 		bRegist.setPreferredSize(new Dimension(80,30));
-		bRegist.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD , 17));
+		bRegist.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD , 17));
 		
-		bCancel = new JButton("Ãë¼Ò");
+		bCancel = new JButton("ì·¨ì†Œ");
 		bCancel.addActionListener(this);
 		bCancel.setFocusPainted(false);
 		bCancel.setBackground(Color.white);
 		bCancel.setPreferredSize(new Dimension(80,30));
-		bCancel.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD , 17));
+		bCancel.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD , 17));
 		
 		tTitle.setBorder(new LineBorder(Color.black));
 		tWriter.setBorder(new LineBorder(Color.black));
@@ -137,29 +139,29 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 	
 	private void home_adminView() {
 
-		setTitle("È¨ÆäÀÌÁö °ü¸®ÀÚ");
+		setTitle("í™ˆí˜ì´ì§€ ê´€ë¦¬ì");
 		
 		setLayout(gridbaglayout);
 		
 
 //		Home.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Home.setHorizontalAlignment(SwingConstants.CENTER);
-//		Home.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Home.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Manage.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Manage.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Manage.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Manage.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Center.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Center.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Center.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Center.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Basket.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Basket.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Mypage.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Mypage.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 //		Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
 //		Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Logout.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
+//		Mn_Logout.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
 		
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
@@ -190,12 +192,12 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 		
 		gridbagconstraints.gridx = x;
 		gridbagconstraints.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gridbagconstraints.gridwidth = w;
 		gridbagconstraints.gridheight = h;
 
-		gridbaglayout.setConstraints(c, gridbagconstraints); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gridbaglayout.setConstraints(c, gridbagconstraints); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c); 
 		
@@ -242,10 +244,10 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 			dispose();
 		} else 	if(e.getSource() == bRegist) {
 			String writer = Login.user_nm;
-			int result = JOptionPane.showConfirmDialog(null, "¹®ÀÇ¸¦ µî·ÏÇÏ½Ã°Ú½À´Ï±î?", "¹®ÀÇ µî·Ï È®ÀÎ", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+			int result = JOptionPane.showConfirmDialog(null, "ë¬¸ì˜ë¥¼ ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "ë¬¸ì˜ ë“±ë¡ í™•ì¸", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 			if(result == 0) {
 				QnAData.createQ(tTitle.getText(), tContent.getText(), writer);
-				JOptionPane.showMessageDialog(null, "¹®ÀÇ°¡ µî·ÏµÇ¾ú½À´Ï´Ù.", "¹®ÀÇ µî·Ï", JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "ë¬¸ì˜ê°€ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.", "ë¬¸ì˜ ë“±ë¡", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
 			}
 			else {
@@ -257,5 +259,3 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 	}   
 }	
 
-	
-			

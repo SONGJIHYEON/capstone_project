@@ -7,6 +7,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Label;
 import java.awt.TextField;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -27,17 +30,17 @@ public class ManPro extends JPanel {
 	private JTextField xSearch;
 
 //	private JPasswordField xMemPw1, xMemPw2;
-//	private String[] ctgr1 = {"»óÀÇ", "ÇÏÀÇ", "¼ÅÃ÷", "¾Æ¿ìÅÍ", "½Å¹ß"};
-//	private String[] ctgr2_1 = {"¸ÇÅõ¸Ç", "¹İÆÈ", "±äÆÈ", "´ÏÆ®", "ÈÄµå"};
-//	private String[] ctgr2_2 = {"Ã»¹ÙÁö", "½½·¢½º", "¸é¹ÙÁö", "¿îµ¿º¹", "¹İ¹ÙÁö"};
-//	private String[] ctgr2_3 = {"¹İÆÈ¼ÅÃ÷", "Ã¼Å©", "±äÆÈ¼ÅÃ÷", "½ºÆ®¶óÀÌÇÁ"};
-//	private String[] ctgr2_4 = {"ÄÚÆ®", "°¡µğ°Ç", "Á¶³¢", "Áı¾÷", "ÆĞµù", "Á¡ÆÛ", "¾ß»ó", "ÀçÅ¶"};
-//	private String[] ctgr2_5 = {"½ºÆ¼Ä¿Áî", "¿îµ¿È­", "½½¸®ÆÛ", "·ÎÆÛ", "±¸µÎ", "¿öÄ¿", "ºÎÃ÷", "»÷µé"};
+//	private String[] ctgr1 = {"ìƒì˜", "í•˜ì˜", "ì…”ì¸ ", "ì•„ìš°í„°", "ì‹ ë°œ"};
+//	private String[] ctgr2_1 = {"ë§¨íˆ¬ë§¨", "ë°˜íŒ”", "ê¸´íŒ”", "ë‹ˆíŠ¸", "í›„ë“œ"};
+//	private String[] ctgr2_2 = {"ì²­ë°”ì§€", "ìŠ¬ë™ìŠ¤", "ë©´ë°”ì§€", "ìš´ë™ë³µ", "ë°˜ë°”ì§€"};
+//	private String[] ctgr2_3 = {"ë°˜íŒ”ì…”ì¸ ", "ì²´í¬", "ê¸´íŒ”ì…”ì¸ ", "ìŠ¤íŠ¸ë¼ì´í”„"};
+//	private String[] ctgr2_4 = {"ì½”íŠ¸", "ê°€ë””ê±´", "ì¡°ë¼", "ì§‘ì—…", "íŒ¨ë”©", "ì í¼", "ì•¼ìƒ", "ì¬í‚·"};
+//	private String[] ctgr2_5 = {"ìŠ¤í‹°ì»¤ì¦ˆ", "ìš´ë™í™”", "ìŠ¬ë¦¬í¼", "ë¡œí¼", "êµ¬ë‘", "ì›Œì»¤", "ë¶€ì¸ ", "ìƒŒë“¤"};
 	
-	private String[] col1 = {"No", "ÀÌ¹ÌÁö", "¸ğµ¨¸í", "»óÇ°¸í", "°¡°İ", "Àç°í", "¼öÁ¤/»èÁ¦"};      
-	private String[] search = {"¸ğµ¨¸í", "¸ğµ¨¹øÈ£"};    
+	private String[] col1 = {"No",  "ëª¨ë¸ëª…", "ìƒí’ˆëª…", "ìƒ‰ìƒ", "ì‚¬ì´ì¦ˆ"};      
+	private String[] search = {"ëª¨ë¸ëª…", "ìƒ‰ìƒ", "ì‚¬ì´ì¦ˆ"};    
 	
-//  private String[] div = {"Á¤±ÔÁ÷", "ÀÓ½ÃÁ÷", "°è¾àÁ÷"};      // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+//  private String[] div = {"ì •ê·œì§", "ì„ì‹œì§", "ê³„ì•½ì§"};      // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 //	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
 
 	private JTable tModelInfo;    
@@ -54,8 +57,10 @@ public class ManPro extends JPanel {
 	public ManPro() {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints(); 
+		
+		getData(ProData.selectProMod());
         
-		vAdminPro2 = new JLabel("»óÇ°Á¶È¸");
+		vAdminPro2 = new JLabel("ìƒí’ˆì¡°íšŒ");
 		vAdminPro2.setPreferredSize(new Dimension(200,28));
 		
 		CbSearch = new JComboBox<String>(search);
@@ -69,11 +74,11 @@ public class ManPro extends JPanel {
         scrollpane1.setPreferredSize(new Dimension(1000, 300));
 
 		
-		BtSearch = new JButton("°Ë»ö");
+		BtSearch = new JButton("ê²€ìƒ‰");
 		BtSearch.setPreferredSize(new Dimension(100,28));
-		BtReg = new JButton("µî·Ï");
+		BtReg = new JButton("ë“±ë¡");
 		BtReg.setPreferredSize(new Dimension(100,28));
-//		BtCancel = new JButton("´İ±â");
+//		BtCancel = new JButton("ë‹«ê¸°");
 		ManProView();
 	}
 	
@@ -102,13 +107,13 @@ public class ManPro extends JPanel {
 		
 		gbc.gridx = x;
 		gbc.gridy = y; 
-		//°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+		//ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 		
 		gbc.gridwidth  = w;
 		gbc.gridheight = h;
 		
 		
-		gbl.setConstraints(c, gbc); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+		gbl.setConstraints(c, gbc); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 		
 		add(c);   
 		
@@ -117,7 +122,17 @@ public class ManPro extends JPanel {
 	public static void main(String[] args) {   
 		new ManPro();
 	}   
-}	
-
-	
+	private void getData(List<Map<String, Serializable>> ProListData) {
 			
+			for(int i=0; i < ProListData.size(); i++) {
+				model1.addRow(new Object[] {
+						
+						ProListData.get(i).get("PRO_NUM"),
+						ProListData.get(i).get("MODEL_NM"),
+						ProListData.get(i).get("PRO_NM"),
+						ProListData.get(i).get("CLR"),
+						ProListData.get(i).get("SIZ")
+				});
+			}
+	}
+}	

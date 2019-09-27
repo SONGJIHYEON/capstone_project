@@ -10,12 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+
 public class ImageData {
 
 	public static Connection conn = ConnectionDB.getConnection();
 	static String quary;
 	static PreparedStatement pstm = null;
 	static ResultSet rs = null;
+	static int error;
 
 	public static Map<String, Serializable> Imagedata = new HashMap<String, Serializable>();
 
@@ -23,12 +26,12 @@ public class ImageData {
 
 	public static List<Map<String, Serializable>> ImageListData = new ArrayList<Map<String, Serializable>>();
 
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initImageData(String pro_NUM, String pro_CTGR_NUM, String pro_NM, String pro_EXP) {
 
 	}
 
-	/* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+	/* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
 	static void createImage(String Pro_num, String PRO_NM, String CLR, String SIZ, String SIZ_DET_INFO) {
 
 		quary = "insert into pro values (SEQ_PRO_NUM.NEXTVAL, '" + Pro_num + "', '" + PRO_NM + "', '" + CLR + "', '"
@@ -39,7 +42,7 @@ public class ImageData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -68,7 +71,7 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -98,7 +101,7 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -130,7 +133,7 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -162,7 +165,7 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -194,7 +197,7 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -224,13 +227,45 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
 		return ImageListData;
 
 	}
+	
+	static List<Map<String, Serializable>> countBasicPrice(String filename2) {
+
+		quary = "select count(up) from model " + "join pro on model.MODEL_NUM = pro.MODEL_NUM "
+				+ "join pro_up_rec on PRO.PRO_NUM = PRO_UP_REC.PRO_NUM "
+				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + filename2 + "' order by up asc";
+
+		ImageListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ImagedataSet = new HashMap<String, Serializable>();
+
+				ImagedataSet.put("up", rs.getString(1));
+
+				ImageListData.add(ImagedataSet);
+//				System.out.println(ImageListData);
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
+			sqle.printStackTrace();
+		}
+
+		return ImageListData;
+
+	}
+
 
 	static List<Map<String, Serializable>> selectBasicPrice(String filename2) {
 
@@ -253,11 +288,15 @@ public class ImageData {
 
 				ImageListData.add(ImagedataSet);
 //				System.out.println(ImageListData);
+				
+				if(ImageListData.get(0).get("UP").toString() == null) {
+					error = 1;
+				}
 
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -290,7 +329,7 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -322,7 +361,7 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -352,7 +391,7 @@ public class ImageData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -383,7 +422,7 @@ public class ImageData {
             }
 
          } catch (SQLException sqle) {
-            System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+            System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
             sqle.printStackTrace();
          }
 

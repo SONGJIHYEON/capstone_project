@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -30,10 +32,10 @@ public class Nonmember extends JFrame implements ActionListener {
 	private JLabel vNonmem1, vNonmem2, vNonmem3, vNonmemNm, vNonmemPh;
 	private JTextField xNonmemId, xNonmemNm, xNonmemPh;
 //	private JPasswordField xNonmemPwd;
-	private String[] div = {"naver.com", "hanmail.com", "nate.com", "gmail.com", "Á÷Á¢ÀÔ·Â"};      
-//	   private String[] col1 = {"ºÎ¼­¸í", "ºÎ¼­À§Ä¡"};      
-//	   private String[] col2 = {"ºÎ¼­¸í", "¼º¸í"};      
-//	   private String[] div = {"Á¤±ÔÁ÷", "ÀÓ½ÃÁ÷", "°è¾àÁ÷"};      // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+	private String[] div = {"naver.com", "hanmail.com", "nate.com", "gmail.com", "ì§ì ‘ì…ë ¥"};      
+//	   private String[] col1 = {"ë¶€ì„œëª…", "ë¶€ì„œìœ„ì¹˜"};      
+//	   private String[] col2 = {"ë¶€ì„œëª…", "ì„±ëª…"};      
+//	   private String[] div = {"ì •ê·œì§", "ì„ì‹œì§", "ê³„ì•½ì§"};      // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 	         
 //	   private DefaultTableModel model1 = new DefaultTableModel(col1, 0);      
 //	   private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
@@ -53,20 +55,20 @@ public class Nonmember extends JFrame implements ActionListener {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints(); 
 		
-		vNonmem1 = new JLabel("ºñÈ¸¿ø Á¢¼Ó");
-		vNonmem2 = new JLabel("ÀÓ½Ã ID¸¦ ¹ß±Ş ¹ŞÀ¸½Ã°í ID¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-		vNonmem3 = new JLabel("°í°´ÀÇ ÀÌ¸§°ú ÈŞ´ëÆù ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä");
-		vNonmemNm = new JLabel("°í°´¸í");
-		vNonmemPh = new JLabel("ÈŞ´ëÆù ¹øÈ£");
+		vNonmem1 = new JLabel("ë¹„íšŒì› ì ‘ì†");
+		vNonmem2 = new JLabel("ì„ì‹œ IDë¥¼ ë°œê¸‰ ë°›ìœ¼ì‹œê³  IDë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+		vNonmem3 = new JLabel("ê³ ê°ì˜ ì´ë¦„ê³¼ íœ´ëŒ€í° ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”");
+		vNonmemNm = new JLabel("ê³ ê°ëª…");
+		vNonmemPh = new JLabel("íœ´ëŒ€í° ë²ˆí˜¸");
 		
 		xNonmemId = new JTextField(20);
 		xNonmemNm = new JTextField(20);
 		xNonmemPh = new JTextField(20);
 
-		BtTempId = new JButton("ÀÓ½ÃID¹ß±Ş");
+		BtTempId = new JButton("ì„ì‹œIDë°œê¸‰");
 		BtTempId.setPreferredSize(new Dimension(100, 28));
 		BtTempId.addActionListener(this);
-		BtNonConnect = new JButton("ºñÈ¸¿ø Á¢¼Ó");
+		BtNonConnect = new JButton("ë¹„íšŒì› ì ‘ì†");
 		BtNonConnect.addActionListener(this);
 		BtNonConnect.setPreferredSize(new Dimension(100, 28));
 		
@@ -75,7 +77,7 @@ public class Nonmember extends JFrame implements ActionListener {
 	
 	private void NonmemberView() {
 		setExtendedState(MAXIMIZED_BOTH);
-		setTitle("È¸¿ø°¡ÀÔ");
+		setTitle("íšŒì›ê°€ì…");
 
 
 		setLayout(gbl);
@@ -127,13 +129,13 @@ public class Nonmember extends JFrame implements ActionListener {
 		
 		gbc.gridx = x;
 		gbc.gridy = y; 
-		//°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+		//ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 		
 		gbc.gridwidth  = w;
 		gbc.gridheight = h;
 		
 		
-		gbl.setConstraints(c, gbc); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+		gbl.setConstraints(c, gbc); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 		
 		add(c);   
 		
@@ -153,7 +155,7 @@ public class Nonmember extends JFrame implements ActionListener {
 		// TODO Auto-generated method stub
 		if(e.getSource() == BtTempId) {
 			RandomId rid = new RandomId();
-			JOptionPane.showMessageDialog(null, "ÀÓ½Ã ¾ÆÀÌµğ´Â " + rid.x + " ÀÔ´Ï´Ù");
+			JOptionPane.showMessageDialog(null, "ì„ì‹œ ì•„ì´ë””ëŠ” " + rid.x + " ì…ë‹ˆë‹¤");
 			String x = Integer.toString(rid.x);
 			xNonmemId.setText(x);
 		}
@@ -168,5 +170,3 @@ public class Nonmember extends JFrame implements ActionListener {
 	}   
 }	
 
-	
-			

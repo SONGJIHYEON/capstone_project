@@ -27,14 +27,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class corr_look extends JFrame implements ActionListener, MouseListener {
+public class corr_look extends JPanel implements ActionListener, MouseListener {
 
    public static String corr_num, corr_nm;
    private JLabel corr_lookup2, pur_regist, Lcorr_no, Lcorr_nm, Lcorr_prnm, Lcorr_ph, Lcorr_addr; 
    private JTextField  Tsearch;      
          
-   private String[] col1 = {"°Å·¡Ã³¹øÈ£", "°Å·¡Ã³¸í", "´ëÇ¥¸í", "¿¬¶ôÃ³", "ÁÖ¼Ò", ""};  
-   private String[] search = {"°Å·¡Ã³¹øÈ£", "°Å·¡Ã³¸í", "´ëÇ¥¸í"};       
+   private String[] col1 = {"ê±°ë˜ì²˜ë²ˆí˜¸", "ê±°ë˜ì²˜ëª…", "ëŒ€í‘œëª…", "ì—°ë½ì²˜", "ì£¼ì†Œ", ""};  
+   private String[] search = {"ê±°ë˜ì²˜ë²ˆí˜¸", "ê±°ë˜ì²˜ëª…", "ëŒ€í‘œëª…"};       
    
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
    
@@ -46,7 +46,7 @@ public class corr_look extends JFrame implements ActionListener, MouseListener {
    private JComboBox<String> cbSearch;      
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public corr_look() {      
          
@@ -54,15 +54,15 @@ public class corr_look extends JFrame implements ActionListener, MouseListener {
          gridbagconstraints = new GridBagConstraints();
          
          
-         corr_lookup2 = new JLabel("°Å·¡Ã³Á¶È¸");
-         corr_lookup2.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 40));
+         corr_lookup2 = new JLabel("ê±°ë˜ì²˜ì¡°íšŒ");
+         corr_lookup2.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 40));
          corr_lookup2.setPreferredSize(new Dimension(200,50));
          
          Tsearch = new JTextField(22);
          Tsearch.setPreferredSize(new Dimension(150,40));
          
          cbSearch = new JComboBox<String>(search);
-         cbSearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 22));
+         cbSearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 22));
          cbSearch.setPreferredSize(new Dimension(200,40));
          cbSearch.setBackground(Color.WHITE);
          
@@ -71,8 +71,8 @@ public class corr_look extends JFrame implements ActionListener, MouseListener {
          scrollpane1 = new JScrollPane(corr_info);
          scrollpane1.setPreferredSize(new Dimension(1000, 300));
          
-         Bsearch = new JButton("°Ë»ö");
-         Bsearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 20));
+         Bsearch = new JButton("ê²€ìƒ‰");
+         Bsearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 20));
          Bsearch.setPreferredSize(new Dimension(100,40));
          Bsearch.setBackground(Color.WHITE);
          
@@ -101,7 +101,7 @@ public class corr_look extends JFrame implements ActionListener, MouseListener {
          
     private void EmpRegisterView() {      
          
-//         setTitle("°Å·¡Ã³Á¶È¸");
+//         setTitle("ê±°ë˜ì²˜ì¡°íšŒ");
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -132,13 +132,13 @@ public class corr_look extends JFrame implements ActionListener, MouseListener {
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          
@@ -157,7 +157,7 @@ public class corr_look extends JFrame implements ActionListener, MouseListener {
         
         public TableCell() {
             // TODO Auto-generated constructor stub
-            jb = new JButton("±¸¸ÅÁ¶È¸");
+            jb = new JButton("êµ¬ë§¤ì¡°íšŒ");
             jb.setFocusPainted(false);
             jb.setBackground(Color.WHITE);
             

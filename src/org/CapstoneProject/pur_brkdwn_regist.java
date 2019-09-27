@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -33,26 +34,26 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
    int pur_quant, pur_up, tot_pr;
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag·¹ÀÌ¾Æ¿ô¿¡ ÄÄÆ÷³ÍÆ®ÀÇ À§Ä¡¸¦ Àâ¾ÆÁÖ´Â ¿ªÇÒ
+   GridBagConstraints gridbagconstraints;      // gridbagë ˆì´ì•„ì›ƒì— ì»´í¬ë„ŒíŠ¸ì˜ ìœ„ì¹˜ë¥¼ ì¡ì•„ì£¼ëŠ” ì—­í• 
          
    public pur_brkdwn_regist(JFrame fr) {      
 	   super(fr, "", true);
          gridbaglayout = new GridBagLayout();
          gridbagconstraints = new GridBagConstraints();
          
-         //±¸¸Å³»¿ª
-         Lpur_no = new JLabel("±¸¸Å¹øÈ£");
+         //êµ¬ë§¤ë‚´ì—­
+         Lpur_no = new JLabel("êµ¬ë§¤ë²ˆí˜¸");
          Lpur_no.setPreferredSize(new Dimension(100,30));
-         Lpro_nm = new JLabel("»óÇ°¸í");
+         Lpro_nm = new JLabel("ìƒí’ˆëª…");
          Lpro_nm.setPreferredSize(new Dimension(100,30));
-         Lpur_quant = new JLabel("±¸¸Å¼ö·®");
+         Lpur_quant = new JLabel("êµ¬ë§¤ìˆ˜ëŸ‰");
          Lpur_quant.setPreferredSize(new Dimension(100,30));
-         Lpur_up = new JLabel("±¸¸Å´Ü°¡");
+         Lpur_up = new JLabel("êµ¬ë§¤ë‹¨ê°€");
          Lpur_up.setPreferredSize(new Dimension(100,30));
-         Lpr = new JLabel("±İ¾×");
+         Lpr = new JLabel("ê¸ˆì•¡");
          Lpr.setPreferredSize(new Dimension(100,30));
          
-         //±¸¸Å³»¿ª ÀÔ·Â
+         //êµ¬ë§¤ë‚´ì—­ ì…ë ¥
          Tpur_no = new JTextField(10);
          Tpur_no.setEnabled(false);
          Tpur_no.setPreferredSize(new Dimension(100,30));
@@ -67,19 +68,19 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
          Tpr.addMouseListener(this);
          Tpr.setPreferredSize(new Dimension(100,30));
          
-         Bregist = new JButton("µî·Ï");
+         Bregist = new JButton("ë“±ë¡");
          Bregist.addActionListener(this);
-         Bregist.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 20));
+         Bregist.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 20));
          Bregist.setBackground(Color.WHITE);
          
-         Bcancel = new JButton("Ãë¼Ò");
-         Bcancel.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 20));
+         Bcancel = new JButton("ì·¨ì†Œ");
+         Bcancel.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 20));
          Bcancel.setBackground(Color.WHITE);
          Bcancel.addActionListener(this);
          
-         Bprosearch = new JButton("»óÇ°°Ë»ö");
+         Bprosearch = new JButton("ìƒí’ˆê²€ìƒ‰");
          Bprosearch.addActionListener(this);
-         Bprosearch.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.PLAIN , 20));
+         Bprosearch.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.PLAIN , 20));
          Bprosearch.setFocusPainted(false);
          Bprosearch.setBackground(Color.WHITE);
          
@@ -91,7 +92,7 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
          
    private void EmpRegisterView() {      
          
-         setTitle("±¸¸Å³»¿ªµî·Ï");
+         setTitle("êµ¬ë§¤ë‚´ì—­ë“±ë¡");
          
          gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -107,14 +108,14 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
          
          gridbagconstraints.anchor = GridBagConstraints.CENTER;
          
-         //±¸¸Å³»¿ª
+         //êµ¬ë§¤ë‚´ì—­
          gridbagAdd(Lpur_no, 0, 1, 1, 1);
          gridbagAdd(Lpro_nm, 0, 2, 1, 1);
          gridbagAdd(Lpur_quant, 0, 3, 1, 1);
          gridbagAdd(Lpur_up, 0, 4, 1, 1);
          gridbagAdd(Lpr, 0, 5, 1, 1);
          
-         //±¸¸Å³»¿ª
+         //êµ¬ë§¤ë‚´ì—­
          gridbagAdd(Tpur_no, 1, 1, 1, 1);
          Tpur_no.setText(pur_list.pur_num);
          gridbagAdd(Tpro_nm, 1, 2, 1, 1);
@@ -136,13 +137,13 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
          
          gridbagconstraints.gridx = x;
          gridbagconstraints.gridy = y; 
-            //°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+            //ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
          
          gridbagconstraints.gridwidth  = w;
          gridbagconstraints.gridheight = h;
               
                
-          gridbaglayout.setConstraints(c, gridbagconstraints); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+          gridbaglayout.setConstraints(c, gridbagconstraints); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
          
          add(c);   
          
@@ -159,22 +160,22 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 	         dispose();
 	      }else if(e.getSource() == Bregist) {
 			
-			int result = JOptionPane.showConfirmDialog(null, "ÇØ´ç ±¸¸Å³»¿ª¸¦ µî·ÏÇÏ½Ã°Ú½À´Ï±î?", "±¸¸Å³»¿ª µî·Ï È®ÀÎ", JOptionPane.YES_NO_OPTION,
+			int result = JOptionPane.showConfirmDialog(null, "í•´ë‹¹ êµ¬ë§¤ë‚´ì—­ë¥¼ ë“±ë¡í•˜ì‹œê² ìŠµë‹ˆê¹Œ?", "êµ¬ë§¤ë‚´ì—­ ë“±ë¡ í™•ì¸", JOptionPane.YES_NO_OPTION,
 				    JOptionPane.INFORMATION_MESSAGE);
 					if(result == 0) {
-						//º¯¼ö¿¡ ÄŞº¸¹Ú½º °ª ÀúÀå
+						//ë³€ìˆ˜ì— ì½¤ë³´ë°•ìŠ¤ ê°’ ì €ì¥
 						pur_num = Tpur_no.getText();
 						pur_quant = Integer.parseInt(Tpur_quant.getText());
 						pur_up = Integer.parseInt(Tpur_up.getText());
 						tot_pr = Integer.parseInt(Tpr.getText());
 						
 						if (pur_num.equals("") || pur_quant == 0 || pur_up == 0 || tot_pr == 0) {
-							JOptionPane.showMessageDialog(null, "ÀÔ·ÂµÇÁö ¾ÊÀº Ç×¸ñÀÌ ÀÖ½À´Ï´Ù.", "¿À·ù", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "ì…ë ¥ë˜ì§€ ì•Šì€ í•­ëª©ì´ ìˆìŠµë‹ˆë‹¤.", "ì˜¤ë¥˜", JOptionPane.ERROR_MESSAGE);
 						} else {
 						
 							pur_brkdwn_Data.initpur_brkdwn_Data(pur_num,pro_num,pur_quant,pur_up,tot_pr);
 							pur_brkdwn_Data.createpur_brkdwn_Data();
-							JOptionPane.showMessageDialog(null, "±¸¸Å³»¿ªÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.", "±¸¸Å³»¿ª µî·Ï",
+							JOptionPane.showMessageDialog(null, "êµ¬ë§¤ë‚´ì—­ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.", "êµ¬ë§¤ë‚´ì—­ ë“±ë¡",
 						               JOptionPane.INFORMATION_MESSAGE);
 							Tpur_no.setText("");
 							Tpro_nm.setText("");
@@ -232,3 +233,4 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 		
 	}
 }
+

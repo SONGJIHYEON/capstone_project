@@ -23,29 +23,29 @@ public class CustData {
 
 	public static List<Map<String, Serializable>> custListData = new ArrayList<Map<String, Serializable>>();
 
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initCustData(String ID, String PWD, String CUST_NM, String BD, String PH_NUM, String ADDR,
 			String newstring) {
 
-		custdata.put("¾ÆÀÌµğ", ID);
-		custdata.put("ºñ¹Ğ¹øÈ£", PWD);
-		custdata.put("ÀÌ¸§", CUST_NM);
-		custdata.put("»ı³â¿ùÀÏ", BD);
-		custdata.put("ÈŞ´ëÆù¹øÈ£", PH_NUM);
-		custdata.put("ÁÖ¼Ò", ADDR);
-		custdata.put("ÇÒÀÎÀ²½ÃÀÛÀÏÀÚ", newstring);
+		custdata.put("ì•„ì´ë””", ID);
+		custdata.put("ë¹„ë°€ë²ˆí˜¸", PWD);
+		custdata.put("ì´ë¦„", CUST_NM);
+		custdata.put("ìƒë…„ì›”ì¼", BD);
+		custdata.put("íœ´ëŒ€í°ë²ˆí˜¸", PH_NUM);
+		custdata.put("ì£¼ì†Œ", ADDR);
+		custdata.put("í• ì¸ìœ¨ì‹œì‘ì¼ì", newstring);
 //		custdata.put("A", TEL);
 //		custdata.put("A", TEL);
-//		custdata.put("ÁÖ¼Ò", scust);
+//		custdata.put("ì£¼ì†Œ", scust);
 
 	}
 
-	/* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+	/* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
 	static void createCust() {
 		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, CUST_TP, ID, PWD, BD, ADDR, MB_GRA, POSS_PNT, DISC_APP_ST_DT, DISC_APP_END_DT) "
-				+ "VALUES(SEQ_CUST_NUM.NEXTVAL, '" + custdata.get("ÀÌ¸§") + "', '" + custdata.get("ÈŞ´ëÆù¹øÈ£") + "', 'È¸¿ø', '"
-				+ custdata.get("¾ÆÀÌµğ") + "', " + " '" + custdata.get("ºñ¹Ğ¹øÈ£") + "', to_date('" + custdata.get("»ı³â¿ùÀÏ")
-				+ "', 'YYYY-MM-DD'), '" + custdata.get("ÁÖ¼Ò") + "', 'F', 0, " + " to_date('" + custdata.get("ÇÒÀÎÀ²½ÃÀÛÀÏÀÚ")
+				+ "VALUES(SEQ_CUST_NUM.NEXTVAL, '" + custdata.get("ì´ë¦„") + "', '" + custdata.get("íœ´ëŒ€í°ë²ˆí˜¸") + "', 'íšŒì›', '"
+				+ custdata.get("ì•„ì´ë””") + "', " + " '" + custdata.get("ë¹„ë°€ë²ˆí˜¸") + "', to_date('" + custdata.get("ìƒë…„ì›”ì¼")
+				+ "', 'YYYY-MM-DD'), '" + custdata.get("ì£¼ì†Œ") + "', 'F', 0, " + " to_date('" + custdata.get("í• ì¸ìœ¨ì‹œì‘ì¼ì")
 				+ "', 'YYYY-MM-DD'), to_date('9999-12-31', 'YYYY-MM-DD'))";
 		
 		custListData.clear();
@@ -55,7 +55,7 @@ public class CustData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -64,22 +64,22 @@ public class CustData {
 
 	static void initCustData2(String NONNM, String NONPH) {
 
-		custdata.put("ÀÌ¸§", NONNM);
-		custdata.put("ÈŞ´ëÆù¹øÈ£", NONPH);
+		custdata.put("ì´ë¦„", NONNM);
+		custdata.put("íœ´ëŒ€í°ë²ˆí˜¸", NONPH);
 
 	}
 
-	/* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+	/* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
 	static void createCust2() {
 		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, CUST_TP, ID, PWD, BD, ADDR, MB_GRA, POSS_PNT, DISC_APP_ST_DT, DISC_APP_END_DT) "
-				+ "VALUES(SEQ_CUST_NUM.NEXTVAL, '" + custdata.get("ÀÌ¸§") + "', '" + custdata.get("ÈŞ´ëÆù¹øÈ£")
-				+ "', 'ºñÈ¸¿ø', '', '', '', '', '', '', '', '')";
+				+ "VALUES(SEQ_CUST_NUM.NEXTVAL, '" + custdata.get("ì´ë¦„") + "', '" + custdata.get("íœ´ëŒ€í°ë²ˆí˜¸")
+				+ "', 'ë¹„íšŒì›', '', '', '', '', '', '', '', '')";
 
 		try {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -93,14 +93,14 @@ public class CustData {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 	}
 	
 	static List<Map<String, Serializable>> selectCust() {
 
-		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = 'È¸¿ø' ";
+		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = 'íšŒì›' ";
 
 		custListData.clear();
 
@@ -125,7 +125,7 @@ public class CustData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -135,7 +135,7 @@ public class CustData {
 	
 	static List<Map<String, Serializable>> searchCust1(String search) {
 
-		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = 'È¸¿ø' and ID like '%" + search + "%' ";
+		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = 'íšŒì›' and ID like '%" + search + "%' ";
 
 		custListData.clear();
 
@@ -160,7 +160,7 @@ public class CustData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -170,7 +170,7 @@ public class CustData {
 	
 	static List<Map<String, Serializable>> searchCust2(String search) {
 
-		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = 'È¸¿ø' and CUST_NM like '%" + search + "%'";
+		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = 'íšŒì›' and CUST_NM like '%" + search + "%'";
 
 		custListData.clear();
 
@@ -195,7 +195,7 @@ public class CustData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 
@@ -205,7 +205,7 @@ public class CustData {
 	
 	static List<Map<String, Serializable>>searchCust3(String search) {
 
-		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = 'È¸¿ø' and MB_GRA like '%" + search + "%'";
+		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = 'íšŒì›' and MB_GRA like '%" + search + "%'";
 
 		custListData.clear();
 
@@ -230,7 +230,36 @@ public class CustData {
 			}
 
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
+			sqle.printStackTrace();
+		}
+
+		return custListData;
+
+	}
+	
+	static List<Map<String, Serializable>>selectCustGra(String user_id) {
+
+		quary = "select DISC_RT from cust join mb_gra on cust.MB_Gra = mb_gra.GRA_TP where ID = '" + user_id +"'";
+
+		custListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				custdataSet = new HashMap<String, Serializable>();
+
+				custdataSet.put("DISC_RT", rs.getString(1));
+				// System.out.println(addrdataSet);
+				custListData.add(custdataSet);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 

@@ -1,3 +1,4 @@
+  
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -44,57 +45,58 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	static JPanel P_I = new ProImage();
 	static JPanel menu_a = new JPanel();
 	static JPanel menu_b = new JPanel();
+	static JPanel M_M = new Mypage();
 
 	static JMenuBar MenuBar1 = new JMenuBar();
-	JMenu Home = new JMenu("È¨");
-	JMenu Mn_Manage = new JMenu(" ¼îÇÎ¸ô°ü¸® ");
-	JMenu Mn_Center = new JMenu(" °í°´¼¾ÅÍ ");
-	JMenu Mn_Basket = new JMenu(" Àå¹Ù±¸´Ï ");
-	JMenu Mn_Mypage = new JMenu(" ¸¶ÀÌÆäÀÌÁö ");
-	JMenu Mn_Logout = new JMenu(" ·Î±×¾Æ¿ô ");
+	JMenu Home = new JMenu("í™ˆ");
+	JMenu Mn_Manage = new JMenu(" ì‡¼í•‘ëª°ê´€ë¦¬ ");
+	JMenu Mn_Center = new JMenu(" ê³ ê°ì„¼í„° ");
+	JMenu Mn_Basket = new JMenu(" ì¥ë°”êµ¬ë‹ˆ ");
+	JMenu Mn_Mypage = new JMenu(" ë§ˆì´í˜ì´ì§€ ");
+	JMenu Mn_Logout = new JMenu(" ë¡œê·¸ì•„ì›ƒ ");
 
 	static JMenuBar MenuBar2 = new JMenuBar();
-	// »óÀÇ ¸Ş´º
-	JMenu Mn_Top = new JMenu("»óÀÇ ");
-	JMenuItem Top_1 = new JMenuItem("¸ÇÅõ¸Ç");
-	JMenuItem Top_2 = new JMenuItem("¹İÆÈT");
-	JMenuItem Top_3 = new JMenuItem("±äÆÈT");
-	JMenuItem Top_4 = new JMenuItem("ÈÄµå");
-	JMenuItem Top_5 = new JMenuItem("´ÏÆ® ");
-	// ÇÏÀÇ ¸Ş´º
-	JMenu Mn_Bottom = new JMenu("ÇÏÀÇ");
-	JMenuItem Bot_1 = new JMenuItem("Ã»¹ÙÁö");
-	JMenuItem Bot_2 = new JMenuItem("½½·¢½º");
-	JMenuItem Bot_3 = new JMenuItem("¸é¹ÙÁö");
-	JMenuItem Bot_4 = new JMenuItem("¿îµ¿º¹");
-	JMenuItem Bot_5 = new JMenuItem("¹İ¹ÙÁö");
+	// ìƒì˜ ë©”ë‰´
+	JMenu Mn_Top = new JMenu("ìƒì˜ ");
+	JMenuItem Top_1 = new JMenuItem("ë§¨íˆ¬ë§¨");
+	JMenuItem Top_2 = new JMenuItem("ë°˜íŒ”T");
+	JMenuItem Top_3 = new JMenuItem("ê¸´íŒ”T");
+	JMenuItem Top_4 = new JMenuItem("í›„ë“œ");
+	JMenuItem Top_5 = new JMenuItem("ë‹ˆíŠ¸ ");
+	// í•˜ì˜ ë©”ë‰´
+	JMenu Mn_Bottom = new JMenu("í•˜ì˜");
+	JMenuItem Bot_1 = new JMenuItem("ì²­ë°”ì§€");
+	JMenuItem Bot_2 = new JMenuItem("ìŠ¬ë™ìŠ¤");
+	JMenuItem Bot_3 = new JMenuItem("ë©´ë°”ì§€");
+	JMenuItem Bot_4 = new JMenuItem("ìš´ë™ë³µ");
+	JMenuItem Bot_5 = new JMenuItem("ë°˜ë°”ì§€");
 
-	// ¾Æ¿ìÅÍ ¸Ş´º
-	JMenu Mn_Outter = new JMenu("¾Æ¿ìÅÍ");
-	JMenuItem Out_1 = new JMenuItem("°¡µğ°Ç");
-	JMenuItem Out_2 = new JMenuItem("ÄÚÆ®");
-	JMenuItem Out_3 = new JMenuItem("Á¶³¢");
-	JMenuItem Out_4 = new JMenuItem("Áı¾÷");
-	JMenuItem Out_5 = new JMenuItem("Á¡ÆÛ");
-	JMenuItem Out_6 = new JMenuItem("ÆĞµù");
-	JMenuItem Out_7 = new JMenuItem("¾ß»ó");
-	JMenuItem Out_8 = new JMenuItem("ÀçÅ¶");
-	// ¼ÅÃ÷ ¸Ş´º
-	JMenu Mn_Shirts = new JMenu("¼ÅÃ÷");
-	JMenuItem Sht_1 = new JMenuItem("½ºÆ®¶óÀÌÇÁ");
-	JMenuItem Sht_2 = new JMenuItem("Ã¼Å©");
-	JMenuItem Sht_3 = new JMenuItem("±äÆÈ");
-	JMenuItem Sht_4 = new JMenuItem("¹İÆÈ");
-	// ½Å¹ß ¸Ş´º
-	JMenu Mn_Shoose = new JMenu("½Å¹ß");
-	JMenuItem Sho_1 = new JMenuItem("½º´ÏÄ¿Áî");
-	JMenuItem Sho_2 = new JMenuItem("¿îµ¿È­");
-	JMenuItem Sho_3 = new JMenuItem("½½¸®ÆÛ");
-	JMenuItem Sho_4 = new JMenuItem("±¸µÎ");
-	JMenuItem Sho_5 = new JMenuItem("¿öÄ¿");
-	JMenuItem Sho_6 = new JMenuItem("ºÎÃ÷");
-	JMenuItem Sho_7 = new JMenuItem("»÷µé");
-	JMenuItem Sho_8 = new JMenuItem("·ÎÆÛ");
+	// ì•„ìš°í„° ë©”ë‰´
+	JMenu Mn_Outter = new JMenu("ì•„ìš°í„°");
+	JMenuItem Out_1 = new JMenuItem("ê°€ë””ê±´");
+	JMenuItem Out_2 = new JMenuItem("ì½”íŠ¸");
+	JMenuItem Out_3 = new JMenuItem("ì¡°ë¼");
+	JMenuItem Out_4 = new JMenuItem("ì§‘ì—…");
+	JMenuItem Out_5 = new JMenuItem("ì í¼");
+	JMenuItem Out_6 = new JMenuItem("íŒ¨ë”©");
+	JMenuItem Out_7 = new JMenuItem("ì•¼ìƒ");
+	JMenuItem Out_8 = new JMenuItem("ì¬í‚·");
+	// ì…”ì¸  ë©”ë‰´
+	JMenu Mn_Shirts = new JMenu("ì…”ì¸ ");
+	JMenuItem Sht_1 = new JMenuItem("ìŠ¤íŠ¸ë¼ì´í”„");
+	JMenuItem Sht_2 = new JMenuItem("ì²´í¬");
+	JMenuItem Sht_3 = new JMenuItem("ê¸´íŒ”");
+	JMenuItem Sht_4 = new JMenuItem("ë°˜íŒ”");
+	// ì‹ ë°œ ë©”ë‰´
+	JMenu Mn_Shoose = new JMenu("ì‹ ë°œ");
+	JMenuItem Sho_1 = new JMenuItem("ìŠ¤ë‹ˆì»¤ì¦ˆ");
+	JMenuItem Sho_2 = new JMenuItem("ìš´ë™í™”");
+	JMenuItem Sho_3 = new JMenuItem("ìŠ¬ë¦¬í¼");
+	JMenuItem Sho_4 = new JMenuItem("êµ¬ë‘");
+	JMenuItem Sho_5 = new JMenuItem("ì›Œì»¤");
+	JMenuItem Sho_6 = new JMenuItem("ë¶€ì¸ ");
+	JMenuItem Sho_7 = new JMenuItem("ìƒŒë“¤");
+	JMenuItem Sho_8 = new JMenuItem("ë¡œí¼");
 
 	private JScrollPane scroll;
 
@@ -141,10 +143,9 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Mn_Shoose.add(Sho_8);
 
 		MenuBar1.add(Home);
-		MenuBar1.add(Mn_Manage);
-		MenuBar1.add(Mn_Center);
 		MenuBar1.add(Mn_Basket);
 		MenuBar1.add(Mn_Mypage);
+		MenuBar1.add(Mn_Center);
 		MenuBar1.add(Mn_Logout);
 
 		MenuBar2.add(Mn_Top);
@@ -166,44 +167,39 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 	void home_adminView() {
 
-		setTitle("È¨ÆäÀÌÁö À¯Àú");
+		setTitle("í™ˆí˜ì´ì§€ ìœ ì €");
 		setSize(d.width, d.height);
 
-		Home.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Home.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 10, Home.getPreferredSize().height));
-		Home.setHorizontalAlignment(SwingConstants.CENTER);
-		Home.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
-		Home.addMouseListener(this);
+		 Home.setBorder(new LineBorder(new Color(0, 0, 0)));
+	      Home.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 10, Home.getPreferredSize().height));
+	      Home.setHorizontalAlignment(SwingConstants.CENTER);
+	      Home.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
+	      Home.addMouseListener(this);
+	      
+	      Mn_Center.setBorder(new LineBorder(new Color(0, 0, 0)));
+	      Mn_Center.setPreferredSize(new Dimension(d.width * 2 / 3 * 7 / 30, Mn_Center.getPreferredSize().height));
+	      Mn_Center.setHorizontalAlignment(SwingConstants.CENTER);
+	      Mn_Center.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
+	      Mn_Center.addMouseListener(this);
+	      
+	      Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
+	      Mn_Basket.setPreferredSize(new Dimension(d.width * 2 / 3 * 7 / 30, Mn_Basket.getPreferredSize().height));
+	      Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
+	      Mn_Basket.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
+	      Mn_Basket.addMouseListener(this);
+	      
+	      Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
+	      Mn_Mypage.setPreferredSize(new Dimension(d.width * 2 / 3 * 7 / 30, Mn_Mypage.getPreferredSize().height));
+	      Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
+	      Mn_Mypage.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
+	      Mn_Mypage.addMouseListener(this);
+	      
+	      Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
+	      Mn_Logout.setPreferredSize(new Dimension(d.width * 2 / 3 * 2 / 10, Mn_Logout.getPreferredSize().height));
+	      Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
+	      Mn_Logout.setFont(new Font("íœ´ë¨¼ë§¤ì§ì²´", Font.BOLD, 25));
+	      Mn_Logout.addMouseListener(this);
 
-		Mn_Manage.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Manage.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Manage.getPreferredSize().height));
-		Mn_Manage.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Manage.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
-		Mn_Manage.addMouseListener(this);
-
-		Mn_Center.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Center.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Center.getPreferredSize().height));
-		Mn_Center.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Center.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
-		Mn_Center.addMouseListener(this);
-
-		Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Basket.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Basket.getPreferredSize().height));
-		Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Basket.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
-		Mn_Basket.addMouseListener(this);
-
-		Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Mypage.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Mypage.getPreferredSize().height));
-		Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Mypage.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
-		Mn_Mypage.addMouseListener(this);
-
-		Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Logout.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Logout.getPreferredSize().height));
-		Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Logout.setFont(new Font("ÈŞ¸Õ¸ÅÁ÷Ã¼", Font.BOLD, 25));
-		Mn_Logout.addMouseListener(this);
 
 		Mn_Top.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Top.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Mn_Top.getPreferredSize().height));
@@ -341,12 +337,12 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 		gbc.gridx = x;
 		gbc.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gbc.gridwidth = w;
 		gbc.gridheight = h;
 
-		gbl.setConstraints(c, gbc); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gbl.setConstraints(c, gbc); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c);
 
@@ -360,23 +356,41 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 
-		if (e.getSource() == Mn_Center) {
+		 if(e.getSource() == Mn_Center) {
+	         
+	         win.removeAll();
+	         win.add(MenuBar1);
+	         win.add(MenuBar2);
+	         C_U.setBounds(0, 100, d.width, d.height - 100);
+	           win.add(C_U);
+	           repaint();
+	           revalidate();
+	      }else if(e.getSource() == Mn_Logout) {
+	          new Login();
+	          dispose();
+	      }else if(e.getSource() == Mn_Mypage) {
+	          win.removeAll();
+	          win.add(MenuBar1);
+	          win.add(MenuBar2);
+	          M_M.setBounds(0, 100, d.width, d.height - 100);
+	          win.add(M_M);
+	          repaint();
+	          revalidate();
+	      }else if(e.getSource() == Home) {
+	          win.removeAll();
+	          win.add(MenuBar1);
+	          win.add(MenuBar2);
+//	          P_I.setBounds(100, 100, d.width -200, d.height - 100);
+	          win.add(P_I);
+	          repaint();
+	          revalidate();
+	      }else if(e.getSource() == Mn_Basket) {
+	    	  new Basket();
+	      }else if(e.getSource() == Mn_Logout) {
+	          new Login();
+	          dispose();
+	      }
 
-			win.removeAll();
-			win.add(MenuBar1);
-			win.add(MenuBar2);
-			C_U.setBounds(0, 100, d.width, d.height - 100);
-			win.add(C_U);
-			repaint();
-			revalidate();
-
-		} else if (e.getSource() == Mn_Manage) {
-			manager_main m_m = new manager_main();
-		} else if (e.getSource() == Mn_Mypage) {
-			new Mypage();
-		} else if (e.getSource() == Mn_Basket) {
-			new Basket();
-		}
 
 	}
 
@@ -410,3 +424,4 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	}
 
 }
+

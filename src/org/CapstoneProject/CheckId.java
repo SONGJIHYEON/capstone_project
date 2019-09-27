@@ -26,17 +26,17 @@ public class CheckId {
 	
 	public static List<Map<String, Serializable>> idListData = new ArrayList<Map<String, Serializable>>();
 	
-	/* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+	/* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
 	public static void initCustData(String sid) {
 
-		iddata.put("¾ÆÀÌµğ", sid);
+		iddata.put("ì•„ì´ë””", sid);
 //		addrdata.put("A", NAME);
 	}
 //	
 	
 	static List<Map<String, Serializable>> selectid() {
 			
-			quary = "select count(id) from cust where id = '"+iddata.get("¾ÆÀÌµğ")+"'";
+			quary = "select count(id) from cust where id = '"+iddata.get("ì•„ì´ë””")+"'";
 	
 			idListData.clear();
 			
@@ -60,7 +60,7 @@ public class CheckId {
 				} 
 				
 			} catch (SQLException sqle) {
-				System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+				System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 				sqle.printStackTrace();
 			}
 			
@@ -96,7 +96,7 @@ public class CheckId {
 				}
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		
@@ -128,7 +128,7 @@ public class CheckId {
 				}
 			
 		} catch (SQLException sqle) {
-			System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+			System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
 			sqle.printStackTrace();
 		}
 		

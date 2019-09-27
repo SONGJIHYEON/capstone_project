@@ -1,3 +1,5 @@
+
+  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -26,25 +28,25 @@ public class ModelData {
    
    public static List<Map<String, Serializable>> ModelListData = new ArrayList<Map<String, Serializable>>();
    
-   /* °í°´¹øÈ£°¡ ÀÖ´Â ¸µÅ© ¸®½ºÆ® ±¸¼º */
+   /* ê³ ê°ë²ˆí˜¸ê°€ ìˆëŠ” ë§í¬ ë¦¬ìŠ¤íŠ¸ êµ¬ì„± */
    public static void initModelData(String MODEL_NUM, String MODEL_CTGR_NUM, String MODEL_NM, String MODEL_EXP, String MODEL_NICK, String REP_MODEL_IMG, String DET_MODEL_IMG) {
 
-      Modeldata.put("¸ğµ¨¹øÈ£", MODEL_NUM);
-      Modeldata.put("¸ğµ¨ºĞ·ù¹øÈ£", MODEL_CTGR_NUM);
-      Modeldata.put("¸ğµ¨ÀÌ¸§", MODEL_NM);
-      Modeldata.put("¸ğµ¨»ó¼¼Á¤º¸", MODEL_EXP);
-      Modeldata.put("¸ğµ¨º°Äª", MODEL_NICK);
-      Modeldata.put("´ëÇ¥ÀÌ¹ÌÁö", REP_MODEL_IMG);
-      Modeldata.put("»ó¼¼ÀÌ¹ÌÁö", DET_MODEL_IMG);
+      Modeldata.put("ëª¨ë¸ë²ˆí˜¸", MODEL_NUM);
+      Modeldata.put("ëª¨ë¸ë¶„ë¥˜ë²ˆí˜¸", MODEL_CTGR_NUM);
+      Modeldata.put("ëª¨ë¸ì´ë¦„", MODEL_NM);
+      Modeldata.put("ëª¨ë¸ìƒì„¸ì •ë³´", MODEL_EXP);
+      Modeldata.put("ëª¨ë¸ë³„ì¹­", MODEL_NICK);
+      Modeldata.put("ëŒ€í‘œì´ë¯¸ì§€", REP_MODEL_IMG);
+      Modeldata.put("ìƒì„¸ì´ë¯¸ì§€", DET_MODEL_IMG);
    }
    
       
-   /* °í°´Á¤º¸¸¦ »ı¼ºÇÏ´Â ÁúÀÇ¾î */
+   /* ê³ ê°ì •ë³´ë¥¼ ìƒì„±í•˜ëŠ” ì§ˆì˜ì–´ */
    static void createModel() {
       
       
-      quary = "insert into model values ('"+Modeldata.get("¸ğµ¨¹øÈ£")+"', '" + Modeldata.get("¸ğµ¨ºĞ·ù¹øÈ£") + "', '" + Modeldata.get("¸ğµ¨ÀÌ¸§") + "', "
-            + " '"+Modeldata.get("¸ğµ¨»ó¼¼Á¤º¸")+"', '"+Modeldata.get("¸ğµ¨º°Äª")+"', '"+Modeldata.get("´ëÇ¥ÀÌ¹ÌÁö")+"', '"+Modeldata.get("»ó¼¼ÀÌ¹ÌÁö")+"')";
+      quary = "insert into model values ('"+Modeldata.get("ëª¨ë¸ë²ˆí˜¸")+"', '" + Modeldata.get("ëª¨ë¸ë¶„ë¥˜ë²ˆí˜¸") + "', '" + Modeldata.get("ëª¨ë¸ì´ë¦„") + "', "
+            + " '"+Modeldata.get("ëª¨ë¸ìƒì„¸ì •ë³´")+"', '"+Modeldata.get("ëª¨ë¸ë³„ì¹­")+"', '"+Modeldata.get("ëŒ€í‘œì´ë¯¸ì§€")+"', '"+Modeldata.get("ìƒì„¸ì´ë¯¸ì§€")+"')";
       
       
       System.out.println(quary);
@@ -52,7 +54,7 @@ public class ModelData {
          pstm = conn.prepareStatement(quary);
          pstm.executeQuery();
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
 
@@ -92,7 +94,7 @@ static List<Map<String, Serializable>> searchModel(String search) {
          
          
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
       
@@ -134,7 +136,7 @@ static List<Map<String, Serializable>> searchModel1(String search) {
       
       
    } catch (SQLException sqle) {
-      System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+      System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
       sqle.printStackTrace();
    }
    
@@ -175,7 +177,7 @@ static List<Map<String, Serializable>> selectModel() {
          
          
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
       
@@ -208,7 +210,7 @@ static List<Map<String, Serializable>> selectModelNum1(String a, String b) {
          
          
       } catch (SQLException sqle) {
-         System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+         System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
          sqle.printStackTrace();
       }
       
@@ -241,7 +243,7 @@ static List<Map<String, Serializable>> selectModelNum2(String a, String b) {
       
       
    } catch (SQLException sqle) {
-      System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+      System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
       sqle.printStackTrace();
    }
    
@@ -275,7 +277,7 @@ static List<Map<String, Serializable>> selectModelNum3(String a, String b) {
       
       
    } catch (SQLException sqle) {
-      System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+      System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
       sqle.printStackTrace();
    }
    
@@ -309,7 +311,7 @@ static List<Map<String, Serializable>> selectModelNum4(String a, String b) {
       
       
    } catch (SQLException sqle) {
-      System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+      System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
       sqle.printStackTrace();
    }
    
@@ -343,7 +345,7 @@ static List<Map<String, Serializable>> selectModelNum5(String a, String b) {
       
       
    } catch (SQLException sqle) {
-      System.out.println("select¹®¿¡¼­ ¿¹¿Ü ¹ß»ı");
+      System.out.println("selectë¬¸ì—ì„œ ì˜ˆì™¸ ë°œìƒ");
       sqle.printStackTrace();
    }
    

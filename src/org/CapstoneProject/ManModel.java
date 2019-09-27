@@ -37,10 +37,10 @@ public class ManModel extends JPanel implements MouseListener, ActionListener{
 	private JLabel vAdminModel;
 	private JTextField xSearch;
 	
-	private String[] col1 = {"¸ğµ¨¸í", "¸ğµ¨¹øÈ£", "1Â÷ºĞ·ù", "»óÀÇ2Â÷ºĞ·ù", "ÇÏÀÇ2Â÷ºĞ·ù", "¾Æ¿ìÅÍ2Â÷ºĞ·ù","¼ÅÃ÷2Â÷ºĞ·ù", "½Å¹ß2Â÷ºĞ·ù"};      
-	private String[] search = {"¸ğµ¨¸í", "1Â÷ºĞ·ù"};    
+	private String[] col1 = {"ëª¨ë¸ëª…", "ëª¨ë¸ë²ˆí˜¸", "1ì°¨ë¶„ë¥˜", "ìƒì˜2ì°¨ë¶„ë¥˜", "í•˜ì˜2ì°¨ë¶„ë¥˜", "ì•„ìš°í„°2ì°¨ë¶„ë¥˜","ì…”ì¸ 2ì°¨ë¶„ë¥˜", "ì‹ ë°œ2ì°¨ë¶„ë¥˜"};      
+	private String[] search = {"ëª¨ë¸ëª…", "1ì°¨ë¶„ë¥˜"};    
 	
-//  private String[] div = {"Á¤±ÔÁ÷", "ÀÓ½ÃÁ÷", "°è¾àÁ÷"};      // »ç¿ø±¸ºĞ ÄŞº¸¹Ú½ºÀÇ ¸ñ·Ï
+//  private String[] div = {"ì •ê·œì§", "ì„ì‹œì§", "ê³„ì•½ì§"};      // ì‚¬ì›êµ¬ë¶„ ì½¤ë³´ë°•ìŠ¤ì˜ ëª©ë¡
 //	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
 
 	private JTable tModelInfo;    
@@ -60,7 +60,7 @@ public class ManModel extends JPanel implements MouseListener, ActionListener{
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints(); 
 		
-		vAdminModel = new JLabel("¸ğµ¨Á¶È¸");
+		vAdminModel = new JLabel("ëª¨ë¸ì¡°íšŒ");
 		vAdminModel.setPreferredSize(new Dimension(200,28));
         		
 		CbSearch = new JComboBox<String>(search);
@@ -74,10 +74,10 @@ public class ManModel extends JPanel implements MouseListener, ActionListener{
         scrollpane1 = new JScrollPane(tModelInfo);
         scrollpane1.setPreferredSize(new Dimension(1000, 300));
 		
-		BtSearch = new JButton("°Ë»ö");
+		BtSearch = new JButton("ê²€ìƒ‰");
 		BtSearch.addActionListener(this);
 		BtSearch.setPreferredSize(new Dimension(100,28));
-//		BtCancel = new JButton("´İ±â");
+//		BtCancel = new JButton("ë‹«ê¸°");
 		
 		
 		getData(ModelData.selectModel());
@@ -133,13 +133,13 @@ public class ManModel extends JPanel implements MouseListener, ActionListener{
 		
 		gbc.gridx = x;
 		gbc.gridy = y; 
-		//°¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0    
+		//ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0    
 		
 		gbc.gridwidth  = w;
 		gbc.gridheight = h;
 		
 		
-		gbl.setConstraints(c, gbc); //ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡   
+		gbl.setConstraints(c, gbc); //ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜   
 		
 		add(c);   
 		
@@ -155,10 +155,10 @@ public class ManModel extends JPanel implements MouseListener, ActionListener{
 		
 		if(e.getSource() == BtSearch) {
 			String search = xSearch.getText();
-			if(CbSearch.getSelectedItem() == "¸ğµ¨¸í") {
+			if(CbSearch.getSelectedItem() == "ëª¨ë¸ëª…") {
 				model1.setRowCount(0);
 				getData(ModelData.searchModel(search));
-			} else if(CbSearch.getSelectedItem() == "1Â÷ºĞ·ù") {
+			} else if(CbSearch.getSelectedItem() == "1ì°¨ë¶„ë¥˜") {
 				model1.setRowCount(0);
 				getData(ModelData.searchModel1(search));
 			}
@@ -206,6 +206,3 @@ public class ManModel extends JPanel implements MouseListener, ActionListener{
 		
 	}   
 }	
-
-	
-			

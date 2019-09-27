@@ -44,14 +44,14 @@ public class Find2 extends JFrame implements ActionListener {
 		intfind_pwd = Integer.parseInt(find_pwd);
 
 		if (intfind_pwd == 0) {
-			JOptionPane.showMessageDialog(null, "ÀÔ·ÂÇÑ Á¤º¸¿Í ÀÏÄ¡ÇÏ´Â ºñ¹Ğ¹øÈ£°¡ ¾ø½À´Ï´Ù", "", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "ì…ë ¥í•œ ì •ë³´ì™€ ì¼ì¹˜í•˜ëŠ” ë¹„ë°€ë²ˆí˜¸ê°€ ì—†ìŠµë‹ˆë‹¤", "", JOptionPane.INFORMATION_MESSAGE);
 			xId.setText("");
 			xNm.setText("");
 			xphoneNum.setText("");
 			return;
 		} else {
 			getData2(FindData.findpwd2(id, name, phone));
-			JOptionPane.showMessageDialog(null, "°í°´´ÔÀÇ ºñ¹Ğ¹øÈ£´Â " + find_pwd2 + " ÀÔ´Ï´Ù. ·Î±×ÀÎ ÇÏ½Ã°í ºñ¹Ğ¹øÈ£¸¦ º¯°æÇÏ½Ã±æ ¹Ù¶ø´Ï´Ù.", "",
+			JOptionPane.showMessageDialog(null, "ê³ ê°ë‹˜ì˜ ë¹„ë°€ë²ˆí˜¸ëŠ” " + find_pwd2 + " ì…ë‹ˆë‹¤. ë¡œê·¸ì¸ í•˜ì‹œê³  ë¹„ë°€ë²ˆí˜¸ë¥¼ ë³€ê²½í•˜ì‹œê¸¸ ë°”ëë‹ˆë‹¤.", "",
 					JOptionPane.INFORMATION_MESSAGE);
 			xId.setText("");
 			xNm.setText("");
@@ -72,23 +72,23 @@ public class Find2 extends JFrame implements ActionListener {
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
 
-		vFindId = new JLabel("ºñ¹Ğ¹øÈ£ Ã£±â");
+		vFindId = new JLabel("ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°");
 
-		vId = new JLabel("¾ÆÀÌµğ");
+		vId = new JLabel("ì•„ì´ë””");
 		xId = new JTextField(20);
 
-		vNm = new JLabel("ÀÌ¸§");
+		vNm = new JLabel("ì´ë¦„");
 		xNm = new JTextField(20);
 
-		vphoneNum = new JLabel("ÈŞ´ëÆù¹øÈ£");
+		vphoneNum = new JLabel("íœ´ëŒ€í°ë²ˆí˜¸");
 		xphoneNum = new JTextField(20);
 
-		BtId = new JButton("ID Ã£±â");
+		BtId = new JButton("ID ì°¾ê¸°");
 		BtId.addActionListener(this);
-		BtPwd = new JButton("ºñ¹Ğ¹øÈ£ Ã£±â");
+		BtPwd = new JButton("ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸°");
 		BtPwd.addActionListener(this);
 
-		BtLogin = new JButton("·Î±×ÀÎ ÇÏ±â");
+		BtLogin = new JButton("ë¡œê·¸ì¸ í•˜ê¸°");
 		BtLogin.setPreferredSize(new Dimension(205, 28));
 		BtLogin.addActionListener(this);
 
@@ -97,7 +97,7 @@ public class Find2 extends JFrame implements ActionListener {
 
 	private void Find2View() {
 		setExtendedState(MAXIMIZED_BOTH);
-		setTitle("ID Ã£±â");
+		setTitle("ID ì°¾ê¸°");
 
 		setLayout(gbl);
 
@@ -123,12 +123,12 @@ public class Find2 extends JFrame implements ActionListener {
 
 		gbc.gridx = x;
 		gbc.gridy = y;
-		// °¡Àå ¿ŞÂÊ À§ gridx, gridy°ªÀº 0
+		// ê°€ì¥ ì™¼ìª½ ìœ„ gridx, gridyê°’ì€ 0
 
 		gbc.gridwidth = w;
 		gbc.gridheight = h;
 
-		gbl.setConstraints(c, gbc); // ÄÄÆ÷³ÍÆ®¸¦ ÄÄÆ÷³ÍÆ® À§Ä¡+Å©±â Á¤º¸¿¡ µû¶ó GridBagLayout¿¡ ¹èÄ¡
+		gbl.setConstraints(c, gbc); // ì»´í¬ë„ŒíŠ¸ë¥¼ ì»´í¬ë„ŒíŠ¸ ìœ„ì¹˜+í¬ê¸° ì •ë³´ì— ë”°ë¼ GridBagLayoutì— ë°°ì¹˜
 
 		add(c);
 
