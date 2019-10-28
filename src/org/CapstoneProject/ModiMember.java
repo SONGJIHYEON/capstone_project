@@ -49,55 +49,58 @@ public class ModiMember extends JFrame implements ActionListener {
 	private JButton BtCheckId, BtSearchAddr, BtRegist, BtCancel;
 	private JComboBox CbEmail;
 
-	String sid, sid2, ID, CUST_NM, PH_NUM, ADDR, BD, PWD, STdate, user_id, user_nm;
+	String sid, sid2, ID, CUST_NM, PH_NUM, ADDR, BD, PWD, STdate, user_id, user_nm, user_addr, user_phone, user_birth;
 //	static String STdate;
 	int intid = 0;
 	int check;
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 
-	private void getData1(List<Map<String, Serializable>> idListData) {
-
-		sid2 = "";
-		sid2 += idListData.get(0).get("ID").toString();
-
-		intid = Integer.parseInt(sid2);
-
-		if (intid == 0) {
-			JOptionPane.showMessageDialog(null, "사용가능한 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
-			return;
-		} else
-			JOptionPane.showMessageDialog(null, "중복된 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
-			xMemId.setText("");
-			return;
-	}
-
-	public void getData2(List<Map<String, Serializable>> MbgraListData) {
-
-		SimpleDateFormat spdate = new SimpleDateFormat("yyyy-MM-dd");
-
-		STdate = "";
-		STdate += MbgraListData.get(0).get("DISC_APP_ST_DT");
-
-		String oldstring = STdate;
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String newstring = new SimpleDateFormat("yyyy-MM-dd").format(date);
-		System.out.println(newstring);
-
-		CustData.initCustData(ID, PWD, CUST_NM, BD, PH_NUM, ADDR, newstring);
-		CustData.createCust();
-	}
+//	private void getData1(List<Map<String, Serializable>> idListData) {
+//
+//		sid2 = "";
+//		sid2 += idListData.get(0).get("ID").toString();
+//
+//		intid = Integer.parseInt(sid2);
+//
+//		if (intid == 0) {
+//			JOptionPane.showMessageDialog(null, "사용가능한 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
+//			return;
+//		} else
+//			JOptionPane.showMessageDialog(null, "중복된 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
+//			xMemId.setText("");
+//			return;
+//	}
+//
+//	public void getData2(List<Map<String, Serializable>> MbgraListData) {
+//
+//		SimpleDateFormat spdate = new SimpleDateFormat("yyyy-MM-dd");
+//
+//		STdate = "";
+//		STdate += MbgraListData.get(0).get("DISC_APP_ST_DT");
+//
+//		String oldstring = STdate;
+//		Date date = null;
+//		try {
+//			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		String newstring = new SimpleDateFormat("yyyy-MM-dd").format(date);
+//		System.out.println(newstring);
+//
+//		CustData.initCustData(ID, PWD, CUST_NM, BD, PH_NUM, ADDR, newstring);
+//		CustData.createCust();
+//	}
 
 	public ModiMember(JFrame fr) {
 		
 		user_id = Login.user_id;
 		user_nm = Login.user_nm;
+		user_addr = Login.user_addr;
+		user_birth = Login.user_birth;
+		user_phone = Login.user_phone;
 
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
@@ -106,9 +109,6 @@ public class ModiMember extends JFrame implements ActionListener {
 		xMemId = new JTextField(22);
 		xMemId.setText(user_id);
 		xMemId.setEnabled(false);
-
-//		BtCheckId = new JButton("중복확인");
-//		BtCheckId.addActionListener(this);
 
 		vMemPw1 = new JLabel("비밀번호");
 		xMemPw1 = new JPasswordField(22);
@@ -123,9 +123,11 @@ public class ModiMember extends JFrame implements ActionListener {
 
 		vMemBirth = new JLabel("생년월일");
 		xMemBirth = new JTextField(22);
+		xMemBirth.setText(user_birth);
 
 		vMemPhone = new JLabel("휴대폰 번호");
 		xMemPhone = new JTextField(22);
+		xMemPhone.setText(user_phone);
 
 		vMemEmail = new JLabel("이메일");
 		vGol = new JLabel("@");
@@ -248,6 +250,7 @@ public class ModiMember extends JFrame implements ActionListener {
 			if (check == 0) {
 				ID = "";
 				ID = xMemId.getText();
+				System.out.println(ID);
 				PWD = "";
 				PWD = new String(xMemPw1.getPassword());
 //				CUST_NM = "";

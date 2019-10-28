@@ -17,6 +17,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -37,11 +38,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class Notice_admin extends JPanel implements ActionListener, MouseListener {
 	
-	static JPanel C_A = new JPanel();
+	static JPanel N_A = new JPanel();
+	static JPanel Q_A = new JPanel();
+	JPanel Label = new JPanel();
 	
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	   
-	private JLabel vNotice;
+	private JLabel vNotice, vNotice2, vQnA, vNomal, vSpace;
 	private JTextField Tsearch;
 
 	private static String[] col1 = {"No", "제목", "작성자", "작성일"};  
@@ -56,7 +59,7 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 	private JTable tNotice;
 	private JScrollPane Scroll;
 	
-	private JButton  bWrite ,bSearch, bPrevious;
+	private JButton  bWrite ,bSearch;
 	private JComboBox<String> cbSearch;
 	
 	static String POST_NUM;
@@ -87,13 +90,6 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
         bSearch.setPreferredSize(new Dimension(80,40));
         bSearch.setFont(new Font("휴먼매직체", Font.BOLD , 22));
         
-        bPrevious = new JButton("이전");
-        bPrevious.setFocusPainted(false);
-        bPrevious.setBackground(Color.white);
-        bPrevious.setPreferredSize(new Dimension(80,40));
-        bPrevious.addActionListener(this);
-        bPrevious.setFont(new Font("휴먼매직체", Font.BOLD , 22));
-        
         cbSearch = new JComboBox<String>(search);
         cbSearch.setFont(new Font("휴먼매직체", Font.PLAIN , 22));
         cbSearch.setPreferredSize(new Dimension(100,40));
@@ -123,20 +119,19 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
         
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		
-		gridbagAdd(vNotice, 0, 0, 1, 1);
-		gridbagAdd(cbSearch, 0, 1, 1, 1);
-		gridbagAdd(Tsearch, 1, 1, 1, 1);
-		gridbagAdd(bSearch, 2, 1, 1, 1);
+		gridbagAdd(vNotice, 2, 0, 1, 1);
+		gridbagAdd(cbSearch, 2, 1, 1, 1);
+		gridbagAdd(Tsearch, 3, 1, 1, 1);
+		gridbagAdd(bSearch, 4, 1, 1, 1);
 		
-	    gridbagAdd(Scroll, 0, 2, 3, 1);
+	    gridbagAdd(Scroll, 2, 2, 3, 1);
 	    
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 		
-		gridbagAdd(bPrevious, 0, 3, 3, 1);
 	    
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(bWrite, 2, 1, 1, 1);
+		gridbagAdd(bWrite, 4, 1, 1, 1);
 	    
 	    
 	    setVisible(true);
@@ -189,7 +184,7 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 			POST_NUM += tNotice.getValueAt(row, 0);
 			
 			new Notice_view_admin(new JFrame());
-		} 
+		}
 		
 	}
 
@@ -221,19 +216,12 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
-		if(e.getSource() == bPrevious) {
-			
-			manager_main.N_A.removeAll();
-			manager_main.click = "N";
-			C_A = new Center_admin();
-			C_A.setBounds(0, 100, d.width, d.height - 100);
-        	add(C_A);
-        	repaint();
-        	revalidate();
-		} else	if(e.getSource() == bWrite) {
-			
+		if(e.getSource() == bWrite) {
 			new Notice_write(new JFrame());
 		}
 		
 	}   
 }	
+
+	
+			

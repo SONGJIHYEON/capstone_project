@@ -1,4 +1,4 @@
-  
+
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -16,7 +16,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -40,8 +44,12 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
 	Container win = getContentPane();
+	JPanel Label = new JPanel();
+	JLabel vNotice, vQnA, vNomal, vSpace;
 
-	static JPanel C_U = new Center_user();
+	static JPanel N_U = new Notice_user();
+	static JPanel Q_U = new QnA_user();
+
 	static JPanel P_I = new ProImage();
 	static JPanel menu_a = new JPanel();
 	static JPanel menu_b = new JPanel();
@@ -50,8 +58,9 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	static JMenuBar MenuBar1 = new JMenuBar();
 	JMenu Home = new JMenu("홈");
 	JMenu Mn_Manage = new JMenu(" 쇼핑몰관리 ");
-	JMenu Mn_Center = new JMenu(" 고객센터 ");
+	JMenu Mn_Post = new JMenu(" 게시판 ");
 	JMenu Mn_Basket = new JMenu(" 장바구니 ");
+	JMenu Mn_Oder = new JMenu(" 주문하기 ");
 	JMenu Mn_Mypage = new JMenu(" 마이페이지 ");
 	JMenu Mn_Logout = new JMenu(" 로그아웃 ");
 
@@ -101,11 +110,37 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	private JScrollPane scroll;
 
 	static String click = "H";
+	static String mb_disc_rt;
+	String user_id;
 
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
+	
+	
+	public String getData4(List<Map<String, Serializable>> CustListData) {
+
+		mb_disc_rt = "";
+		mb_disc_rt += CustListData.get(0).get("DISC_RT").toString();
+		System.out.println(mb_disc_rt);
+
+		return mb_disc_rt;
+	}
 
 	public home_user() {
+
+		vNotice = new JLabel("· 공지사항");
+		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vNotice.addMouseListener(this);
+		vQnA = new JLabel("· QnA");
+		vQnA.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vQnA.addMouseListener(this);
+		vNomal = new JLabel("· 일반게시판");
+		vNomal.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vNomal.addMouseListener(this);
+		Label.setLayout(new BoxLayout(Label, BoxLayout.Y_AXIS));
+		Label.add(vNotice);
+		Label.add(vQnA);
+		Label.add(vNomal);
 
 		Mn_Top.add(Top_1);
 		Mn_Top.add(Top_2);
@@ -145,7 +180,8 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		MenuBar1.add(Home);
 		MenuBar1.add(Mn_Basket);
 		MenuBar1.add(Mn_Mypage);
-		MenuBar1.add(Mn_Center);
+		MenuBar1.add(Mn_Oder);
+		MenuBar1.add(Mn_Post);
 		MenuBar1.add(Mn_Logout);
 
 		MenuBar2.add(Mn_Top);
@@ -170,36 +206,41 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		setTitle("홈페이지 유저");
 		setSize(d.width, d.height);
 
-		 Home.setBorder(new LineBorder(new Color(0, 0, 0)));
-	      Home.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 10, Home.getPreferredSize().height));
-	      Home.setHorizontalAlignment(SwingConstants.CENTER);
-	      Home.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-	      Home.addMouseListener(this);
-	      
-	      Mn_Center.setBorder(new LineBorder(new Color(0, 0, 0)));
-	      Mn_Center.setPreferredSize(new Dimension(d.width * 2 / 3 * 7 / 30, Mn_Center.getPreferredSize().height));
-	      Mn_Center.setHorizontalAlignment(SwingConstants.CENTER);
-	      Mn_Center.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-	      Mn_Center.addMouseListener(this);
-	      
-	      Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
-	      Mn_Basket.setPreferredSize(new Dimension(d.width * 2 / 3 * 7 / 30, Mn_Basket.getPreferredSize().height));
-	      Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
-	      Mn_Basket.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-	      Mn_Basket.addMouseListener(this);
-	      
-	      Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
-	      Mn_Mypage.setPreferredSize(new Dimension(d.width * 2 / 3 * 7 / 30, Mn_Mypage.getPreferredSize().height));
-	      Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
-	      Mn_Mypage.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-	      Mn_Mypage.addMouseListener(this);
-	      
-	      Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
-	      Mn_Logout.setPreferredSize(new Dimension(d.width * 2 / 3 * 2 / 10, Mn_Logout.getPreferredSize().height));
-	      Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
-	      Mn_Logout.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-	      Mn_Logout.addMouseListener(this);
+		Home.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Home.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 10, Home.getPreferredSize().height));
+		Home.setHorizontalAlignment(SwingConstants.CENTER);
+		Home.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Home.addMouseListener(this);
 
+		Mn_Post.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Post.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Post.getPreferredSize().height));
+		Mn_Post.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Post.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_Post.addMouseListener(this);
+
+		Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Basket.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Basket.getPreferredSize().height));
+		Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Basket.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_Basket.addMouseListener(this);
+
+		Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Mypage.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Mypage.getPreferredSize().height));
+		Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Mypage.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_Mypage.addMouseListener(this);
+
+		Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Logout.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Logout.getPreferredSize().height));
+		Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Logout.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_Logout.addMouseListener(this);
+
+		Mn_Oder.setBorder(new LineBorder(new Color(0, 0, 0)));
+		Mn_Oder.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Logout.getPreferredSize().height));
+		Mn_Oder.setHorizontalAlignment(SwingConstants.CENTER);
+		Mn_Oder.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_Oder.addMouseListener(this);
 
 		Mn_Top.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Top.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Mn_Top.getPreferredSize().height));
@@ -356,41 +397,68 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 
-		 if(e.getSource() == Mn_Center) {
-	         
-	         win.removeAll();
-	         win.add(MenuBar1);
-	         win.add(MenuBar2);
-	         C_U.setBounds(0, 100, d.width, d.height - 100);
-	           win.add(C_U);
-	           repaint();
-	           revalidate();
-	      }else if(e.getSource() == Mn_Logout) {
-	          new Login();
-	          dispose();
-	      }else if(e.getSource() == Mn_Mypage) {
-	          win.removeAll();
-	          win.add(MenuBar1);
-	          win.add(MenuBar2);
-	          M_M.setBounds(0, 100, d.width, d.height - 100);
-	          win.add(M_M);
-	          repaint();
-	          revalidate();
-	      }else if(e.getSource() == Home) {
-	          win.removeAll();
-	          win.add(MenuBar1);
-	          win.add(MenuBar2);
+		if (e.getSource() == Mn_Logout) {
+			new Login();
+			dispose();
+		} else if (e.getSource() == Mn_Mypage) {
+			win.removeAll();
+			win.add(MenuBar1);
+			win.add(MenuBar2);
+			M_M.setBounds(0, 100, d.width, d.height - 100);
+			win.add(M_M);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Home) {
+			win.removeAll();
+			win.add(MenuBar1);
+			win.add(MenuBar2);
 //	          P_I.setBounds(100, 100, d.width -200, d.height - 100);
-	          win.add(P_I);
-	          repaint();
-	          revalidate();
-	      }else if(e.getSource() == Mn_Basket) {
-	    	  new Basket();
-	      }else if(e.getSource() == Mn_Logout) {
-	          new Login();
-	          dispose();
-	      }
-
+			win.add(P_I);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Mn_Basket) {
+			user_id = Login.user_id;
+			getData4(CustData.selectCustGra(user_id));
+			new Basket();
+		} else if (e.getSource() == Mn_Oder) {
+			new MemOrdPg();
+		} else if (e.getSource() == Mn_Logout) {
+			new Login();
+			dispose();
+		} else if (e.getSource() == Mn_Post) {
+			getContentPane().removeAll();
+			add(MenuBar1);
+			add(MenuBar2);
+			Dimension d = getSize();
+			Label.setBounds(100, 400, 100, d.height - 500);
+			N_U.setBounds(0, 100, d.width, d.height - 100);
+			add(Label);
+			add(N_U);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == vNotice) {
+			getContentPane().removeAll();
+			add(MenuBar1);
+			add(MenuBar2);
+			Dimension d = getSize();
+			Label.setBounds(100, 400, 100, d.height - 500);
+			N_U.setBounds(0, 100, d.width, d.height - 100);
+			add(Label);
+			add(N_U);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == vQnA) {
+			getContentPane().removeAll();
+			add(MenuBar1);
+			add(MenuBar2);
+			Dimension d = getSize();
+			Label.setBounds(100, 400, 100, d.height - 500);
+			Q_U.setBounds(0, 100, d.width, d.height - 100);
+			add(Label);
+			add(Q_U);
+			repaint();
+			revalidate();
+		}
 
 	}
 
@@ -424,4 +492,3 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	}
 
 }
-

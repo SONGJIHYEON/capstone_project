@@ -24,8 +24,7 @@ public class CustData {
 	public static List<Map<String, Serializable>> custListData = new ArrayList<Map<String, Serializable>>();
 
 	/* 고객번호가 있는 링크 리스트 구성 */
-	public static void initCustData(String ID, String PWD, String CUST_NM, String BD, String PH_NUM, String ADDR,
-			String newstring) {
+	public static void initCustData(String ID, String PWD, String CUST_NM, String BD, String PH_NUM, String ADDR) {
 
 		custdata.put("아이디", ID);
 		custdata.put("비밀번호", PWD);
@@ -33,7 +32,7 @@ public class CustData {
 		custdata.put("생년월일", BD);
 		custdata.put("휴대폰번호", PH_NUM);
 		custdata.put("주소", ADDR);
-		custdata.put("할인율시작일자", newstring);
+//		custdata.put("할인율시작일자", newstring);
 //		custdata.put("A", TEL);
 //		custdata.put("A", TEL);
 //		custdata.put("주소", scust);
@@ -42,11 +41,10 @@ public class CustData {
 
 	/* 고객정보를 생성하는 질의어 */
 	static void createCust() {
-		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, CUST_TP, ID, PWD, BD, ADDR, MB_GRA, POSS_PNT, DISC_APP_ST_DT, DISC_APP_END_DT) "
+		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, CUST_TP, ID, PWD, BD, POSS_PNT, ADDR, GRA_TP) "
 				+ "VALUES(SEQ_CUST_NUM.NEXTVAL, '" + custdata.get("이름") + "', '" + custdata.get("휴대폰번호") + "', '회원', '"
 				+ custdata.get("아이디") + "', " + " '" + custdata.get("비밀번호") + "', to_date('" + custdata.get("생년월일")
-				+ "', 'YYYY-MM-DD'), '" + custdata.get("주소") + "', 'F', 0, " + " to_date('" + custdata.get("할인율시작일자")
-				+ "', 'YYYY-MM-DD'), to_date('9999-12-31', 'YYYY-MM-DD'))";
+				+ "', 'YYYY-MM-DD'), 0, '" + custdata.get("주소") + "', 'F')";
 		
 		custListData.clear();
 
@@ -86,9 +84,10 @@ public class CustData {
 	}
 	
 	static void changeCust(String PWD, String BD, String PH_NUM, String ADDR, String ID) {
-		quary = "update cust set PH_NUM = " + PH_NUM + ", PWD = " + PWD + ", BD = to_date('" + BD + "', 'YYYY-MM-DD'), "
+		quary = "update cust set PH_NUM = " + PH_NUM + ", PWD = '" + PWD + "', BD = to_date('" + BD + "', 'YYYY-MM-DD'), "
 				+ "ADDR = '" + ADDR +"' where id = '" + ID +"'";
 
+		System.out.println(quary);
 		try {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
@@ -240,7 +239,7 @@ public class CustData {
 	
 	static List<Map<String, Serializable>>selectCustGra(String user_id) {
 
-		quary = "select DISC_RT from cust join mb_gra on cust.MB_Gra = mb_gra.GRA_TP where ID = '" + user_id +"'";
+		quary = "SELECT DISC_RT FROM CUST JOIN GRA_REC ON CUST.GRA_TP = GRA_REC.GRA_TP WHERE ID = '" + user_id + "' and DISC_APP_END_DT = '9999-12-31'";
 
 		custListData.clear();
 

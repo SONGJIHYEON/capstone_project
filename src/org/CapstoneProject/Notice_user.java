@@ -1,4 +1,3 @@
-
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -37,8 +36,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
 public class Notice_user extends JPanel implements ActionListener, MouseListener {
-
-	static JPanel C_U = new JPanel();
 	
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	   
@@ -57,7 +54,7 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 	private JTable tNotice;
 	private JScrollPane Scroll;
 	
-	private JButton  bSearch, bPrevious;
+	private JButton  bSearch;
 	private JComboBox<String> cbSearch;
 	
 	GridBagLayout gridbaglayout;
@@ -79,13 +76,6 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
         bSearch.setBackground(Color.white);
         bSearch.setPreferredSize(new Dimension(80,40));
         bSearch.setFont(new Font("휴먼매직체", Font.BOLD , 22));
-        
-        bPrevious = new JButton("이전");
-        bPrevious.setFocusPainted(false);
-        bPrevious.setBackground(Color.white);
-        bPrevious.setPreferredSize(new Dimension(80,40));
-        bPrevious.addActionListener(this);
-        bPrevious.setFont(new Font("휴먼매직체", Font.BOLD , 22));
         
         cbSearch = new JComboBox<String>(search);
         cbSearch.setFont(new Font("휴먼매직체", Font.PLAIN , 22));
@@ -124,8 +114,6 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 	    gridbagAdd(Scroll, 0, 2, 3, 1);
 	    
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
-
-		gridbagAdd(bPrevious, 0, 3, 3, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 	    
@@ -208,19 +196,10 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-		if(e.getSource() == bPrevious) {
-			
-			Center_user.N_U.removeAll();
-			home_user.click = "N";
-			C_U = new Center_user();
-			C_U.setBounds(0, 100, d.width, d.height - 100);
-        	add(C_U);
-        	repaint();
-        	revalidate();
-		}
+		// TODO Auto-generated method st
 		
 	}   
 }	
 
+	
+			

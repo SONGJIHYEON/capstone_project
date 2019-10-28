@@ -103,10 +103,9 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	public String getData4(List<Map<String, Serializable>> CustListData) {
 
 		mb_disc_rt = "";
-		mb_disc_rt += CustListData.get(0).get("DISC_RT").toString();
-		System.out.println(mb_disc_rt);
-		
+		mb_disc_rt += CustListData.get(0).get("DISC_RT");
 
+		
 		return mb_disc_rt;
 	}
 
@@ -119,11 +118,8 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		nickname = ProImage.nickname;
 		ctgr = ProImage.ctgr;
 		arSize = ProImage.arSize;
-//		arColor = ProImage.arColor;
 		price = ProImage.price;
 		modelname = ProImage.modelname;
-
-//		System.out.println(price);
 
 		ad = "C:\\Users\\ssong\\Desktop\\img\\" + img + ".jpg";
 
@@ -341,7 +337,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 				String bk_allPrice = xAllPrice.getText();
 				double bk_point = Integer.parseInt(xAllPrice.getText()) * 0.02;
 				BasketData.createBasket(user_num, pro_num, bk_option, bk_price, bk_allPrice, bk_point);
-				getData4(CustData.selectCustGra(user_id));
+				
 				int check = JOptionPane.showConfirmDialog(null, "장바구니에 등록되었습니다. 장바구니로 이동하시겠습니까?", "",
 						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 				if (check == 0) {

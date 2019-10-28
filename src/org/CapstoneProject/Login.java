@@ -49,7 +49,8 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 	private JButton BtLogin, BtRegMb, BtFind, Btnonmember;      
 	private JComboBox<String> cbSel;    
 	
-	static String admin_num, admin_nm, admin_appc_dt, admin_id, user_num, user_nm, user_id, user_grade, user_disc_rt, user_point;
+	static String admin_num, admin_nm, admin_appc_dt, admin_id, user_num, user_nm, user_id, user_grade, user_disc_rt, user_point, user_addr,
+	user_phone, user_birth;
 	
 	String sid, sid2, pwd, pwd2, id;
 	         
@@ -64,7 +65,7 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 		 for(int i = 0; i<idListData.size(); i++) {
 			 
 		 id.put(idListData.get(i).get("ID"),
-				idListData.get(i).get("PWD"));	 
+				idListData.get(i).get("PWD"));	  
 		 }
 
 		 if(!id.containsKey(sid)) {
@@ -88,12 +89,18 @@ public class Login extends JFrame implements ActionListener, MouseListener{
 				 user_num += idListData.get(0).get("CUST_NUM");
 				 user_nm = "";
 				 user_nm += idListData.get(0).get("CUST_NM");
-				 user_grade = "";
-				 user_grade += idListData.get(0).get("MB_GRA");
-				 user_disc_rt = "";
-				 user_disc_rt += idListData.get(0).get("DISC_RT");
 				 user_point = "";
 				 user_point += idListData.get(0).get("POSS_PNT");
+				 user_grade = "";
+				 user_grade += idListData.get(0).get("GRA_TP");
+				 user_disc_rt = "";
+				 user_disc_rt += idListData.get(0).get("DISC_RT");
+				 user_addr = "";
+				 user_addr += idListData.get(0).get("ADDR");
+				 user_phone = "";
+				 user_phone += idListData.get(0).get("PH_NUM");
+				 user_birth = "";
+				 user_birth += idListData.get(0).get("BD");
 				 dispose();
 				 JFrame user_main = new home_user();
 			 	}

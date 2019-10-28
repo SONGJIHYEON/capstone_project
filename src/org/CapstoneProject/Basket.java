@@ -1,3 +1,4 @@
+
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -31,8 +32,8 @@ import javax.swing.table.TableCellRenderer;
 
 public class Basket extends JFrame implements MouseListener, ActionListener {
 
-	private JLabel vProPrice, vDiscout, vPrice;
-	private JTextField xProPrice, xDiscout, xPrice;
+	private JLabel vProPrice, vDiscount, vPrice, vPoint;
+	private JTextField xProPrice, xDiscount, xPrice, xPoint;
 
 	private String[] col1 = { "이미지", "상품정보", "수량", "단가", "금액", "포인트", "삭제" };
 //   private String[] col2 = {"부서명", "성명"};      
@@ -57,7 +58,7 @@ public class Basket extends JFrame implements MouseListener, ActionListener {
 
 	String mb_disc_rt, cust_num;
 	double disc_rt, price;
-	
+
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
@@ -70,42 +71,45 @@ public class Basket extends JFrame implements MouseListener, ActionListener {
 			model1.addRow(new Object[] { 
 					BasketListData.get(i).get("MODEL_IMG1"), 
 					BasketListData.get(i).get("PRO_NM"),					
-					BasketListData.get(i).get("QUANT"), 
+					BasketListData.get(i).get("QUANT"),
 					BasketListData.get(i).get("UP"),
-					BasketListData.get(i).get("PR"), 
+					BasketListData.get(i).get("PR"),
 					BasketListData.get(i).get("POINT"), });
 		}
 		pro_price = String.valueOf(sum2);
 		xProPrice.setText(pro_price);
-		xDiscout.setText(mb_disc_rt + "%");
-		disc_rt = Double.valueOf(ProDetail.mb_disc_rt) * 0.01;
-		price = sum2 -(sum2 * disc_rt);
+		xDiscount.setText(mb_disc_rt + "%");
+		disc_rt = Double.valueOf(home_user.mb_disc_rt) * 0.01;
+		price = sum2 - (sum2 * disc_rt);
 		xPrice.setText(String.valueOf(price));
-		
+
 	}
 
 	public Basket() {
-		mb_disc_rt = ProDetail.mb_disc_rt;
-		System.out.println(mb_disc_rt);
+		mb_disc_rt = home_user.mb_disc_rt;
+//		System.out.println(mb_disc_rt);
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
 		vProPrice = new JLabel("총 상품가격");
-		vDiscout = new JLabel("등급 할인");
+		vDiscount = new JLabel("등급 할인");
 		vPrice = new JLabel("최종 금액");
+		vPoint = new JLabel("적립 포인트");
 
 		xProPrice = new JTextField(10);
-		xDiscout = new JTextField(10);
-		xDiscout.setEnabled(false);
-		xDiscout.setText(mb_disc_rt + "%");
+		xDiscount = new JTextField(10);
+		xDiscount.setEnabled(false);
+		xDiscount.setText(mb_disc_rt + "%");
 		xPrice = new JTextField(10);
+		xPoint = new JTextField(10);
 
 		tProInfo = new JTable(model1);
 		scrollpane1 = new JScrollPane(tProInfo);
 		scrollpane1.setPreferredSize(new Dimension(750, 100));
 
 		BtOrder = new JButton("주문하기");
+		BtOrder.addActionListener(this);
 //        BtOrder.setPreferredSize(new Dimension(130,28));
 		BtShopping = new JButton("쇼핑 계속하기");
 		BtShopping.setPreferredSize(new Dimension(130, 28));
@@ -136,11 +140,13 @@ public class Basket extends JFrame implements MouseListener, ActionListener {
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 		gridbagAdd(scrollpane1, 0, 0, 12, 1);
 		gridbagAdd(vProPrice, 0, 12, 1, 1);
-		gridbagAdd(vDiscout, 2, 12, 1, 1);
+		gridbagAdd(vDiscount, 2, 12, 1, 1);
 		gridbagAdd(vPrice, 4, 12, 1, 1);
 		gridbagAdd(xProPrice, 1, 12, 1, 1);
-		gridbagAdd(xDiscout, 3, 12, 1, 1);
-		gridbagAdd(xPrice, 5, 12, 1, 1);
+		gridbagAdd(xDiscount, 3, 12, 1, 1);
+		gridbagAdd(xPrice, 5, 12, 1, 1);		
+		gridbagAdd(vPoint, 5, 12, 1, 1);
+		gridbagAdd(xPoint, 5, 12, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtDelBasket, 11, 12, 1, 1);
 		gridbagAdd(BtShopping, 11, 13, 1, 1);
@@ -245,20 +251,22 @@ public class Basket extends JFrame implements MouseListener, ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == BtShopping) {
+		if (e.getSource() == BtShopping) {
 			new home_user();
-		}else if (e.getSource() == BtDelBasket) {
-			int check = JOptionPane.showConfirmDialog(null, "장바구니에 담긴 모든 상품을 지우시겠습니까?", "", JOptionPane.YES_NO_OPTION, 
+		} else if (e.getSource() == BtDelBasket) {
+			int check = JOptionPane.showConfirmDialog(null, "장바구니에 담긴 모든 상품을 지우시겠습니까?", "", JOptionPane.YES_NO_OPTION,
 					JOptionPane.INFORMATION_MESSAGE);
-			if(check == 0) {
+			if (check == 0) {
 				cust_num = Login.user_num;
 				BasketData.deleteBasket2(cust_num);
 				model1.removeRow(row);
 				getData(BasketData.selectBasket());
 
 			}
+		} else if (e.getSource() == BtOrder) {
+			new MemOrdPg();
 		}
-		
+
 	}
 
 }

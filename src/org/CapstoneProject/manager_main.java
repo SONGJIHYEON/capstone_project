@@ -8,9 +8,13 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.imageio.ImageIO;
 import javax.swing.Action;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -33,9 +37,16 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	Container win = getContentPane();
-	
+
 	static JPanel N_A = new Notice_admin();
+	static JPanel Q_A = new QnA_admin();
+	
 	static String click = "H";
+	static String gra_s, gra_v, gra_f;
+	
+	JPanel Label = new JPanel();
+	
+	JLabel vNotice, vQnA, vNomal, vSpace;
 
 	JMenuBar MenuBar = new JMenuBar();
 	// 거래처 메뉴
@@ -63,19 +74,18 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 	JMenuItem Emp_modify = new JMenuItem("    사원수정   ");
 	// 회원 메뉴
 	JMenu Mn_Mb = new JMenu("     회원     ");
-	JMenuItem Mb_look = new JMenuItem("    회원조회   ");
-	JMenuItem Mb_grade = new JMenuItem("    등급기본정보   ");
+	JMenuItem Mb_look = new JMenuItem("  회원조회   ");
+	JMenuItem Mb_grade = new JMenuItem("   등급기본정보 ");
 	// 이벤트
 
 	JMenu Mn_EVT = new JMenu("    이벤트    ");
 	JMenuItem EVT_look = new JMenuItem("   이벤트조회  ");
 	JMenuItem EVT_regist = new JMenuItem("   이벤트등록  ");
 
-	JMenu Mn_Post = new JMenu(" 게시판 ");
-	JMenuItem Post_Notice = new JMenuItem("공지사항");
-	JMenuItem Post_QnA = new JMenuItem("QnA");
-	JMenuItem Post_Nomal = new JMenuItem("일반게시판");
-	
+	JMenu Mn_Post = new JMenu("  게시판   ");
+	JMenuItem Post_Notice = new JMenuItem("   공지사항   ");
+	JMenuItem Post_QnA = new JMenuItem("   QnA   ");
+	JMenuItem Post_Nomal = new JMenuItem("   일반게시판   ");
 
 	JMenu Close = new JMenu(" 로그아웃 ");
 
@@ -86,11 +96,52 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
+	public String getData1(List<Map<String, Serializable>> MbgraListData) {
+
+		gra_s = "";
+		gra_s += MbgraListData.get(0).get("DISC_RT");
+
+		return gra_s;
+
+	}
+
+	public String getData2(List<Map<String, Serializable>> MbgraListData) {
+
+		gra_v = "";
+		gra_v += MbgraListData.get(0).get("DISC_RT");
+
+		return gra_v;
+
+	}
+
+	public String getData3(List<Map<String, Serializable>> MbgraListData) {
+
+		gra_f = "";
+		gra_f += MbgraListData.get(0).get("DISC_RT");
+
+		return gra_f;
+
+	}
+
 	public manager_main() {
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
+        vNotice = new JLabel("· 공지사항");
+        vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+        vNotice.addMouseListener(this);
+        vQnA = new JLabel("· QnA");
+        vQnA.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+        vQnA.addMouseListener(this);
+        vNomal = new JLabel("· 일반게시판");
+        vNomal.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+        vNomal.addMouseListener(this);
+		Label.setLayout(new BoxLayout(Label, BoxLayout.Y_AXIS));
+		Label.add(vNotice);
+		Label.add(vQnA);
+		Label.add(vNomal);
+		
 		corr_look.addActionListener(this);
 		corr_regist.addActionListener(this);
 		model_look.addActionListener(this);
@@ -111,9 +162,9 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		EVT_regist.addActionListener(this);
 		Close.addMouseListener(this);
 		Mn_Post.addMouseListener(this);
-		Post_Notice.addMouseListener(this);
-		Post_QnA.addMouseListener(this);
-		Post_Nomal.addMouseListener(this);
+//		Post_Notice.addMouseListener(this);
+//		Post_QnA.addMouseListener(this);
+//		Post_Nomal.addMouseListener(this);
 
 		Mn_corr.add(corr_look);
 		Mn_corr.add(corr_regist);
@@ -138,10 +189,10 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		Mn_EVT.add(EVT_look);
 		Mn_EVT.add(EVT_regist);
-		
-		Mn_Post.add(Post_Notice);
-		Mn_Post.add(Post_QnA);
-		Mn_Post.add(Post_Nomal);
+
+//		Mn_Post.add(Post_Notice);
+//		Mn_Post.add(Post_QnA);
+//		Mn_Post.add(Post_Nomal);
 
 		MenuBar.add(Mn_corr);
 		MenuBar.add(Mn_pro);
@@ -160,7 +211,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
-         setExtendedState(MAXIMIZED_BOTH);
+		setExtendedState(MAXIMIZED_BOTH);
 		EmpRegisterView();
 	}
 
@@ -172,7 +223,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		// 거래처 메뉴
 		MenuBar.setBounds(0, 0, d.width, 50);
 		Mn_corr.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_corr.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_corr.setPreferredSize(new Dimension(d.width * 1 / 8, Mn_corr.getPreferredSize().height));
 		Mn_corr.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_corr.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_corr.addMouseListener(this);
@@ -187,7 +238,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		// 상품메뉴
 		Mn_pro.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_pro.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_pro.setPreferredSize(new Dimension(d.width * 1 / 8, Mn_corr.getPreferredSize().height));
 		Mn_pro.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_pro.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_pro.addMouseListener(this);
@@ -214,7 +265,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		// 주문 메뉴
 		Mn_Od.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Od.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_Od.setPreferredSize(new Dimension(d.width * 1 / 8, Mn_corr.getPreferredSize().height));
 		Mn_Od.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Od.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Od.addMouseListener(this);
@@ -239,7 +290,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		// 사원메뉴
 		Mn_Emp.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Emp.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_Emp.setPreferredSize(new Dimension(d.width * 1 / 8, Mn_corr.getPreferredSize().height));
 		Mn_Emp.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Emp.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Emp.addMouseListener(this);
@@ -258,7 +309,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		// 회원메뉴
 		Mn_Mb.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Mb.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_Mb.setPreferredSize(new Dimension(d.width * 1 / 8, Mn_corr.getPreferredSize().height));
 		Mn_Mb.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Mb.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Mb.addMouseListener(this);
@@ -273,7 +324,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		// 이벤트메뉴
 		Mn_EVT.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_EVT.setPreferredSize(new Dimension(d.width * 1/8, Mn_corr.getPreferredSize().height));
+		Mn_EVT.setPreferredSize(new Dimension(d.width * 1 / 8, Mn_corr.getPreferredSize().height));
 		Mn_EVT.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_EVT.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_EVT.addMouseListener(this);
@@ -287,11 +338,11 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		EVT_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		Mn_Post.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Post.setPreferredSize(new Dimension(d.width * 1/8, Mn_Post.getPreferredSize().height));
+		Mn_Post.setPreferredSize(new Dimension(d.width * 1 / 8, Mn_Post.getPreferredSize().height));
 		Mn_Post.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Post.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Post.addMouseListener(this);
-		
+
 		Post_Notice.setBackground(new Color(255, 255, 255));
 		Post_Notice.setHorizontalAlignment(SwingConstants.TRAILING);
 		Post_Notice.setFont(new Font("맑은 고딕", Font.BOLD, 20));
@@ -305,7 +356,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Post_Nomal.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		Close.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Close.setPreferredSize(new Dimension(d.width * 1/8, Mn_Post.getPreferredSize().height));
+		Close.setPreferredSize(new Dimension(d.width * 1 / 8, Mn_Post.getPreferredSize().height));
 		Close.setHorizontalAlignment(SwingConstants.CENTER);
 		Close.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Close.addMouseListener(this);
@@ -497,11 +548,14 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			revalidate();
 		} else if (e.getSource() == Mb_grade) {
 			getContentPane().removeAll();
-//              JPanel PMb_gra = new mb_gra();
+			getData1(MbgraData.MbgraS());
+			getData2(MbgraData.MbgraV());
+			getData3(MbgraData.MbgraF());
+			JPanel PMb_gra = new mb_gra();
 			add(MenuBar);
 			Dimension d = getSize();
-//              PMb_gra.setBounds(0, 40, d.width, d.height);
-//              add(PMb_gra);
+			PMb_gra.setBounds(0, 40, d.width, d.height);
+			add(PMb_gra);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == EVT_look) {
@@ -531,15 +585,37 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		if (e.getSource() == Close) {
 			dispose();
 			JFrame win = new Login();
-		} else if(e.getSource() == Mn_Post) {
+		} else if (e.getSource() == Mn_Post) {
 			getContentPane().removeAll();
 			add(MenuBar);
 			Dimension d = getSize();
-			N_A.setBounds(0, 40, d.width, d.height);
+			Label.setBounds(100, 400, 100, d.height - 500);
+			N_A.setBounds(0, 40, d.width, d.height - 100);
+			add(Label);
         	add(N_A);
         	repaint();
         	revalidate();
-			
+		}else if(e.getSource() == vNotice) {
+			getContentPane().removeAll();
+			add(MenuBar);
+			Dimension d = getSize();
+			Label.setBounds(100, 400, 100, d.height - 500);
+			N_A.setBounds(0, 40, d.width, d.height - 100);
+			add(Label);
+        	add(N_A);
+        	repaint();
+        	revalidate();
+		} else if(e.getSource() == vQnA) {
+			getContentPane().removeAll();
+			System.out.println("123");
+			add(MenuBar);
+			Dimension d = getSize();
+			Label.setBounds(100, 400, 100, d.height - 500);
+			Q_A.setBounds(0, 40, d.width, d.height - 100);
+			add(Label);
+        	add(Q_A);
+        	repaint();
+        	revalidate();
 		}
 
 	}

@@ -80,23 +80,23 @@ public class RegMember extends JFrame implements ActionListener {
 
 	public void getData2(List<Map<String, Serializable>> MbgraListData) {
 
-		SimpleDateFormat spdate = new SimpleDateFormat("yyyy-MM-dd");
+//		SimpleDateFormat spdate = new SimpleDateFormat("yyyy-MM-dd");
+//
+//		STdate = "";
+//		STdate += MbgraListData.get(0).get("DISC_APP_ST_DT");
+//
+//		String oldstring = STdate;
+//		Date date = null;
+//		try {
+//			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		String newstring = new SimpleDateFormat("yyyy-MM-dd").format(date);
+//		System.out.println(newstring);
 
-		STdate = "";
-		STdate += MbgraListData.get(0).get("DISC_APP_ST_DT");
-
-		String oldstring = STdate;
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String newstring = new SimpleDateFormat("yyyy-MM-dd").format(date);
-		System.out.println(newstring);
-
-		CustData.initCustData(ID, PWD, CUST_NM, BD, PH_NUM, ADDR, newstring);
+		CustData.initCustData(ID, PWD, CUST_NM, BD, PH_NUM, ADDR);
 		CustData.createCust();
 	}
 
@@ -307,7 +307,9 @@ public class RegMember extends JFrame implements ActionListener {
 						|| ADDR.equals("")) {
 					JOptionPane.showMessageDialog(null, "입력되지 않은 항목이 있습니다.", "오류", JOptionPane.ERROR_MESSAGE);
 				} else {
-					getData2(MbgraData.Mbgra());
+//					getData2(MbgraData.Mbgra());
+					CustData.initCustData(ID, PWD, CUST_NM, BD, PH_NUM, ADDR);
+					CustData.createCust();
 					JOptionPane.showMessageDialog(null, "회원으로 가입되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
 					dispose();
 				}

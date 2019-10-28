@@ -1,4 +1,3 @@
-
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -18,6 +17,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -38,7 +38,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class QnA_admin extends JPanel implements ActionListener, MouseListener {
 
-	static JPanel C_A = new JPanel();
+	static JPanel N_A = new JPanel();
+	static JPanel Q_A = new JPanel();
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	
 	static String POST_NUM;
@@ -58,7 +59,7 @@ public class QnA_admin extends JPanel implements ActionListener, MouseListener {
 	private JTable tQnA;
 	private JScrollPane Scroll;
 	
-	private JButton  bSearch, bPrevious;
+	private JButton  bSearch;
 	private JComboBox<String> cbSearch;
 	
 	GridBagLayout gridbaglayout;
@@ -79,13 +80,6 @@ public class QnA_admin extends JPanel implements ActionListener, MouseListener {
         bSearch.setPreferredSize(new Dimension(80,40));
         bSearch.setFont(new Font("휴먼매직체", Font.BOLD , 22));
         
-        bPrevious = new JButton("이전");
-        bPrevious.setFocusPainted(false);
-        bPrevious.setBackground(Color.white);
-        bPrevious.setPreferredSize(new Dimension(80,40));
-        bPrevious.addActionListener(this);
-        bPrevious.setFont(new Font("휴먼매직체", Font.BOLD , 22));
-        
         cbSearch = new JComboBox<String>(search);
         cbSearch.setFont(new Font("휴먼매직체", Font.PLAIN , 22));
         cbSearch.setPreferredSize(new Dimension(100,40));
@@ -104,7 +98,6 @@ public class QnA_admin extends JPanel implements ActionListener, MouseListener {
 		tQnA.addMouseListener(this);
 		Scroll = new JScrollPane(tQnA);
 		Scroll.setPreferredSize(new Dimension(1000, 300));
-		
 
 		home_adminView();
 	}
@@ -117,16 +110,14 @@ public class QnA_admin extends JPanel implements ActionListener, MouseListener {
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		
-		gridbagAdd(vQnA, 0, 0, 1, 1);
-		gridbagAdd(cbSearch, 0, 1, 1, 1);
-		gridbagAdd(Tsearch, 1, 1, 1, 1);
-		gridbagAdd(bSearch, 2, 1, 1, 1);
+		gridbagAdd(vQnA, 1, 0, 1, 1);
+		gridbagAdd(cbSearch, 1, 1, 1, 1);
+		gridbagAdd(Tsearch, 2, 1, 1, 1);
+		gridbagAdd(bSearch, 3, 1, 1, 1);
 		
-	    gridbagAdd(Scroll, 0, 2, 3, 1);
+	    gridbagAdd(Scroll, 1, 2, 3, 1);
 	    
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
-		
-		gridbagAdd(bPrevious, 0, 3, 3, 1);
 	    
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
@@ -215,17 +206,9 @@ public class QnA_admin extends JPanel implements ActionListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == bPrevious) {
-			
-			Center_admin.Q_A.removeAll();
-			manager_main.click = "Q";
-			C_A = new Center_admin();
-			C_A.setBounds(0, 100, d.width, d.height - 100);
-        	add(C_A);
-        	repaint();
-        	revalidate();
-		}
 		
 	}   
 }	
 
+	
+			

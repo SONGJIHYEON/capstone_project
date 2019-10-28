@@ -7,6 +7,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -22,13 +25,13 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class MemOrdPg extends JFrame {   
+public class MemOrdPg extends JFrame implements ActionListener{   
 	private JLabel vOrdName, vAddr, vPhone, vOpDeliv, vRecipiant, vRecipAddr, vRecipPhone, vDeliveMsg,
 	vGradeDis, vUsedPoint, vProPrice, vAllDiscout, vPrice, vPoint, v1, vDepositNm, vDepositBk;   
 	private JTextField  xOrdName, xAddr, xPhone, xRecipiant, xRecipAddr, xRecipPhone, xDeliveMsg, xGradeDis, xUsedPoint,
 	xProPrice, xAllDiscout, xPrice, xDepositNm, xDepositBk;         
 	   
-	private String[] col1 = {"no", "이미지", "상품정보", "수량", "포인트", "금액", "선택"};
+	private String[] col1 = {"이미지", "상품정보", "수량", "단가", "금액", "포인트"};
 	private String[] col2 = {"농협", "국민은행", "우리은행", "수협"};      
 	private String[] div = {"관리자", "유저"}; // 사원구분 콤보박스의 목록
 	         
@@ -43,18 +46,52 @@ public class MemOrdPg extends JFrame {
 	         
 	private JButton BtOrder, BtBack;
 	private JComboBox<String> cbBk;      
+	
+	String ar[];
+	String cust_nm, cust_addr, cust_phone;
+	static double sum2, sum3;
 	         
 	GridBagLayout gridbaglayout;      
-	GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
+	GridBagConstraints gridbagconstraints;   
+	
+	private void getData(List<Map<String, Serializable>> BasketListData) {
+		model1.setRowCount(0);
+		ar = new String[BasketListData.size()];
+		sum2 = 0;
+		for (int i = 0; i < BasketListData.size(); i++) {
+			sum2 = sum2 + Double.valueOf(BasketListData.get(i).get("PR").toString());
+			model1.addRow(new Object[] { 
+					BasketListData.get(i).get("MODEL_IMG1"), 
+					BasketListData.get(i).get("PRO_NM"),					
+					BasketListData.get(i).get("QUANT"),
+					BasketListData.get(i).get("UP"),
+					BasketListData.get(i).get("PR"),
+					BasketListData.get(i).get("POINT"), });
+		}
+//		pro_price = String.valueOf(sum2);
+//		xProPrice.setText(pro_price);
+//		xDiscout.setText(mb_disc_rt + "%");
+//		disc_rt = Double.valueOf(home_user.mb_disc_rt) * 0.01;
+//		price = sum2 - (sum2 * disc_rt);
+//		xPrice.setText(String.valueOf(price));
+
+	}
 	         
 	public MemOrdPg() {
 		
         gridbaglayout = new GridBagLayout();
         gridbagconstraints = new GridBagConstraints();
         
+        cust_nm = Login.user_nm;
+        cust_addr = Login.user_addr;
+        cust_phone = Login.user_phone;
+        
         vOrdName = new JLabel("주문자명");
+        vOrdName.setText(cust_nm);
         vAddr = new JLabel("주문자 주소");
+        vAddr.setText(cust_addr);
         vPhone = new JLabel("휴대번호");
+        vPhone.setText(cust_phone);
         vOpDeliv = new JLabel("배송지 선택");
         vRecipiant = new JLabel("수령인명");
         vRecipAddr = new JLabel("수령 주소");
@@ -116,9 +153,10 @@ public class MemOrdPg extends JFrame {
         BtOrder = new JButton("주문하기");
 //        BtOrder.setPreferredSize(new Dimension(130,28));
         BtBack = new JButton("이전 페이지");
+        BtBack.addActionListener(this);
 
 //        regist.addActionListener(this);
-        
+		getData(BasketData.selectBasket());
         MemOrdPgView();
       }   
 	         
@@ -202,15 +240,17 @@ public class MemOrdPg extends JFrame {
 		new MemOrdPg();
     	 }   
 	
-//	public void actionPerformed(ActionEvent e) {
-//		// TODO Auto-generated method stub
-//		if(e.getSource() == BtRegMb) {
-//			RegMember r = new RegMember(new JFrame());
-//
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == BtBack) {
+			dispose();
+		}
+
+//		RegMember r = new RegMember(new JFrame());
 //		} else if(e.getSource() == BtFind) {
 //			Find f = new Find(new JFrame());
 //		} else if(e.getSource() == Btnonmember) {
 //			nonmem n = new nonmem(new JFrame());
 //		}
-//	}
+	}
 }
