@@ -33,7 +33,7 @@ import javax.swing.table.TableCellRenderer;
 public class Basket extends JFrame implements MouseListener, ActionListener {
 
 	private JLabel vProPrice, vDiscount, vPrice, vPoint;
-	private JTextField xProPrice, xDiscount, xPrice, xPoint;
+	private JTextField xProPrice, xDiscout, xPrice, xPoint;
 
 	private String[] col1 = { "이미지", "상품정보", "수량", "단가", "금액", "포인트", "삭제" };
 //   private String[] col2 = {"부서명", "성명"};      
@@ -78,7 +78,7 @@ public class Basket extends JFrame implements MouseListener, ActionListener {
 		}
 		pro_price = String.valueOf(sum2);
 		xProPrice.setText(pro_price);
-		xDiscount.setText(mb_disc_rt + "%");
+		xDiscout.setText(mb_disc_rt + "%");
 		disc_rt = Double.valueOf(home_user.mb_disc_rt) * 0.01;
 		price = sum2 - (sum2 * disc_rt);
 		xPrice.setText(String.valueOf(price));
@@ -98,9 +98,9 @@ public class Basket extends JFrame implements MouseListener, ActionListener {
 		vPoint = new JLabel("적립 포인트");
 
 		xProPrice = new JTextField(10);
-		xDiscount = new JTextField(10);
-		xDiscount.setEnabled(false);
-		xDiscount.setText(mb_disc_rt + "%");
+		xDiscout = new JTextField(10);
+		xDiscout.setEnabled(false);
+		xDiscout.setText(mb_disc_rt + "%");
 		xPrice = new JTextField(10);
 		xPoint = new JTextField(10);
 

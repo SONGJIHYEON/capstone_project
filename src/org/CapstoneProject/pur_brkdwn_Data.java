@@ -1,5 +1,3 @@
-
-  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -31,43 +29,43 @@ public class pur_brkdwn_Data {
    /* 고객번호가 있는 링크 리스트 구성 */
    public static void initpur_brkdwn_Data(String PUR_NUM, String PRO_NUM, int PUR_QUANT, int PUR_UP, int PR) {
 
-      pur_brkdwn_Data.put("구매번호", PUR_NUM);
-      pur_brkdwn_Data.put("상품번호", PRO_NUM);
-      pur_brkdwn_Data.put("구매수량", PUR_QUANT);
-      pur_brkdwn_Data.put("구매단가", PUR_UP);
-      pur_brkdwn_Data.put("금액", PR);
+	   pur_brkdwn_Data.put("구매번호", PUR_NUM);
+	   pur_brkdwn_Data.put("상품번호", PRO_NUM);
+	   pur_brkdwn_Data.put("구매수량", PUR_QUANT);
+	   pur_brkdwn_Data.put("구매단가", PUR_UP);
+	   pur_brkdwn_Data.put("금액", PR);
 
    }
    
    static void createpur_brkdwn_Data() {
-      quary = "INSERT INTO PUR_BRKDWN VALUES('"+ pur_brkdwn_Data.get("구매번호") + "', SEQ_PUR_BRKDWN_NUM.NEXTVAL ,"
-            + " '"+ pur_brkdwn_Data.get("상품번호") + "' ," + pur_brkdwn_Data.get("구매수량") + ", " + pur_brkdwn_Data.get("구매단가") + ", " + pur_brkdwn_Data.get("금액") + ")";
-   
-      quary_commit = "commit";
-      try {
-         pstm = conn.prepareStatement(quary);
-         pstm.executeQuery();
-      } catch (SQLException sqle) {
-         System.out.println("select문에서 예외 발생");
-         sqle.printStackTrace();
-      }
-      try {
-         pstm = conn.prepareStatement(quary_commit);
-         pstm.executeQuery();
-      } catch (SQLException sqle) {
-         System.out.println("select문에서 예외 발생");
-         sqle.printStackTrace();
-      }
+		quary = "INSERT INTO PUR_BRKDWN VALUES('"+ pur_brkdwn_Data.get("구매번호") + "', SEQ_PUR_BRKDWN_NUM.NEXTVAL ,"
+				+ " '"+ pur_brkdwn_Data.get("상품번호") + "' ," + pur_brkdwn_Data.get("구매수량") + ", " + pur_brkdwn_Data.get("구매단가") + ", " + pur_brkdwn_Data.get("금액") + ")";
+	
+		quary_commit = "commit";
+		try {
+			pstm = conn.prepareStatement(quary);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+		try {
+			pstm = conn.prepareStatement(quary_commit);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
 
 
-   }
+	}
 
    
    
 static List<Map<String, Serializable>> selectpur_brkdwn_Data (String pur_num) {
       
       quary = "SELECT BRKDWN_NUM, PRO_NM, PUR_QUANT, PUR_UP, PR "
-            + "FROM  pur_brkdwn JOIN pro ON pur_brkdwn.PRO_NUM = pro.PRO_NUM WHERE pur_num = " + pur_num;
+      		+ "FROM  pur_brkdwn JOIN pro ON pur_brkdwn.PRO_NUM = pro.PRO_NUM WHERE pur_num = " + pur_num;
       
       pur_brkdwnListData.clear();
       
@@ -104,4 +102,3 @@ static List<Map<String, Serializable>> selectpur_brkdwn_Data (String pur_num) {
    }
 
 }
-

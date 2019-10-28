@@ -167,7 +167,7 @@ public class corr_look extends JPanel implements ActionListener, MouseListener {
             	corr_num += (String) corr_info.getValueAt(row, 0);
         		corr_nm = "";
         		corr_nm += (String) corr_info.getValueAt(row, 1);
-    			new pur_list(new JFrame());
+    			new pur_list();
             });
          
         }

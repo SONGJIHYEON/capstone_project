@@ -1,4 +1,3 @@
-
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -233,4 +232,3 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 		
 	}
 }
-
