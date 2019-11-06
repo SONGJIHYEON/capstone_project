@@ -2,11 +2,15 @@ package org.CapstoneProject;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,8 +33,8 @@ public class emp_look extends JPanel implements ActionListener {
 
 	private JTextField Tsearch;
 
-	private String[] col1 = { "사원번호", "사원명", "휴대폰번호", "입사일", "사원구분" };
-	private String[] search = { "사원번호", "휴대폰번호" };
+	private String[] col1 = { "사원번호", "사원명", "휴대폰번호", "입사일", "사원구분", "담당업무" };
+	private String[] search = { "사원명", "휴대폰번호" };
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 
@@ -77,9 +81,6 @@ public class emp_look extends JPanel implements ActionListener {
 		Bsearch = new JButton("검색");
 		Bsearch.addActionListener(this);
 		Bsearch.setPreferredSize(new Dimension(200, 28));
-		Breset = new JButton("초기화");
-		Breset.setPreferredSize(new Dimension(200, 28));
-
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
 //         setExtendedState(MAXIMIZED_BOTH);
@@ -89,13 +90,13 @@ public class emp_look extends JPanel implements ActionListener {
 
 	private void getData(List<Map<String, Serializable>> empListData) {
 
-		for (int i = 0; i < empListData.size(); i++) {
+		for (int i = 0; i < empListData.size(); i++) {			
 			model1.addRow(new Object[] {
-
 					empListData.get(i).get("EMP_NUM"), 
 					empListData.get(i).get("EMP_NM"),
 					empListData.get(i).get("PH_NUM"), 
 					empListData.get(i).get("APPC_DT"),
+					empListData.get(i).get("EMP_TP"),
 					empListData.get(i).get("REG_WRKR_TP") });
 		}
 	}
@@ -121,7 +122,7 @@ public class emp_look extends JPanel implements ActionListener {
 		gridbagAdd(Bsearch, 3, 2, 1, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(Breset, 4, 2, 1, 1);
+//		gridbagAdd(Breset, 4, 2, 1, 1);
 
 //         setResizable(true);
 		setVisible(true);
@@ -142,6 +143,12 @@ public class emp_look extends JPanel implements ActionListener {
 
 	}
 
+	public void paintComponent(Graphics g) {
+		g.drawImage(manager_main.img, 0, 0, null);
+		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+		super.paintComponent(g);
+	}
+
 	public static void main(String[] args) {
 		new emp_look();
 	}
@@ -150,7 +157,7 @@ public class emp_look extends JPanel implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == Bsearch) {
 			String search = Tsearch.getText();
-			if (cbSearch.getSelectedItem() == "사원번호") {
+			if (cbSearch.getSelectedItem() == "사원명") {
 				model1.setRowCount(0);
 				getData(empData.searchEmp1(search));
 			} else if (cbSearch.getSelectedItem() == "휴대폰번호") {

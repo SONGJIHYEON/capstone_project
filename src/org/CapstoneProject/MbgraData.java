@@ -39,8 +39,7 @@ public class MbgraData {
 
 		quary1 = "update gra_rec SET DISC_APP_END_DT = TO_CHAR(SYSDATE-1, 'YYYY-MM-DD') WHERE gra_tp = 'S' AND DISC_APP_END_DT = '9999-12-31'";
 
-		quary2 = "insert into gra_rec values ('S', TO_CHAR(SYSDATE, 'YYYY-MM-DD') , '9999-12-31', " + " " + modrate
-				+ ")";
+		quary2 = "insert into gra_rec values ('S', TO_CHAR(SYSDATE, 'YYYY-MM-DD') , '9999-12-31', " + " " + modrate	+ ")";
 
 		try {
 			pstm = conn.prepareStatement(quary1);
@@ -63,8 +62,7 @@ public class MbgraData {
 
 		quary1 = "update gra_rec SET DISC_APP_END_DT = TO_CHAR(SYSDATE-1, 'YYYY-MM-DD') WHERE gra_tp = 'V' AND DISC_APP_END_DT = '9999-12-31'";
 
-		quary2 = "insert into gra_rec values ('V', TO_CHAR(SYSDATE, 'YYYY-MM-DD') , '9999-12-31', " + " '" + modrate
-				+ "')";
+		quary2 = "insert into gra_rec values ('V', TO_CHAR(SYSDATE, 'YYYY-MM-DD') , '9999-12-31', " + " '" + modrate+ "')";
 
 		try {
 			pstm = conn.prepareStatement(quary1);
@@ -87,8 +85,7 @@ public class MbgraData {
 
 		quary1 = "update gra_rec SET DISC_APP_END_DT = TO_CHAR(SYSDATE-1, 'YYYY-MM-DD') WHERE gra_tp = 'F' AND DISC_APP_END_DT = '9999-12-31'";
 
-		quary2 = "insert into gra_rec values ('F', TO_CHAR(SYSDATE, 'YYYY-MM-DD') , '9999-12-31', " + " '" + modrate
-				+ "')";
+		quary2 = "insert into gra_rec values ('F', TO_CHAR(SYSDATE, 'YYYY-MM-DD') , '9999-12-31', " + " '" + modrate + "')";
 
 		try {
 			pstm = conn.prepareStatement(quary1);

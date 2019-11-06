@@ -3,6 +3,7 @@ package org.CapstoneProject;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -34,7 +35,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class ProDetail extends JFrame implements ActionListener, MouseListener {
+public class ProDetail extends Dialog implements ActionListener, MouseListener {
 
 	private JLabel vProImg, vProNm, vPrice, vColor, vSize, vOption, vAllPrice;
 
@@ -53,7 +54,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	private JTable eDept, eSpv;
 	private JScrollPane scrollpane1, scrollpane2;
 
-	private JButton Btpurchase, BtBasket, BtPlus, BtMinus;
+	private JButton Btpurchase, BtBasket, BtPlus, BtMinus, Btclose;
 	private JTabbedPane t;
 	private JTextArea ta;
 	private JPanel p, p1, p2;
@@ -62,6 +63,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 			pro_num, selectSize, selectColor;
 	
 	static String mb_disc_rt;
+	static int state = 0;
 
 	private String[] Basic_clr = { "[필수] 선택" };
 	static ArrayList arColor = new ArrayList();
@@ -109,7 +111,8 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		return mb_disc_rt;
 	}
 
-	public ProDetail() {
+	public ProDetail(JFrame fr) {  
+        super(fr, "", true);
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
@@ -154,10 +157,12 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		BtMinus = new JButton("▼");
 		BtMinus.setPreferredSize(new Dimension(45, 20));
 		BtMinus.addActionListener(this);
-		Btpurchase = new JButton("구매하기");
+		Btpurchase = new JButton("주문하기");
 		Btpurchase.addActionListener(this);
 		BtBasket = new JButton("장바구니");
 		BtBasket.addActionListener(this);
+		Btclose = new JButton("닫기");
+		Btclose.addActionListener(this);
 
 		Cbsize = new JComboBox<String>(arSize.toArray(new String[arSize.size()]));
 		Cbsize.setPreferredSize(new Dimension(120, 20));
@@ -205,13 +210,12 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		gridbagAdd(vProImg, 0, 0, 2, 7);
 		gridbagAdd(vProNm, 2, 0, 3, 1);
 		gridbagAdd(vPrice, 2, 3, 1, 1);
-		gridbagAdd(xPrice, 3, 3, 2, 1);
 		gridbagAdd(vSize, 2, 1, 1, 1);
 		gridbagAdd(vColor, 2, 2, 1, 1);
 		gridbagAdd(vOption, 2, 4, 1, 1);
 		gridbagAdd(vAllPrice, 2, 5, 1, 1);
-		gridbagAdd(xAllPrice, 3, 5, 2, 1);
-		gridbagAdd(p, 0, 7, 10, 10);
+		gridbagAdd(p, 0, 7, 5, 1);
+		gridbagAdd(Btclose, 0, 8, 5, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(Btpurchase, 3, 6, 1, 1);
@@ -219,13 +223,14 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 		gridbagAdd(Cbsize, 3, 1, 1, 1);
 		gridbagAdd(Cbcolor, 3, 2, 1, 1);
 		gridbagAdd(BtPlus, 4, 4, 1, 1);
+		gridbagAdd(xPrice, 3, 3, 2, 1);
+		gridbagAdd(xAllPrice, 3, 5, 2, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtBasket, 4, 6, 1, 1);
 		gridbagAdd(BtMinus, 4, 4, 1, 1);
 
-		setExtendedState(MAXIMIZED_BOTH);
-
+		pack();
 		setVisible(true);
 	}
 
@@ -244,7 +249,7 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 	}
 
 	public static void main(String[] args) {
-		ProDetail win = new ProDetail();
+		ProDetail win = new ProDetail(new JFrame());
 	}
 
 	@Override
@@ -341,14 +346,31 @@ public class ProDetail extends JFrame implements ActionListener, MouseListener {
 				int check = JOptionPane.showConfirmDialog(null, "장바구니에 등록되었습니다. 장바구니로 이동하시겠습니까?", "",
 						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 				if (check == 0) {
-					new Basket();
+					dispose();
+					new Basket_Dialog(new JFrame());
 				} else
 					return;
 			}else
 				JOptionPane.showMessageDialog(null, "사이즈 또는 색상을 선택하여 주세요");
 
+		}else if (e.getSource() == Btpurchase) {
+			if (!Cbsize.getSelectedItem().toString().equals("[필수] 선택")
+					&& !Cbsize.getSelectedItem().toString().equals("----------")
+					&& !Cbcolor.getSelectedItem().toString().equals("[필수] 선택")
+					&& !Cbcolor.getSelectedItem().toString().equals("----------")) {
+				int check = JOptionPane.showConfirmDialog(null, "주문창으로 이동하시겠습니까?", "",
+						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				if (check == 0) {
+					dispose();
+					new MemOrdPg_Dialog(new JFrame());
+				} else
+					return;
+			}else
+				JOptionPane.showMessageDialog(null, "사이즈 또는 색상을 선택하여 주세요");
 		} else if (e.getSource() == Btpurchase) {
 			new MemOrdPg();
+		} else if (e.getSource() == Btclose) {
+			dispose();
 		} 
 	}
 

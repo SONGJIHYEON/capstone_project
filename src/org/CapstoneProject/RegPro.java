@@ -1,11 +1,15 @@
-  
+
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
 import java.awt.Checkbox;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -31,7 +35,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class RegPro extends JFrame implements ActionListener, ItemListener {
+public class RegPro extends Dialog implements ActionListener, ItemListener {
 
 	ArrayList ar = new ArrayList();
 	ArrayList ar1 = new ArrayList();
@@ -74,53 +78,39 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 	String name, PRO_IMG;
 
 	int o = -1, k = 0;
-	int i;
+	int i, row;
 
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 
-	public RegPro() {
+	public RegPro(JFrame fr) {
+		super(fr, "", true);
 
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
 
-		vRegModel = new JLabel("모델등록");
-		vRegModel.setPreferredSize(new Dimension(200, 28));
-		vRegPro2 = new JLabel("상품등록");
-		vRegPro2.setPreferredSize(new Dimension(200, 28));
-		vAdminModel = new JLabel("모델검색");
-		vAdminModel.setPreferredSize(new Dimension(200, 28));
-		vModelCtgr = new JLabel("모델분류");
-		vModelCtgr.setPreferredSize(new Dimension(200, 28));
-		vRegPro = new JLabel("상품등록");
-		vRegPro.setPreferredSize(new Dimension(200, 28));
-		vAdminPro = new JLabel("상품관리");
-		vAdminPro.setPreferredSize(new Dimension(200, 28));
-		vProUp = new JLabel("상품단가변경");
-		vProUp.setPreferredSize(new Dimension(200, 28));
-		vModelImage = new JLabel("모델대표이미지");
-
 		vProNm = new JLabel("상품명");
+		vProNm.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		vProSize = new JLabel("상품 사이즈");
+		vProSize.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		vProColor = new JLabel("상품 색상");
+		vProColor.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 //      vProStock = new JLabel("재고등록");
 
 		xModelNm = new JTextField(20);
+		xModelNm.setPreferredSize(new Dimension(250, 28));
 		taProNm = new JTextArea(10, 10);
-		xSale = new JTextField(20);
-		xProDetail = new JTextField(20);
-		xColor = new JTextField(20);
-		xModelImage = new JTextField(20);
-//      xPrice = new JTextField(20);
-//      xProStock = new JTextField(20);
 
 		vModelNm = new JLabel("모델명");
-//      vPrice = new JLabel("상품 가격");
+		vModelNm.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		vSale = new JLabel("판매상태");
+		vSale.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+
 //      CbSize = new JComboBox<String>(size);
 //      CbSize.setPreferredSize(new Dimension(100,25));
 //      vModelCtgr2 = new JLabel("2차분류");
-		vProSize = new JLabel("상품 사이즈");
 		vProDetail = new JLabel("상품 상세 정보");
+		vProDetail.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		RSale = new JRadioButton("판매중");
 		RSale.setSelected(true);
@@ -133,6 +123,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 		BtRadio.add(RBehind);
 
 		PRadio = new JPanel(new FlowLayout(FlowLayout.CENTER));
+		PRadio.setPreferredSize(new Dimension(250, 30));
 		PRadio.add(RSale);
 		PRadio.add(RSoldOut);
 		PRadio.add(RBehind);
@@ -142,7 +133,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 		tpro.getColumnModel().getColumn(1).setPreferredWidth(15);
 		tpro.getColumnModel().getColumn(2).setPreferredWidth(60);
 		scrollpane1 = new JScrollPane(tpro);
-		scrollpane1.setPreferredSize(new Dimension(250, 80));
+		scrollpane1.setPreferredSize(new Dimension(250, 130));
 
 		psize1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		psize1.setPreferredSize(new Dimension(250, 30));
@@ -179,29 +170,33 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 
 		BtModel = new JButton("모델 불러오기");
 		BtModel.addActionListener(this);
-
-//        regist.addActionListener(this);
-		BtProMan = new JButton("모델/상품관리");
-		BtProMan.setPreferredSize(new Dimension(200, 28));
-//        cancel.addActionListener(this);
-		BtOdMan = new JButton("주문관리");
-		BtOdMan.setPreferredSize(new Dimension(200, 28));
-		BtMbMan = new JButton("회원관리");
-		BtMbMan.setPreferredSize(new Dimension(200, 28));
-		BtEmpMan = new JButton("직원관리");
-		BtEmpMan.setPreferredSize(new Dimension(200, 28));
-//      BtSearch = new JButton("검색");
-//      BtSearch.setPreferredSize(new Dimension(100,28));
+		BtModel.setPreferredSize(new Dimension(120, 28));
+		BtModel.setBackground(Color.white);
+		BtModel.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 
 		BtColor = new JButton("색상 가져오기");
 		BtColor.addActionListener(this);
 		BtPro = new JButton("상품명 생성");
-		BtPro.setPreferredSize(new Dimension(109, 28));
+		BtPro.setPreferredSize(new Dimension(120, 28));
+		BtPro.setBackground(Color.white);
+		BtPro.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+
 		BtImg = new JButton("첨부하기");
 		BtPro.addActionListener(this);
+
 		BtReg = new JButton("등록");
 		BtReg.addActionListener(this);
+		BtReg.setFocusPainted(false);
+		BtReg.setBackground(Color.white);
+		BtReg.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		BtReg.setPreferredSize(new Dimension(65, 25));
+
 		BtCancel = new JButton("닫기");
+		BtCancel.addActionListener(this);
+		BtCancel.setFocusPainted(false);
+		BtCancel.setBackground(Color.white);
+		BtCancel.setPreferredSize(new Dimension(65, 25));
+		BtCancel.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 
 		psize2.setEnabled(false);
 		psize2.setVisible(false);
@@ -210,37 +205,21 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 		psize1.setEnabled(false);
 		psize1.setVisible(false);
 //      setExtendedState(MAXIMIZED_BOTH);
+
 		RegProView();
 	}
 
 	private void RegProView() {
 
-//      setTitle("홈페이지 관리자");
+		setTitle("상품등록");
 		setLayout(gbl);
 
-//      gridbagAdd(psize1, 3, 4, 1, 1);
-//      gridbagAdd(psize2, 3, 4, 1, 1);
-//      gridbagAdd(psize2, 3, 4, 1, 1);
-
-//      gridbagAdd(vRegModel, 0, 1, 1, 1);
-		gridbagAdd(vRegPro2, 1, 1, 1, 1);
-//      gridbagAdd(vAdminModel,0, 2, 1, 1);
-//       gridbagAdd(vModelCtgr, 0, 3, 1, 1);
-//       gridbagAdd(vRegPro, 0, 4, 1, 1);
-//       gridbagAdd(vAdminPro, 0, 5, 1, 1);
-//       gridbagAdd(vProUp, 0, 6, 1, 1);
 		gridbagAdd(vProNm, 1, 6, 1, 1);
 		gridbagAdd(vModelNm, 1, 2, 1, 1);
-//       gridbagAdd(vPrice, 1, 3, 1, 1);
-		gridbagAdd(vSale, 1, 3, 1, 1);
 		gridbagAdd(vProSize, 1, 4, 1, 1);
 		gridbagAdd(vProColor, 1, 5, 1, 1);
-//       gridbagAdd(vProStock, 1, 8, 1, 1);
-//       gridbagAdd(vProDetail, 1, 7, 1, 1);
-
 		gridbagAdd(xModelNm, 2, 2, 2, 1);
-		gridbagAdd(PRadio, 2, 3, 2, 1);
-//       gridbagAdd(xProDetail, 2, 7, 2, 1);
+
 		gridbagAdd(pcolor, 2, 5, 2, 1);
 
 		gbc.anchor = GridBagConstraints.EAST;
@@ -248,18 +227,14 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 		gridbagAdd(BtReg, 2, 10, 1, 1);
 		gridbagAdd(BtCancel, 3, 10, 1, 1);
 		gridbagAdd(BtPro, 4, 6, 1, 1);
-//       gridbagAdd(BtColor, 4, 5, 1, 1);
 
 		gbc.anchor = GridBagConstraints.CENTER;
 		gridbagAdd(scrollpane1, 2, 6, 2, 1);
 		gridbagAdd(psize1, 2, 4, 2, 1);
 		gridbagAdd(psize2, 2, 4, 2, 1);
 		gridbagAdd(psize3, 2, 4, 2, 1);
-//       gridbagAdd(scrollpane1, 1, 2, 5, 1);
-//       gridbagAdd(scrollpane2, 1, 6, 6, 5);
-//       gridbagAdd(regist, 0, 12, 1, 1);
-//       gridbagAdd(cancel, 2, 12, 1, 1);
 
+		pack();
 		setVisible(true);
 	}
 
@@ -278,8 +253,14 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 
 	}
 
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(manager_main.img, 0, 0, null);
+//		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+//		super.paintComponent(g);
+//	}
+
 	public static void main(String[] args) {
-		new RegPro();
+		new RegPro(new JFrame());
 
 	}
 
@@ -290,9 +271,6 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 			xModelNm.setText(mM.ModelName);
 			name = mM.ModelNum;
 			if (mM.first_ctgr.equals("상의") || mM.first_ctgr.equals("아우터") || mM.first_ctgr.equals("셔츠")) {
-//    	  gridbagAdd(psize1, 2, 4, 2, 1); 
-//        gridbagAdd(psize2, 2, 4, 2, 1);
-//        gridbagAdd(psize3, 2, 4, 2, 1);
 				psize2.setEnabled(false);
 				psize2.setVisible(false);
 				psize3.setEnabled(false);
@@ -301,6 +279,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 				psize1.setVisible(true);
 				o = 1;
 				k = 1;
+				pack();
 			} else if (mM.first_ctgr.equals("하의")) {
 //         gridbagAdd(psize2, 2, 4, 2, 1);
 //         setVisible(true);
@@ -312,6 +291,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 				psize1.setVisible(false);
 				o = 2;
 				k = 1;
+				pack();
 			} else if (mM.first_ctgr.equals("신발")) {
 //         gridbagAdd(psize3, 2, 4, 2, 1);
 //         setVisible(true);
@@ -322,12 +302,11 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 				psize1.setEnabled(false);
 				psize1.setVisible(false);
 				o = 3;
+				pack();
 			}
 		}
 		if (e.getSource() == BtPro) {
-
 			if (o == -1) {
-
 			} else if (o == 1) {
 				ar1 = new ArrayList();
 				k = 1;
@@ -337,7 +316,6 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 						ar1.add(chsize1[i].getText());
 					}
 				}
-
 			} else if (o == 2) {
 				ar1 = new ArrayList();
 				k = 1;
@@ -347,7 +325,6 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 						ar1.add(chsize2[i].getText());
 					}
 				}
-
 			} else if (o == 3) {
 				ar1 = new ArrayList();
 				k = 1;
@@ -368,9 +345,7 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 				for (int i = 0; i < ar1.size(); i++) {
 					for (int j = 0; j < ar.size(); j++) {
 						model1.addRow(new Object[] { ar1.get(i), ar.get(j),
-								xModelNm.getText() + "_" + ar1.get(i) + "_" + ar.get(j),
-
-						});
+								xModelNm.getText() + "_" + ar1.get(i) + "_" + ar.get(j), });
 					}
 				}
 			}
@@ -384,10 +359,29 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 						RegProData.createpro(name, xModelNm.getText() + "_" + ar1.get(i) + "_" + ar.get(j),
 								ar.get(j).toString(), ar1.get(i).toString());
 					}
-				}JOptionPane.showMessageDialog(null, "상품이 등록되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
-			}else
-				return;
+				}
+				JOptionPane.showMessageDialog(null, "상품이 등록되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+				xModelNm.setText("");
+				model1.setRowCount(0);
+				
+				for (int i = 0; i < chsize1.length; i++) {
+					chsize1[i].setSelected(false);
+				}
+				for (int i = 0; i < chsize2.length; i++) {
+					chsize2[i].setSelected(false);
+				}
+				for (int i = 0; i < chsize3.length; i++) {
+					chsize3[i].setSelected(false);
+				}
+				for (int i = 0; i < chcolor.length; i++) {
+					chcolor[i].setSelected(false);
+				}
 
+
+			} else
+				return;
+		} else if (e.getSource() == BtCancel) {
+			dispose();
 		}
 	}
 
@@ -401,4 +395,3 @@ public class RegPro extends JFrame implements ActionListener, ItemListener {
 //    	  System.out.println(2);
 	}
 }
-

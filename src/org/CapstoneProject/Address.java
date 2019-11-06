@@ -45,7 +45,8 @@ public class Address extends Dialog implements ActionListener, MouseListener{
    int close;
          
    GridBagLayout gridbaglayout;      
-   GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
+   GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할.
+   
          
    public Address(JFrame fr) {      
          super(fr, "", true);

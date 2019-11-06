@@ -29,15 +29,16 @@ public class BasketData {
 	}
 
 	/* 고객정보를 생성하는 질의어 */
-	static void createBasket(String user_num, String pro_num, String bk_option, String bk_price, String bk_allPrice, double bk_point) {
+	static void createBasket(String user_num, String pro_num, String bk_option, String bk_price, String bk_allPrice,
+			double bk_point) {
 
-		quary = "insert into bsk values ('" + user_num + "', '" + pro_num + "', '" + bk_option + "', '" + bk_price + "', '"
-				+ bk_allPrice + "', '" + bk_point +"')";
+		quary = "insert into bsk values ('" + user_num + "', '" + pro_num + "', '" + bk_option + "', '" + bk_price
+				+ "', '" + bk_allPrice + "', '" + bk_point + "')";
 
 		System.out.println(quary);
 		try {
 			pstm = conn.prepareStatement(quary);
-			pstm.executeQuery(); 	
+			pstm.executeQuery();
 		} catch (SQLException sqle) {
 			System.out.println("select문에서 예외 발생");
 			sqle.printStackTrace();
@@ -48,7 +49,8 @@ public class BasketData {
 	static List<Map<String, Serializable>> deleteBasket(String pro_nm) {
 
 		quary = "delete bsk "
-				+ "where bsk.PRO_NUM = (select pro.pro_num from pro where bsk.pro_num = pro.pro_num and PRO_NM = '" +pro_nm + "') ";
+				+ "where bsk.PRO_NUM = (select pro.pro_num from pro where bsk.pro_num = pro.pro_num and PRO_NM = '"
+				+ pro_nm + "') ";
 
 		BasketListData.clear();
 
@@ -65,7 +67,7 @@ public class BasketData {
 		return BasketListData;
 
 	}
-	
+
 	static List<Map<String, Serializable>> deleteBasket2(String cust_num) {
 
 		quary = "delete from bsk where cust_num = '" + cust_num + "'";
@@ -85,11 +87,11 @@ public class BasketData {
 		return BasketListData;
 
 	}
-	
-	static List<Map<String, Serializable>> selectBasket() {
 
-		quary = "select MODEL_IMG1, PRO_NM, QUANT, UP, PR, POINT from model join pro on model.MODEL_NUM = pro.MODEL_NUM " + 
-				"join bsk on PRO.PRO_NUM = bsk.PRO_NUM ";
+	static List<Map<String, Serializable>> selectBasket(String cust_num) {
+
+		quary = "select MODEL_IMG1, PRO_NM, QUANT, UP, PR, POINT, pro.pro_num from model join pro on model.MODEL_NUM = pro.MODEL_NUM "
+				+ "join bsk on PRO.PRO_NUM = bsk.PRO_NUM where cust_num = '" + cust_num + "'";
 
 		BasketListData.clear();
 
@@ -108,6 +110,7 @@ public class BasketData {
 				BasketdataSet.put("UP", rs.getString(4));
 				BasketdataSet.put("PR", rs.getString(5));
 				BasketdataSet.put("POINT", rs.getString(6));
+				BasketdataSet.put("pro.pro_num", rs.getString(7));
 
 				BasketListData.add(BasketdataSet);
 //				System.out.println(BasketListData);

@@ -1,6 +1,8 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -30,7 +32,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class ModiMember extends JFrame implements ActionListener {
+public class ModiMember extends Dialog implements ActionListener {
 	private JLabel vMemId, vMemPw1, vMemPw2, vMemName, vMemBirth, vMemPhone, vMemEmail, vMemAddr1, vMemAddr2, vMemAddr3,
 			vGol;
 	private JTextField xMemId, xMemName, xMemBirth, xMemPhone, xMemEmail1, xMemEmail2, xMemAddr1, xMemAddr2, xMemAddr3;
@@ -95,41 +97,66 @@ public class ModiMember extends JFrame implements ActionListener {
 //	}
 
 	public ModiMember(JFrame fr) {
-		
+        super(fr, "", true);
 		user_id = Login.user_id;
 		user_nm = Login.user_nm;
 		user_addr = Login.user_addr;
 		user_birth = Login.user_birth;
 		user_phone = Login.user_phone;
+		
+		String oldstring = user_birth;
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String newbirth = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
 
 		vMemId = new JLabel("아이디");
-		xMemId = new JTextField(22);
+		vMemId.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemId = new JTextField(13);
+		xMemId.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemId.setText(user_id);
 		xMemId.setEnabled(false);
 
 		vMemPw1 = new JLabel("비밀번호");
+		vMemPw1.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemPw1 = new JPasswordField(22);
+		xMemPw1.setPreferredSize(new Dimension(125, 30));
 
 		vMemPw2 = new JLabel("비밀번호 확인");
+		vMemPw2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemPw2 = new JPasswordField(22);
+		xMemPw2.setPreferredSize(new Dimension(125, 30));
 
 		vMemName = new JLabel("이름");
-		xMemName = new JTextField(22);
+		vMemName.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemName = new JTextField(13);
+		xMemName.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemName.setText(user_nm);
 		xMemName.setEnabled(false);
 
 		vMemBirth = new JLabel("생년월일");
-		xMemBirth = new JTextField(22);
-		xMemBirth.setText(user_birth);
+		vMemBirth.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemBirth = new JTextField(13);
+		xMemBirth.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemBirth.setText(newbirth);
+		xMemBirth.setEnabled(false);
 
 		vMemPhone = new JLabel("휴대폰 번호");
-		xMemPhone = new JTextField(22);
+		vMemPhone.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemPhone = new JTextField(13);
+		xMemPhone.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemPhone.setText(user_phone);
 
+
 		vMemEmail = new JLabel("이메일");
+		vMemEmail.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		vGol = new JLabel("@");
 		xMemEmail1 = new JTextField(10);
 		xMemEmail2 = new JTextField(10);
@@ -138,27 +165,47 @@ public class ModiMember extends JFrame implements ActionListener {
 //		CbEmail = new JComboBox(div);
 
 		vMemAddr1 = new JLabel("주소");
-		xMemAddr1 = new JTextField(22);
+		vMemAddr1.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemAddr1 = new JTextField(13);
+		xMemAddr1.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		
 		BtSearchAddr = new JButton("우편번호 검색");
 		BtSearchAddr.addActionListener(this);
+		BtSearchAddr.setPreferredSize(new Dimension(120, 28));
+		BtSearchAddr.setFocusPainted(false);
+		BtSearchAddr.setBackground(Color.white);
+		BtSearchAddr.setFont(new Font("휴먼매직체", Font.PLAIN, 15));
+		
 		vMemAddr2 = new JLabel("기본주소");
-		vMemAddr2.setFont(new Font("serif", Font.PLAIN, 12));
+		vMemAddr2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		vMemAddr3 = new JLabel("상세주소");
-		vMemAddr3.setFont(new Font("serif", Font.PLAIN, 12));
+		vMemAddr3.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
-		xMemAddr2 = new JTextField(22);
-		xMemAddr3 = new JTextField(22);
+		xMemAddr2 = new JTextField(13);
+		xMemAddr2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemAddr3 = new JTextField(13);
+		xMemAddr3.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		BtRegist = new JButton("수정");
 		BtRegist.addActionListener(this);
+		BtRegist.setPreferredSize(new Dimension(65, 25));
+		BtRegist.setFocusPainted(false);
+		BtRegist.setBackground(Color.white);
+		BtRegist.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		
 		BtCancel = new JButton("취소");
+		BtCancel.addActionListener(this);
+		BtCancel.setPreferredSize(new Dimension(65, 25));
+		BtCancel.setFocusPainted(false);
+		BtCancel.setBackground(Color.white);
+		BtCancel.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 
 		ModiMemberView();
 	}
 
 	private void ModiMemberView() {
-		setExtendedState(MAXIMIZED_BOTH);
-		setTitle("회원가입");
+//		setExtendedState(MAXIMIZED_BOTH);
+		setTitle("회원수정");
 
 		setLayout(gbl);
 
@@ -181,8 +228,8 @@ public class ModiMember extends JFrame implements ActionListener {
 		gridbagAdd(vMemAddr1, 0, 6, 1, 1);
 		gridbagAdd(xMemAddr1, 1, 6, 3, 1);
 		gridbagAdd(BtSearchAddr, 4, 6, 1, 1);
-		gridbagAdd(vMemAddr2, 4, 7, 1, 1);
-		gridbagAdd(vMemAddr3, 4, 8, 1, 1);
+		gridbagAdd(vMemAddr2, 0, 7, 1, 1);
+		gridbagAdd(vMemAddr3, 0, 8, 1, 1);
 		gridbagAdd(xMemAddr2, 1, 7, 3, 1);
 		gridbagAdd(xMemAddr3, 1, 8, 3, 1);
 //	    gridbagAdd(vGol, 2, 6, 1, 1);
@@ -200,7 +247,7 @@ public class ModiMember extends JFrame implements ActionListener {
 //	    gridbagAdd(scrollpane2, 2, 11, 2, 1);
 //	    gridbagAdd(regist, 0, 12, 1, 1);
 //	    gridbagAdd(cancel, 2, 12, 1, 1);
-
+        pack();
 		setVisible(true);
 	}
 
@@ -274,6 +321,8 @@ public class ModiMember extends JFrame implements ActionListener {
 			Address s = new Address(new JFrame());
 			xMemAddr1.setText(s.zipcode);
 			xMemAddr2.setText(s.addr);
+		} else if(e.getSource() == BtCancel) {
+			dispose();
 		}
 
 	}

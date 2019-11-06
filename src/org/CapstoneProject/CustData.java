@@ -44,7 +44,7 @@ public class CustData {
 		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, CUST_TP, ID, PWD, BD, POSS_PNT, ADDR, GRA_TP) "
 				+ "VALUES(SEQ_CUST_NUM.NEXTVAL, '" + custdata.get("이름") + "', '" + custdata.get("휴대폰번호") + "', '회원', '"
 				+ custdata.get("아이디") + "', " + " '" + custdata.get("비밀번호") + "', to_date('" + custdata.get("생년월일")
-				+ "', 'YYYY-MM-DD'), 0, '" + custdata.get("주소") + "', 'F')";
+				+ "', 'YYYY-MM-DD'), 2000, '" + custdata.get("주소") + "', 'F')";
 		
 		custListData.clear();
 
@@ -252,7 +252,6 @@ public class CustData {
 				custdataSet = new HashMap<String, Serializable>();
 
 				custdataSet.put("DISC_RT", rs.getString(1));
-				// System.out.println(addrdataSet);
 				custListData.add(custdataSet);
 
 			}

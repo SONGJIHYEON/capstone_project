@@ -3,6 +3,7 @@ package org.CapstoneProject;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Label;
@@ -24,7 +25,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-
 public class ManPro extends JPanel {
 	private JLabel vAdminPro2;
 	private JTextField xSearch;
@@ -36,103 +36,101 @@ public class ManPro extends JPanel {
 //	private String[] ctgr2_3 = {"반팔셔츠", "체크", "긴팔셔츠", "스트라이프"};
 //	private String[] ctgr2_4 = {"코트", "가디건", "조끼", "집업", "패딩", "점퍼", "야상", "재킷"};
 //	private String[] ctgr2_5 = {"스티커즈", "운동화", "슬리퍼", "로퍼", "구두", "워커", "부츠", "샌들"};
-	
-	private String[] col1 = {"No",  "모델명", "상품명", "색상", "사이즈"};      
-	private String[] search = {"모델명", "색상", "사이즈"};    
-	
+
+	private String[] col1 = { "No", "모델명", "상품명", "색상", "사이즈" };
+	private String[] search = { "모델명", "색상", "사이즈" };
+
 //  private String[] div = {"정규직", "임시직", "계약직"};      // 사원구분 콤보박스의 목록
 //	private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
 
-	private JTable tModelInfo;    
-	private JScrollPane scrollpane1, scrollpane2;  	
-	
-	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
-   
-	private JButton BtSearch, BtReg; 
+	private JTable tModelInfo;
+	private JScrollPane scrollpane1, scrollpane2;
+
+	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
+
+	private JButton BtSearch, BtReg;
 	private JComboBox<String> CbSearch, Cbctgr1, CbCbctgr2_1, CbCbctgr2_2, CbCbctgr2_3, CbCbctgr2_4, CbCbctgr2_5;
-	
+
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
-	
+
 	public ManPro() {
 		gbl = new GridBagLayout();
-		gbc = new GridBagConstraints(); 
-		
-		getData(ProData.selectProMod());
-        
-		vAdminPro2 = new JLabel("상품조회");
-		vAdminPro2.setPreferredSize(new Dimension(200,28));
-		
-		CbSearch = new JComboBox<String>(search);
-		CbSearch.setPreferredSize(new Dimension(200,28));
-		
-		xSearch = new JTextField(20);
-		xSearch.setPreferredSize(new Dimension(200,28));
-		
-		tModelInfo = new JTable(model1);
-        scrollpane1 = new JScrollPane(tModelInfo);
-        scrollpane1.setPreferredSize(new Dimension(1000, 300));
+		gbc = new GridBagConstraints();
 
-		
+		getData(ProData.selectProMod());
+
+		vAdminPro2 = new JLabel("상품조회");
+		vAdminPro2.setPreferredSize(new Dimension(200, 28));
+
+		CbSearch = new JComboBox<String>(search);
+		CbSearch.setPreferredSize(new Dimension(200, 28));
+
+		xSearch = new JTextField(20);
+		xSearch.setPreferredSize(new Dimension(200, 28));
+
+		tModelInfo = new JTable(model1);
+		scrollpane1 = new JScrollPane(tModelInfo);
+		scrollpane1.setPreferredSize(new Dimension(1000, 300));
+
 		BtSearch = new JButton("검색");
-		BtSearch.setPreferredSize(new Dimension(100,28));
+		BtSearch.setPreferredSize(new Dimension(100, 28));
 		BtReg = new JButton("등록");
-		BtReg.setPreferredSize(new Dimension(100,28));
+		BtReg.setPreferredSize(new Dimension(100, 28));
 //		BtCancel = new JButton("닫기");
 		ManProView();
 	}
-	
+
 	private void ManProView() {
 
 		setLayout(gbl);
-		
+
 		gridbagAdd(vAdminPro2, 1, 1, 1, 1);
-	    
-	    gridbagAdd(CbSearch, 1, 2, 1, 1);
-	    gridbagAdd(xSearch, 2, 2, 1, 1);
 
-	    
-        gbc.anchor = GridBagConstraints.CENTER;
-        
-	    gbc.anchor = GridBagConstraints.WEST;
-	    gridbagAdd(BtSearch, 3, 2, 1, 1);
-	    gridbagAdd(scrollpane1, 1, 3, 5, 5);
+		gridbagAdd(CbSearch, 1, 2, 1, 1);
+		gridbagAdd(xSearch, 2, 2, 1, 1);
 
-	    
-	   
-	    setVisible(true);
-	}   
-	         
-	private void gridbagAdd(Component c, int x, int y, int w, int h) {   
-		
-		gbc.gridx = x;
-		gbc.gridy = y; 
-		//가장 왼쪽 위 gridx, gridy값은 0    
-		
-		gbc.gridwidth  = w;
-		gbc.gridheight = h;
-		
-		
-		gbl.setConstraints(c, gbc); //컴포넌트를 컴포넌트 위치+크기 정보에 따라 GridBagLayout에 배치   
-		
-		add(c);   
-		
-	}   
-	
-	public static void main(String[] args) {   
-		new ManPro();
-	}   
-	private void getData(List<Map<String, Serializable>> ProListData) {
-			
-			for(int i=0; i < ProListData.size(); i++) {
-				model1.addRow(new Object[] {
-						
-						ProListData.get(i).get("PRO_NUM"),
-						ProListData.get(i).get("MODEL_NM"),
-						ProListData.get(i).get("PRO_NM"),
-						ProListData.get(i).get("CLR"),
-						ProListData.get(i).get("SIZ")
-				});
-			}
+		gbc.anchor = GridBagConstraints.CENTER;
+
+		gbc.anchor = GridBagConstraints.WEST;
+		gridbagAdd(BtSearch, 3, 2, 1, 1);
+		gridbagAdd(scrollpane1, 1, 3, 5, 5);
+
+		setVisible(true);
 	}
-}	
+
+	private void gridbagAdd(Component c, int x, int y, int w, int h) {
+
+		gbc.gridx = x;
+		gbc.gridy = y;
+		// 가장 왼쪽 위 gridx, gridy값은 0
+
+		gbc.gridwidth = w;
+		gbc.gridheight = h;
+
+		gbl.setConstraints(c, gbc); // 컴포넌트를 컴포넌트 위치+크기 정보에 따라 GridBagLayout에 배치
+
+		add(c);
+
+	}
+
+	public void paintComponent(Graphics g) {
+		g.drawImage(manager_main.img, 0, 0, null);
+		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+		super.paintComponent(g);
+	}
+
+	public static void main(String[] args) {
+		new ManPro();
+	}
+
+	private void getData(List<Map<String, Serializable>> ProListData) {
+
+		for (int i = 0; i < ProListData.size(); i++) {
+			model1.addRow(new Object[] {
+
+					ProListData.get(i).get("PRO_NUM"), ProListData.get(i).get("MODEL_NM"),
+					ProListData.get(i).get("PRO_NM"), ProListData.get(i).get("CLR"), ProListData.get(i).get("SIZ") });
+		}
+	}
+}

@@ -1,10 +1,12 @@
   
 package org.CapstoneProject;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 public class Mypage extends JPanel implements ActionListener {   
-	private JLabel vMypage, vAllPoint, vUsedPoint, vSerPoint, vAllMoney, v1, v2, v3, v4, v5, vGrade, vDiscount;  
+	private JLabel vMypage, vAllPoint, vUsedPoint, vSerPoint, vAllMoney, v1, v2, v3, v4, v5, v6, vGrade, vDiscount;  
 	         
 	private JTextField xGrade1, xGrade2, xDiscount, xAllPoint, xUsedPoint, xSerPoint, xAllMoney;
 	   
@@ -53,34 +55,65 @@ public class Mypage extends JPanel implements ActionListener {
 		gridbagconstraints = new GridBagConstraints();       
 		
 		vMypage = new JLabel("마이 페이지");
+		vMypage.setFont(new Font("휴먼매직체", Font.PLAIN, 30));
+		vMypage.setPreferredSize(new Dimension(140, 35));
+
 		vAllPoint = new JLabel("총 포인트");
+		vAllPoint.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 		vUsedPoint = new JLabel("사용한 포인트");
+		vUsedPoint.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 		vSerPoint = new JLabel("사용가능 포인트");
+		vSerPoint.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 		vAllMoney = new JLabel("총 주문금액");
+		vAllMoney.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		
 		v1 = new JLabel("고객님은 현재");
-		v2 = new JLabel("등급 입니다.");
+		v1.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		v2 = new JLabel("등급 입니다");
+		v2.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
 		v3 = new JLabel("상품 구매시");
-		v4 = new JLabel("추가할인혜택을 받으실 수 있습니다");
-		v5 = new JLabel(user_grade);
-		v5.setFont(new Font("", Font.BOLD, 20));
+		v3.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		v4 = new JLabel("추가할인혜택");
+		v4.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		v5 = new JLabel("  ");
+		v5.setFont(new Font("휴먼매직체", Font.PLAIN, 30));
+		v6 = new JLabel("  ");
+		v6.setFont(new Font("휴먼매직체", Font.PLAIN, 30));
 	         
 //	    cbSel = new JComboBox<String>(div);
 //	    cbSel.setPreferredSize(new Dimension(203, 20));
 	    
 //		xGrade1 = new JTextField(5);
 		vGrade = new JLabel(user_grade);
+		vGrade.setFont(new Font("휴먼매직체", Font.BOLD, 17));
 		vDiscount = new JLabel(user_disc_rt + "%");
+		vDiscount.setFont(new Font("휴먼매직체", Font.BOLD, 17));
+		
 
-		xAllPoint = new JTextField(20);
-		xUsedPoint = new JTextField(20);
-		xSerPoint = new JTextField(20);
-		xAllMoney = new JTextField(20);
+		xAllPoint = new JTextField(10);
+		xUsedPoint = new JTextField(10);
+		xSerPoint = new JTextField(10);
+		xAllMoney = new JTextField(10);
 	    
         
         BtChange = new JButton("내 정보변경");
         BtChange.addActionListener(this);
+        BtChange.setPreferredSize(new Dimension(120, 30));
+		BtChange.setFocusPainted(false);
+		BtChange.setBackground(Color.white);
+		BtChange.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		
         BtOrder = new JButton("주문 내역");
-        BtPostView = new JButton("내 게시글 보기");
+        BtOrder.setPreferredSize(new Dimension(120, 30));
+        BtOrder.setFocusPainted(false);
+        BtOrder.setBackground(Color.white);
+        BtOrder.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		
+        BtPostView = new JButton("게시글 보기");
+        BtPostView.setPreferredSize(new Dimension(120, 30));
+        BtPostView.setFocusPainted(false);
+        BtPostView.setBackground(Color.white);
+        BtPostView.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
         
 //	         getDeptData(EmpData.selectDept());
 //	         getSvpData(EmpData.selectSpv());
@@ -90,6 +123,7 @@ public class Mypage extends JPanel implements ActionListener {
 	         
 	private void MypageView() {
 //		setTitle("Login 화면");
+		setLayout(gridbaglayout);       
 	         
 	    gridbagconstraints.anchor = GridBagConstraints.WEST;
 //	    gridbagconstraints.ipadx = 7;
@@ -97,33 +131,33 @@ public class Mypage extends JPanel implements ActionListener {
 //	    gridbagconstraints.weightx=1.0;
 //      gridbagconstraints.weighty=1.0;
          
-        setLayout(gridbaglayout);       
         gridbagconstraints.anchor = GridBagConstraints.CENTER;
 	        
-        gridbagAdd(vMypage, 3, 0, 1, 1);
-        gridbagAdd(BtOrder, 3, 1, 1, 1);
-        gridbagAdd(BtPostView, 4, 1, 1, 1);
-        gridbagAdd(v5, 0, 2, 1, 2);
-        gridbagAdd(vDiscount, 2, 3, 1, 1);
-        gridbagAdd(vAllPoint, 0, 4, 1, 1);
-        gridbagAdd(xAllPoint, 1, 4, 2, 1);
-        gridbagAdd(vUsedPoint, 4, 4, 1, 1);
-        gridbagAdd(xUsedPoint, 5, 4, 2, 1);
-        gridbagAdd(vSerPoint, 0, 5, 1, 1);
-        gridbagAdd(xSerPoint, 1, 5, 2, 1);
-        gridbagAdd(vAllMoney, 4, 5, 1, 1);
-        gridbagAdd(xAllMoney, 5, 5, 2, 1);       
-        gridbagAdd(vGrade, 2, 2, 1, 1);      
+        gridbagAdd(vMypage, 0, 0, 3, 1);
+        gridbagAdd(vDiscount, 1, 4, 1, 1);
+        gridbagAdd(vAllPoint, 0, 6, 2, 1);
+        gridbagAdd(xAllPoint, 1, 6, 2, 1);
+        gridbagAdd(vUsedPoint, 0, 7, 2, 1);
+        gridbagAdd(xUsedPoint, 1, 7, 2, 1);
+        gridbagAdd(vSerPoint, 0, 8, 2, 1);
+        gridbagAdd(xSerPoint, 1, 8, 2, 1);
+        gridbagAdd(vAllMoney, 0, 9, 2, 1);
+        gridbagAdd(xAllMoney, 1, 9, 2, 1);       
+        gridbagAdd(vGrade, 1, 3, 1, 1);      
+        gridbagAdd(BtChange, 0, 1, 1, 1);
+        gridbagAdd(BtOrder, 1, 1, 1, 1);
+        gridbagAdd(BtPostView, 2, 1, 1, 1);
+        gridbagAdd(v1, 0, 3, 1, 1);
+        gridbagAdd(v2, 2, 3, 1, 1);
+        gridbagAdd(v3, 0, 4, 1, 1);
+        gridbagAdd(v4, 2, 4, 1, 1);
+        gridbagAdd(v5, 0, 5, 1, 1);
+        gridbagAdd(v6, 0, 2, 1, 1);
 
         gridbagconstraints.anchor = GridBagConstraints.EAST;    
-        gridbagAdd(BtChange, 2, 1, 1, 1);
-        gridbagAdd(v1, 1, 2, 1, 1);
-        gridbagAdd(v3, 1, 3, 1, 1);
 //        gridbagAdd(v5, 4, 3, 1, 1);
         
         gridbagconstraints.anchor = GridBagConstraints.WEST;   
-        gridbagAdd(v2, 3, 2, 2, 1);
-        gridbagAdd(v4, 3, 3, 2, 1);
 
 //        setExtendedState(MAXIMIZED_BOTH);
 	    setVisible(true);

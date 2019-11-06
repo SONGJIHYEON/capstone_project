@@ -12,6 +12,8 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,7 +36,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class RegMember extends JFrame implements ActionListener {
+public class RegMember extends JFrame implements ActionListener, MouseListener {
 	private JLabel vMemId, vMemPw1, vMemPw2, vMemName, vMemBirth, vMemPhone, vMemEmail, vMemAddr1, vMemAddr2, vMemAddr3,
 			vGol, vRegMember, vSpace;
 	private JTextField xMemId, xMemName, xMemBirth, xMemPhone, xMemEmail1, xMemEmail2, xMemAddr1, xMemAddr2, xMemAddr3;
@@ -143,6 +145,8 @@ public class RegMember extends JFrame implements ActionListener {
 		vMemBirth.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemBirth = new JTextField(13);
 		xMemBirth.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		xMemBirth.setText("YYYYMMDD");
+		xMemBirth.addMouseListener(this);
 
 		vMemPhone = new JLabel("휴대폰 번호");
 		vMemPhone.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
@@ -170,16 +174,16 @@ public class RegMember extends JFrame implements ActionListener {
 		BtSearchAddr.setFont(new Font("휴먼매직체", Font.PLAIN, 15));
 
 		vMemAddr2 = new JLabel("기본주소");
-		vMemAddr2.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		vMemAddr2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		vMemAddr3 = new JLabel("상세주소");
-		vMemAddr3.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		vMemAddr3.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		xMemAddr2 = new JTextField(13);
 		xMemAddr2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemAddr3 = new JTextField(13);
 		xMemAddr3.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
-		BtRegist = new JButton("확인");
+		BtRegist = new JButton("가입");
 		BtRegist.addActionListener(this);
 		BtRegist.setPreferredSize(new Dimension(65, 25));
 		BtRegist.setFocusPainted(false);
@@ -323,6 +327,38 @@ public class RegMember extends JFrame implements ActionListener {
 			dispose();
 		}
 
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(e.getSource() == xMemBirth) {
+			xMemBirth.setText("");
+		}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 

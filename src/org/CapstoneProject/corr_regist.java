@@ -5,11 +5,15 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -19,28 +23,27 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class corr_regist extends JPanel implements ActionListener {
+public class corr_regist extends Dialog implements ActionListener {
 
-	private JLabel vMemAddr1, vMemAddr2, vMemAddr3, corr_regist2, Lcorr_nm, Lcorr_prnm, Lcorr_ph, Lcorr_addr, vSpace;
+	private JLabel vMemAddr1, vMemAddr2, vMemAddr3, corr_regist2, Lcorr_nm, Lcorr_prnm, Lcorr_ph, Lcorr_addr, back_img;
 	private JTextField xMemAddr1, xMemAddr2, xMemAddr3, Tcorr_nm, Tcorr_prnm, Tcorr_ph, Tcorr_addr;
 
-	private JButton BtSearchAddr, Bregist;
+	private JButton BtSearchAddr, Bregist, Bcancel;
 
 	String bus_num, bus_nm, rep_nm, bus_tel, addr;
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
-	public corr_regist() {
+	public corr_regist(JFrame fr) {
+		super(fr, "", true);
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
-		
-		vSpace = new JLabel("");
-		vSpace.setPreferredSize(new Dimension(200, 28));
 
 		corr_regist2 = new JLabel("거래처등록");
 		corr_regist2.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		corr_regist2.setPreferredSize(new Dimension(200, 30));
+		corr_regist2.setHorizontalAlignment(JLabel.CENTER);
+		corr_regist2.setPreferredSize(new Dimension(100, 30));
 
 		Lcorr_nm = new JLabel("업체명");
 		Lcorr_nm.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
@@ -61,6 +64,7 @@ public class corr_regist extends JPanel implements ActionListener {
 
 		Tcorr_nm = new JTextField(18);
 		Tcorr_nm.setPreferredSize(new Dimension(100, 30));
+		Tcorr_nm.setHorizontalAlignment(SwingConstants.CENTER);
 		Tcorr_prnm = new JTextField(18);
 		Tcorr_prnm.setPreferredSize(new Dimension(100, 30));
 		Tcorr_ph = new JTextField(18);
@@ -97,40 +101,58 @@ public class corr_regist extends JPanel implements ActionListener {
 		Bregist = new JButton("등록");
 		Bregist.setBackground(Color.WHITE);
 		Bregist.setFont(new Font("휴먼매직체", Font.BOLD, 17));
-		Bregist.setPreferredSize(new Dimension(100, 30));
+		Bregist.setPreferredSize(new Dimension(80, 30));
 		Bregist.addActionListener(this);
+
+		Bcancel = new JButton("취소");
+		Bcancel.setBackground(Color.WHITE);
+		Bcancel.setFont(new Font("휴먼매직체", Font.BOLD, 17));
+		Bcancel.setPreferredSize(new Dimension(80, 30));
+		Bcancel.addActionListener(this);
+		
+//		back_img = new JLabel("");
+//		back_img = manager_main.img_back;
+//		back_img.setSize(600, 400);
+//		back_img.setBounds(0, 0, 300, 400);
+//		back_img.setOpaque(false);
 
 		EmpRegisterView();
 	}
 
 	private void EmpRegisterView() {
 
+		gridbagconstraints.anchor = GridBagConstraints.WEST;
+//         gridbagconstraints.ipadx = 7;
+//         
+//         gridbagconstraints.weightx=1.0;
+//         gridbagconstraints.weighty=1.0;
+		gridbagAdd(Bregist, 2, 9, 1, 1);
+
 		setLayout(gridbaglayout);
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
+		gridbagAdd(corr_regist2, 1, 1, 1, 1);
 		gridbagAdd(Lcorr_nm, 1, 3, 1, 1);
 		gridbagAdd(Lcorr_prnm, 1, 4, 1, 1);
 		gridbagAdd(Lcorr_ph, 1, 5, 1, 1);
 		gridbagAdd(vMemAddr1, 1, 6, 1, 1);
 		gridbagAdd(vMemAddr2, 1, 7, 1, 1);
 		gridbagAdd(vMemAddr3, 1, 8, 1, 1);
-		gridbagAdd(Bregist, 2, 10, 1, 1);
 
-		gridbagconstraints.anchor = GridBagConstraints.WEST;
-
-		gridbagAdd(corr_regist2, 1, 1, 2, 1);
-
-		gridbagAdd(BtSearchAddr, 3, 6, 1, 1);
-
-		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(Tcorr_nm, 2, 3, 1, 1);
 		gridbagAdd(Tcorr_prnm, 2, 4, 1, 1);
 		gridbagAdd(Tcorr_ph, 2, 5, 1, 1);
 		gridbagAdd(xMemAddr1, 2, 6, 1, 1);
 		gridbagAdd(xMemAddr2, 2, 7, 1, 1);
 		gridbagAdd(xMemAddr3, 2, 8, 1, 1);
-		gridbagAdd(vSpace, 2, 9, 1, 1);
 
+		gridbagAdd(BtSearchAddr, 3, 6, 1, 1);
+//		gridbagAdd(back_img, 0, 0, 4, 10);
+
+		gridbagconstraints.anchor = GridBagConstraints.EAST;
+		gridbagAdd(Bcancel, 2, 9, 1, 1);
+
+		pack();
 		setVisible(true);
 	}
 
@@ -150,7 +172,7 @@ public class corr_regist extends JPanel implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new corr_regist();
+		new corr_regist(new JFrame());
 	}
 
 	@Override
@@ -187,6 +209,8 @@ public class corr_regist extends JPanel implements ActionListener {
 			Address s = new Address(new JFrame());
 			xMemAddr1.setText(s.zipcode);
 			xMemAddr2.setText(s.addr);
+		} else if (e.getSource() == Bcancel) {
+			dispose();
 		}
 	}
 }

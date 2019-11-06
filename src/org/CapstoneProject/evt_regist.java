@@ -2,6 +2,7 @@ package org.CapstoneProject;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -163,6 +164,12 @@ public class evt_regist extends JPanel implements ActionListener {
 
 		add(c);
 
+	}
+
+	public void paintComponent(Graphics g) {
+		g.drawImage(manager_main.img, 0, 0, null);
+		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+		super.paintComponent(g);
 	}
 
 	public static void main(String[] args) {

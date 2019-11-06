@@ -2,6 +2,7 @@ package org.CapstoneProject;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -32,12 +33,6 @@ public class mb_gra extends JPanel implements ActionListener {
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
 	public mb_gra() {
-		
-		graS = manager_main.gra_s;
-		System.out.println(graS);
-		graV = manager_main.gra_v;
-		System.out.println(graV);
-		graF = manager_main.gra_f;
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
@@ -136,6 +131,12 @@ public class mb_gra extends JPanel implements ActionListener {
 
 		add(c);
 
+	}
+
+	public void paintComponent(Graphics g) {
+		g.drawImage(manager_main.img, 0, 0, null);
+		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+		super.paintComponent(g);
 	}
 
 	public static void main(String[] args) {

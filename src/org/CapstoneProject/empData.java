@@ -92,7 +92,7 @@ public class empData {
 	
 	static List<Map<String, Serializable>> selectEmp() {
 
-		quary = "select EMP_NUM, EMP_NM, PH_NUM, APPC_DT, REG_WRKR_TP from emp";
+		quary = "select EMP_NUM, EMP_NM, PH_NUM, APPC_DT, EMP_TP, REG_WRKR_TP from emp";
 
 		empListData.clear();
 
@@ -108,7 +108,8 @@ public class empData {
 				empDataSet.put("EMP_NM", rs.getString(2));
 				empDataSet.put("PH_NUM", rs.getString(3));
 				empDataSet.put("APPC_DT", rs.getString(4));
-				empDataSet.put("REG_WRKR_TP", rs.getString(5));
+				empDataSet.put("EMP_TP", rs.getString(5));
+				empDataSet.put("REG_WRKR_TP", rs.getString(6));
 
 				// System.out.println(addrdataSet);
 				empListData.add(empDataSet);

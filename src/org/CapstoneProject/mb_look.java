@@ -2,6 +2,7 @@ package org.CapstoneProject;
 
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -93,13 +94,9 @@ public class mb_look extends JPanel implements ActionListener {
 	private void getData(List<Map<String, Serializable>> custListData) {
 
 		for (int i = 0; i < custListData.size(); i++) {
-			model1.addRow(new Object[] {
-					custListData.get(i).get("ID"), 
-					custListData.get(i).get("CUST_NM"),					
-					custListData.get(i).get("PH_NUM"),
-					custListData.get(i).get("ADDR"),
-					custListData.get(i).get("MB_GRA"),
-					custListData.get(i).get("POSS_PNT") });
+			model1.addRow(new Object[] { custListData.get(i).get("ID"), custListData.get(i).get("CUST_NM"),
+					custListData.get(i).get("PH_NUM"), custListData.get(i).get("ADDR"),
+					custListData.get(i).get("MB_GRA"), custListData.get(i).get("POSS_PNT") });
 		}
 	}
 
@@ -148,6 +145,12 @@ public class mb_look extends JPanel implements ActionListener {
 
 	}
 
+	public void paintComponent(Graphics g) {
+		g.drawImage(manager_main.img, 0, 0, null);
+		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+		super.paintComponent(g);
+	}
+
 	public static void main(String[] args) {
 		new mb_look();
 	}
@@ -162,7 +165,7 @@ public class mb_look extends JPanel implements ActionListener {
 			} else if (cbSearch.getSelectedItem() == "회원명") {
 				model1.setRowCount(0);
 				getData(CustData.searchCust2(search));
-			} else if(cbSearch.getSelectedItem() == "회원등급") {
+			} else if (cbSearch.getSelectedItem() == "회원등급") {
 				model1.setRowCount(0);
 				getData(CustData.searchCust3(search));
 			}

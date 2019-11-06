@@ -17,6 +17,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -41,6 +42,9 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 	   
 	private JLabel vNotice;
 	private JTextField Tsearch;
+
+	static JLabel vNotice2, vQnA, vNomal, vSpace;
+	JPanel Label = new JPanel();
 
 	private static String[] col1 = {"No", "제목", "작성자", "작성일"}; 
 	private String[] search = {"제목", "작성일"};                
@@ -87,13 +91,29 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
         Tsearch.setPreferredSize(new Dimension(150,41));
 
 		tNotice = new JTable(model1);
-		tNotice.getColumnModel().getColumn(0).setPreferredWidth(100);  //JTable 의 컬럼 길이 조절
-		tNotice.getColumnModel().getColumn(1).setPreferredWidth(700);
-		tNotice.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tNotice.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tNotice.getColumnModel().getColumn(0).setPreferredWidth(70);  //JTable 의 컬럼 길이 조절
+		tNotice.getColumnModel().getColumn(1).setPreferredWidth(490);
+		tNotice.getColumnModel().getColumn(2).setPreferredWidth(70);
+		tNotice.getColumnModel().getColumn(3).setPreferredWidth(70);
 		tNotice.addMouseListener(this);
 		Scroll = new JScrollPane(tNotice);
-		Scroll.setPreferredSize(new Dimension(1000, 300));
+		Scroll.setPreferredSize(new Dimension(700, 300));
+		
+		vNotice2 = new JLabel("· 공지사항");
+		vNotice2.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vNotice2.addMouseListener(this);
+		vQnA = new JLabel("· QnA");
+		vQnA.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vQnA.addMouseListener(this);
+		vNomal = new JLabel("· 일반게시판");
+		vNomal.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vNomal.addMouseListener(this);
+		vSpace = new JLabel("");
+		vSpace.setPreferredSize(new Dimension(50, 10));
+		Label.setLayout(new BoxLayout(Label, BoxLayout.Y_AXIS));
+		Label.add(vNotice2);
+		Label.add(vQnA);
+		Label.add(vNomal);
 		
 		home_adminView();
 	}
@@ -106,12 +126,14 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		
-		gridbagAdd(vNotice, 0, 0, 1, 1);
-		gridbagAdd(cbSearch, 0, 1, 1, 1);
-		gridbagAdd(Tsearch, 1, 1, 1, 1);
-		gridbagAdd(bSearch, 2, 1, 1, 1);
+
+		gridbagAdd(vSpace, 1, 1, 1, 1);
+		gridbagAdd(vNotice, 2, 0, 1, 1);
+		gridbagAdd(cbSearch, 2, 1, 1, 1);
+		gridbagAdd(Tsearch, 3, 1, 1, 1);
+		gridbagAdd(bSearch, 4, 1, 1, 1);
 		
-	    gridbagAdd(Scroll, 0, 2, 3, 1);
+	    gridbagAdd(Scroll, 2, 2, 3, 1);
 	    
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 

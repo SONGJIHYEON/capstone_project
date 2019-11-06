@@ -1,4 +1,3 @@
-
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -7,8 +6,11 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Label;
 import java.awt.TextField;
 import java.awt.Toolkit;
@@ -16,12 +18,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.Serializable;
-import java.util.List;
-import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -43,88 +43,80 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
+	JPanel Cust_info = new Cust_info();
 	Container win = getContentPane();
 	JPanel Label = new JPanel();
 	JLabel vNotice, vQnA, vNomal, vSpace;
 
+	private static Image originImg, changedImg;
+	private static ImageIcon originIcon, Icon;
+	JLabel img_top, img_left_b, jean, jean2, shoose;
+
 	static JPanel N_U = new Notice_user();
 	static JPanel Q_U = new QnA_user();
-
+	static JPanel B_K = new Basket();
+	static JPanel O_P = new MemOrdPg();
+	static JPanel M_P = new Mypage();
 	static JPanel P_I = new ProImage();
-	static JPanel menu_a = new JPanel();
-	static JPanel menu_b = new JPanel();
-	static JPanel M_M = new Mypage();
+	static JPanel M_M = new JPanel();
 
-	static JMenuBar MenuBar1 = new JMenuBar();
-	JMenu Home = new JMenu("홈");
-	JMenu Mn_Manage = new JMenu(" 쇼핑몰관리 ");
+	static BackgroundMenuBar MenuBar1 = new BackgroundMenuBar();
+	JMenu Home = new JMenu(" 홈 ");
 	JMenu Mn_Post = new JMenu(" 게시판 ");
 	JMenu Mn_Basket = new JMenu(" 장바구니 ");
 	JMenu Mn_Oder = new JMenu(" 주문하기 ");
 	JMenu Mn_Mypage = new JMenu(" 마이페이지 ");
 	JMenu Mn_Logout = new JMenu(" 로그아웃 ");
 
-	static JMenuBar MenuBar2 = new JMenuBar();
+	static BackgroundMenuBar MenuBar2 = new BackgroundMenuBar();
 	// 상의 메뉴
-	JMenu Mn_Top = new JMenu("상의 ");
-	JMenuItem Top_1 = new JMenuItem("맨투맨");
-	JMenuItem Top_2 = new JMenuItem("반팔T");
-	JMenuItem Top_3 = new JMenuItem("긴팔T");
-	JMenuItem Top_4 = new JMenuItem("후드");
-	JMenuItem Top_5 = new JMenuItem("니트 ");
+	JMenu Mn_Top = new JMenu("            상의   ");
+	JMenuItem Top_1 = new JMenuItem("                맨투맨  ");
+	JMenuItem Top_2 = new JMenuItem("                반팔T  ");
+	JMenuItem Top_3 = new JMenuItem("                긴팔T  ");
+	JMenuItem Top_4 = new JMenuItem("                후드  ");
+	JMenuItem Top_5 = new JMenuItem("                니트  ");
 	// 하의 메뉴
-	JMenu Mn_Bottom = new JMenu("하의");
-	JMenuItem Bot_1 = new JMenuItem("청바지");
-	JMenuItem Bot_2 = new JMenuItem("슬랙스");
-	JMenuItem Bot_3 = new JMenuItem("면바지");
-	JMenuItem Bot_4 = new JMenuItem("운동복");
-	JMenuItem Bot_5 = new JMenuItem("반바지");
+	JMenu Mn_Bottom = new JMenu("            하의  ");
+	JMenuItem Bot_1 = new JMenuItem("                청바지  ");
+	JMenuItem Bot_2 = new JMenuItem("                슬랙스  ");
+	JMenuItem Bot_3 = new JMenuItem("                면바지  ");
+	JMenuItem Bot_4 = new JMenuItem("                운동복  ");
+	JMenuItem Bot_5 = new JMenuItem("                반바지  ");
 
 	// 아우터 메뉴
-	JMenu Mn_Outter = new JMenu("아우터");
-	JMenuItem Out_1 = new JMenuItem("가디건");
-	JMenuItem Out_2 = new JMenuItem("코트");
-	JMenuItem Out_3 = new JMenuItem("조끼");
-	JMenuItem Out_4 = new JMenuItem("집업");
-	JMenuItem Out_5 = new JMenuItem("점퍼");
-	JMenuItem Out_6 = new JMenuItem("패딩");
-	JMenuItem Out_7 = new JMenuItem("야상");
-	JMenuItem Out_8 = new JMenuItem("재킷");
+	JMenu Mn_Outter = new JMenu("            아우터  ");
+	JMenuItem Out_1 = new JMenuItem("                가디건  ");
+	JMenuItem Out_2 = new JMenuItem("                코트  ");
+	JMenuItem Out_3 = new JMenuItem("                조끼  ");
+	JMenuItem Out_4 = new JMenuItem("                집업  ");
+	JMenuItem Out_5 = new JMenuItem("                점퍼  ");
+	JMenuItem Out_6 = new JMenuItem("                패딩  ");
+	JMenuItem Out_7 = new JMenuItem("                야상  ");
+	JMenuItem Out_8 = new JMenuItem("                재킷  ");
 	// 셔츠 메뉴
-	JMenu Mn_Shirts = new JMenu("셔츠");
-	JMenuItem Sht_1 = new JMenuItem("스트라이프");
-	JMenuItem Sht_2 = new JMenuItem("체크");
-	JMenuItem Sht_3 = new JMenuItem("긴팔");
-	JMenuItem Sht_4 = new JMenuItem("반팔");
+	JMenu Mn_Shirts = new JMenu("            셔츠 ");
+	JMenuItem Sht_1 = new JMenuItem("                스트라이프  ");
+	JMenuItem Sht_2 = new JMenuItem("                체크  ");
+	JMenuItem Sht_3 = new JMenuItem("                긴팔  ");
+	JMenuItem Sht_4 = new JMenuItem("                반팔  ");
 	// 신발 메뉴
-	JMenu Mn_Shoose = new JMenu("신발");
-	JMenuItem Sho_1 = new JMenuItem("스니커즈");
-	JMenuItem Sho_2 = new JMenuItem("운동화");
-	JMenuItem Sho_3 = new JMenuItem("슬리퍼");
-	JMenuItem Sho_4 = new JMenuItem("구두");
-	JMenuItem Sho_5 = new JMenuItem("워커");
-	JMenuItem Sho_6 = new JMenuItem("부츠");
-	JMenuItem Sho_7 = new JMenuItem("샌들");
-	JMenuItem Sho_8 = new JMenuItem("로퍼");
+	JMenu Mn_Shoose = new JMenu("              신발    ");
+	JMenuItem Sho_1 = new JMenuItem("                  스니커즈    ");
+	JMenuItem Sho_2 = new JMenuItem("                  운동화    ");
+	JMenuItem Sho_3 = new JMenuItem("                  슬리퍼    ");
+	JMenuItem Sho_4 = new JMenuItem("                  구두    ");
+	JMenuItem Sho_5 = new JMenuItem("                  워커    ");
+	JMenuItem Sho_6 = new JMenuItem("                  부츠    ");
+	JMenuItem Sho_7 = new JMenuItem("                  샌들    ");
+	JMenuItem Sho_8 = new JMenuItem("                  로퍼    ");
 
 	private JScrollPane scroll;
 
 	static String click = "H";
-	static String mb_disc_rt;
-	String user_id;
 
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
-	
-	
-	public String getData4(List<Map<String, Serializable>> CustListData) {
-
-		mb_disc_rt = "";
-		mb_disc_rt += CustListData.get(0).get("DISC_RT").toString();
-		System.out.println(mb_disc_rt);
-
-		return mb_disc_rt;
-	}
 
 	public home_user() {
 
@@ -179,8 +171,8 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 		MenuBar1.add(Home);
 		MenuBar1.add(Mn_Basket);
-		MenuBar1.add(Mn_Mypage);
 		MenuBar1.add(Mn_Oder);
+		MenuBar1.add(Mn_Mypage);
 		MenuBar1.add(Mn_Post);
 		MenuBar1.add(Mn_Logout);
 
@@ -190,64 +182,110 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		MenuBar2.add(Mn_Shirts);
 		MenuBar2.add(Mn_Shoose);
 
-		MenuBar1.setBounds(d.width / 3, 0, d.width * 2 / 3, 50);
-		menu_a.add(MenuBar1);
-		MenuBar2.setBounds(d.width / 3, 50, d.width * 2 / 3, 50);
-		menu_b.add(MenuBar2);
+		MenuBar1.setBounds(d.width / 4, 0, d.width * 3 / 4, 50);
+		MenuBar2.setBounds(d.width / 4, 50, d.width * 3 / 4, 50);
 
-		P_I.setBounds(100, 100, d.width - 200, d.height - 100);
+		P_I.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
 		P_I.addMouseListener(this);
+		P_I.setBackground(Color.white);
 
-		home_adminView();
+		img_top = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\홈유저 상단.jpg");
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance(d.width / 4, 100, Image.SCALE_SMOOTH);
+		Icon = new ImageIcon(changedImg);
+		img_top.setIcon(Icon);
+		img_top.setBounds(0, 0, d.width / 4, 100);
+
+		img_left_b = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\홈유저 좌하단.png");
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance(d.width / 6, (d.height - 150) / 2, Image.SCALE_SMOOTH);
+		Icon = new ImageIcon(changedImg);
+		img_left_b.setIcon(Icon);
+		img_left_b.setBounds(0, 100 + (d.height - 100) / 2, d.width / 6, (d.height - 150) / 2);
+
+		jean = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\청바지.jpg");
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance(d.width / 4, 100, Image.SCALE_SMOOTH);
+		Icon = new ImageIcon(changedImg);
+		jean.setIcon(Icon);
+		jean.setBounds(0, 100, d.width / 4, 100);
+
+		jean2 = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\청바지2.jpg");
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance((d.width / 4) - (d.width / 6), (d.height - 150) / 2,
+				Image.SCALE_SMOOTH);
+		Icon = new ImageIcon(changedImg);
+		jean2.setIcon(Icon);
+		jean2.setBounds(d.width / 6, 100 + (d.height - 100) / 2, (d.width / 4) - (d.width / 6), (d.height - 150) / 2);
+
+		shoose = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\신발.jpg");
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance(d.width / 4, 150, Image.SCALE_SMOOTH);
+		Icon = new ImageIcon(changedImg);
+		shoose.setIcon(Icon);
+		shoose.setBounds(0, 200, d.width / 4, (d.height - 600) / 2);
+
+		Cust_info.setBounds(0, 200 + (d.height - 600) / 2, d.width / 4, 150);
+		Cust_info.setBackground(new Color(200, 200, 255));
+
+		home_userView();
+		if (ProDetail.state == 1) {
+			OrdPg();
+		}
 	}
 
-	void home_adminView() {
+	void home_userView() {
 
 		setTitle("홈페이지 유저");
 		setSize(d.width, d.height);
 
 		Home.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Home.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 10, Home.getPreferredSize().height));
+		Home.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 10, Home.getPreferredSize().height));
 		Home.setHorizontalAlignment(SwingConstants.CENTER);
 		Home.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Home.addMouseListener(this);
 
 		Mn_Post.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Post.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Post.getPreferredSize().height));
+		Mn_Post.setPreferredSize(new Dimension(d.width * 3 / 4 * 9 / 50, Mn_Post.getPreferredSize().height));
 		Mn_Post.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Post.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Post.addMouseListener(this);
 
 		Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Basket.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Basket.getPreferredSize().height));
+		Mn_Basket.setPreferredSize(new Dimension(d.width * 3 / 4 * 9 / 50, Mn_Basket.getPreferredSize().height));
 		Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Basket.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Basket.addMouseListener(this);
 
 		Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Mypage.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Mypage.getPreferredSize().height));
+		Mn_Mypage.setPreferredSize(new Dimension(d.width * 3 / 4 * 9 / 50, Mn_Mypage.getPreferredSize().height));
 		Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Mypage.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Mypage.addMouseListener(this);
 
 		Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Logout.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Logout.getPreferredSize().height));
+		Mn_Logout.setPreferredSize(new Dimension(d.width * 3 / 4 * 9 / 50, Mn_Logout.getPreferredSize().height));
 		Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Logout.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Logout.addMouseListener(this);
 
 		Mn_Oder.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Oder.setPreferredSize(new Dimension(d.width * 2 / 3 * 9 / 50, Mn_Logout.getPreferredSize().height));
+		Mn_Oder.setPreferredSize(new Dimension(d.width * 3 / 4 * 9 / 50, Mn_Logout.getPreferredSize().height));
 		Mn_Oder.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_Oder.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 		Mn_Oder.addMouseListener(this);
 
 		Mn_Top.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Top.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Mn_Top.getPreferredSize().height));
-		Mn_Top.setFont(new Font("", Font.BOLD, 15));
+		Mn_Top.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Mn_Top.getPreferredSize().height));
+		Mn_Top.setFont(new Font("", Font.BOLD, 20));
 
 		Top_1.setBackground(new Color(255, 255, 255));
-		Top_1.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Top_1.getPreferredSize().height));
+		Top_1.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Top_1.getPreferredSize().height));
 		Top_1.setFont(new Font("", Font.BOLD, 15));
 
 		Top_2.setBackground(new Color(255, 255, 255));
@@ -263,9 +301,9 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Top_5.setFont(new Font("  ", Font.BOLD, 15));
 
 		Mn_Bottom.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Bottom.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Mn_Bottom.getPreferredSize().height));
+		Mn_Bottom.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Mn_Bottom.getPreferredSize().height));
 		Mn_Bottom.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Bottom.setFont(new Font(" ", Font.BOLD, 15));
+		Mn_Bottom.setFont(new Font(" ", Font.BOLD, 20));
 
 		Bot_1.setBackground(new Color(255, 255, 255));
 		Bot_1.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Bot_1.getPreferredSize().height));
@@ -284,12 +322,12 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Bot_5.setFont(new Font("  ", Font.BOLD, 15));
 
 		Mn_Outter.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Outter.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Mn_Outter.getPreferredSize().height));
+		Mn_Outter.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Mn_Outter.getPreferredSize().height));
 		Mn_Outter.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Outter.setFont(new Font(" ", Font.BOLD, 15));
+		Mn_Outter.setFont(new Font(" ", Font.BOLD, 20));
 
 		Out_1.setBackground(new Color(255, 255, 255));
-		Out_1.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Out_1.getPreferredSize().height));
+		Out_1.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Out_1.getPreferredSize().height));
 		Out_1.setFont(new Font("", Font.BOLD, 15));
 
 		Out_2.setBackground(new Color(255, 255, 255));
@@ -314,12 +352,12 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Out_8.setFont(new Font("  ", Font.BOLD, 15));
 
 		Mn_Shirts.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Shirts.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Mn_Shirts.getPreferredSize().height));
+		Mn_Shirts.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Mn_Shirts.getPreferredSize().height));
 		Mn_Shirts.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Shirts.setFont(new Font(" ", Font.BOLD, 15));
+		Mn_Shirts.setFont(new Font(" ", Font.BOLD, 20));
 
 		Sht_1.setBackground(new Color(255, 255, 255));
-		Sht_1.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Sht_1.getPreferredSize().height));
+		Sht_1.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Sht_1.getPreferredSize().height));
 		Sht_1.setFont(new Font("", Font.BOLD, 15));
 
 		Sht_2.setBackground(new Color(255, 255, 255));
@@ -332,12 +370,12 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Sht_4.setFont(new Font("  ", Font.BOLD, 15));
 
 		Mn_Shoose.setBorder(new LineBorder(new Color(0, 0, 0)));
-		Mn_Shoose.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Mn_Shoose.getPreferredSize().height));
+		Mn_Shoose.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Mn_Shoose.getPreferredSize().height));
 		Mn_Shoose.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Shoose.setFont(new Font(" ", Font.BOLD, 15));
+		Mn_Shoose.setFont(new Font(" ", Font.BOLD, 20));
 
 		Sho_1.setBackground(new Color(255, 255, 255));
-		Sho_1.setPreferredSize(new Dimension(d.width * 2 / 3 * 1 / 5, Sho_1.getPreferredSize().height));
+		Sho_1.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Sho_1.getPreferredSize().height));
 		Sho_1.setFont(new Font("", Font.BOLD, 15));
 
 		Sho_2.setBackground(new Color(255, 255, 255));
@@ -366,6 +404,12 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		win.add(MenuBar1);
 		win.add(MenuBar2);
 		win.add(P_I);
+		win.add(img_top);
+		win.add(img_left_b);
+		win.add(Cust_info);
+		win.add(jean);
+		win.add(jean2);
+		win.add(shoose);
 
 //      setLayout(gbl);
 //      gbc.anchor = GridBagConstraints.EAST;
@@ -397,69 +441,110 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 
-		if (e.getSource() == Mn_Logout) {
-			new Login();
-			dispose();
+		if (e.getSource() == Home) {
+			win.removeAll();
+			win.add(MenuBar1);
+			win.add(MenuBar2);
+			win.add(P_I);
+			win.add(img_top);
+			win.add(img_left_b);
+			win.add(Cust_info);
+			win.add(jean);
+			win.add(jean2);
+			win.add(shoose);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Mn_Basket) {
+			win.removeAll();
+			win.add(MenuBar1);
+			win.add(MenuBar2);
+			win.add(img_top);
+			win.add(img_left_b);
+			win.add(Cust_info);
+			win.add(jean);
+			win.add(jean2);
+			win.add(shoose);
+			B_K.setSize(d.width * 3 / 4, d.height - 100);
+			B_K.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
+			win.add(B_K);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Mn_Oder) {
+			win.removeAll();
+			win.add(MenuBar1);
+			win.add(MenuBar2);
+			win.add(img_top);
+			win.add(img_left_b);
+			win.add(Cust_info);
+			win.add(jean);
+			win.add(jean2);
+			win.add(shoose);
+			O_P.setSize(d.width * 3 / 4, d.height - 100);
+			O_P.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
+			win.add(O_P);
+			repaint();
+			revalidate();
 		} else if (e.getSource() == Mn_Mypage) {
 			win.removeAll();
 			win.add(MenuBar1);
 			win.add(MenuBar2);
-			M_M.setBounds(0, 100, d.width, d.height - 100);
-			win.add(M_M);
+			win.add(img_top);
+			win.add(img_left_b);
+			win.add(Cust_info);
+			win.add(jean);
+			win.add(jean2);
+			win.add(shoose);
+			M_P.setSize(d.width * 3 / 4, d.height - 100);
+			M_P.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
+			win.add(M_P);
 			repaint();
 			revalidate();
-		} else if (e.getSource() == Home) {
+		} else if (e.getSource() == Mn_Post) {
 			win.removeAll();
 			win.add(MenuBar1);
 			win.add(MenuBar2);
-//	          P_I.setBounds(100, 100, d.width -200, d.height - 100);
-			win.add(P_I);
-			repaint();
-			revalidate();
-		} else if (e.getSource() == Mn_Basket) {
-			user_id = Login.user_id;
-			getData4(CustData.selectCustGra(user_id));
-			new Basket();
-		} else if (e.getSource() == Mn_Oder) {
-			new MemOrdPg();
-		} else if (e.getSource() == Mn_Logout) {
-			new Login();
-			dispose();
-		} else if (e.getSource() == Mn_Post) {
-			getContentPane().removeAll();
-			add(MenuBar1);
-			add(MenuBar2);
-			Dimension d = getSize();
-			Label.setBounds(100, 400, 100, d.height - 500);
-			N_U.setBounds(0, 100, d.width, d.height - 100);
+			win.add(img_top);
+			win.add(img_left_b);
+			win.add(Cust_info);
+			win.add(jean);
+			win.add(jean2);
+			win.add(shoose);
+			Label.setBounds(d.width * 1 / 4 + 100, 200, 200, 200);
+			N_U.setSize(d.width * 3 / 4, d.height - 100);
+			N_U.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
 			add(Label);
 			add(N_U);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vNotice) {
-			getContentPane().removeAll();
-			add(MenuBar1);
-			add(MenuBar2);
-			Dimension d = getSize();
-			Label.setBounds(100, 400, 100, d.height - 500);
-			N_U.setBounds(0, 100, d.width, d.height - 100);
-			add(Label);
+			win.remove(Q_U);
+			N_U.setSize(d.width * 3 / 4, d.height - 100);
+			N_U.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
 			add(N_U);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vQnA) {
-			getContentPane().removeAll();
-			add(MenuBar1);
-			add(MenuBar2);
-			Dimension d = getSize();
-			Label.setBounds(100, 400, 100, d.height - 500);
-			Q_U.setBounds(0, 100, d.width, d.height - 100);
-			add(Label);
+			win.remove(N_U);
+			Q_U.setSize(d.width * 3 / 4, d.height - 100);
+			Q_U.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
 			add(Q_U);
 			repaint();
 			revalidate();
+		} else if (e.getSource() == Mn_Logout) {
+			new Login_screen();
+			dispose();
 		}
+	}
 
+	public void OrdPg() {
+		win.removeAll();
+		win.add(MenuBar1);
+		win.add(MenuBar2);
+		win.add(img_top);
+		O_P.setBounds(0, 100, d.width, d.height - 100);
+		win.add(O_P);
+		repaint();
+		revalidate();
 	}
 
 	@Override

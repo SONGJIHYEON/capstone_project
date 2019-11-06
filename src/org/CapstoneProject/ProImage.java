@@ -1,5 +1,3 @@
-
-  
 package org.CapstoneProject;
 
 import java.awt.Color;
@@ -50,6 +48,9 @@ public class ProImage extends JPanel implements MouseListener {
 	static ArrayList<String> arColor = new ArrayList<String>();
 	String ad;
 
+	GridBagLayout gridbaglayout;
+	GridBagConstraints gridbagconstraints;
+
 	public static String getData(List<Map<String, Serializable>> ImageListData) {
 
 		img = "";
@@ -83,8 +84,8 @@ public class ProImage extends JPanel implements MouseListener {
 	}
 
 	public static ArrayList getData5(List<Map<String, Serializable>> ImageListData) {
-		arSize = new ArrayList<String>(); 
-		
+		arSize = new ArrayList<String>();
+
 		arSize.add("[필수] 선택");
 		arSize.add("----------");
 
@@ -96,7 +97,7 @@ public class ProImage extends JPanel implements MouseListener {
 		return arSize;
 	}
 
-	public static ArrayList getData6(List<Map<String, Serializable>> ImageListData) {
+	public static ArrayList<String> getData6(List<Map<String, Serializable>> ImageListData) {
 
 		for (int i = 0; i < ImageListData.size(); i++) {
 			arColor.add(ImageListData.get(i).get("CLR").toString());
@@ -107,11 +108,6 @@ public class ProImage extends JPanel implements MouseListener {
 
 	public static String getData7(List<Map<String, Serializable>> ImageListData) {
 
-		if(ImageData.error == 1) {
-			JOptionPane.showMessageDialog(null, "등록된 상품이 없습니다.", "",
-					JOptionPane.ERROR_MESSAGE);
-			System.exit(0);
-		}
 		price = "";
 		price += ImageListData.get(0).get("UP").toString();
 
@@ -123,6 +119,8 @@ public class ProImage extends JPanel implements MouseListener {
 		modelname = "";
 		modelname += ImageListData.get(0).get("MODEL_NM");
 
+		System.out.println(modelname);
+
 		return modelname;
 	}
 
@@ -133,18 +131,15 @@ public class ProImage extends JPanel implements MouseListener {
 			arModelImg.add(ImageListData.get(i).get("MODEL_IMG1").toString());
 			arModelNick.add(ImageListData.get(i).get("MODEL_NICK").toString());
 		}
-
-//		return 0;
 	}
-	
+
 	public static void getData10(List<Map<String, Serializable>> ImageListData) {
 
-		if(ImageListData.get(0).get("up").toString().equals("0")){
-			JOptionPane.showMessageDialog(null, "준비중인 상품입니다.", "",
-					JOptionPane.ERROR_MESSAGE);
-		}else {
-            priceData = getData7(ImageData.selectBasicPrice(fileName));
-            ProDetail prod = new ProDetail();
+		if (ImageListData.get(0).get("up").toString().equals("0")) {
+			JOptionPane.showMessageDialog(null, "준비중인 상품입니다.", "", JOptionPane.ERROR_MESSAGE);
+		} else {
+			priceData = getData7(ImageData.selectBasicPrice(fileName));
+			ProDetail prod = new ProDetail(new JFrame());
 			JOptionPane.showMessageDialog(null, "사이즈와 색상을 반드시 선택하여주세요. 각 사이즈와 색상별로 가격이 상이합니다.", "",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
@@ -152,8 +147,8 @@ public class ProImage extends JPanel implements MouseListener {
 	}
 
 	public ProImage() {
+//      setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
 
-//		setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));
 		getData9(ImageData.registModel());
 
 		String ModelImg2[] = new String[arModelImg.size()];
@@ -164,27 +159,27 @@ public class ProImage extends JPanel implements MouseListener {
 
 		Pimg = new JPanel();
 		Pimg.setSize(d.width, d.height);
-		Pimg.setLayout(new ModifiedFlowLayout(ModifiedFlowLayout.CENTER, 30, 50));
+		Pimg.setLayout(new ModifiedFlowLayout(ModifiedFlowLayout.CENTER, 100, 50));
 
 		for (int i = 0; i < arModelImg.size(); i++) {
 			ModelImg2[i] = arModelImg.get(i);
 			ModelNick2[i] = arModelNick.get(i);
 
 			ad = "C:\\Users\\ssong\\Desktop\\img\\" + ModelImg2[i] + ".jpg";
-			System.out.println(ad);
 			f = new File(ad);
+
 			originIcon = new ImageIcon(ad);
 			originImg = originIcon.getImage();
-			changedImg = originImg.getScaledInstance(180, 180, Image.SCALE_SMOOTH);
+			changedImg = originImg.getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 			Icon = new ImageIcon(changedImg);
 			ImgLabels[i] = makeLabel(JLabel.BOTTOM, JLabel.CENTER, ModelNick2[i]);
 			ImgLabels[i].addMouseListener(this);
 			Pimg.add(ImgLabels[i]);
 		}
-
-		Pimg.setSize(d.width, d.height - 100);
+		Pimg.setSize(d.width, d.height - 170);
 		scroll = new JScrollPane(Pimg);
-		scroll.setPreferredSize(new Dimension(d.width - 200, d.height - 200));
+		scroll.getViewport().getView().setBackground(Color.WHITE);
+		scroll.setPreferredSize(new Dimension(d.width * 3 / 4, d.height - 170));
 		add(scroll);
 		setVisible(true);
 
@@ -192,6 +187,21 @@ public class ProImage extends JPanel implements MouseListener {
 
 	public static void main(String[] args) {
 		new ProImage();
+
+	}
+
+	private void gridbagAdd(Component c, int x, int y, int w, int h) {
+
+		gridbagconstraints.gridx = x;
+		gridbagconstraints.gridy = y;
+		// 가장 왼쪽 위 gridx, gridy값은 0
+
+		gridbagconstraints.gridwidth = w;
+		gridbagconstraints.gridheight = h;
+
+		gridbaglayout.setConstraints(c, gridbagconstraints); // 컴포넌트를 컴포넌트 위치+크기 정보에 따라 GridBagLayout에 배치
+
+		add(c);
 
 	}
 
@@ -205,24 +215,29 @@ public class ProImage extends JPanel implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		for(int i = 0; i < arModelImg.size() ;i++) {
-	         if (e.getSource() == ImgLabels[i]) {
-	            fileName = arModelImg.get(i).toString();
-//	            int pos = fileName.lastIndexOf(".");
-//	            String fileName2 = fileName.substring(0, pos);
-	            System.out.println(fileName);
-	         
-	            imgData = getData(ImageData.selectImage(fileName));
-	            imgData2 = getData2(ImageData.selectImage(fileName));
-	            nicknameData = getData3(ImageData.selectNickname(fileName));
-	            ctgrData = getData4(ImageData.selectCtgr(fileName));
-	            sizeData = getData5(ImageData.selectSize(fileName));
-	            colorData = getData6(ImageData.selectColor(fileName));
-	            modelnameData = getData8(ImageData.selectModelname(fileName));
-	            getData10(ImageData.countBasicPrice(fileName));
-	        }
+		for (int i = 0; i < arModelImg.size(); i++) {
+			if (e.getSource() == ImgLabels[i]) {
+				String fileName = arModelImg.get(i).toString();
+//            int pos = fileName.lastIndexOf(".");
+//            String fileName2 = fileName.substring(0, pos);
+				System.out.println(fileName);
+
+				imgData = getData(ImageData.selectImage(fileName));
+				imgData2 = getData2(ImageData.selectImage(fileName));
+				nicknameData = getData3(ImageData.selectNickname(fileName));
+				ctgrData = getData4(ImageData.selectCtgr(fileName));
+				sizeData = getData5(ImageData.selectSize(fileName));
+				colorData = getData6(ImageData.selectColor(fileName));
+				priceData = getData7(ImageData.selectBasicPrice(fileName));
+				modelnameData = getData8(ImageData.selectModelname(fileName));
+				getData10(ImageData.countBasicPrice(fileName));
+
+				ProDetail prod = new ProDetail(new JFrame());
+			}
+
 		}
 		// TODO Auto-generated method stub
+
 	}
 
 	@Override
@@ -249,4 +264,3 @@ public class ProImage extends JPanel implements MouseListener {
 
 	}
 }
-

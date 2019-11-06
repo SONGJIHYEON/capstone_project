@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
@@ -21,13 +22,14 @@ import org.CapstoneProject.Nonmember.RandomId;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-public class emp_re extends JPanel implements ActionListener {
+public class emp_re extends Dialog implements ActionListener, MouseListener {
 
 	private JLabel mb_regist, mb_lookup, mb_regist2, Lemp_no, Lemp_nm, Lemp_dt, Lemp_ph_num, Lemp_tp, Lemp_addr,
 			Lemp_addr1, Lemp_addr2, Lreg_tp, Lreg_id, Lreg_pw;
@@ -65,84 +67,99 @@ public class emp_re extends JPanel implements ActionListener {
 		return;
 	}
 
-	public emp_re() {
-//	     super(fr, "", true);
+	public emp_re(JFrame fr) {
+	     super(fr, "", true);
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		mb_regist2 = new JLabel("사원등록");
-		mb_regist2.setPreferredSize(new Dimension(200, 28));
-
 		Lemp_no = new JLabel("사원번호");
-		Lemp_no.setPreferredSize(new Dimension(100, 30));
+		Lemp_no.setPreferredSize(new Dimension(120, 30));
+		Lemp_no.setHorizontalAlignment(JLabel.CENTER);
+		Lemp_no.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lemp_nm = new JLabel("사원명");
-		Lemp_nm.setPreferredSize(new Dimension(100, 30));
-		Lemp_dt = new JLabel("입사일자(8자)");
-		Lemp_dt.setPreferredSize(new Dimension(100, 30));
+		Lemp_nm.setPreferredSize(new Dimension(120, 30));
+		Lemp_nm.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		Lemp_dt = new JLabel("입사일자");
+		Lemp_dt.setPreferredSize(new Dimension(120, 30));
+		Lemp_dt.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lemp_ph_num = new JLabel("휴대폰 번호");
-		Lemp_ph_num.setPreferredSize(new Dimension(100, 30));
+		Lemp_ph_num.setPreferredSize(new Dimension(120, 30));
+		Lemp_ph_num.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lemp_tp = new JLabel("사원구분");
-		Lemp_tp.setPreferredSize(new Dimension(100, 30));
+		Lemp_tp.setPreferredSize(new Dimension(120, 30));
+		Lemp_tp.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lemp_addr = new JLabel("주소");
-		Lemp_addr.setPreferredSize(new Dimension(100, 30));
+		Lemp_addr.setPreferredSize(new Dimension(120, 30));
+		Lemp_addr.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lemp_addr1 = new JLabel("기본주소");
-		Lemp_addr1.setFont(new Font("serif", Font.PLAIN, 12));
+		Lemp_addr1.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lemp_addr2 = new JLabel("상세주소");
-		Lemp_addr2.setFont(new Font("serif", Font.PLAIN, 12));
+		Lemp_addr2.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lreg_tp = new JLabel("정규직 구분");
-		Lreg_tp.setPreferredSize(new Dimension(100, 30));
+		Lreg_tp.setPreferredSize(new Dimension(120, 30));
+		Lreg_tp.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lreg_id = new JLabel("아이디");
-		Lreg_id.setPreferredSize(new Dimension(100, 30));
+		Lreg_id.setPreferredSize(new Dimension(120, 30));
+		Lreg_id.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Lreg_pw = new JLabel("초기 비밀번호");
-		Lreg_pw.setPreferredSize(new Dimension(100, 30));
+		Lreg_pw.setPreferredSize(new Dimension(120, 30));
+		Lreg_pw.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 
 		CBemp_tp = new JComboBox<String>(emp_tp);
-		CBemp_tp.setPreferredSize(new Dimension(100, 30));
+		CBemp_tp.setPreferredSize(new Dimension(120, 30));
 		CBemp_tp.addActionListener(this);
 		CBreg_tp = new JComboBox<String>(reg_tp);
-		CBreg_tp.setPreferredSize(new Dimension(100, 30));
+		CBreg_tp.setPreferredSize(new Dimension(120, 30));
 
 		Temp_no = new JTextField(22);
-		Temp_no.setPreferredSize(new Dimension(100, 30));
+		Temp_no.setPreferredSize(new Dimension(120, 30));
 		Temp_nm = new JTextField(22);
-		Temp_nm.setPreferredSize(new Dimension(100, 30));
+		Temp_nm.setPreferredSize(new Dimension(120, 30));
 		Temp_dt = new JTextField(22);
-		Temp_dt.setPreferredSize(new Dimension(100, 30));
+		Temp_dt.setPreferredSize(new Dimension(120, 30));
+		Temp_dt.setText("YYYYMMDD");
+		Temp_dt.addMouseListener(this);
+		
 		Temp_ph_num = new JTextField(22);
-		Temp_ph_num.setPreferredSize(new Dimension(100, 30));
+		Temp_ph_num.setPreferredSize(new Dimension(120, 30));
 		Temp_addr = new JTextField(22);
-		Temp_addr.setPreferredSize(new Dimension(100, 30));
+		Temp_addr.setPreferredSize(new Dimension(120, 30));
 		Temp_addr1 = new JTextField(22);
-		Temp_addr1.setPreferredSize(new Dimension(100, 30));
+		Temp_addr1.setPreferredSize(new Dimension(120, 30));
 		Temp_addr2 = new JTextField(22);
-		Temp_addr2.setPreferredSize(new Dimension(100, 30));
+		Temp_addr2.setPreferredSize(new Dimension(120, 30));
 		Treg_id = new JTextField(22);
 		Treg_id.setText("");
-		Treg_id.setPreferredSize(new Dimension(100, 30));
+		Treg_id.setPreferredSize(new Dimension(120, 30));
 		Treg_pw = new JTextField(22);
-		Treg_pw.setPreferredSize(new Dimension(100, 30));
+		Treg_pw.setPreferredSize(new Dimension(120, 30));
 
 		Bemp_num = new JButton("사원번호 생성");
+		Bemp_num.setPreferredSize(new Dimension(120, 28));
 		Bemp_num.addActionListener(this);
 		Bregist = new JButton("등록");
-		Bregist.setPreferredSize(new Dimension(100, 28));
+		Bregist.setPreferredSize(new Dimension(65, 28));
 		Bregist.addActionListener(this);
 		Bcancel = new JButton("취소");
-		Bcancel.setPreferredSize(new Dimension(100, 28));
+		Bcancel.setPreferredSize(new Dimension(65, 28));
 		Bcancel.addActionListener(this);
 		BtSearchAddr = new JButton("우편번호 검색");
+		BtSearchAddr.setPreferredSize(new Dimension(120, 28));
 		BtSearchAddr.addActionListener(this);
 		BtCheckId = new JButton("중복검사");
+		BtCheckId.setPreferredSize(new Dimension(120, 28));
 		BtCheckId.addActionListener(this);
 
 		CBreg_tp.setEnabled(true);
 		CBreg_tp.setVisible(true);
+		
 		EmpRegisterView();
 
 	}
 
 	private void EmpRegisterView() {
+		setTitle("사원등록");
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -155,7 +172,6 @@ public class emp_re extends JPanel implements ActionListener {
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 
-		gridbagAdd(mb_regist2, 1, 1, 1, 1);
 		gridbagAdd(Lemp_no, 1, 2, 1, 1);
 		gridbagAdd(Lemp_nm, 1, 3, 1, 1);
 		gridbagAdd(Lemp_dt, 1, 4, 1, 1);
@@ -174,8 +190,8 @@ public class emp_re extends JPanel implements ActionListener {
 		gridbagAdd(Temp_addr1, 2, 7, 1, 1);
 		gridbagAdd(Temp_addr2, 2, 8, 1, 1);
 		gridbagAdd(BtSearchAddr, 3, 6, 1, 1);
-		gridbagAdd(Lemp_addr1, 3, 7, 1, 1);
-		gridbagAdd(Lemp_addr2, 3, 8, 1, 1);
+		gridbagAdd(Lemp_addr1, 1, 7, 1, 1);
+		gridbagAdd(Lemp_addr2, 1, 8, 1, 1);
 
 		gridbagAdd(CBemp_tp, 2, 9, 1, 1);
 		gridbagAdd(CBreg_tp, 2, 10, 1, 1);
@@ -189,6 +205,7 @@ public class emp_re extends JPanel implements ActionListener {
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(Bcancel, 2, 13, 1, 1);
 
+		pack();
 		setVisible(true);
 	}
 
@@ -206,24 +223,30 @@ public class emp_re extends JPanel implements ActionListener {
 		add(c);
 
 	}
-	
+
 	public class RandomId {
 		Random r = new Random();
-		int x = (r.nextInt(900000)+100000);
+		int x = (r.nextInt(900000) + 100000);
 	}
 
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(manager_main.img, 0, 0, null);
+//		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+//		super.paintComponent(g);
+//	}
+
 	public static void main(String[] args) {
-		new emp_re();
+		new emp_re(new JFrame());
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == Bemp_num) {
+		if (e.getSource() == Bemp_num) {
 			RandomId rid = new RandomId();
 			JOptionPane.showMessageDialog(null, "사원번호는 " + rid.x + " 입니다");
 			String x = Integer.toString(rid.x);
-			Temp_no.setText(x);			
-		}		
+			Temp_no.setText(x);
+		}
 		if (e.getSource() == CBemp_tp) {
 			if (CBemp_tp.getSelectedItem() == "정규직") {
 				BtCheckId.setEnabled(true);
@@ -266,25 +289,26 @@ public class emp_re extends JPanel implements ActionListener {
 				}
 				REG_ID = Treg_id.getText();
 				REG_PW = Treg_pw.getText();
-				if (EMP_NUM.equals("") || EMP_NM.equals("") || EMP_DT.equals("") || EMP_ADDR.equals("") || EMP_PH_NUM.equals("")
-						|| EMP_TP.equals("")) {
+				if (EMP_NUM.equals("") || EMP_NM.equals("") || EMP_DT.equals("") || EMP_ADDR.equals("")
+						|| EMP_PH_NUM.equals("") || EMP_TP.equals("")) {
 					JOptionPane.showMessageDialog(null, "입력되지 않은 항목이 있습니다.", "오류", JOptionPane.ERROR_MESSAGE);
 				} else {
 					empData.initempData(EMP_NUM, EMP_NM, EMP_DT, EMP_PH_NUM, EMP_TP, EMP_ADDR, REG_TP, REG_ID, REG_PW);
 					empData.createemp();
 					JOptionPane.showMessageDialog(null, "사원이 등록되었습니다.", "사원 등록", JOptionPane.WARNING_MESSAGE);
-							Temp_no.setText("");
-							Temp_nm.setText("");
-							Temp_dt.setText("");
-							Temp_ph_num.setText("");
-							Temp_addr.setText("");
-							Treg_id.setText("");
-							Treg_pw.setText("");
+					Temp_no.setText("");
+					Temp_nm.setText("");
+					Temp_dt.setText("");
+					Temp_ph_num.setText("");
+					Temp_addr.setText("");
+					Treg_id.setText("");
+					Treg_pw.setText("");
 				}
 			} else if (result == 1) {
 				JOptionPane.getRootFrame().dispose();
 			}
 		} else if (e.getSource() == Bcancel) {
+			dispose();
 
 		}
 		if (e.getSource() == BtSearchAddr) {
@@ -303,5 +327,36 @@ public class emp_re extends JPanel implements ActionListener {
 			}
 		}
 
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if(e.getSource() == Temp_dt) {
+			Temp_dt.setText("");
+		}		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
