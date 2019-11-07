@@ -59,9 +59,7 @@ public class QnAData {
 	static List<Map<String, Serializable>> selectQnA() {
 
 		quary = " SELECT  POST_MSG_NUM, POST_MSG_TY, POST_MSG_TIT, WRITER_NM, WRT_DATE "
-				+ "FROM  POST_MSG "
-				+ "WHERE POST_BRD_TP = 'QnA' "
-				+ "ORDER BY WRT_DATE ASC, POST_MSG_NUM ASC";
+				+ "FROM  POST_MSG WHERE POST_BRD_TP = 'QnA' ORDER BY WRT_DATE ASC, POST_MSG_NUM ASC";
 
 		QnAListData.clear();
 
@@ -130,8 +128,7 @@ public class QnAData {
 	
 	static List<Map<String, Serializable>> infoQ(String POST_NUM) {
 		
-		quary = "select POST_MSG_TIT, WRITER_NM, WRT_DATE, POST_MSG_CON "
-				+ "FROM  POST_MSG "
+		quary = "select POST_MSG_TIT, WRITER_NM, WRT_DATE, POST_MSG_CON FROM  POST_MSG "
 				+ "where POST_MSG_NUM = '"+POST_NUM+"'";
 		
 		QnAListData.clear();

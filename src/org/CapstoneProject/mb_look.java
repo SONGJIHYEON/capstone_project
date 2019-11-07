@@ -84,8 +84,7 @@ public class mb_look extends JPanel implements ActionListener {
 		Bsearch = new JButton("검색");
 		Bsearch.addActionListener(this);
 		Bsearch.setPreferredSize(new Dimension(200, 28));
-		Breset = new JButton("초기화");
-		Breset.setPreferredSize(new Dimension(200, 28));
+
 
 		getData(CustData.selectCust());
 		EmpRegisterView();
@@ -94,9 +93,13 @@ public class mb_look extends JPanel implements ActionListener {
 	private void getData(List<Map<String, Serializable>> custListData) {
 
 		for (int i = 0; i < custListData.size(); i++) {
-			model1.addRow(new Object[] { custListData.get(i).get("ID"), custListData.get(i).get("CUST_NM"),
-					custListData.get(i).get("PH_NUM"), custListData.get(i).get("ADDR"),
-					custListData.get(i).get("MB_GRA"), custListData.get(i).get("POSS_PNT") });
+			model1.addRow(new Object[] { 
+					custListData.get(i).get("ID"), 
+					custListData.get(i).get("CUST_NM"),
+					custListData.get(i).get("PH_NUM"), 
+					custListData.get(i).get("ADDR"),
+					custListData.get(i).get("GRA_TP"), 
+					custListData.get(i).get("POSS_PNT") });
 		}
 	}
 
@@ -124,7 +127,6 @@ public class mb_look extends JPanel implements ActionListener {
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 
-		gridbagAdd(Breset, 4, 2, 1, 1);
 
 //         setResizable(true);
 		setVisible(true);

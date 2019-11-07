@@ -1,5 +1,4 @@
 
-  
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -12,345 +11,330 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
 public class ModelData {
-   
-   public static Connection conn = ConnectionDB.getConnection();
-   static String quary;
-   static PreparedStatement pstm = null;
-   static ResultSet rs = null;
-   
 
-   public static Map<String, Serializable > Modeldata = new HashMap<String, Serializable>();
-   
-   public static Map<String, Serializable > ModeldataSet;
-   
-   public static List<Map<String, Serializable>> ModelListData = new ArrayList<Map<String, Serializable>>();
-   
-   /* 고객번호가 있는 링크 리스트 구성 */
-   public static void initModelData(String MODEL_NUM, String MODEL_CTGR_NUM, String MODEL_NM, String MODEL_EXP, String MODEL_NICK, String REP_MODEL_IMG, String DET_MODEL_IMG) {
+	public static Connection conn = ConnectionDB.getConnection();
+	static String quary;
+	static PreparedStatement pstm = null;
+	static ResultSet rs = null;
 
-      Modeldata.put("모델번호", MODEL_NUM);
-      Modeldata.put("모델분류번호", MODEL_CTGR_NUM);
-      Modeldata.put("모델이름", MODEL_NM);
-      Modeldata.put("모델상세정보", MODEL_EXP);
-      Modeldata.put("모델별칭", MODEL_NICK);
-      Modeldata.put("대표이미지", REP_MODEL_IMG);
-      Modeldata.put("상세이미지", DET_MODEL_IMG);
-   }
-   
-      
-   /* 고객정보를 생성하는 질의어 */
-   static void createModel() {
-      
-      
-      quary = "insert into model values ('"+Modeldata.get("모델번호")+"', '" + Modeldata.get("모델분류번호") + "', '" + Modeldata.get("모델이름") + "', "
-            + " '"+Modeldata.get("모델상세정보")+"', '"+Modeldata.get("모델별칭")+"', '"+Modeldata.get("대표이미지")+"', '"+Modeldata.get("상세이미지")+"')";
-      
-      
-      System.out.println(quary);
-      try {
-         pstm = conn.prepareStatement(quary);
-         pstm.executeQuery();
-      } catch (SQLException sqle) {
-         System.out.println("select문에서 예외 발생");
-         sqle.printStackTrace();
-      }
+	public static Map<String, Serializable> Modeldata = new HashMap<String, Serializable>();
 
-   }
-   
-static List<Map<String, Serializable>> searchModel(String search) {
-      
-      quary = "SELECT MODEL_NM, MODEL_NUM, FIRST_CTGR, TOP_CLOTH_CTGR, BOT_CLOTH_CTGR, OUTER_CTGR, SHIR_CTGR, SHOOSE_CTGR FROM  MODEL "
-            + "full OUTER JOIN MODEL_CTGR ON Model.MODEL_CTGR_NUM = Model_CTGR.MODEL_CTGR_NUM where MODEL_NM like '%" + search + "%'";
-      
-      ModelListData.clear();
-      
-      try {
-      System.out.println(quary);
-         pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-         rs = pstm.executeQuery();         
-         while(rs.next()){
-            
-            ModeldataSet = new HashMap<String, Serializable>();
-            
-            ModeldataSet.put("MODEL_NM", rs.getString(1)); 
-            ModeldataSet.put("MODEL_NUM", rs.getString(2)); 
-            ModeldataSet.put("FIRST_CTGR", rs.getString(3)); 
-            ModeldataSet.put("TOP_CLOTH_CTGR", rs.getString(4)); 
-            ModeldataSet.put("BOT_CLOTH_CTGR", rs.getString(5)); 
-            ModeldataSet.put("OUTER_CTGR", rs.getString(6)); 
-            ModeldataSet.put("SHIR_CTGR", rs.getString(7)); 
-            ModeldataSet.put("SHOOSE_CTGR", rs.getString(8)); 
-            
+	public static Map<String, Serializable> ModeldataSet;
+
+	public static List<Map<String, Serializable>> ModelListData = new ArrayList<Map<String, Serializable>>();
+
+	/* 고객번호가 있는 링크 리스트 구성 */
+	public static void initModelData(String MODEL_NUM, String MODEL_CTGR_NUM, String MODEL_NM, String MODEL_EXP,
+			String MODEL_NICK, String REP_MODEL_IMG, String DET_MODEL_IMG) {
+
+		Modeldata.put("모델번호", MODEL_NUM);
+		Modeldata.put("모델분류번호", MODEL_CTGR_NUM);
+		Modeldata.put("모델이름", MODEL_NM);
+		Modeldata.put("모델상세정보", MODEL_EXP);
+		Modeldata.put("모델별칭", MODEL_NICK);
+		Modeldata.put("대표이미지", REP_MODEL_IMG);
+		Modeldata.put("상세이미지", DET_MODEL_IMG);
+	}
+
+	/* 고객정보를 생성하는 질의어 */
+	static void createModel() {
+
+		quary = "insert into model values ('" + Modeldata.get("모델번호") + "', '" + Modeldata.get("모델분류번호") + "', '"
+				+ Modeldata.get("모델이름") + "', " + " '" + Modeldata.get("모델상세정보") + "', '" + Modeldata.get("모델별칭")
+				+ "', '" + Modeldata.get("대표이미지") + "', '" + Modeldata.get("상세이미지") + "')";
+
+		System.out.println(quary);
+		try {
+			pstm = conn.prepareStatement(quary);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+	}
+
+	static List<Map<String, Serializable>> searchModel(String search) {
+
+		quary = "SELECT MODEL_NM, MODEL_NUM, FIRST_CTGR, TOP_CLOTH_CTGR, BOT_CLOTH_CTGR, OUTER_CTGR, SHIR_CTGR, SHOOSE_CTGR FROM  MODEL "
+				+ "full OUTER JOIN MODEL_CTGR ON Model.MODEL_CTGR_NUM = Model_CTGR.MODEL_CTGR_NUM where MODEL_NM like '%"+ search + "%'";
+
+		ModelListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ModeldataSet = new HashMap<String, Serializable>();
+
+				ModeldataSet.put("MODEL_NM", rs.getString(1));
+				ModeldataSet.put("MODEL_NUM", rs.getString(2));
+				ModeldataSet.put("FIRST_CTGR", rs.getString(3));
+				ModeldataSet.put("TOP_CLOTH_CTGR", rs.getString(4));
+				ModeldataSet.put("BOT_CLOTH_CTGR", rs.getString(5));
+				ModeldataSet.put("OUTER_CTGR", rs.getString(6));
+				ModeldataSet.put("SHIR_CTGR", rs.getString(7));
+				ModeldataSet.put("SHOOSE_CTGR", rs.getString(8));
+
 //            ModeldataSet.put("FIRST_CTGR", rs.getString(2)); 
 
-
-            ModelListData.add(ModeldataSet);
+				ModelListData.add(ModeldataSet);
 //            System.out.println(ModelListData);
-            
-         } 
-         
-         
-      } catch (SQLException sqle) {
-         System.out.println("select문에서 예외 발생");
-         sqle.printStackTrace();
-      }
-      
-      return ModelListData;
-      
-   }
 
-static List<Map<String, Serializable>> searchModel1(String search) {
-   
-   quary = "SELECT MODEL_NM, MODEL_NUM, FIRST_CTGR, TOP_CLOTH_CTGR, BOT_CLOTH_CTGR, OUTER_CTGR, SHIR_CTGR, SHOOSE_CTGR FROM  MODEL "
-         + "full OUTER JOIN MODEL_CTGR ON Model.MODEL_CTGR_NUM = Model_CTGR.MODEL_CTGR_NUM where FIRST_CTGR like '%" + search + "%'";
-   
-   ModelListData.clear(); 
-   
-   try {
-   System.out.println(quary);
-      pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-      rs = pstm.executeQuery();         
-      while(rs.next()){
-         
-         ModeldataSet = new HashMap<String, Serializable>();
-         
-         ModeldataSet.put("MODEL_NM", rs.getString(1)); 
-         ModeldataSet.put("MODEL_NUM", rs.getString(2)); 
-         ModeldataSet.put("FIRST_CTGR", rs.getString(3)); 
-         ModeldataSet.put("TOP_CLOTH_CTGR", rs.getString(4)); 
-         ModeldataSet.put("BOT_CLOTH_CTGR", rs.getString(5)); 
-         ModeldataSet.put("OUTER_CTGR", rs.getString(6)); 
-         ModeldataSet.put("SHIR_CTGR", rs.getString(7)); 
-         ModeldataSet.put("SHOOSE_CTGR", rs.getString(8)); 
-         
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return ModelListData;
+
+	}
+
+	static List<Map<String, Serializable>> searchModel1(String search) {
+
+		quary = "SELECT MODEL_NM, MODEL_NUM, FIRST_CTGR, TOP_CLOTH_CTGR, BOT_CLOTH_CTGR, OUTER_CTGR, SHIR_CTGR, SHOOSE_CTGR FROM  MODEL "
+				+ "full OUTER JOIN MODEL_CTGR ON Model.MODEL_CTGR_NUM = Model_CTGR.MODEL_CTGR_NUM where FIRST_CTGR like '%"
+				+ search + "%'";
+
+		ModelListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ModeldataSet = new HashMap<String, Serializable>();
+
+				ModeldataSet.put("MODEL_NM", rs.getString(1));
+				ModeldataSet.put("MODEL_NUM", rs.getString(2));
+				ModeldataSet.put("FIRST_CTGR", rs.getString(3));
+				ModeldataSet.put("TOP_CLOTH_CTGR", rs.getString(4));
+				ModeldataSet.put("BOT_CLOTH_CTGR", rs.getString(5));
+				ModeldataSet.put("OUTER_CTGR", rs.getString(6));
+				ModeldataSet.put("SHIR_CTGR", rs.getString(7));
+				ModeldataSet.put("SHOOSE_CTGR", rs.getString(8));
+
 //         ModeldataSet.put("FIRST_CTGR", rs.getString(2)); 
 
-
-         ModelListData.add(ModeldataSet);
+				ModelListData.add(ModeldataSet);
 //         System.out.println(ModelListData);
-         
-      } 
-      
-      
-   } catch (SQLException sqle) {
-      System.out.println("select문에서 예외 발생");
-      sqle.printStackTrace();
-   }
-   
-   return ModelListData;
-   
-}
-   
-static List<Map<String, Serializable>> selectModel() {
-      
-      quary = "SELECT MODEL_NM, MODEL_NUM, FIRST_CTGR, TOP_CLOTH_CTGR, BOT_CLOTH_CTGR, OUTER_CTGR, SHIR_CTGR, SHOOSE_CTGR "
-      		+ "FROM  MODEL JOIN MODEL_CTGR ON Model.MODEL_CTGR_NUM = Model_CTGR.MODEL_CTGR_NUM";
-      ModelListData.clear();
-      
-      try {
-      
-         pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-         rs = pstm.executeQuery();         
-         while(rs.next()){
-            
-            ModeldataSet = new HashMap<String, Serializable>();
-            
-            ModeldataSet.put("MODEL_NM", rs.getString(1)); 
-            ModeldataSet.put("MODEL_NUM", rs.getString(2)); 
-            ModeldataSet.put("FIRST_CTGR", rs.getString(3)); 
-            ModeldataSet.put("TOP_CLOTH_CTGR", rs.getString(4)); 
-            ModeldataSet.put("BOT_CLOTH_CTGR", rs.getString(5)); 
-            ModeldataSet.put("OUTER_CTGR", rs.getString(6)); 
-            ModeldataSet.put("SHIR_CTGR", rs.getString(7)); 
-            ModeldataSet.put("SHOOSE_CTGR", rs.getString(8)); 
-            
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return ModelListData;
+
+	}
+
+	static List<Map<String, Serializable>> selectModel() {
+
+		quary = "SELECT MODEL_NM, MODEL_NUM, FIRST_CTGR, TOP_CLOTH_CTGR, BOT_CLOTH_CTGR, OUTER_CTGR, SHIR_CTGR, SHOOSE_CTGR "
+				+ "FROM  MODEL JOIN MODEL_CTGR ON Model.MODEL_CTGR_NUM = Model_CTGR.MODEL_CTGR_NUM order by MODEL_NM";
+
+		ModelListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ModeldataSet = new HashMap<String, Serializable>();
+
+				ModeldataSet.put("MODEL_NM", rs.getString(1));
+				ModeldataSet.put("MODEL_NUM", rs.getString(2));
+				ModeldataSet.put("FIRST_CTGR", rs.getString(3));
+				ModeldataSet.put("TOP_CLOTH_CTGR", rs.getString(4));
+				ModeldataSet.put("BOT_CLOTH_CTGR", rs.getString(5));
+				ModeldataSet.put("OUTER_CTGR", rs.getString(6));
+				ModeldataSet.put("SHIR_CTGR", rs.getString(7));
+				ModeldataSet.put("SHOOSE_CTGR", rs.getString(8));
+
 //            ModeldataSet.put("FIRST_CTGR", rs.getString(2)); 
 
-
-            ModelListData.add(ModeldataSet);
+				ModelListData.add(ModeldataSet);
 //            System.out.println(ModelListData);
-            
-         } 
-         
-         
-      } catch (SQLException sqle) {
-         System.out.println("select문에서 예외 발생");
-         sqle.printStackTrace();
-      }
-      
-      return ModelListData;
-      
-   }
-   
-   
-static List<Map<String, Serializable>> selectModelNum1(String a, String b) {
-      
-      quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a +"' and TOP_CLOTH_CTGR = '"+ b +"' ";
-      ModelListData.clear();
-      
-      try {
-      
-         pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-         rs = pstm.executeQuery();         
-         while(rs.next()){
-            
-            ModeldataSet = new HashMap<String, Serializable>();
-            
-            ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1)); 
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return ModelListData;
+
+	}
+
+	static List<Map<String, Serializable>> selectModelNum1(String a, String b) {
+
+		quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a + "' and TOP_CLOTH_CTGR = '" + b
+				+ "' ";
+		ModelListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ModeldataSet = new HashMap<String, Serializable>();
+
+				ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1));
 //            ModeldataSet.put("FIRST_CTGR", rs.getString(2)); 
 
+				ModelListData.add(ModeldataSet);
+				System.out.println(ModelListData);
 
-            ModelListData.add(ModeldataSet);
-            System.out.println(ModelListData);
-            
-         } 
-         
-         
-      } catch (SQLException sqle) {
-         System.out.println("select문에서 예외 발생");
-         sqle.printStackTrace();
-      }
-      
-      return ModelListData;
-      
-   }
+			}
 
-static List<Map<String, Serializable>> selectModelNum2(String a, String b) {
-   
-   quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a +"' and BOT_CLOTH_CTGR = '"+ b +"' ";
-   
-   ModelListData.clear();
-   
-   try {
-   
-      pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-      rs = pstm.executeQuery();
-      while(rs.next()){   
-         ModeldataSet = new HashMap<String, Serializable>();
-         
-         ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1)); 
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
 
-//         ModeldataSet.put("ADDR", rs.getString(9));
+		return ModelListData;
 
-//         System.out.println(rs.getString(2));
-         ModelListData.add(ModeldataSet);
-         System.out.println(ModelListData);
-         
-      } 
-      
-      
-   } catch (SQLException sqle) {
-      System.out.println("select문에서 예외 발생");
-      sqle.printStackTrace();
-   }
-   
-   return ModelListData;
-   
-}
+	}
 
-static List<Map<String, Serializable>> selectModelNum3(String a, String b) {
-   
-   quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a +"' and OUTER_CTGR = '"+ b +"' ";
-   
-   ModelListData.clear();
-   
-   try {
-   
-      pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-      rs = pstm.executeQuery();         
-      while(rs.next()){
-         
-         ModeldataSet = new HashMap<String, Serializable>();
-         
-         ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1)); 
+	static List<Map<String, Serializable>> selectModelNum2(String a, String b) {
+
+		quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a + "' and BOT_CLOTH_CTGR = '" + b
+				+ "' ";
+
+		ModelListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				ModeldataSet = new HashMap<String, Serializable>();
+
+				ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1));
 
 //         ModeldataSet.put("ADDR", rs.getString(9));
 
 //         System.out.println(rs.getString(2));
-         ModelListData.add(ModeldataSet);
+				ModelListData.add(ModeldataSet);
+				System.out.println(ModelListData);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return ModelListData;
+
+	}
+
+	static List<Map<String, Serializable>> selectModelNum3(String a, String b) {
+
+		quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a + "' and OUTER_CTGR = '" + b + "' ";
+
+		ModelListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ModeldataSet = new HashMap<String, Serializable>();
+
+				ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1));
+
+//         ModeldataSet.put("ADDR", rs.getString(9));
+
+//         System.out.println(rs.getString(2));
+				ModelListData.add(ModeldataSet);
 //         System.out.println(ModelListData);
-         
-      } 
-      
-      
-   } catch (SQLException sqle) {
-      System.out.println("select문에서 예외 발생");
-      sqle.printStackTrace();
-   }
-   
-   return ModelListData;
-   
-}
 
-static List<Map<String, Serializable>> selectModelNum4(String a, String b) {
-   
-   quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a +"' and SHIR_CTGR = '"+ b +"' ";
-   
-   ModelListData.clear();
-   
-   try {
-   
-      pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-      rs = pstm.executeQuery();         
-      while(rs.next()){
-         
-         ModeldataSet = new HashMap<String, Serializable>();
-         
-         ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1)); 
+			}
 
-//         ModeldataSet.put("ADDR", rs.getString(9));
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
 
-//         System.out.println(rs.getString(2));
-         ModelListData.add(ModeldataSet);
-//         System.out.println(ModelListData);
-         
-      } 
-      
-      
-   } catch (SQLException sqle) {
-      System.out.println("select문에서 예외 발생");
-      sqle.printStackTrace();
-   }
-   
-   return ModelListData;
-   
-}
+		return ModelListData;
 
-static List<Map<String, Serializable>> selectModelNum5(String a, String b) {
-   
-   quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a +"' and SHOOSE_CTGR = '"+ b +"' ";
-   
-   ModelListData.clear();
-   
-   try {
-   
-      pstm = conn.prepareStatement(quary,  rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-      rs = pstm.executeQuery();         
-      while(rs.next()){
-         
-         ModeldataSet = new HashMap<String, Serializable>();
-         
-         ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1)); 
+	}
+
+	static List<Map<String, Serializable>> selectModelNum4(String a, String b) {
+
+		quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a + "' and SHIR_CTGR = '" + b + "' ";
+
+		ModelListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ModeldataSet = new HashMap<String, Serializable>();
+
+				ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1));
 
 //         ModeldataSet.put("ADDR", rs.getString(9));
 
 //         System.out.println(rs.getString(2));
-         ModelListData.add(ModeldataSet);
+				ModelListData.add(ModeldataSet);
 //         System.out.println(ModelListData);
-         
-      } 
-      
-      
-   } catch (SQLException sqle) {
-      System.out.println("select문에서 예외 발생");
-      sqle.printStackTrace();
-   }
-   
-   return ModelListData;
-   }
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return ModelListData;
+
+	}
+
+	static List<Map<String, Serializable>> selectModelNum5(String a, String b) {
+
+		quary = "select MODEL_CTGR_NUM from model_ctgr where FIRST_CTGR = '" + a + "' and SHOOSE_CTGR = '" + b + "' ";
+
+		ModelListData.clear();
+
+		try {
+
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ModeldataSet = new HashMap<String, Serializable>();
+
+				ModeldataSet.put("MODEL_CTGR_NUM", rs.getString(1));
+
+//         ModeldataSet.put("ADDR", rs.getString(9));
+
+//         System.out.println(rs.getString(2));
+				ModelListData.add(ModeldataSet);
+//         System.out.println(ModelListData);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return ModelListData;
+	}
 }
-
-

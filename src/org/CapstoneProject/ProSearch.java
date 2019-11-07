@@ -49,7 +49,7 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 	
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);  
    
-	private JButton BtSearch, BtReg; 
+	private JButton BtSearch, BtReg, BtCancel; 
 	private JComboBox<String> CbSearch;
 	
 	String PRO_NM, PRO_NUM;
@@ -78,9 +78,7 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 		BtSearch.setPreferredSize(new Dimension(100,28));
 		BtReg = new JButton("등록");
 		BtReg.addActionListener(this);
-		BtReg.setPreferredSize(new Dimension(100,28));
-//		BtCancel = new JButton("닫기");
-		
+		BtReg.setPreferredSize(new Dimension(100,28));		
 		
 		getData(ProData.selectPro());
 		ManModelView();
@@ -126,7 +124,8 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 	    gridbagAdd(BtSearch, 3, 2, 1, 1);
         gridbagAdd(scrollpane1, 1, 3, 5, 5);
 	    gbc.anchor = GridBagConstraints.EAST;
-	    gridbagAdd(BtReg, 5, 8, 1, 1);
+	    gridbagAdd(BtReg, 3, 8, 1, 1);	  
+	    gridbagAdd(BtCancel, 5, 8, 1, 1);
 	    
 
 	    pack();
@@ -155,14 +154,11 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 		
 	}
 	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == BtReg) {
-			
 			dispose();
 		}
-		
 		if(e.getSource() == BtSearch) {
 			String search = xSearch.getText();
 			if(CbSearch.getSelectedItem() == "상품명") {
@@ -188,8 +184,6 @@ public class ProSearch extends Dialog implements MouseListener, ActionListener{
 		PRO_NM += tModelInfo.getValueAt(row, 1);
 		PRO_NUM = "";
 		PRO_NUM += tModelInfo.getValueAt(row, 0);
-//		ModelNum = "";
-//		ModelNum += tModelInfo.getValueAt(row, 1);
 		}
 	}
 

@@ -410,6 +410,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		win.add(jean);
 		win.add(jean2);
 		win.add(shoose);
+		
 
 //      setLayout(gbl);
 //      gbc.anchor = GridBagConstraints.EAST;
@@ -435,6 +436,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 	public static void main(String[] args) {
 		new home_user();
+		
 	}
 
 	@Override
@@ -509,9 +511,9 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 			win.add(jean);
 			win.add(jean2);
 			win.add(shoose);
-			Label.setBounds(d.width * 1 / 4 + 100, 200, 200, 200);
+			Label.setBounds(360, 260, 150, 150);
 			N_U.setSize(d.width * 3 / 4, d.height - 100);
-			N_U.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
+			N_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
 			add(Label);
 			add(N_U);
 			repaint();
@@ -519,14 +521,14 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		} else if (e.getSource() == vNotice) {
 			win.remove(Q_U);
 			N_U.setSize(d.width * 3 / 4, d.height - 100);
-			N_U.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
+			N_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
 			add(N_U);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vQnA) {
 			win.remove(N_U);
 			Q_U.setSize(d.width * 3 / 4, d.height - 100);
-			Q_U.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
+			Q_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
 			add(Q_U);
 			repaint();
 			revalidate();

@@ -69,7 +69,7 @@ public class CustData {
 
 	/* 고객정보를 생성하는 질의어 */
 	static void createCust2() {
-		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, CUST_TP, ID, PWD, BD, ADDR, MB_GRA, POSS_PNT, DISC_APP_ST_DT, DISC_APP_END_DT) "
+		quary = "INSERT INTO CUST(CUST_NUM, CUST_NM, PH_NUM, CUST_TP, ID, PWD, BD, ADDR, GRA_TP, POSS_PNT, DISC_APP_ST_DT, DISC_APP_END_DT) "
 				+ "VALUES(SEQ_CUST_NUM.NEXTVAL, '" + custdata.get("이름") + "', '" + custdata.get("휴대폰번호")
 				+ "', '비회원', '', '', '', '', '', '', '', '')";
 
@@ -99,7 +99,7 @@ public class CustData {
 	
 	static List<Map<String, Serializable>> selectCust() {
 
-		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = '회원' ";
+		quary = "select ID, CUST_NM, PH_NUM, ADDR, GRA_TP, POSS_PNT from cust where CUST_TP = '회원' ";
 
 		custListData.clear();
 
@@ -115,7 +115,7 @@ public class CustData {
 				custdataSet.put("CUST_NM", rs.getString(2));
 				custdataSet.put("PH_NUM", rs.getString(3));
 				custdataSet.put("ADDR", rs.getString(4));
-				custdataSet.put("MB_GRA", rs.getString(5));
+				custdataSet.put("GRA_TP", rs.getString(5));
 				custdataSet.put("POSS_PNT", rs.getString(6));
 
 				// System.out.println(addrdataSet);
@@ -134,7 +134,7 @@ public class CustData {
 	
 	static List<Map<String, Serializable>> searchCust1(String search) {
 
-		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = '회원' and ID like '%" + search + "%' ";
+		quary = "select ID, CUST_NM, PH_NUM, ADDR, GRA_TP, POSS_PNT from cust where CUST_TP = '회원' and ID like '%" + search + "%' ";
 
 		custListData.clear();
 
@@ -150,7 +150,7 @@ public class CustData {
 				custdataSet.put("CUST_NM", rs.getString(2));
 				custdataSet.put("PH_NUM", rs.getString(3));
 				custdataSet.put("ADDR", rs.getString(4));
-				custdataSet.put("MB_GRA", rs.getString(5));
+				custdataSet.put("GRA_TP", rs.getString(5));
 				custdataSet.put("POSS_PNT", rs.getString(6));
 
 				// System.out.println(addrdataSet);
@@ -169,7 +169,7 @@ public class CustData {
 	
 	static List<Map<String, Serializable>> searchCust2(String search) {
 
-		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = '회원' and CUST_NM like '%" + search + "%'";
+		quary = "select ID, CUST_NM, PH_NUM, ADDR, GRA_TP, POSS_PNT from cust where CUST_TP = '회원' and CUST_NM like '%" + search + "%'";
 
 		custListData.clear();
 
@@ -185,7 +185,7 @@ public class CustData {
 				custdataSet.put("CUST_NM", rs.getString(2));
 				custdataSet.put("PH_NUM", rs.getString(3));
 				custdataSet.put("ADDR", rs.getString(4));
-				custdataSet.put("MB_GRA", rs.getString(5));
+				custdataSet.put("GRA_TP", rs.getString(5));
 				custdataSet.put("POSS_PNT", rs.getString(6));
 
 				// System.out.println(addrdataSet);
@@ -204,7 +204,7 @@ public class CustData {
 	
 	static List<Map<String, Serializable>>searchCust3(String search) {
 
-		quary = "select ID, CUST_NM, PH_NUM, ADDR, MB_GRA, POSS_PNT from cust where CUST_TP = '회원' and MB_GRA like '%" + search + "%'";
+		quary = "select ID, CUST_NM, PH_NUM, ADDR, GRA_TP, POSS_PNT from cust where CUST_TP = '회원' and GRA_TP like '%" + search + "%'";
 
 		custListData.clear();
 
@@ -220,7 +220,7 @@ public class CustData {
 				custdataSet.put("CUST_NM", rs.getString(2));
 				custdataSet.put("PH_NUM", rs.getString(3));
 				custdataSet.put("ADDR", rs.getString(4));
-				custdataSet.put("MB_GRA", rs.getString(5));
+				custdataSet.put("GRA_TP", rs.getString(5));
 				custdataSet.put("POSS_PNT", rs.getString(6));
 
 				// System.out.println(addrdataSet);

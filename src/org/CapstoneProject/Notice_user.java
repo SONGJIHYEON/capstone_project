@@ -222,6 +222,3 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 		
 	}   
 }	
-
-	
-			

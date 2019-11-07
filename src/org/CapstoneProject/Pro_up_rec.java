@@ -28,33 +28,34 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class emp_look extends JPanel implements ActionListener {
+public class Pro_up_rec extends JPanel implements ActionListener {
 
-	private JLabel emp_lookup, Lemp_no, Lemp_nm, Lemp_dt, Lemp_ph_num, Lemp_tp, Lemp_addr;
+	private JLabel pro_up_rec_lookup;
 
 	private JTextField Tsearch;
 
-	private String[] col1 = { "사원번호", "사원명", "휴대폰번호", "입사일", "사원구분", "담당업무" };
-	private String[] search = { "사원명", "휴대폰번호" };
+	private String[] col1 = { "상품명", "사이즈", "색상", "단가적용일자", "단가종료일자", "단가", " ", " " };
+	private String[] search = { "상품명", "단가" };
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
-	private JTable emp_info;
+	private JTable Pro_up_rec_info;
 	private JScrollPane scrollpane1;
 	private JButton jb, Bsearch, Breset;
 	private JComboBox<String> cbSearch;
 	
 	ArrayList<String> ar = new ArrayList<String>();
+	ArrayList<String> ar2 = new ArrayList<String>();
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
-	public emp_look() {
+	public Pro_up_rec() {
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		emp_lookup = new JLabel("사원조회");
-		emp_lookup.setPreferredSize(new Dimension(100, 30));
+		pro_up_rec_lookup = new JLabel("상품단가내역조회");
+		pro_up_rec_lookup.setPreferredSize(new Dimension(100, 30));
 
 		Tsearch = new JTextField(18);
 		Tsearch.setPreferredSize(new Dimension(100, 30));
@@ -62,47 +63,55 @@ public class emp_look extends JPanel implements ActionListener {
 		cbSearch = new JComboBox<String>(search);
 		cbSearch.setPreferredSize(new Dimension(200, 28));
 
-		emp_info = new JTable(model1);
-		scrollpane1 = new JScrollPane(emp_info);
+		Pro_up_rec_info = new JTable(model1);
+		scrollpane1 = new JScrollPane(Pro_up_rec_info);
 		scrollpane1.setPreferredSize(new Dimension(1000, 300));
 
 		Bsearch = new JButton("검색");
 		Bsearch.addActionListener(this);
 		Bsearch.setPreferredSize(new Dimension(200, 28));
-//         getDeptData(EmpData.selectDept());
-//         getSvpData(EmpData.selectSpv());
-//         setExtendedState(MAXIMIZED_BOTH);
-		getData(empData.selectEmp());
-		EmpRegisterView();
+
+		getData(ProPriceData.selectPro_up_rec());
+		Pro_up_recView();
 	}
 
-	private void getData(List<Map<String, Serializable>> empListData) {
+	private void getData(List<Map<String, Serializable>> ProPriceListData) {
 
-		for (int i = 0; i < empListData.size(); i++) {		
-			ar.add(empListData.get(i).get("APPC_DT").toString());
+		for (int i = 0; i < ProPriceListData.size(); i++) {	
+			ar.add(ProPriceListData.get(i).get("APP_ST_DT").toString());
 			
-//			String oldstring = ex_st_date;
-			
-			Date date = null;
+			Date date1 = null;
 			try {
-				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar.get(i));
+				date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar.get(i));
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			String new_appc_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
+			String new_appc_st_date = new SimpleDateFormat("yyyy-MM-dd").format(date1);
 			
+			ar2.add(ProPriceListData.get(i).get("APP_END_DT").toString());
+			
+			Date date2 = null;
+			try {
+				date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar2.get(i));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String new_appc_end_date = new SimpleDateFormat("yyyy-MM-dd").format(date2);
+
 			model1.addRow(new Object[] {
-					empListData.get(i).get("EMP_NUM"), 
-					empListData.get(i).get("EMP_NM"),
-					empListData.get(i).get("PH_NUM"), 
-					new_appc_date,
-					empListData.get(i).get("EMP_TP"),
-					empListData.get(i).get("REG_WRKR_TP") });
+					ProPriceListData.get(i).get("PRO_NM"), 
+					ProPriceListData.get(i).get("SIZ"),
+					ProPriceListData.get(i).get("CLR"), 
+					new_appc_st_date, 
+					new_appc_end_date, 
+					ProPriceListData.get(i).get("UP")
+					});
 		}
 	}
 
-	private void EmpRegisterView() {
+	private void Pro_up_recView() {
 
 //         setTitle("사원조회");
 
@@ -119,7 +128,7 @@ public class emp_look extends JPanel implements ActionListener {
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(Tsearch, 2, 2, 1, 1);
 		gridbagAdd(cbSearch, 1, 2, 1, 1);
-		gridbagAdd(emp_lookup, 1, 1, 1, 1);
+		gridbagAdd(pro_up_rec_lookup, 1, 1, 1, 1);
 		gridbagAdd(Bsearch, 3, 2, 1, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
@@ -151,19 +160,19 @@ public class emp_look extends JPanel implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new emp_look();
+		new Pro_up_rec();
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == Bsearch) {
 			String search = Tsearch.getText();
-			if (cbSearch.getSelectedItem() == "사원명") {
+			if (cbSearch.getSelectedItem() == "상품명") {
 				model1.setRowCount(0);
-				getData(empData.searchEmp1(search));
-			} else if (cbSearch.getSelectedItem() == "휴대폰번호") {
+				getData(ProPriceData.searchPro_up_rec1(search));
+			} else if (cbSearch.getSelectedItem() == "단가") {
 				model1.setRowCount(0);
-				getData(empData.searchEmp2(search));
+				getData(ProPriceData.searchPro_up_rec2(search));
 			}
 		}
 

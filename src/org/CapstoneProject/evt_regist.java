@@ -1,27 +1,23 @@
 package org.CapstoneProject;
 
 import java.awt.Component;
+import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseListener;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
-public class evt_regist extends JPanel implements ActionListener {
+public class evt_regist extends Dialog implements ActionListener {
 
 	private JLabel evt_regist, Levt_no, Levt_tp, Levt_st_dt, Levt_fn_dt, Levt_gift, Levt_point, Levt_sale, Levt_model;
 
@@ -38,7 +34,9 @@ public class evt_regist extends JPanel implements ActionListener {
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
-	public evt_regist() {
+	public evt_regist(JFrame fr) {
+		super(fr, "", true);
+
 		Date dt = new Date();
 		SimpleDateFormat spdate = new SimpleDateFormat("yyyy-MM-dd");
 
@@ -89,8 +87,11 @@ public class evt_regist extends JPanel implements ActionListener {
 		Tevt_sale.setPreferredSize(new Dimension(100, 30));
 
 		Bregist = new JButton("등록");
-		Bregist.setPreferredSize(new Dimension(100, 28));
+		Bregist.setPreferredSize(new Dimension(65, 28));
 		Bregist.addActionListener(this);
+		Bcancel = new JButton("취소");
+		Bcancel.setPreferredSize(new Dimension(65, 28));
+		Bcancel.addActionListener(this);
 		Bmodel = new JButton("이벤트 모델");
 		Bmodel.setPreferredSize(new Dimension(100, 28));
 		Bmodel.addActionListener(this);
@@ -100,18 +101,25 @@ public class evt_regist extends JPanel implements ActionListener {
 	}
 
 	private void evtRegisterView() {
-
-		gridbagconstraints.anchor = GridBagConstraints.WEST;
+		setLayout(gridbaglayout);
 //         gridbagconstraints.ipadx = 7;
 //         
 //         gridbagconstraints.weightx=1.0;
 //         gridbagconstraints.weighty=1.0;
-
-		setLayout(gridbaglayout);
-		gridbagconstraints.anchor = GridBagConstraints.CENTER;
-
+		
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
-		gridbagAdd(Bregist, 2, 10, 2, 1);
+		gridbagAdd(Bregist, 2, 10, 1, 1);
+		gridbagAdd(CBevt_tp, 2, 3, 1, 1);
+		if (CBevt_tp.getSelectedItem() == "1+1이벤트") {
+			Levt_gift.setVisible(true);
+			Levt_point.setVisible(false);
+			Levt_sale.setVisible(false);
+			Tevt_gift.setVisible(true);
+			Tevt_point.setVisible(false);
+			Tevt_sale.setVisible(false);
+		}
+		
+		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
 		gridbagAdd(evt_regist, 1, 1, 1, 1);
 
@@ -129,15 +137,7 @@ public class evt_regist extends JPanel implements ActionListener {
 
 //      gridbagAdd(Tevt_no, 2, 2, 1, 1);
 
-		gridbagAdd(CBevt_tp, 2, 3, 1, 1);
-		if (CBevt_tp.getSelectedItem() == "1+1이벤트") {
-			Levt_gift.setVisible(true);
-			Levt_point.setVisible(false);
-			Levt_sale.setVisible(false);
-			Tevt_gift.setVisible(true);
-			Tevt_point.setVisible(false);
-			Tevt_sale.setVisible(false);
-		}
+
 
 		gridbagAdd(Tevt_gift, 2, 5, 1, 1);
 		gridbagAdd(Tevt_point, 2, 6, 1, 1);
@@ -147,7 +147,9 @@ public class evt_regist extends JPanel implements ActionListener {
 		gridbagAdd(Tevt_fn_dt, 2, 9, 1, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-
+		gridbagAdd(Bcancel, 2, 10, 1, 1);
+		
+		pack();
 		setVisible(true);
 	}
 
@@ -166,14 +168,14 @@ public class evt_regist extends JPanel implements ActionListener {
 
 	}
 
-	public void paintComponent(Graphics g) {
-		g.drawImage(manager_main.img, 0, 0, null);
-		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
-		super.paintComponent(g);
-	}
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(manager_main.img, 0, 0, null);
+//		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+//		super.paintComponent(g);
+//	}
 
 	public static void main(String[] args) {
-		new evt_regist();
+		new evt_regist(new JFrame());
 	}
 
 	@Override
@@ -233,9 +235,9 @@ public class evt_regist extends JPanel implements ActionListener {
 //            evt_point = Tevt_point.getText();
 //            evt_sale = Tevt_sale.getText();
 
-					evtData.createevt1(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, GIFT_modelnum);
+					evtData.createEvt1(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, GIFT_modelnum);
 					JOptionPane.showMessageDialog(null, "이벤트가 등록되었습니다.", "이벤트 등록", JOptionPane.WARNING_MESSAGE);
-//            Tevt_no.setText("");
+					Tevt_model.setText("");
 					Tevt_st_dt.setText("");
 					Tevt_fn_dt.setText("");
 					Tevt_gift.setText("");
@@ -248,8 +250,9 @@ public class evt_regist extends JPanel implements ActionListener {
 //               evt_point = Tevt_point.getText();
 					evt_sale = Tevt_sale.getText();
 
-					evtData.createevt2(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, evt_sale);
+					evtData.createEvt2(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, evt_sale);
 					JOptionPane.showMessageDialog(null, "이벤트가 등록되었습니다.", "이벤트 등록", JOptionPane.WARNING_MESSAGE);
+					Tevt_model.setText("");
 					Tevt_st_dt.setText("");
 					Tevt_fn_dt.setText("");
 					Tevt_sale.setText("");
@@ -262,8 +265,9 @@ public class evt_regist extends JPanel implements ActionListener {
 					evt_point = Tevt_point.getText();
 //               evt_sale = Tevt_sale.getText();
 
-					evtData.createevt3(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, evt_point);
+					evtData.createEvt3(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, evt_point);
 					JOptionPane.showMessageDialog(null, "이벤트가 등록되었습니다.", "이벤트 등록", JOptionPane.WARNING_MESSAGE);
+					Tevt_model.setText("");
 					Tevt_st_dt.setText("");
 					Tevt_fn_dt.setText("");
 					Tevt_point.setText("");
@@ -273,7 +277,7 @@ public class evt_regist extends JPanel implements ActionListener {
 				JOptionPane.getRootFrame().dispose();
 			}
 		} else if (e.getSource() == Bcancel) {
-
+			dispose();
 		}
 	}
 }

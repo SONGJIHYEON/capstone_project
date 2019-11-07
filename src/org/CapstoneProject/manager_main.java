@@ -51,9 +51,10 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 	JMenu Mn_pro = new JMenu("상품");
 	JMenuItem model_look = new JMenuItem("모델조회");
 	JMenuItem model_regist = new JMenuItem("모델등록");
-	JMenuItem pro_look = new JMenuItem("상품조회");
 	JMenuItem pro_regist = new JMenuItem("상품등록");
-	JMenuItem pro_up_rec = new JMenuItem("상품단가관리");
+	JMenuItem pro_look = new JMenuItem("상품조회");
+	JMenuItem pro_up_rec_reg = new JMenuItem("상품단가등록");
+	JMenuItem pro_up_rec = new JMenuItem("상품단가내역");
 	// 주문 메뉴
 	JMenu Mn_Od = new JMenu("주문");
 	JMenuItem Od_deposit = new JMenuItem("통장미입금");
@@ -106,6 +107,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		model_regist.addActionListener(this);
 		pro_look.addActionListener(this);
 		pro_regist.addActionListener(this);
+		pro_up_rec_reg.addActionListener(this);
 		pro_up_rec.addActionListener(this);
 		Od_deposit.addActionListener(this);
 		Od_pre.addActionListener(this);
@@ -128,11 +130,12 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		Mn_pro.add(model_look);
 		Mn_pro.add(model_regist);
-		Mn_pro.add(pro_look);
 		Mn_pro.add(pro_regist);
+		Mn_pro.add(pro_look);
+		Mn_pro.add(pro_up_rec_reg);
 		Mn_pro.add(pro_up_rec);
 		Mn_pro.setPreferredSize(new Dimension(d.width / 8, Mn_pro.getPreferredSize().height));
-		pro_look.setPreferredSize(new Dimension(d.width / 8, pro_look.getPreferredSize().height));
+		pro_up_rec.setPreferredSize(new Dimension(d.width / 8, pro_up_rec.getPreferredSize().height));
 
 		Mn_Od.add(Od_deposit);
 		Mn_Od.add(Od_pre);
@@ -192,15 +195,15 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Mn_corr.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 
 		corr_look.setBackground(new Color(255, 255, 255));
-		corr_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		corr_look.setHorizontalAlignment(SwingConstants.CENTER);
 		corr_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		corr_regist.setBackground(new Color(255, 255, 255));
-		corr_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		corr_regist.setHorizontalAlignment(SwingConstants.CENTER);
 		corr_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 		
 		pur_regist.setBackground(new Color(255, 255, 255));
-		pur_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		pur_regist.setHorizontalAlignment(SwingConstants.CENTER);
 		pur_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		// 상품메뉴
@@ -209,23 +212,27 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Mn_pro.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 
 		model_look.setBackground(new Color(255, 255, 255));
-		model_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		model_look.setHorizontalAlignment(SwingConstants.CENTER);
 		model_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		model_regist.setBackground(new Color(255, 255, 255));
-		model_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		model_regist.setHorizontalAlignment(SwingConstants.CENTER);
 		model_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		pro_look.setBackground(new Color(255, 255, 255));
-		pro_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		pro_look.setHorizontalAlignment(SwingConstants.CENTER);
 		pro_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		pro_regist.setBackground(new Color(255, 255, 255));
-		pro_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		pro_regist.setHorizontalAlignment(SwingConstants.CENTER);
 		pro_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		
+		pro_up_rec_reg.setBackground(new Color(255, 255, 255));
+		pro_up_rec_reg.setHorizontalAlignment(SwingConstants.CENTER);
+		pro_up_rec_reg.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		pro_up_rec.setBackground(new Color(255, 255, 255));
-		pro_up_rec.setHorizontalAlignment(SwingConstants.TRAILING);
+		pro_up_rec.setHorizontalAlignment(SwingConstants.CENTER);
 		pro_up_rec.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		// 주문 메뉴
@@ -234,25 +241,25 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Mn_Od.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 
 		Od_deposit.setBackground(new Color(255, 255, 255));
-		Od_deposit.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_deposit.setHorizontalAlignment(SwingConstants.CENTER);
 		Od_deposit.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		Od_pre.setBackground(new Color(255, 255, 255));
-		Od_pre.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_pre.setHorizontalAlignment(SwingConstants.CENTER);
 		Od_pre.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		Od_change.setBackground(new Color(255, 255, 255));
-		Od_change.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_change.setHorizontalAlignment(SwingConstants.CENTER);
 		Od_change.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 		Od_change.setHorizontalAlignment(JLabel.CENTER);
 
 		Od_refund.setBackground(new Color(255, 255, 255));
-		Od_refund.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_refund.setHorizontalAlignment(SwingConstants.CENTER);
 		Od_refund.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 		Od_refund.setHorizontalAlignment(JLabel.CENTER);
 
 		Od_cancel.setBackground(new Color(255, 255, 255));
-		Od_cancel.setHorizontalAlignment(SwingConstants.TRAILING);
+		Od_cancel.setHorizontalAlignment(SwingConstants.CENTER);
 		Od_cancel.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 		Od_cancel.setHorizontalAlignment(JLabel.CENTER);
 
@@ -262,11 +269,11 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Mn_Emp.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 
 		Emp_look.setBackground(new Color(255, 255, 255));
-		Emp_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		Emp_look.setHorizontalAlignment(SwingConstants.CENTER);
 		Emp_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		Emp_regist.setBackground(new Color(255, 255, 255));
-		Emp_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		Emp_regist.setHorizontalAlignment(SwingConstants.CENTER);
 		Emp_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		// 회원메뉴
@@ -275,11 +282,11 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Mn_Mb.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 
 		Mb_look.setBackground(new Color(255, 255, 255));
-		Mb_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		Mb_look.setHorizontalAlignment(SwingConstants.CENTER);
 		Mb_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		Mb_grade.setBackground(new Color(255, 255, 255));
-		Mb_grade.setHorizontalAlignment(SwingConstants.TRAILING);
+		Mb_grade.setHorizontalAlignment(SwingConstants.CENTER);
 		Mb_grade.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		// 이벤트메뉴
@@ -288,11 +295,11 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Mn_EVT.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 
 		EVT_look.setBackground(new Color(255, 255, 255));
-		EVT_look.setHorizontalAlignment(SwingConstants.TRAILING);
+		EVT_look.setHorizontalAlignment(SwingConstants.CENTER);
 		EVT_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		EVT_regist.setBackground(new Color(255, 255, 255));
-		EVT_regist.setHorizontalAlignment(SwingConstants.TRAILING);
+		EVT_regist.setHorizontalAlignment(SwingConstants.CENTER);
 		EVT_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		Mn_POST.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -376,10 +383,10 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			repaint();
 			revalidate();
 		} else if (e.getSource() == model_regist) {
-			getContentPane().removeAll();
 			new RegModel(new JFrame());
-			add(MenuBar);
-			add(img_top);
+//			getContentPane().removeAll();
+//			add(MenuBar);
+//			add(img_top);
 //			Pmodel_regist.setSize(d.width / 2, d.height - 140);
 //			Pmodel_regist.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
 //			add(Pmodel_regist);
@@ -396,25 +403,29 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			repaint();
 			revalidate();
 		} else if (e.getSource() == pro_regist) {
-			getContentPane().removeAll();
 			new RegPro(new JFrame());
-			add(MenuBar);
-			add(img_top);
+//			getContentPane().removeAll();
+//			add(MenuBar);
+//			add(img_top);
 //			Ppro_regist.setSize(d.width / 2, d.height - 140);
 //			Ppro_regist.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
 //			add(Ppro_regist);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == pro_up_rec) {
+//			new RegProPrice(new JFrame());
 			getContentPane().removeAll();
-//			JPanel Ppro_up_rec = new RegProPrice();
-//			add(MenuBar);
-//			add(img_top);
-//			Ppro_up_rec.setSize(d.width / 2, d.height - 140);
-//			Ppro_up_rec.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-//			add(Ppro_up_rec);
-//			repaint();
-//			revalidate();
+			JPanel Ppro_up_rec = new Pro_up_rec();
+			add(MenuBar);
+			add(img_top);
+			Ppro_up_rec.setSize(d.width / 2, d.height - 140);
+			Ppro_up_rec.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+			add(Ppro_up_rec);
+			repaint();
+			revalidate();
+		}else if (e.getSource() == pro_up_rec_reg) {
+			new RegProPrice(new JFrame());
+
 		} else if (e.getSource() == Od_deposit) {
 			getContentPane().removeAll();
 			JPanel POd_deposit = new od_list_no_deposit();
@@ -476,6 +487,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Emp_regist) {
+			new emp_re(new JFrame());
 //			getContentPane().removeAll();
 //			JPanel PEmp_regist = new emp_re();
 //			add(MenuBar);
@@ -497,7 +509,6 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mb_grade) {
-//			getdata
 			getContentPane().removeAll();
 			JPanel PMb_gra = new mb_gra();
 			add(MenuBar);
@@ -518,15 +529,16 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			repaint();
 			revalidate();
 		} else if (e.getSource() == EVT_regist) {
-			getContentPane().removeAll();
-			JPanel PEvt_regist = new evt_regist();
-			add(MenuBar);
-			add(img_top);
-			PEvt_regist.setSize(d.width / 2, d.height - 140);
-			PEvt_regist.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			add(PEvt_regist);
-			repaint();
-			revalidate();
+			new evt_regist(new JFrame());
+//			getContentPane().removeAll();
+//			JPanel PEvt_regist = new evt_regist();
+//			add(MenuBar);
+//			add(img_top);
+//			PEvt_regist.setSize(d.width / 2, d.height - 140);
+//			PEvt_regist.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+//			add(PEvt_regist);
+//			repaint();
+//			revalidate();
 		}
 	}
 

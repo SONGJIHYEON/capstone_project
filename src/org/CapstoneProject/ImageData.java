@@ -235,11 +235,11 @@ public class ImageData {
 
 	}
 	
-	static List<Map<String, Serializable>> countBasicPrice(String filename2) {
+	static List<Map<String, Serializable>> countBasicPrice(String filename) {
 
 		quary = "select count(up) from model " + "join pro on model.MODEL_NUM = pro.MODEL_NUM "
 				+ "join pro_up_rec on PRO.PRO_NUM = PRO_UP_REC.PRO_NUM "
-				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + filename2 + "' order by up asc";
+				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + filename + "' order by up asc";
 
 		ImageListData.clear();
 
@@ -267,11 +267,11 @@ public class ImageData {
 	}
 
 
-	static List<Map<String, Serializable>> selectBasicPrice(String filename2) {
+	static List<Map<String, Serializable>> selectBasicPrice(String filename) {
 
 		quary = "select PRO_NM, up from model " + "join pro on model.MODEL_NUM = pro.MODEL_NUM "
 				+ "join pro_up_rec on PRO.PRO_NUM = PRO_UP_REC.PRO_NUM "
-				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + filename2 + "' order by up asc";
+				+ "where APP_END_DT = '9999-12-31' and model_img1 = '" + filename + "' order by up asc";
 
 		ImageListData.clear();
 

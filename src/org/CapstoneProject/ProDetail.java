@@ -210,12 +210,13 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 		gridbagAdd(vProImg, 0, 0, 2, 7);
 		gridbagAdd(vProNm, 2, 0, 3, 1);
 		gridbagAdd(vPrice, 2, 3, 1, 1);
+		gridbagAdd(xPrice, 3, 3, 2, 1);
 		gridbagAdd(vSize, 2, 1, 1, 1);
 		gridbagAdd(vColor, 2, 2, 1, 1);
 		gridbagAdd(vOption, 2, 4, 1, 1);
 		gridbagAdd(vAllPrice, 2, 5, 1, 1);
-		gridbagAdd(p, 0, 7, 5, 1);
-		gridbagAdd(Btclose, 0, 8, 5, 1);
+		gridbagAdd(xAllPrice, 3, 5, 2, 1);
+		gridbagAdd(p, 0, 7, 10, 10);
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(Btpurchase, 3, 6, 1, 1);
@@ -223,13 +224,11 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 		gridbagAdd(Cbsize, 3, 1, 1, 1);
 		gridbagAdd(Cbcolor, 3, 2, 1, 1);
 		gridbagAdd(BtPlus, 4, 4, 1, 1);
-		gridbagAdd(xPrice, 3, 3, 2, 1);
-		gridbagAdd(xAllPrice, 3, 5, 2, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
+		gridbagAdd(Btclose, 0, 18, 10, 10);
 		gridbagAdd(BtBasket, 4, 6, 1, 1);
 		gridbagAdd(BtMinus, 4, 4, 1, 1);
-
 		pack();
 		setVisible(true);
 	}
@@ -290,12 +289,11 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 		}
 		if (e.getSource() == Cbsize) {
 			String selectSize = Cbsize.getSelectedItem().toString();
-			if (!selectSize.equals("-----")) {
+			if (!selectSize.equals("----------")) {
 				getData2(ImageData.selectColor2(selectSize));
 				Cbcolor.setModel(new DefaultComboBoxModel(arColor.toArray()));
 				Cbcolor.setPreferredSize(new Dimension(120, 20));
 				arColor = null;
-
 			}
 			price = xPrice.getText();
 			intprice = Integer.parseInt(price);

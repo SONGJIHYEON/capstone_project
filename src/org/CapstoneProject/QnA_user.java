@@ -14,6 +14,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -49,7 +53,7 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 	JPanel Label = new JPanel();
 
 	private static String[] col1 = { "No", "유형", "제목", "작성자", "작성일" };
-	private String[] search = { "제목", "작성일" };
+	private String[] search = { "제목", "작성자" };
 
 	private static DefaultTableModel model1 = new DefaultTableModel(col1, 0) {
 		public boolean isCellEditable(int row, int column) {
@@ -62,6 +66,8 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 
 	private JButton bWrite, bSearch;
 	private JComboBox<String> cbSearch;
+	
+	ArrayList<String> ar = new ArrayList<String>();
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints;
@@ -100,14 +106,14 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 		Tsearch.setPreferredSize(new Dimension(150, 41));
 
 		tQnA = new JTable(model1);
-		tQnA.getColumnModel().getColumn(0).setPreferredWidth(100);
-		tQnA.getColumnModel().getColumn(1).setPreferredWidth(100);
-		tQnA.getColumnModel().getColumn(2).setPreferredWidth(600);
+		tQnA.getColumnModel().getColumn(0).setPreferredWidth(50);
+		tQnA.getColumnModel().getColumn(1).setPreferredWidth(50);
+		tQnA.getColumnModel().getColumn(2).setPreferredWidth(400);
 		tQnA.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tQnA.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tQnA.addMouseListener(this);
 		Scroll = new JScrollPane(tQnA);
-		Scroll.setPreferredSize(new Dimension(1000, 300));
+		Scroll.setPreferredSize(new Dimension(700, 300));
 
 		vNotice = new JLabel("· 공지사항");
 		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));
@@ -170,18 +176,28 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 		new QnA_user();
 	}
 
-	static void getData(List<Map<String, Serializable>> QnAListData) {
-
-		model1.setNumRows(0);
+	private void getData(List<Map<String, Serializable>> QnAListData) {
 
 		for (int i = 0; i < QnAListData.size(); i++) {
+			ar.add(QnAListData.get(i).get("WRT_DATE").toString());
+			
+			Date date = null;
+			try {
+				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar.get(i));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String new_WRT_DATE = new SimpleDateFormat("yyyy-MM-dd").format(date);
+			
+			
 			model1.addRow(new Object[] {
 
 					QnAListData.get(i).get("POST_MSG_NUM"), 
 					QnAListData.get(i).get("POST_MSG_TY"),
 					QnAListData.get(i).get("POST_MSG_TIT"), 
 					QnAListData.get(i).get("WRITER_NM"),
-					QnAListData.get(i).get("WRT_DATE")
+					new_WRT_DATE
 
 			});
 		}

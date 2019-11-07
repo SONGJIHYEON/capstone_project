@@ -199,7 +199,9 @@ static List<Map<String, Serializable>> searchPro3(String search) {
 
 	static List<Map<String, Serializable>> selectProMod() {
 		
-		quary = "select PRO_NUM, MODEL_NM, PRO_NM, CLR, SIZ from pro join model on pro.MODEL_NUM = model.MODEL_NUM order by PRO_NM asc";
+		quary = "select MODEL_NM, PRO_NM, CLR, SIZ, up from pro join model on pro.MODEL_NUM = model.MODEL_NUM "
+				+ "full outer join pro_up_rec on pro.pro_num = pro_up_rec.pro_num "
+				+ "where APP_END_DT = '9999-12-31' or up is null order by PRO_NM asc";
 	
 	ProListData.clear();
 	
@@ -211,11 +213,11 @@ static List<Map<String, Serializable>> searchPro3(String search) {
 			
 			ProdataSet = new HashMap<String, Serializable>();
 			
-			ProdataSet.put("PRO_NUM", rs.getString(1)); 
-			ProdataSet.put("MODEL_NM", rs.getString(2));
-			ProdataSet.put("PRO_NM", rs.getString(3));
-			ProdataSet.put("CLR", rs.getString(4));
-			ProdataSet.put("SIZ", rs.getString(5));
+			ProdataSet.put("MODEL_NM", rs.getString(1)); 
+			ProdataSet.put("PRO_NM", rs.getString(2));
+			ProdataSet.put("CLR", rs.getString(3));
+			ProdataSet.put("SIZ", rs.getString(4));
+			ProdataSet.put("up", rs.getString(5));
 	
 	//			ProdataSet.put("FIRST_CTGR", rs.getString(2)); 
 	

@@ -110,6 +110,8 @@ public class ProImage extends JPanel implements MouseListener {
 
 		price = "";
 		price += ImageListData.get(0).get("UP").toString();
+		
+		System.out.println(price);
 
 		return price;
 	}
@@ -135,13 +137,15 @@ public class ProImage extends JPanel implements MouseListener {
 
 	public static void getData10(List<Map<String, Serializable>> ImageListData) {
 
+		System.out.println(ImageListData.get(0).get("up").toString());
+		
 		if (ImageListData.get(0).get("up").toString().equals("0")) {
 			JOptionPane.showMessageDialog(null, "준비중인 상품입니다.", "", JOptionPane.ERROR_MESSAGE);
 		} else {
-			priceData = getData7(ImageData.selectBasicPrice(fileName));
-			ProDetail prod = new ProDetail(new JFrame());
+//			priceData = getData7(ImageData.selectBasicPrice(fileName));
 			JOptionPane.showMessageDialog(null, "사이즈와 색상을 반드시 선택하여주세요. 각 사이즈와 색상별로 가격이 상이합니다.", "",
 					JOptionPane.INFORMATION_MESSAGE);
+			ProDetail prod = new ProDetail(new JFrame());
 		}
 		return;
 	}
@@ -228,11 +232,11 @@ public class ProImage extends JPanel implements MouseListener {
 				ctgrData = getData4(ImageData.selectCtgr(fileName));
 				sizeData = getData5(ImageData.selectSize(fileName));
 				colorData = getData6(ImageData.selectColor(fileName));
-				priceData = getData7(ImageData.selectBasicPrice(fileName));
+//				priceData = getData7(ImageData.selectBasicPrice(fileName));
 				modelnameData = getData8(ImageData.selectModelname(fileName));
 				getData10(ImageData.countBasicPrice(fileName));
 
-				ProDetail prod = new ProDetail(new JFrame());
+//				ProDetail prod = new ProDetail(new JFrame());
 			}
 
 		}

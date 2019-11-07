@@ -12,6 +12,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.AbstractCellEditor;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -24,6 +25,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+
+import org.CapstoneProject.Basket.TableCell2;
 
 public class ManPro extends JPanel {
 	private JLabel vAdminPro2;
@@ -37,7 +42,7 @@ public class ManPro extends JPanel {
 //	private String[] ctgr2_4 = {"코트", "가디건", "조끼", "집업", "패딩", "점퍼", "야상", "재킷"};
 //	private String[] ctgr2_5 = {"스티커즈", "운동화", "슬리퍼", "로퍼", "구두", "워커", "부츠", "샌들"};
 
-	private String[] col1 = { "No", "모델명", "상품명", "색상", "사이즈" };
+	private String[] col1 = { "모델명", "상품명", "색상", "사이즈", "단가" };
 	private String[] search = { "모델명", "색상", "사이즈" };
 
 //  private String[] div = {"정규직", "임시직", "계약직"};      // 사원구분 콤보박스의 목록
@@ -51,6 +56,8 @@ public class ManPro extends JPanel {
 	private JButton BtSearch, BtReg;
 	private JComboBox<String> CbSearch, Cbctgr1, CbCbctgr2_1, CbCbctgr2_2, CbCbctgr2_3, CbCbctgr2_4, CbCbctgr2_5;
 
+	int row;
+	
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 
@@ -113,24 +120,21 @@ public class ManPro extends JPanel {
 		add(c);
 
 	}
-
-	public void paintComponent(Graphics g) {
-		g.drawImage(manager_main.img, 0, 0, null);
-		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
-		super.paintComponent(g);
-	}
-
-	public static void main(String[] args) {
-		new ManPro();
-	}
-
+	
 	private void getData(List<Map<String, Serializable>> ProListData) {
 
 		for (int i = 0; i < ProListData.size(); i++) {
 			model1.addRow(new Object[] {
-
-					ProListData.get(i).get("PRO_NUM"), ProListData.get(i).get("MODEL_NM"),
-					ProListData.get(i).get("PRO_NM"), ProListData.get(i).get("CLR"), ProListData.get(i).get("SIZ") });
+					
+					ProListData.get(i).get("MODEL_NM"),
+					ProListData.get(i).get("PRO_NM"),
+					ProListData.get(i).get("CLR"),
+					ProListData.get(i).get("SIZ"),
+					ProListData.get(i).get("up") });
 		}
+	}
+
+	public static void main(String[] args) {
+		new ManPro();
 	}
 }

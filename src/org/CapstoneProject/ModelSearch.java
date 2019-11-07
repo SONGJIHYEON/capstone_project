@@ -1,5 +1,4 @@
 
-  
 package org.CapstoneProject;
 
 import java.awt.Component;
@@ -95,7 +94,7 @@ public class ModelSearch extends Dialog implements MouseListener, ActionListener
 					ModelListData.get(i).get("TOP_CLOTH_CTGR"),
 					ModelListData.get(i).get("BOT_CLOTH_CTGR"),
 					ModelListData.get(i).get("OUTER_CTGR"),
-					ModelListData.get(i).get("SHIR_CTGR"),
+					ModelListData.get(i).get("SHIR_CTGR"), 
 					ModelListData.get(i).get("SHOOSE_CTGR"), });
 		}
 	}
@@ -207,4 +206,3 @@ public class ModelSearch extends Dialog implements MouseListener, ActionListener
 
 	}
 }
-

@@ -37,7 +37,7 @@ public class evtData {
 
    }
 
-   static void createevt1(String evt_tp, String evt_st_dt, String evt_fn_dt, String obj_model, String gift_model) {
+   static void createEvt1(String evt_tp, String evt_st_dt, String evt_fn_dt, String obj_model, String gift_model) {
       quary = "INSERT INTO evt VALUES (SEQ_EVT_NUM.NEXTVAL, '" + evt_tp + "', to_date('" + evt_st_dt + "', 'yyyy-mm-dd'), "
             + "to_date('" + evt_fn_dt + "', 'yyyy-mm-dd'), '" + obj_model + "', '" + gift_model + "', null, null)";
 
@@ -51,7 +51,7 @@ public class evtData {
 
    }
 
-   static void createevt2(String evt_tp, String evt_st_dt, String evt_fn_dt, String obj_model, String evt_sale) {
+   static void createEvt2(String evt_tp, String evt_st_dt, String evt_fn_dt, String obj_model, String evt_sale) {
       quary = "INSERT INTO evt VALUES (SEQ_EVT_NUM.NEXTVAL, '" + evt_tp + "', to_date('" + evt_st_dt+ "', 'yyyy-mm-dd'), "
             + "to_date('" + evt_fn_dt + "', 'yyyy-mm-dd'), '" + obj_model + "',null, '" + evt_sale + "', null)";
 
@@ -65,7 +65,7 @@ public class evtData {
 
    }
 
-   static void createevt3(String evt_tp, String evt_st_dt, String evt_fn_dt, String obj_model, String evt_point) {
+   static void createEvt3(String evt_tp, String evt_st_dt, String evt_fn_dt, String obj_model, String evt_point) {
       quary = "INSERT INTO evt VALUES (SEQ_EVT_NUM.NEXTVAL, '" + evt_tp + "', to_date('" + evt_st_dt+ "', 'yyyy-mm-dd'), "
             + "to_date('" + evt_fn_dt + "', 'yyyy-mm-dd'),  '" + obj_model + "',null, null,'" + evt_point +"')";
 
@@ -79,7 +79,7 @@ public class evtData {
 
    }
    
-   static void createevt_obj(String evt_num, String obj_model_num) {
+   static void createEvt_obj(String evt_num, String obj_model_num) {
       quary = "INSERT INTO evt_obj_model VALUES ()";
 
       try {
@@ -92,7 +92,7 @@ public class evtData {
 
    }
    
-   static List<Map<String, Serializable>> selectevt() {
+   static List<Map<String, Serializable>> selectEvt() {
 
       quary = " SELECT  EVT_TP, EVT_ST_DT, EVT_END_DT, model_nm, DISC_RT, ADD_PNT "
             + "FROM  MODEL JOIN evt ON Model.model_num = evt.OBJ_MODEL";
@@ -128,7 +128,7 @@ public class evtData {
 
    }
 
-   static List<Map<String, Serializable>> selectevt1(String search) {
+   static List<Map<String, Serializable>> selectEvt1(String search) {
 
       quary = " SELECT  EVT_TP, EVT_ST_DT, EVT_END_DT, model_nm, DISC_RT, ADD_PNT "
             + "FROM  MODEL JOIN evt ON Model.model_num = evt.GIFT_MODEL_NUM where EVT_TP = '" + search + "' ";
@@ -164,7 +164,7 @@ public class evtData {
 
    }
    
-   static List<Map<String, Serializable>> selectevt2(String search) {
+   static List<Map<String, Serializable>> selectEvt2(String search) {
 
       quary = " SELECT  EVT_TP, EVT_ST_DT, EVT_END_DT, model_nm, DISC_RT, ADD_PNT "
             + "FROM  MODEL JOIN evt ON Model.model_num = evt.GIFT_MODEL_NUM where model_nm = '" + search + "' ";

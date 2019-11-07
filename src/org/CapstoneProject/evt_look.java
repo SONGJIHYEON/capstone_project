@@ -8,6 +8,10 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -31,7 +35,7 @@ public class evt_look extends JPanel implements ActionListener {
    private JTextField Tsearch;
 
    private String[] col1 = { "이벤트구분", "시작일자", "종료일자", "해당모델명", "할인율", "포인트" };
-   private String[] search = { "이벤트구분", "이벤트대상모델명" };
+   private String[] search = { "이벤트구분", "이벤트대상 모델명" };
 
    private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 
@@ -41,7 +45,10 @@ public class evt_look extends JPanel implements ActionListener {
    private JButton Bsearch, Breset, jb;
 
    private JComboBox<String> cbSearch;
-
+   
+   ArrayList<String> ar = new ArrayList<String>();
+   ArrayList<String> ar2 = new ArrayList<String>();
+   
    String model_nm;
 
    GridBagLayout gridbaglayout;
@@ -73,17 +80,37 @@ public class evt_look extends JPanel implements ActionListener {
 
 //         evt_info.getColumnModel().getColumns(4).setCellRenderer(new TableCell());
 //         evt_info.getColumnModel().getColumn(4).setCellEditor(new TableCell());
+      getData(evtData.selectEvt());
       evtRegisterView();
    }
 
    private void getData(List<Map<String, Serializable>> evtListData) {
 
       for (int i = 0; i < evtListData.size(); i++) {
+    	  
+			ar.add(evtListData.get(i).get("EVT_ST_DT").toString());
+			ar2.add(evtListData.get(i).get("EVT_END_DT").toString());
+			
+//			String oldstring = ex_st_date;
+			
+			Date date = null;
+			Date date2 = null;
+			
+			try {
+				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar.get(i));
+				date2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar2.get(i));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String new_EVT_ST_DT = new SimpleDateFormat("yyyy-MM-dd").format(date);
+			String new_EVT_END_DT = new SimpleDateFormat("yyyy-MM-dd").format(date2);
+    	  
          model1.addRow(new Object[] {
 
                evtListData.get(i).get("EVT_TP"), 
-               evtListData.get(i).get("EVT_ST_DT"),
-               evtListData.get(i).get("EVT_END_DT"), 
+               new_EVT_ST_DT,
+               new_EVT_END_DT,
                evtListData.get(i).get("model_nm"),
                evtListData.get(i).get("DISC_RT"), 
                evtListData.get(i).get("ADD_PNT")
@@ -145,12 +172,11 @@ public class evt_look extends JPanel implements ActionListener {
          String search = Tsearch.getText();
          if(cbSearch.getSelectedItem() == "이벤트구분") {
             model1.setRowCount(0);
-            getData(evtData.selectevt1(search));
+            getData(evtData.selectEvt1(search));
          }else if(cbSearch.getSelectedItem() == "이벤트대상모델명") {
             model1.setRowCount(0);
-            getData(evtData.selectevt2(search));
+            getData(evtData.selectEvt2(search));
          }
-         getData(evtData.selectevt());
       }
 
    }
