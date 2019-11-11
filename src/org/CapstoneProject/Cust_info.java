@@ -36,6 +36,7 @@ public class Cust_info extends JPanel  {
    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
    
    JLabel CUST_NM, CUST_RT, CUST_PT, hello, rtinfo, ptinfo, GoodDay, end1, end2;
+   JButton Blogout;
 
    GridBagLayout gridbaglayout;
    GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
@@ -66,6 +67,9 @@ public class Cust_info extends JPanel  {
       end2 = new JLabel("원 입니다.");
       end2.setFont(new Font("휴먼매직체", Font.PLAIN, 15));
       
+      Blogout = new JButton("로그아웃");
+      Blogout.setPreferredSize(new Dimension(100, 30));
+      
       Cust_infoView();
    }
 
@@ -84,8 +88,8 @@ public class Cust_info extends JPanel  {
       gridbagAdd(CUST_NM, 0, 0, 1, 1);
       gridbagAdd(CUST_RT, 1, 1, 1, 1);
       gridbagAdd(CUST_PT, 1, 2, 1, 1);
-      
       gridbagAdd(GoodDay, 0, 3, 3, 1);
+      gridbagAdd(Blogout, 0, 4, 3, 1);
       
       gridbagconstraints.anchor = GridBagConstraints.EAST;
       

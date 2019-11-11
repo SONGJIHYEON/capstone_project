@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
@@ -29,14 +28,14 @@ import javax.swing.table.TableCellRenderer;
 
 public class pur_list extends JPanel implements ActionListener {
 
-	private static String[] col1 = { "구매번호", "구매일자", "총금액", "" };
+	private static String[] col1 = { "구매번호", "구매일자", "총금액", "상세내역조회" };
 
 	private static DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 
 	private JTable pur_info;
 	private JScrollPane scrollpane1;
 
-	private JButton Bpur_regist, jb;
+	private JButton jb;
 
 	static String pur_num, pur_num2;
 
@@ -49,13 +48,11 @@ public class pur_list extends JPanel implements ActionListener {
 
 		pur_info = new JTable(model1);
 		scrollpane1 = new JScrollPane(pur_info);
-		scrollpane1.setPreferredSize(new Dimension(600, 300));
-
-		Bpur_regist = new JButton("구매등록");
-		Bpur_regist.addActionListener(this);
-		Bpur_regist.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		Bpur_regist.setPreferredSize(new Dimension(100, 40));
-		Bpur_regist.setBackground(Color.WHITE);
+		scrollpane1.setPreferredSize(new Dimension(400, 300));
+		pur_info.getColumnModel().getColumn(0).setPreferredWidth(50);
+		pur_info.getColumnModel().getColumn(1).setPreferredWidth(100);
+		pur_info.getColumnModel().getColumn(2).setPreferredWidth(100);
+		pur_info.getColumnModel().getColumn(3).setPreferredWidth(150);
 
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
@@ -80,7 +77,6 @@ public class pur_list extends JPanel implements ActionListener {
 		gridbagAdd(scrollpane1, 0, 0, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(Bpur_regist, 0, 1, 1, 1);
 
 		System.out.println(corr_look.corr_num);
 
@@ -110,19 +106,11 @@ public class pur_list extends JPanel implements ActionListener {
 
 		for (int i = 0; i < purListData.size(); i++) {
 			model1.addRow(new Object[] {
-
-					purListData.get(i).get("PUR_NUM"), purListData.get(i).get("PUR_DT"),
+					purListData.get(i).get("PUR_NUM"), 
+					purListData.get(i).get("PUR_DT"),
 					purListData.get(i).get("TOT_PR")
-
 			});
 		}
-
-	}
-
-	public void paintComponent(Graphics g) {
-		g.drawImage(manager_main.img, 0, 0, null);
-		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
-		super.paintComponent(g);
 	}
 
 	public static void main(String[] args) {
@@ -171,10 +159,6 @@ public class pur_list extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource() == Bpur_regist) {
-			pur_regist s = new pur_regist(new JFrame());
-		}
-
 	}
 
 }

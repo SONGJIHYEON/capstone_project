@@ -148,10 +148,11 @@ public class Basket_Dialog extends Dialog implements MouseListener, ActionListen
 		gridbagAdd(xDiscount, 3, 12, 1, 1);
 		gridbagAdd(xPrice, 5, 12, 1, 1);
 		gridbagAdd(vPoint, 5, 12, 1, 1);
-		gridbagAdd(xPoint, 5, 12, 1, 1);
+		
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtDelBasket, 11, 12, 1, 1);
 		gridbagAdd(BtClose, 11, 13, 1, 1);
+		
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(BtOrder, 10, 13, 1, 1);
 

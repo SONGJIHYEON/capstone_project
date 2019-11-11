@@ -59,6 +59,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	static JPanel M_P = new Mypage();
 	static JPanel P_I = new ProImage();
 	static JPanel M_M = new JPanel();
+	static JPanel Od_list = new Od_list();
 
 	static BackgroundMenuBar MenuBar1 = new BackgroundMenuBar();
 	JMenu Home = new JMenu(" 홈 ");
@@ -197,13 +198,16 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		img_top.setIcon(Icon);
 		img_top.setBounds(0, 0, d.width / 4, 100);
 
+		Cust_info.setBounds(0, 100, 340, 160);
+		Cust_info.setBackground(new Color(200, 200, 255));
+
 		img_left_b = new JLabel("");
 		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\홈유저 좌하단.png");
 		originImg = originIcon.getImage();
-		changedImg = originImg.getScaledInstance(d.width / 6, (d.height - 150) / 2, Image.SCALE_SMOOTH);
+		changedImg = originImg.getScaledInstance(175, 175, Image.SCALE_SMOOTH);
 		Icon = new ImageIcon(changedImg);
 		img_left_b.setIcon(Icon);
-		img_left_b.setBounds(0, 100 + (d.height - 100) / 2, d.width / 6, (d.height - 150) / 2);
+		img_left_b.setBounds(0, 530, 340, 175);
 
 		jean = new JLabel("");
 		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\청바지.jpg");
@@ -211,16 +215,16 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		changedImg = originImg.getScaledInstance(d.width / 4, 100, Image.SCALE_SMOOTH);
 		Icon = new ImageIcon(changedImg);
 		jean.setIcon(Icon);
-		jean.setBounds(0, 100, d.width / 4, 100);
+		jean.setBounds(0, 345, 340, 100);
 
-		jean2 = new JLabel("");
-		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\청바지2.jpg");
-		originImg = originIcon.getImage();
-		changedImg = originImg.getScaledInstance((d.width / 4) - (d.width / 6), (d.height - 150) / 2,
-				Image.SCALE_SMOOTH);
-		Icon = new ImageIcon(changedImg);
-		jean2.setIcon(Icon);
-		jean2.setBounds(d.width / 6, 100 + (d.height - 100) / 2, (d.width / 4) - (d.width / 6), (d.height - 150) / 2);
+//		jean2 = new JLabel("");
+//		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\청바지2.jpg");
+//		originImg = originIcon.getImage();
+//		changedImg = originImg.getScaledInstance((d.width / 4) - (d.width / 6), (d.height - 150) / 2,
+//				Image.SCALE_SMOOTH);
+//		Icon = new ImageIcon(changedImg);
+//		jean2.setIcon(Icon);
+//		jean2.setBounds(d.width / 6, 100 + (d.height - 100) / 2, (d.width / 4) - (d.width / 6), (d.height - 150) / 2);
 
 		shoose = new JLabel("");
 		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\신발.jpg");
@@ -228,10 +232,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		changedImg = originImg.getScaledInstance(d.width / 4, 150, Image.SCALE_SMOOTH);
 		Icon = new ImageIcon(changedImg);
 		shoose.setIcon(Icon);
-		shoose.setBounds(0, 200, d.width / 4, (d.height - 600) / 2);
-
-		Cust_info.setBounds(0, 200 + (d.height - 600) / 2, d.width / 4, 150);
-		Cust_info.setBackground(new Color(200, 200, 255));
+		shoose.setBounds(0, 445, 340, 85);
 
 		home_userView();
 		if (ProDetail.state == 1) {
@@ -399,7 +400,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Sho_8.setBackground(new Color(255, 255, 255));
 		Sho_8.setFont(new Font("  ", Font.BOLD, 15));
 
-		setLayout(null);
+		getContentPane().setLayout(null);
 
 		win.add(MenuBar1);
 		win.add(MenuBar2);
@@ -408,9 +409,8 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		win.add(img_left_b);
 		win.add(Cust_info);
 		win.add(jean);
-		win.add(jean2);
+//		win.add(jean2);
 		win.add(shoose);
-		
 
 //      setLayout(gbl);
 //      gbc.anchor = GridBagConstraints.EAST;
@@ -430,13 +430,13 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 		gbl.setConstraints(c, gbc); // 컴포넌트를 컴포넌트 위치+크기 정보에 따라 GridBagLayout에 배치
 
-		add(c);
+		getContentPane().add(c);
 
 	}
 
 	public static void main(String[] args) {
 		new home_user();
-		
+
 	}
 
 	@Override
@@ -452,7 +452,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 			win.add(img_left_b);
 			win.add(Cust_info);
 			win.add(jean);
-			win.add(jean2);
+//			win.add(jean2);
 			win.add(shoose);
 			repaint();
 			revalidate();
@@ -464,7 +464,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 			win.add(img_left_b);
 			win.add(Cust_info);
 			win.add(jean);
-			win.add(jean2);
+//			win.add(jean2);
 			win.add(shoose);
 			B_K.setSize(d.width * 3 / 4, d.height - 100);
 			B_K.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
@@ -479,7 +479,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 			win.add(img_left_b);
 			win.add(Cust_info);
 			win.add(jean);
-			win.add(jean2);
+//			win.add(jean2);
 			win.add(shoose);
 			O_P.setSize(d.width * 3 / 4, d.height - 100);
 			O_P.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
@@ -494,11 +494,14 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 			win.add(img_left_b);
 			win.add(Cust_info);
 			win.add(jean);
-			win.add(jean2);
+//			win.add(jean2);
 			win.add(shoose);
-			M_P.setSize(d.width * 3 / 4, d.height - 100);
-			M_P.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
+//			M_P.setSize(d.width * 3 / 4, d.height - 100);
+			M_P.setBounds(350, 160, 385, 500);
 			win.add(M_P);
+//			Od_list.setSize(d.width * 3 / 4, d.height - 100);
+			Od_list.setBounds(745, 160, 600, 245);
+			win.add(Od_list);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mn_Post) {
@@ -509,27 +512,27 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 			win.add(img_left_b);
 			win.add(Cust_info);
 			win.add(jean);
-			win.add(jean2);
+//			win.add(jean2);
 			win.add(shoose);
 			Label.setBounds(360, 260, 150, 150);
 			N_U.setSize(d.width * 3 / 4, d.height - 100);
 			N_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
-			add(Label);
-			add(N_U);
+			getContentPane().add(Label);
+			getContentPane().add(N_U);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vNotice) {
 			win.remove(Q_U);
 			N_U.setSize(d.width * 3 / 4, d.height - 100);
 			N_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
-			add(N_U);
+			getContentPane().add(N_U);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vQnA) {
 			win.remove(N_U);
 			Q_U.setSize(d.width * 3 / 4, d.height - 100);
 			Q_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
-			add(Q_U);
+			getContentPane().add(Q_U);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mn_Logout) {
@@ -577,5 +580,4 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 	}
-
 }

@@ -142,12 +142,11 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 //         
 //         gridbagconstraints.weightx=1.0;
 //         gridbagconstraints.weighty=1.0;
+		gridbagAdd(Bregist, 1, 10, 1, 1);
 
 		setLayout(gridbaglayout);
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
-		gridbagAdd(Bregist, 0, 10, 1, 1);
-		gridbagAdd(Bcancel, 1, 10, 1, 1);
 
 		// 구매내역
 		gridbagAdd(Lcorr_nm, 0, 0, 1, 1);
@@ -173,6 +172,7 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 		gridbagAdd(scrollpane1, 0, 7, 3, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
+		gridbagAdd(Bcancel, 1, 10, 1, 1);
 
 		pack();
 		setResizable(true);
@@ -263,7 +263,7 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 				}
 
 				if (pur_list.getRowCount() == 0) {
-					JOptionPane.showMessageDialog(null, "상품이 추가가 안되었습니다..", "오류", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "상품이 추가되지 않았습니다.", "오류", JOptionPane.ERROR_MESSAGE);
 				} else {
 					System.out.println(pur_num);
 					for (int i = 0; i < pur_list.getRowCount(); i++) {

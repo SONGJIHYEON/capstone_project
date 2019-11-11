@@ -197,18 +197,5 @@ public class Address extends Dialog implements ActionListener, MouseListener{
 			getData(AddrData.SearchAddr(Tsearch.getText()));
 			
 		}
-	}   
-      
-//      public void actionPerformed(ActionEvent e) {
-//		// TODO Auto-generated method stub
-//		if(e.getSource() == Bsearch) {
-//			JOptionPane.showConfirmDialog(null, "고객으로 등록하시겠습니까?", "등록 확인", JOptionPane.YES_NO_OPTION,
-//		               JOptionPane.INFORMATION_MESSAGE);
-//
-//			if(close == 0) {
-//				dispose();
-//			}
-//		}
-//	}
-         
+	}            
 }

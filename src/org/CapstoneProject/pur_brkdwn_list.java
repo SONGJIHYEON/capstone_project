@@ -5,7 +5,6 @@ import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -30,8 +29,6 @@ public class pur_brkdwn_list extends JPanel implements ActionListener {
 	private JTable pur_info;
 	private JScrollPane scrollpane1;
 
-	private JButton Bpur_brkdwn_regist;
-
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
@@ -43,13 +40,8 @@ public class pur_brkdwn_list extends JPanel implements ActionListener {
 		scrollpane1 = new JScrollPane(pur_info);
 		scrollpane1.setPreferredSize(new Dimension(600, 300));
 
-		Bpur_brkdwn_regist = new JButton("구매내역등록");
-		Bpur_brkdwn_regist.addActionListener(this);
-		Bpur_brkdwn_regist.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		Bpur_brkdwn_regist.setPreferredSize(new Dimension(150, 40));
-		Bpur_brkdwn_regist.setBackground(Color.WHITE);
-
 //         getDeptData(EmpData.selectDept());
+
 //         getSvpData(EmpData.selectSpv());
 		EmpRegisterView();
 	}
@@ -68,7 +60,6 @@ public class pur_brkdwn_list extends JPanel implements ActionListener {
 		gridbagAdd(scrollpane1, 0, 0, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(Bpur_brkdwn_regist, 0, 1, 1, 1);
 
 		getData(pur_brkdwn_Data.selectpur_brkdwn_Data(pur_list.pur_num));
 		setVisible(true);
@@ -82,8 +73,10 @@ public class pur_brkdwn_list extends JPanel implements ActionListener {
 
 			model1.addRow(new Object[] {
 
-					pur_brkdwnListData.get(i).get("BRKDWN_NUM"), pur_brkdwnListData.get(i).get("PRO_NM"),
-					pur_brkdwnListData.get(i).get("PUR_QUANT"), pur_brkdwnListData.get(i).get("PUR_UP"),
+					pur_brkdwnListData.get(i).get("BRKDWN_NUM"),
+					pur_brkdwnListData.get(i).get("PRO_NM"),
+					pur_brkdwnListData.get(i).get("PUR_QUANT"), 
+					pur_brkdwnListData.get(i).get("PUR_UP"),
 					pur_brkdwnListData.get(i).get("PR")
 
 			});
@@ -106,12 +99,6 @@ public class pur_brkdwn_list extends JPanel implements ActionListener {
 
 	}
 
-	public void paintComponent(Graphics g) {
-		g.drawImage(manager_main.img, 0, 0, null);
-		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
-		super.paintComponent(g);
-	}
-
 	public static void main(String[] args) {
 		new pur_brkdwn_list();
 	}
@@ -119,9 +106,6 @@ public class pur_brkdwn_list extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource() == Bpur_brkdwn_regist) {
-			pur_brkdwn_regist s = new pur_brkdwn_regist(new JFrame());
-		}
 
 	}
 

@@ -131,30 +131,39 @@ public class OrderData {
 		return OrderListData;
 
 	}
-//
-//	static void createMbgraF(double modrate) {
-//
-//		quary1 = "update gra_rec SET DISC_APP_END_DT = TO_CHAR(SYSDATE-1, 'YYYY-MM-DD') WHERE gra_tp = 'F' AND DISC_APP_END_DT = '9999-12-31'";
-//
-//		quary2 = "insert into gra_rec values ('F', TO_CHAR(SYSDATE, 'YYYY-MM-DD') , '9999-12-31', " + " '" + modrate
-//				+ "')";
-//
-//		try {
-//			pstm = conn.prepareStatement(quary1);
-//			pstm.executeQuery();
-//		} catch (SQLException sqle) {
-//			System.out.println("select문에서 예외 발생");
-//			sqle.printStackTrace();
-//		}
-//		try {
-//			pstm = conn.prepareStatement(quary2);
-//			pstm.executeQuery();
-//		} catch (SQLException sqle) {
-//			System.out.println("select문에서 예외 발생");
-//			sqle.printStackTrace();
-//		}
-//
-//	}
+	
+	static List<Map<String, Serializable>> searchOd_list() {
+
+		quary1 = "select OD_DATE, PRO_NM, QUANT, OD_PR, OD_COND_TP "
+				+ "from od join od_brkdwn on od.od_num = od_brkdwn.od_num join pro on od_brkdwn.pro_num = pro.pro_num";
+
+		OrderListData.clear();
+
+		try {
+			System.out.println(quary1);
+			pstm = conn.prepareStatement(quary1, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				OrderdataSet = new HashMap<String, Serializable>();
+
+				OrderdataSet.put("OD_DATE", rs.getString(1));
+				OrderdataSet.put("PRO_NM", rs.getString(2));
+				OrderdataSet.put("QUANT", rs.getString(3));
+				OrderdataSet.put("OD_PR", rs.getString(4));
+				OrderdataSet.put("OD_COND_TP", rs.getString(5));
+
+				OrderListData.add(OrderdataSet);
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return OrderListData;
+
+	}
 
 //
 //	static List<Map<String, Serializable>> MbgraV() {

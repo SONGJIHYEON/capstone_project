@@ -293,7 +293,7 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 				getData2(ImageData.selectColor2(selectSize));
 				Cbcolor.setModel(new DefaultComboBoxModel(arColor.toArray()));
 				Cbcolor.setPreferredSize(new Dimension(120, 20));
-				arColor = null;
+//				arColor = null;
 			}
 			price = xPrice.getText();
 			intprice = Integer.parseInt(price);

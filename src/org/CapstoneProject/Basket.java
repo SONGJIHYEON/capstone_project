@@ -111,10 +111,10 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 
 		BtOrder = new JButton("주문하기");
 		BtOrder.addActionListener(this);
-//        BtOrder.setPreferredSize(new Dimension(130,28));
-		BtShopping = new JButton("쇼핑 계속하기");
-		BtShopping.setPreferredSize(new Dimension(130, 28));
-		BtShopping.addActionListener(this);
+        BtOrder.setPreferredSize(new Dimension(130,28));
+//		BtShopping = new JButton("쇼핑 계속하기");
+//		BtShopping.setPreferredSize(new Dimension(130, 28));
+//		BtShopping.addActionListener(this);
 		BtDelBasket = new JButton("장바구니 비우기");
 		BtDelBasket.addActionListener(this);
 		BtDelBasket.setPreferredSize(new Dimension(130, 28));
@@ -146,11 +146,10 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 		gridbagAdd(xProPrice, 1, 12, 1, 1);
 		gridbagAdd(xDiscount, 3, 12, 1, 1);
 		gridbagAdd(xPrice, 5, 12, 1, 1);		
-//		gridbagAdd(vPoint, 5, 12, 1, 1);
-		gridbagAdd(xPoint, 5, 12, 1, 1);
+//		gridbagAdd(xPoint, 5, 12, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtDelBasket, 11, 12, 1, 1);
-		gridbagAdd(BtShopping, 11, 13, 1, 1);
+//		gridbagAdd(BtShopping, 11, 13, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(BtOrder, 10, 13, 1, 1);
 

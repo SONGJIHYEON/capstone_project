@@ -64,7 +64,7 @@ public class corr_regist extends Dialog implements ActionListener {
 
 		Tcorr_nm = new JTextField(18);
 		Tcorr_nm.setPreferredSize(new Dimension(100, 30));
-		Tcorr_nm.setHorizontalAlignment(SwingConstants.CENTER);
+//		Tcorr_nm.setHorizontalAlignment(SwingConstants.CENTER);
 		Tcorr_prnm = new JTextField(18);
 		Tcorr_prnm.setPreferredSize(new Dimension(100, 30));
 		Tcorr_ph = new JTextField(18);
@@ -126,9 +126,10 @@ public class corr_regist extends Dialog implements ActionListener {
 //         
 //         gridbagconstraints.weightx=1.0;
 //         gridbagconstraints.weighty=1.0;
-		gridbagAdd(Bregist, 2, 9, 1, 1);
 
 		setLayout(gridbaglayout);
+		gridbagAdd(Bregist, 2, 9, 1, 1);
+		
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
 		gridbagAdd(corr_regist2, 1, 1, 1, 1);
@@ -200,6 +201,10 @@ public class corr_regist extends Dialog implements ActionListener {
 					Tcorr_prnm.setText("");
 					Tcorr_ph.setText("");
 					Tcorr_addr.setText("");
+					xMemAddr1.setText("");
+					xMemAddr2.setText("");
+					xMemAddr3.setText("");
+					
 				}
 
 			} else if (result == 1) {

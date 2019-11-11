@@ -45,7 +45,7 @@ public class QnAData {
 
 	static void createA(String POST_NUM, String Title, String content, String writer ) {
 		quary = "INSERT INTO POST_MSG VALUES ('"+POST_NUM+"', 'QnA', '"+Title+"', to_char(sysdate, 'yyyy-mm-dd'), '"+content+"', "
-				+ "  '문의', null, null, '"+writer+"')";
+				+ "  '답변', null, null, '"+writer+"')";
 		try {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();

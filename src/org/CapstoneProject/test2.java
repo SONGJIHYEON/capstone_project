@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class pur_look extends JFrame implements ActionListener {
+public class test2 extends JFrame implements ActionListener {
 
 	JPanel pur_list = new pur_list();
 	JPanel pur_brkdwn_list = new pur_brkdwn_list();
@@ -36,7 +36,7 @@ public class pur_look extends JFrame implements ActionListener {
 
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-	public pur_look() {
+	public test2() {
 //		pur_list.setSize(d.width / 3, d.height / 2);
 		pur_list.setBounds(0, 0, 440, 380);
 //		pur_brkdwn_list.setSize(d.width / 3, d.height / 2);
@@ -57,7 +57,7 @@ public class pur_look extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new pur_look();
+		new test2();
 	}
 
 	@Override

@@ -103,7 +103,7 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 
 		Tsearch = new JTextField(15);
 		Tsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		Tsearch.setPreferredSize(new Dimension(150, 41));
+		Tsearch.setPreferredSize(new Dimension(150, 40));
 
 		tQnA = new JTable(model1);
 		tQnA.getColumnModel().getColumn(0).setPreferredWidth(50);
@@ -213,7 +213,6 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 			POST_NUM = "";
 			POST_NUM += tQnA.getValueAt(row, 0);
 		}
-
 		new QnA_view_user(new JFrame());
 
 	}
@@ -245,7 +244,6 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == bWrite) {
-
 			new QnA_question_write(new JFrame());
 		}
 

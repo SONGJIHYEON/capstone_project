@@ -91,9 +91,9 @@ public class QnA_admin extends JPanel implements ActionListener, MouseListener {
         Tsearch.setPreferredSize(new Dimension(150,41));
 
 		tQnA = new JTable(model1);
-		tQnA.getColumnModel().getColumn(0).setPreferredWidth(100); 
-		tQnA.getColumnModel().getColumn(1).setPreferredWidth(100);  
-		tQnA.getColumnModel().getColumn(2).setPreferredWidth(600);
+		tQnA.getColumnModel().getColumn(0).setPreferredWidth(50); 
+		tQnA.getColumnModel().getColumn(1).setPreferredWidth(50);  
+		tQnA.getColumnModel().getColumn(2).setPreferredWidth(400);
 		tQnA.getColumnModel().getColumn(3).setPreferredWidth(100);
 		tQnA.getColumnModel().getColumn(4).setPreferredWidth(100);
 		tQnA.addMouseListener(this);

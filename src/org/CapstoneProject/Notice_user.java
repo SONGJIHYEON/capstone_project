@@ -92,7 +92,7 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 
 		tNotice = new JTable(model1);
 		tNotice.getColumnModel().getColumn(0).setPreferredWidth(70);  //JTable 의 컬럼 길이 조절
-		tNotice.getColumnModel().getColumn(1).setPreferredWidth(490);
+		tNotice.getColumnModel().getColumn(1).setPreferredWidth(450);
 		tNotice.getColumnModel().getColumn(2).setPreferredWidth(70);
 		tNotice.getColumnModel().getColumn(3).setPreferredWidth(70);
 		tNotice.addMouseListener(this);
