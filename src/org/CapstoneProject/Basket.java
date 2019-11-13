@@ -111,6 +111,8 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 		tProInfo = new JTable(model1);
 		scrollpane1 = new JScrollPane(tProInfo);
 		scrollpane1.setPreferredSize(new Dimension(750, 100));
+		tProInfo.getColumnModel().getColumn(6).setCellRenderer(new TableCell2());
+		tProInfo.getColumnModel().getColumn(6).setCellEditor(new TableCell2());
 
 		BtOrder = new JButton("주문하기");
 		BtOrder.addActionListener(this);
@@ -123,8 +125,6 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 		BtDelBasket.setPreferredSize(new Dimension(130, 28));
 //        regist.addActionListener(this);
 
-		tProInfo.getColumnModel().getColumn(6).setCellRenderer(new TableCell2());
-		tProInfo.getColumnModel().getColumn(6).setCellEditor(new TableCell2());
 
 		getData(BasketData.selectBasket(cust_num));
 		BasketView();
@@ -224,7 +224,7 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == tProInfo) {
-//         row = tProInfo.getSelectedRow();
+         row = tProInfo.getSelectedRow();
 		}
 	}
 

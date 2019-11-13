@@ -61,7 +61,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	static JPanel M_P = new Mypage();
 	static JPanel P_I = new ProImage();
 	static JPanel M_M = new JPanel();
-	static JPanel Od_list = new Od_list();
+	static JPanel Od_list = new Od_list_user();
 
 	static BackgroundMenuBar MenuBar1 = new BackgroundMenuBar();
 	JMenu Home = new JMenu(" 홈 ");
@@ -471,7 +471,21 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mn_Mypage) {
-			changePanel(new Mypage());
+			win.removeAll();
+			win.add(MenuBar1);
+			win.add(MenuBar2);
+			win.add(img_top);
+			win.add(img_left_b);
+			win.add(Cust_info);
+			win.add(jean);
+//			win.add(jean2);
+			win.add(shoose);
+//			M_P.setSize(d.width * 3 / 4, d.height - 100);
+			M_P.setBounds(350, 160, 385, 500);
+			win.add(M_P);
+//			Od_list.setSize(d.width * 3 / 4, d.height - 100);
+			Od_list.setBounds(745, 160, 600, 245);
+			win.add(Od_list);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mn_Post) {

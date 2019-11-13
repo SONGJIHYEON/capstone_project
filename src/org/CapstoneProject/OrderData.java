@@ -37,11 +37,11 @@ public class OrderData {
 //	}
 
 	/* 고객정보를 생성하는 질의어 */
-	static void createOrder1(String cust_num, String od_price) {
+	static void createOrderB(String cust_num, String od_price, String Recipiant, String RecipAddr, String RecipPhone) {
 
-		quary1 = "INSERT INTO od(OD_NUM, EMP_NUM, CUST_NUM, OD_DATE, OD_PR, OD_COND_TP) "
+		quary1 = "INSERT INTO od(OD_NUM, EMP_NUM, CUST_NUM, OD_DATE, OD_PR, OD_COND_TP, RECPT, RECPT_ADDR, RECPT_TEL) "
 				+ "VALUES(concat(to_char(sysdate, 'yymmdd'), seq_order_num.nextval), '000000', '"+cust_num+"', "
-						+ "TO_CHAR(SYSDATE, 'YYYYmmdd'), '"+od_price+"', '통장미입금')";
+						+ "TO_CHAR(SYSDATE, 'YYYYmmdd'), '"+od_price+"', '통장미입금' , '"+Recipiant+"', '"+RecipAddr+"', '"+RecipPhone+"')";
 
 //		quary2
 
@@ -62,9 +62,9 @@ public class OrderData {
 
 	}
 
-	static void createOrder2(String cust_num, String od_price) {
+	static void createOrderC(String cust_num, String od_price) {
 
-		quary1 = "INSERT INTO od(OD_NUM, EMP_NUM, CUST_NUM, OD_DATE, OD_PR, OD_COND_TP) "
+		quary1 = "INSERT INTO od(OD_NUM, EMP_NUM, CUST_NUM, OD_DATE, OD_PR, OD_COND_TP, RECPT, RECPT_ADDR, RECPT_TEL) "
 				+ "VALUES(concat(to_char(sysdate, 'yymmdd'), seq_order_num.nextval), '000000', '"+cust_num+"', "
 				+ "TO_CHAR(SYSDATE, 'YYYYmmdd'), '"+od_price+"', '상품준비중')";
 
@@ -87,7 +87,7 @@ public class OrderData {
 
 	}
 	
-	static void createOrder3(String oderNum) {
+	static void createOd_brkdwn(String oderNum) {
 		odList = MemOrdPg.arList;
 		
 		for(int i = 0; i < odList.size() ; i = i + 4) {
@@ -133,10 +133,9 @@ public class OrderData {
 
 	}
 	
-	static List<Map<String, Serializable>> searchOd_list() {
+	static List<Map<String, Serializable>> searchOd_list(String cust_num) {
 
-		quary1 = "select OD_DATE, PRO_NM, QUANT, OD_PR, OD_COND_TP "
-				+ "from od join od_brkdwn on od.od_num = od_brkdwn.od_num join pro on od_brkdwn.pro_num = pro.pro_num";
+		quary1 = "select OD_NUM, OD_DATE, OD_PR, OD_COND_TP from od where CUST_NUM = '"+cust_num+"'";
 
 		OrderListData.clear();
 
@@ -148,11 +147,106 @@ public class OrderData {
 
 				OrderdataSet = new HashMap<String, Serializable>();
 
-				OrderdataSet.put("OD_DATE", rs.getString(1));
-				OrderdataSet.put("PRO_NM", rs.getString(2));
-				OrderdataSet.put("QUANT", rs.getString(3));
-				OrderdataSet.put("OD_PR", rs.getString(4));
-				OrderdataSet.put("OD_COND_TP", rs.getString(5));
+				OrderdataSet.put("OD_NUM", rs.getString(1));
+				OrderdataSet.put("OD_DATE", rs.getString(2));
+				OrderdataSet.put("OD_PR", rs.getString(3));
+				OrderdataSet.put("OD_COND_TP", rs.getString(4));
+
+
+				OrderListData.add(OrderdataSet);
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return OrderListData;
+
+	}
+	
+	static List<Map<String, Serializable>> searchOd_list_no_deposit() {
+
+		quary1 = "select cust_nm, od_num, OD_PR,RECPT, RECPT_ADDR, RECPT_TEL, OD_COND_TP "
+				+ "from od join cust on od.cust_num = cust.cust_num where OD_COND_TP = '통장미입금'";
+
+		OrderListData.clear();
+
+		try {
+			System.out.println(quary1);
+			pstm = conn.prepareStatement(quary1, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				OrderdataSet = new HashMap<String, Serializable>();
+
+				OrderdataSet.put("cust_nm", rs.getString(1));
+				OrderdataSet.put("od_num", rs.getString(2));
+				OrderdataSet.put("OD_PR", rs.getString(3));
+				OrderdataSet.put("RECPT", rs.getString(4));
+				OrderdataSet.put("RECPT_ADDR", rs.getString(5));
+				OrderdataSet.put("RECPT_TEL", rs.getString(6));
+				OrderdataSet.put("OD_COND_TP", rs.getString(7));
+
+
+				OrderListData.add(OrderdataSet);
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return OrderListData;
+
+	}
+	
+	static void updatePre_pro(String od_num) {
+
+		quary1 = "UPDATE od SET OD_COND_TP = '상품준비중' WHERE OD_COND_TP = '통장미입금' and OD_NUM = '" + od_num + "'";
+
+		quary2 = "commit";
+
+		try {
+			pstm = conn.prepareStatement(quary1);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+		try {
+			pstm = conn.prepareStatement(quary2);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+	}
+	
+	static List<Map<String, Serializable>> searchOd_list_pre_pro() {
+
+		quary1 = "select cust_nm, od_num, OD_PR,RECPT, RECPT_ADDR, RECPT_TEL, OD_COND_TP "
+				+ "from od join cust on od.cust_num = cust.cust_num where OD_COND_TP = '상품준비중'";
+
+		OrderListData.clear();
+
+		try {
+			System.out.println(quary1);
+			pstm = conn.prepareStatement(quary1, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				OrderdataSet = new HashMap<String, Serializable>();
+
+				OrderdataSet.put("cust_nm", rs.getString(1));
+				OrderdataSet.put("od_num", rs.getString(2));
+				OrderdataSet.put("OD_PR", rs.getString(3));
+				OrderdataSet.put("RECPT", rs.getString(4));
+				OrderdataSet.put("RECPT_ADDR", rs.getString(5));
+				OrderdataSet.put("RECPT_TEL", rs.getString(6));
+				OrderdataSet.put("OD_COND_TP", rs.getString(7));
+
 
 				OrderListData.add(OrderdataSet);
 			}

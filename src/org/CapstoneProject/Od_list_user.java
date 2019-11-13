@@ -1,5 +1,6 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -18,45 +19,54 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.awt.event.ActionEvent;
+
+import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 
+import org.CapstoneProject.Basket.TableCell2;
 import org.w3c.dom.events.MouseEvent;
 
-public class Od_list extends JPanel implements ActionListener {
+public class Od_list_user extends JPanel implements ActionListener {
 
 	private JLabel vOd_list;
 
 	private JTextField Tsearch, Temp_no, Temp_nm, Temp_resi_num, Temp_dt, Temp_ph_num, Temp_mail, Temp_addr;
 
-	private String[] col1 = {"주문날짜 ", "상품명 ", "수량", "주문금액", "주문상태구분"};
+	private String[] col1 = {"주문번호 ", "주문날짜 ","주문금액", "주문상태구분", "상세구매내역"};
 	private String[] search = {"상품명", "주문날짜" };
 	
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 
 	private JTable od_info;
 	private JScrollPane scrollpane1;
-
 	private JButton Bsearch, BtCancel, BtConfirm;
-
 	private JComboBox<String> cbSearch;
 
 	private ArrayList<String> ar = new ArrayList<String>();
-	String addr, zipcode;
+	
+	String cust_num;
+	static String od_num;
+	
 	int close;
+	
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할.
 
-	public Od_list() {
+	public Od_list_user() {
 //		super(fr, "", true);
+		cust_num = Login.user_num;
 		
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
@@ -74,6 +84,8 @@ public class Od_list extends JPanel implements ActionListener {
 		od_info = new JTable(model1);
 		scrollpane1 = new JScrollPane(od_info);
 		scrollpane1.setPreferredSize(new Dimension(600, 150));
+		od_info.getColumnModel().getColumn(4).setCellRenderer(new TableCell2());
+		od_info.getColumnModel().getColumn(4).setCellEditor(new TableCell2());
 
 		Bsearch = new JButton("검색");
 		Bsearch.addActionListener(this);
@@ -84,7 +96,7 @@ public class Od_list extends JPanel implements ActionListener {
 //		BtConfirm = new JButton("확인");
 //		BtConfirm.addActionListener(this);
 
-		getData(OrderData.searchOd_list());
+		getData(OrderData.searchOd_list(cust_num));
 //         getSvpData(EmpData.selectSpv());
 
 		addressView();
@@ -108,11 +120,10 @@ public class Od_list extends JPanel implements ActionListener {
 			String new_od_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
 			
 			model1.addRow(new Object[] {
-
+					
+					OrderListData.get(i).get("OD_NUM"),
 					new_od_date, 
-					OrderListData.get(i).get("PRO_NM"),
-					OrderListData.get(i).get("QUANT"),
-					OrderListData.get(i).get("OD_PR"), 
+					OrderListData.get(i).get("OD_PR"),
 					OrderListData.get(i).get("OD_COND_TP"),
 			});
 		}
@@ -162,7 +173,48 @@ public class Od_list extends JPanel implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new Od_list();
+		new Od_list_user();
+
+	}
+	
+	class TableCell2 extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
+
+		JButton jb;
+
+		public TableCell2() {
+			// TODO Auto-generated constructor stub
+			jb = new JButton("상세내역조회");
+			jb.setBackground(Color.WHITE);
+			jb.setFocusPainted(false);
+			jb.addActionListener(e -> {
+				int row = od_info.getSelectedRow();
+				od_num = "";
+				od_num += (String) od_info.getValueAt(row, 0);
+//				System.out.println(pur_num);
+				Od_brkdwn_user s = new Od_brkdwn_user(new JFrame());
+			});
+
+		}
+
+		@Override
+		public Object getCellEditorValue() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
+				int row, int column) {
+
+			return jb;
+		}
+
+		@Override
+		public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row,
+				int column) {
+			// TODO Auto-generated method stub
+			return jb;
+		}
 
 	}
 

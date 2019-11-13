@@ -318,7 +318,7 @@ public class ProImage extends JPanel implements MouseListener {
 				System.out.println(i);
 				removeAll();
 				getData();
-	            ProImageview();
+				ProImageview();
 				revalidate();
 				repaint();
 			}

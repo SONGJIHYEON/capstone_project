@@ -63,6 +63,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 	JMenu Mn_Od = new JMenu("주문");
 	JMenuItem Od_deposit = new JMenuItem("통장미입금");
 	JMenuItem Od_pre = new JMenuItem("상품준비중");
+	JMenuItem deliv = new JMenuItem("배송중");
+	JMenuItem deliv_fin = new JMenuItem("배송완료");
 	JMenuItem Od_change = new JMenuItem("교환");
 	JMenuItem Od_refund = new JMenuItem("환불");
 	JMenuItem Od_cancel = new JMenuItem("취소");
@@ -109,7 +111,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Label.add(vNotice);
 		Label.add(vQnA);
 		Label.add(vReview);
-		
+
 		img_top = new JLabel("");
 		originIcon = new ImageIcon("C:\\Users\\kibum\\Desktop\\관리자 상단.jpg");
 		originImg = originIcon.getImage();
@@ -129,6 +131,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		pro_up_rec.addActionListener(this);
 		Od_deposit.addActionListener(this);
 		Od_pre.addActionListener(this);
+		deliv.addActionListener(this);
+		deliv_fin.addActionListener(this);
 		Od_change.addActionListener(this);
 		Od_refund.addActionListener(this);
 		Od_cancel.addActionListener(this);
@@ -158,6 +162,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		Mn_Od.add(Od_deposit);
 		Mn_Od.add(Od_pre);
+		Mn_Od.add(deliv);
+		Mn_Od.add(deliv_fin);
 		Mn_Od.add(Od_change);
 		Mn_Od.add(Od_refund);
 		Mn_Od.add(Od_cancel);
@@ -204,7 +210,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		// 크기설정
 		// 거래처 메뉴
 		MenuBar.setBounds(0, 100, d.width, 40);
-		
+
 		Mn_corr.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_corr.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_corr.setFont(new Font("휴먼매직체", Font.BOLD, 25));
@@ -262,6 +268,14 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Od_pre.setBackground(new Color(255, 255, 255));
 		Od_pre.setHorizontalAlignment(SwingConstants.CENTER);
 		Od_pre.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+
+		deliv.setBackground(new Color(255, 255, 255));
+		deliv.setHorizontalAlignment(SwingConstants.CENTER);
+		deliv.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		
+		deliv_fin.setBackground(new Color(255, 255, 255));
+		deliv_fin.setHorizontalAlignment(SwingConstants.CENTER);
+		deliv_fin.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 
 		Od_change.setBackground(new Color(255, 255, 255));
 		Od_change.setHorizontalAlignment(SwingConstants.CENTER);
@@ -339,13 +353,13 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Icon = new ImageIcon(img);
 		img_back.setIcon(Icon);
 		img_back.setBounds(0, 140, d.width, d.height);
-		
+
 		getContentPane().setLayout(null);
 
 		win.add(MenuBar);
 		win.add(img_top);
-		win.add(img_back);	
-		
+		win.add(img_back);
+
 		setExtendedState(MAXIMIZED_BOTH);
 		setVisible(true);
 	}
@@ -443,21 +457,21 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		} else if (e.getSource() == Od_deposit) {
 			getContentPane().removeAll();
-			JPanel POd_deposit = new od_list_no_deposit();
+			JPanel POd_deposit = new Od_list_no_deposit();
 			add(MenuBar);
 			add(img_top);
-			POd_deposit.setSize(d.width / 2, d.height - 140);
-			POd_deposit.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+//			POd_deposit.setSize(d.width / 2, d.height - 140);
+			POd_deposit.setBounds(200, 150, 1000, 470);
 			add(POd_deposit);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Od_pre) {
 			getContentPane().removeAll();
-			JPanel POd_pre = new od_list_pre_pro();
+			JPanel POd_pre = new Od_list_pre_pro();
 			add(MenuBar);
 			add(img_top);
-			POd_pre.setSize(d.width / 2, d.height - 140);
-			POd_pre.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+//			POd_pre.setSize(d.width / 2, d.height - 140);
+			POd_pre.setBounds(200, 150, 1000, 470);
 			add(POd_pre);
 			repaint();
 			revalidate();
@@ -554,7 +568,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 //			add(PEvt_regist);
 //			repaint();
 //			revalidate();
-		} 
+		}
 	}
 
 	@Override
@@ -562,7 +576,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		// TODO Auto-generated method stub
 		if (e.getSource() == Logout) {
 			dispose();
-		}else if (e.getSource() == Mn_POST) {
+		} else if (e.getSource() == Mn_POST) {
 			getContentPane().removeAll();
 			add(MenuBar);
 			add(img_top);

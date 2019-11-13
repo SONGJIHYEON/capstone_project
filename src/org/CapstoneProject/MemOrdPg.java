@@ -57,7 +57,7 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 	static ArrayList<String> arList = new ArrayList<>();
 	
 	String cust_nm, cust_addr, cust_phone, pro_price, cust_disc_rt, cust_point, cust_num, od_price, orderNum, used_point, payNum,
-			rBankTxt;
+			rBankTxt, Recipiant, RecipAddr, RecipPhone;	
 
 	double sum2, cust_price, disc_rt, price;
 	String[] array;
@@ -315,9 +315,13 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 			if(e.getSource() == BtOrder) {
 				rBankTxt = rBank.getText();
 				od_price = xPrice.getText();
-				OrderData.createOrder1(cust_num, od_price);
+				Recipiant = xRecipiant.getText();
+				RecipAddr = xRecipAddr.getText();
+				RecipPhone = xRecipPhone.getText();
+				
+				OrderData.createOrderB(cust_num, od_price, Recipiant, RecipAddr, RecipPhone);
 				getData2(OrderData.selectOd_Num());
-				OrderData.createOrder3(orderNum);
+				OrderData.createOd_brkdwn(orderNum);
 				PayData.createPay(orderNum, String.valueOf(price));
 				getData3(PayData.selectPay_Num());
 				if(!xUsedPoint.getText().equals("")) {
@@ -330,7 +334,7 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 			if(e.getSource() == BtOrder) {
 				System.out.println(price);
 				od_price = xPrice.getText();
-				OrderData.createOrder2(cust_num, od_price);
+				OrderData.createOrderC(cust_num, od_price);
 				getData2(OrderData.selectOd_Num());
 				PayData.createPay(orderNum, String.valueOf(price));
 				getData3(PayData.selectPay_Num());

@@ -88,13 +88,13 @@ public class MyPost extends JFrame implements ActionListener {
 		getData(PostData.selectPost(user_id));
 //         getSvpData(EmpData.selectSpv());
 
-		addressView();
+		postView();
 	}
 
-	private void getData(List<Map<String, Serializable>> addrListData) {
+	private void getData(List<Map<String, Serializable>> postListData) {
 		
-		for (int i = 0; i < addrListData.size(); i++) {
-			ar.add(addrListData.get(i).get("WRT_DATE").toString());
+		for (int i = 0; i < postListData.size(); i++) {
+			ar.add(postListData.get(i).get("WRT_DATE").toString());
 			
 //			String oldstring = ex_st_date;
 			
@@ -110,15 +110,15 @@ public class MyPost extends JFrame implements ActionListener {
 			
 			model1.addRow(new Object[] {
 
-					addrListData.get(i).get("POST_BRD_TP"),
-					addrListData.get(i).get("POST_MSG_TIT"),
-					addrListData.get(i).get("POST_MSG_TY"), 
+					postListData.get(i).get("POST_BRD_TP"),
+					postListData.get(i).get("POST_MSG_TIT"),
+					postListData.get(i).get("POST_MSG_TY"), 
 					new_wrt_date,
 			});
 		}
 	}
 
-	private void addressView() {
+	private void postView() {
 //		setTitle("주소검색");
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
