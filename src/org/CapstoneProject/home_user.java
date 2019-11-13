@@ -41,6 +41,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class home_user extends JFrame implements MouseListener, ActionListener {
 
+	static public JPanel Panel_Center;
+	private JPanel contentPane;
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
 	JPanel Cust_info = new Cust_info();
@@ -55,7 +57,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	static JPanel N_U = new Notice_user();
 	static JPanel Q_U = new QnA_user();
 	static JPanel B_K = new Basket();
-	static JPanel O_P = new MemOrdPg();
+//	static JPanel O_P = new MemOrdPg();
 	static JPanel M_P = new Mypage();
 	static JPanel P_I = new ProImage();
 	static JPanel M_M = new JPanel();
@@ -234,10 +236,21 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		shoose.setIcon(Icon);
 		shoose.setBounds(0, 445, 340, 85);
 
-		home_userView();
-		if (ProDetail.state == 1) {
-			OrdPg();
+		if (ProDetail.state != 0) {
+//			Basket();
+//			OrdPg();
 		}
+		home_userView();
+	}
+
+	public void changePanel(JPanel newPanel) { // 센터패널 교환하기
+		remove(Panel_Center);
+		newPanel.setSize(d.width * 3 / 4, d.height - 100);
+		Panel_Center = newPanel;
+		Panel_Center.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
+		add(Panel_Center);
+		revalidate();
+		repaint();
 	}
 
 	void home_userView() {
@@ -400,17 +413,19 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Sho_8.setBackground(new Color(255, 255, 255));
 		Sho_8.setFont(new Font("  ", Font.BOLD, 15));
 
-		getContentPane().setLayout(null);
+		Panel_Center = new JPanel();
+		setLayout(null);
 
-		win.add(MenuBar1);
-		win.add(MenuBar2);
-		win.add(P_I);
-		win.add(img_top);
-		win.add(img_left_b);
-		win.add(Cust_info);
-		win.add(jean);
-//		win.add(jean2);
-		win.add(shoose);
+		add(MenuBar1);
+		add(MenuBar2);
+		add(Panel_Center); // 센터 패널 붙이기
+		add(img_top);
+		add(img_left_b);
+		add(Cust_info);
+		add(jean);
+//		add(jean2);
+		add(shoose);
+		changePanel((JPanel) new ProImage(this));
 
 //      setLayout(gbl);
 //      gbc.anchor = GridBagConstraints.EAST;
@@ -444,112 +459,49 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		// TODO Auto-generated method stub
 
 		if (e.getSource() == Home) {
-			win.removeAll();
-			win.add(MenuBar1);
-			win.add(MenuBar2);
-			win.add(P_I);
-			win.add(img_top);
-			win.add(img_left_b);
-			win.add(Cust_info);
-			win.add(jean);
-//			win.add(jean2);
-			win.add(shoose);
+			changePanel((JPanel) new ProImage(this));
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mn_Basket) {
-			win.removeAll();
-			win.add(MenuBar1);
-			win.add(MenuBar2);
-			win.add(img_top);
-			win.add(img_left_b);
-			win.add(Cust_info);
-			win.add(jean);
-//			win.add(jean2);
-			win.add(shoose);
-			B_K.setSize(d.width * 3 / 4, d.height - 100);
-			B_K.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
-			win.add(B_K);
+			changePanel(new Basket());
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mn_Oder) {
-			win.removeAll();
-			win.add(MenuBar1);
-			win.add(MenuBar2);
-			win.add(img_top);
-			win.add(img_left_b);
-			win.add(Cust_info);
-			win.add(jean);
-//			win.add(jean2);
-			win.add(shoose);
-			O_P.setSize(d.width * 3 / 4, d.height - 100);
-			O_P.setBounds(d.width / 4, 100, d.width * 3 / 4, d.height - 100);
-			win.add(O_P);
+			changePanel(new MemOrdPg());
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mn_Mypage) {
-			win.removeAll();
-			win.add(MenuBar1);
-			win.add(MenuBar2);
-			win.add(img_top);
-			win.add(img_left_b);
-			win.add(Cust_info);
-			win.add(jean);
-//			win.add(jean2);
-			win.add(shoose);
-//			M_P.setSize(d.width * 3 / 4, d.height - 100);
-			M_P.setBounds(350, 160, 385, 500);
-			win.add(M_P);
-//			Od_list.setSize(d.width * 3 / 4, d.height - 100);
-			Od_list.setBounds(745, 160, 600, 245);
-			win.add(Od_list);
+			changePanel(new Mypage());
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mn_Post) {
-			win.removeAll();
-			win.add(MenuBar1);
-			win.add(MenuBar2);
-			win.add(img_top);
-			win.add(img_left_b);
-			win.add(Cust_info);
-			win.add(jean);
-//			win.add(jean2);
-			win.add(shoose);
+			changePanel(new Notice_user());
 			Label.setBounds(360, 260, 150, 150);
-			N_U.setSize(d.width * 3 / 4, d.height - 100);
-			N_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
-			getContentPane().add(Label);
-			getContentPane().add(N_U);
+			Panel_Center.add(Label);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vNotice) {
-			win.remove(Q_U);
-			N_U.setSize(d.width * 3 / 4, d.height - 100);
-			N_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
-			getContentPane().add(N_U);
+			changePanel(new Notice_user());
+			Label.setBounds(360, 260, 150, 150);
+			Panel_Center.add(Label);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vQnA) {
-			win.remove(N_U);
-			Q_U.setSize(d.width * 3 / 4, d.height - 100);
-			Q_U.setBounds(340, 110, d.width * 3 / 4, d.height - 100);
-			getContentPane().add(Q_U);
+			changePanel(new QnA_user());
+			Label.setBounds(360, 260, 150, 150);
+			Panel_Center.add(Label);
 			repaint();
 			revalidate();
+//		} else if (e.getSource() == vReview) {
+//			changePanel(new Review_user());
+//			Label.setBounds(360, 260, 150, 150);
+//			Panel_Center.add(Label);
+//			repaint();
+//			revalidate();
 		} else if (e.getSource() == Mn_Logout) {
 			new Login_screen();
 			dispose();
 		}
-	}
-
-	public void OrdPg() {
-		win.removeAll();
-		win.add(MenuBar1);
-		win.add(MenuBar2);
-		win.add(img_top);
-		O_P.setBounds(0, 100, d.width, d.height - 100);
-		win.add(O_P);
-		repaint();
-		revalidate();
 	}
 
 	@Override

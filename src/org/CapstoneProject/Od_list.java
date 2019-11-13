@@ -90,10 +90,10 @@ public class Od_list extends JPanel implements ActionListener {
 		addressView();
 	}
 
-	private void getData(List<Map<String, Serializable>> addrListData) {
+	private void getData(List<Map<String, Serializable>> OrderListData) {
 		
-		for (int i = 0; i < addrListData.size(); i++) {
-			ar.add(addrListData.get(i).get("OD_DATE").toString());
+		for (int i = 0; i < OrderListData.size(); i++) {
+			ar.add(OrderListData.get(i).get("OD_DATE").toString());
 			
 //			String oldstring = ex_st_date;
 			
@@ -110,10 +110,10 @@ public class Od_list extends JPanel implements ActionListener {
 			model1.addRow(new Object[] {
 
 					new_od_date, 
-					addrListData.get(i).get("PRO_NM"),
-					addrListData.get(i).get("QUANT"),
-					addrListData.get(i).get("OD_PR"), 
-					addrListData.get(i).get("OD_COND_TP"),
+					OrderListData.get(i).get("PRO_NM"),
+					OrderListData.get(i).get("QUANT"),
+					OrderListData.get(i).get("OD_PR"), 
+					OrderListData.get(i).get("OD_COND_TP"),
 			});
 		}
 	}

@@ -28,13 +28,14 @@ import javax.swing.border.LineBorder;
 
 public class test extends JFrame implements ActionListener, MouseListener {
 
-	static JPanel menu_b = new JPanel();
+//	static JPanel menu_b = new JPanel();
 	static Image img;
 	Container win = getContentPane();
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
 	static JPanel N_A = new Notice_admin();
 	static JPanel Q_A = new QnA_admin();
+	static JPanel PMb_look = new mb_look();
 
 	private static Image originImg, changedImg;
 	private static ImageIcon originIcon, Icon;
@@ -97,18 +98,15 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		gridbagconstraints = new GridBagConstraints();
 
 		vNotice = new JLabel("· 공지사항");
-		vNotice.setBounds(0, 0, 93, 24);
 		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 		vNotice.addMouseListener(this);
 		vQnA = new JLabel("· QnA");
-		vQnA.setBounds(0, 24, 65, 24);
 		vQnA.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 		vQnA.addMouseListener(this);
 		vReview = new JLabel("· 후기게시판");
-		vReview.setBounds(0, 48, 108, 24);
 		vReview.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 		vReview.addMouseListener(this);
-		Label.setLayout(null);
+		Label.setLayout(new BoxLayout(Label, BoxLayout.Y_AXIS));
 		Label.add(vNotice);
 		Label.add(vQnA);
 		Label.add(vReview);
@@ -148,7 +146,7 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		Mn_corr.add(corr_regist);
 		Mn_corr.add(pur_regist);
 		Mn_corr.setPreferredSize(new Dimension(d.width / 8, Mn_corr.getPreferredSize().height));
-		corr_look.setPreferredSize(new Dimension(d.width / 8, corr_look.getPreferredSize().height));
+//		corr_look.setPreferredSize(new Dimension(d.width / 8, corr_look.getPreferredSize().height));
 
 		Mn_pro.add(model_look);
 		Mn_pro.add(model_regist);
@@ -157,7 +155,7 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		Mn_pro.add(pro_up_rec_reg);
 		Mn_pro.add(pro_up_rec);
 		Mn_pro.setPreferredSize(new Dimension(d.width / 8, Mn_pro.getPreferredSize().height));
-		pro_up_rec.setPreferredSize(new Dimension(d.width / 8, pro_up_rec.getPreferredSize().height));
+//		pro_up_rec.setPreferredSize(new Dimension(d.width / 8, pro_up_rec.getPreferredSize().height));
 
 		Mn_Od.add(Od_deposit);
 		Mn_Od.add(Od_pre);
@@ -165,22 +163,22 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		Mn_Od.add(Od_refund);
 		Mn_Od.add(Od_cancel);
 		Mn_Od.setPreferredSize(new Dimension(d.width / 8, Mn_Od.getPreferredSize().height));
-		Od_deposit.setPreferredSize(new Dimension(d.width / 8, Od_deposit.getPreferredSize().height));
+//		Od_deposit.setPreferredSize(new Dimension(d.width / 8, Od_deposit.getPreferredSize().height));
 
 		Mn_Emp.add(Emp_look);
 		Mn_Emp.add(Emp_regist);
 		Mn_Emp.setPreferredSize(new Dimension(d.width / 8, Mn_Emp.getPreferredSize().height));
-		Emp_look.setPreferredSize(new Dimension(d.width / 8, Emp_look.getPreferredSize().height));
+//		Emp_look.setPreferredSize(new Dimension(d.width / 8, Emp_look.getPreferredSize().height));
 
 		Mn_Mb.add(Mb_look);
 		Mn_Mb.add(Mb_grade);
 		Mn_Mb.setPreferredSize(new Dimension(d.width / 8, Mn_Mb.getPreferredSize().height));
-		Mb_look.setPreferredSize(new Dimension(d.width / 8, Mb_look.getPreferredSize().height));
+//		Mb_look.setPreferredSize(new Dimension(d.width / 8, Mb_look.getPreferredSize().height));
 
 		Mn_EVT.add(EVT_look);
 		Mn_EVT.add(EVT_regist);
 		Mn_EVT.setPreferredSize(new Dimension(d.width / 8, Mn_EVT.getPreferredSize().height));
-		EVT_look.setPreferredSize(new Dimension(d.width / 8, EVT_look.getPreferredSize().height));
+//		EVT_look.setPreferredSize(new Dimension(d.width / 8, EVT_look.getPreferredSize().height));
 
 		Mn_POST.setPreferredSize(new Dimension(d.width / 8, Mn_EVT.getPreferredSize().height));
 		Logout.setPreferredSize(new Dimension(d.width / 8, Mn_EVT.getPreferredSize().height));
@@ -193,7 +191,14 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		MenuBar.add(Mn_EVT);
 		MenuBar.add(Mn_POST);
 		MenuBar.add(Logout);
-	
+
+		MenuBar.setBounds(0, 0, d.width, 40);
+//		menu_b.add(MenuBar);
+		
+//		PMb_look.setSize(d.width / 2, d.height - 140);
+		PMb_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+		win.add(PMb_look);
+		
 		EmpRegisterView();
 	}
 
@@ -204,6 +209,7 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		// 크기설정
 		// 거래처 메뉴
 		MenuBar.setBounds(0, 100, d.width, 40);
+		
 		Mn_corr.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_corr.setHorizontalAlignment(SwingConstants.CENTER);
 		Mn_corr.setFont(new Font("휴먼매직체", Font.BOLD, 25));
@@ -337,22 +343,13 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		img = originImg.getScaledInstance(d.width, d.height, Image.SCALE_SMOOTH);
 		Icon = new ImageIcon(img);
 		img_back.setIcon(Icon);
-		img_back.setBounds(0, 140, 1350, 768);
+		img_back.setBounds(0, 140, d.width, d.height);
 		
 		getContentPane().setLayout(null);
 
-		win.add(MenuBar);
+//		win.add(MenuBar);
 		win.add(img_top);
 		win.add(img_back);	
-		
-		MenuBar.setBounds(0, 0, d.width, 40);
-//		menu_b.add(MenuBar);
-		
-		Label.setBounds(50, 190, 130, 85);
-//		N_A.setSize(d.width * 3 / 4, d.height - 200);
-		N_A.setBounds(215, 140, 1060, 472);
-		win.add(Label);
-		win.add(N_A);
 
 		setExtendedState(MAXIMIZED_BOTH);
 		setVisible(true);
@@ -369,7 +366,7 @@ public class test extends JFrame implements ActionListener, MouseListener {
 
 		gridbaglayout.setConstraints(c, gridbagconstraints); // 컴포넌트를 컴포넌트 위치+크기 정보에 따라 GridBagLayout에 배치
 
-		getContentPane().add(c);
+		add(c);
 
 	}
 
@@ -381,11 +378,11 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		if (e.getSource() == corr_look) {
 			getContentPane().removeAll();
 			JPanel Pcorr_look = new corr_look();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
-			Pcorr_look.setSize(d.width / 2, d.height - 140);
-			Pcorr_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(Pcorr_look);
+			win.add(MenuBar);
+			win.add(img_top);
+//			Pcorr_look.setSize(d.width / 2, d.height - 140);
+			Pcorr_look.setBounds(170, 170, 1060, 470);
+			win.add(Pcorr_look);
 			repaint();
 			revalidate();
 
@@ -398,11 +395,11 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		else if (e.getSource() == model_look) {
 			getContentPane().removeAll();
 			JPanel Pmodel_look = new ManModel();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			Pmodel_look.setSize(d.width / 2, d.height - 140);
 			Pmodel_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(Pmodel_look);
+			add(Pmodel_look);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == model_regist) {
@@ -418,11 +415,11 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		} else if (e.getSource() == pro_look) {
 			getContentPane().removeAll();
 			JPanel Ppro_look = new ManPro();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			Ppro_look.setSize(d.width / 2, d.height - 140);
 			Ppro_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(Ppro_look);
+			add(Ppro_look);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == pro_regist) {
@@ -439,11 +436,11 @@ public class test extends JFrame implements ActionListener, MouseListener {
 //			new RegProPrice(new JFrame());
 			getContentPane().removeAll();
 			JPanel Ppro_up_rec = new Pro_up_rec();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			Ppro_up_rec.setSize(d.width / 2, d.height - 140);
 			Ppro_up_rec.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(Ppro_up_rec);
+			add(Ppro_up_rec);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == pro_up_rec_reg) {
@@ -452,61 +449,61 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		} else if (e.getSource() == Od_deposit) {
 			getContentPane().removeAll();
 			JPanel POd_deposit = new od_list_no_deposit();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			POd_deposit.setSize(d.width / 2, d.height - 140);
 			POd_deposit.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(POd_deposit);
+			add(POd_deposit);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Od_pre) {
 			getContentPane().removeAll();
 			JPanel POd_pre = new od_list_pre_pro();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			POd_pre.setSize(d.width / 2, d.height - 140);
 			POd_pre.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(POd_pre);
+			add(POd_pre);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Od_change) {
 			getContentPane().removeAll();
 			JPanel POd_change = new od_list_change();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			POd_change.setSize(d.width / 2, d.height - 140);
 			POd_change.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(POd_change);
+			add(POd_change);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Od_refund) {
 			getContentPane().removeAll();
 			JPanel POd_refund = new od_list_od_refund();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			POd_refund.setSize(d.width / 2, d.height - 140);
 			POd_refund.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(POd_refund);
+			add(POd_refund);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Od_cancel) {
 			getContentPane().removeAll();
 			JPanel POd_cancel = new od_list_od_cancel();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			POd_cancel.setSize(d.width / 2, d.height - 140);
 			POd_cancel.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(POd_cancel);
+			add(POd_cancel);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Emp_look) {
 			getContentPane().removeAll();
 			JPanel PEmp_look = new emp_look();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			PEmp_look.setSize(d.width / 2, d.height - 140);
 			PEmp_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(PEmp_look);
+			add(PEmp_look);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Emp_regist) {
@@ -524,31 +521,31 @@ public class test extends JFrame implements ActionListener, MouseListener {
 		} else if (e.getSource() == Mb_look) {
 			getContentPane().removeAll();
 			JPanel PMb_look = new mb_look();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			PMb_look.setSize(d.width / 2, d.height - 140);
 			PMb_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(PMb_look);
+			add(PMb_look);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Mb_grade) {
 			getContentPane().removeAll();
 			JPanel PMb_gra = new mb_gra();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			PMb_gra.setSize(d.width / 2, d.height - 140);
 			PMb_gra.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(PMb_gra);
+			add(PMb_gra);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == EVT_look) {
 			getContentPane().removeAll();
 			JPanel PEvt_look = new evt_look();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
+			add(MenuBar);
+			add(img_top);
 			PEvt_look.setSize(d.width / 2, d.height - 140);
 			PEvt_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			getContentPane().add(PEvt_look);
+			add(PEvt_look);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == EVT_regist) {
@@ -572,35 +569,35 @@ public class test extends JFrame implements ActionListener, MouseListener {
 			dispose();
 		}else if (e.getSource() == Mn_POST) {
 			getContentPane().removeAll();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
-			Label.setBounds(0, 140, 200, 200);
-			N_A.setSize(d.width * 3 / 4, d.height - 200);
-			N_A.setBounds(d.width / 4, 200, d.width * 3 / 4, d.height - 200);
-			getContentPane().add(Label);
-			getContentPane().add(N_A);
+			add(MenuBar);
+			add(img_top);
+			Label.setBounds(70, 220, 130, 85);
+//			N_A.setSize(d.width * 3 / 4, d.height - 200);
+			N_A.setBounds(235, 170, 1060, 470);
+			win.add(Label);
+			win.add(N_A);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vNotice) {
 			getContentPane().removeAll();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
-			Label.setBounds(0, 140, 200, 200);
-			N_A.setSize(d.width * 3 / 4, d.height - 200);
-			N_A.setBounds(d.width / 4, 200, d.width * 3 / 4, d.height - 200);
-			getContentPane().add(Label);
-			getContentPane().add(N_A);
+			add(MenuBar);
+			add(img_top);
+			Label.setBounds(70, 220, 130, 85);
+//			N_A.setSize(d.width * 3 / 4, d.height - 200);
+			N_A.setBounds(235, 170, 1060, 470);
+			win.add(Label);
+			win.add(N_A);
 			repaint();
 			revalidate();
 		} else if (e.getSource() == vQnA) {
 			getContentPane().removeAll();
-			getContentPane().add(MenuBar);
-			getContentPane().add(img_top);
-			Label.setBounds(0, 140, 200, 200);
-			Q_A.setSize(d.width * 3 / 4, d.height - 200);
-			Q_A.setBounds(d.width / 4, 200, d.width * 3 / 4, d.height - 200);
-			getContentPane().add(Label);
-			getContentPane().add(Q_A);
+			add(MenuBar);
+			add(img_top);
+			Label.setBounds(70, 220, 130, 85);
+//			Q_A.setSize(d.width * 3 / 4, d.height - 200);
+			Q_A.setBounds(235, 170, 1060, 470);
+			win.add(Label);
+			win.add(Q_A);
 			repaint();
 			revalidate();
 		}

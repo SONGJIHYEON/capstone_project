@@ -89,6 +89,7 @@ public class OrderData {
 	
 	static void createOrder3(String oderNum) {
 		odList = MemOrdPg.arList;
+		
 		for(int i = 0; i < odList.size() ; i = i + 4) {
 			quary1 = "INSERT INTO od_brkdwn(OD_NUM, PRO_NUM, QUANT, UP, PR) "
 					+ "VALUES('" + oderNum + "', '" + odList.get(i) + "', " + Double.valueOf(odList.get(i+1)) + ", "

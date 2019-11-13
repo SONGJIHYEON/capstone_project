@@ -34,13 +34,16 @@ import javax.swing.table.TableCellRenderer;
 public class Basket extends JPanel implements MouseListener, ActionListener {
 
 	private JLabel vProPrice, vDiscount, vPrice, vPoint;
-	private JTextField xProPrice, xDiscount, xPrice, xPoint;
+	private static JTextField xProPrice;
+	private static JTextField xDiscount;
+	private static JTextField xPrice;
+	private JTextField xPoint;
 
-	private String[] col1 = { "이미지", "상품정보", "수량", "단가", "금액", "포인트", "삭제" };
+	private static String[] col1 = { "이미지", "상품정보", "수량", "단가", "금액", "포인트", "삭제" };
 //   private String[] col2 = {"부서명", "성명"};      
 	private String[] div = { "관리자", "유저" }; // 사원구분 콤보박스의 목록
 
-	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
+	private static DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 //   private DefaultTableModel model2 = new DefaultTableModel(col2, 0);      
 
 	private JTable tProInfo;
@@ -52,29 +55,29 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 	int check, row;
 	static double sum2, sum3;
 	static String pro_price, pro_price2, mb_disc_rt;
-	String ar[];
+	static String ar[];
 //   static ArrayList<String> ar;
 	static ArrayList<String> ar2 = new ArrayList<String>();
 	static Double sum[];
 
-	String cust_num, user_id;
+	static String cust_num, user_id;
 	static double disc_rt, price;
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 
-	private void getData(List<Map<String, Serializable>> BasketListData) {
+	static void getData(List<Map<String, Serializable>> BasketListData) {
 		model1.setRowCount(0);
 		ar = new String[BasketListData.size()];
 		sum2 = 0;
 		for (int i = 0; i < BasketListData.size(); i++) {
 			sum2 = sum2 + Double.valueOf(BasketListData.get(i).get("PR").toString());
 			model1.addRow(new Object[] { 
-					BasketListData.get(i).get("MODEL_IMG1"), 
-					BasketListData.get(i).get("PRO_NM"),					
+					BasketListData.get(i).get("MODEL_IMG1"),
+					BasketListData.get(i).get("PRO_NM"),
 					BasketListData.get(i).get("QUANT"),
 					BasketListData.get(i).get("UP"),
-					BasketListData.get(i).get("PR"),
+					BasketListData.get(i).get("PR"), 
 					BasketListData.get(i).get("POINT"), });
 		}
 		pro_price = String.valueOf(sum2);
@@ -88,7 +91,7 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 	public Basket() {
 		mb_disc_rt = Login.user_disc_rt;
 		cust_num = Login.user_num;
-//		System.out.println(mb_disc_rt);
+//      System.out.println(mb_disc_rt);
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
@@ -111,10 +114,10 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 
 		BtOrder = new JButton("주문하기");
 		BtOrder.addActionListener(this);
-        BtOrder.setPreferredSize(new Dimension(130,28));
-//		BtShopping = new JButton("쇼핑 계속하기");
-//		BtShopping.setPreferredSize(new Dimension(130, 28));
-//		BtShopping.addActionListener(this);
+		BtOrder.setPreferredSize(new Dimension(130, 28));
+//      BtShopping = new JButton("쇼핑 계속하기");
+//      BtShopping.setPreferredSize(new Dimension(130, 28));
+//      BtShopping.addActionListener(this);
 		BtDelBasket = new JButton("장바구니 비우기");
 		BtDelBasket.addActionListener(this);
 		BtDelBasket.setPreferredSize(new Dimension(130, 28));
@@ -129,7 +132,7 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 
 	private void BasketView() {
 
-//		setTitle("장바구니");
+//      setTitle("장바구니");
 
 //        gridbagconstraints.ipadx = 7;
 //        
@@ -145,15 +148,15 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 		gridbagAdd(vPrice, 4, 12, 1, 1);
 		gridbagAdd(xProPrice, 1, 12, 1, 1);
 		gridbagAdd(xDiscount, 3, 12, 1, 1);
-		gridbagAdd(xPrice, 5, 12, 1, 1);		
-//		gridbagAdd(xPoint, 5, 12, 1, 1);
+		gridbagAdd(xPrice, 5, 12, 1, 1);
+//      gridbagAdd(xPoint, 5, 12, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtDelBasket, 11, 12, 1, 1);
-//		gridbagAdd(BtShopping, 11, 13, 1, 1);
+//      gridbagAdd(BtShopping, 11, 13, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(BtOrder, 10, 13, 1, 1);
 
-//		setExtendedState(MAXIMIZED_BOTH);
+//      setExtendedState(MAXIMIZED_BOTH);
 		setVisible(true);
 	}
 
@@ -221,7 +224,7 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == tProInfo) {
-//			row = tProInfo.getSelectedRow();
+//         row = tProInfo.getSelectedRow();
 		}
 	}
 

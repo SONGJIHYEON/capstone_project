@@ -9,6 +9,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.TextArea;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -35,8 +36,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class ProDetail extends Dialog implements ActionListener, MouseListener {
+public class ProDetail extends JPanel implements ActionListener, MouseListener {
 
+	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 	private JLabel vProImg, vProNm, vPrice, vColor, vSize, vOption, vAllPrice;
 
 	private JTextField xPrice, xOption, xAllPrice;
@@ -54,14 +56,14 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 	private JTable eDept, eSpv;
 	private JScrollPane scrollpane1, scrollpane2;
 
-	private JButton Btpurchase, BtBasket, BtPlus, BtMinus, Btclose;
+	private JButton Btpurchase, BtBasket, BtPlus, BtMinus, Btpreview;
 	private JTabbedPane t;
 	private JTextArea ta;
 	private JPanel p, p1, p2;
 
 	String ad, option, allprice, img, img2, nickname, ctgr, price, price2, modelname, up_price, user_id, user_num,
 			pro_num, selectSize, selectColor;
-	
+
 	static String mb_disc_rt;
 	static int state = 0;
 
@@ -74,6 +76,8 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 	List<Map<String, Serializable>> ImageListData;
+
+	private static ProImage parent;
 
 	public String getData(List<Map<String, Serializable>> ImageListData) {
 
@@ -101,18 +105,17 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 
 		return pro_num;
 	}
-	
+
 	public String getData4(List<Map<String, Serializable>> CustListData) {
 
 		mb_disc_rt = "";
 		mb_disc_rt += CustListData.get(0).get("DISC_RT");
 
-		
 		return mb_disc_rt;
 	}
 
-	public ProDetail(JFrame fr) {  
-        super(fr, "", true);
+	public ProDetail(ProImage parent) {
+		this.parent = parent;
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
@@ -161,8 +164,8 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 		Btpurchase.addActionListener(this);
 		BtBasket = new JButton("장바구니");
 		BtBasket.addActionListener(this);
-		Btclose = new JButton("닫기");
-		Btclose.addActionListener(this);
+		Btpreview = new JButton("이전");
+		Btpreview.addActionListener(this);
 
 		Cbsize = new JComboBox<String>(arSize.toArray(new String[arSize.size()]));
 		Cbsize.setPreferredSize(new Dimension(120, 20));
@@ -196,7 +199,7 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 	}
 
 	private void ProDetailView() {
-		setTitle("장바구니");
+//		setTitle("장바구니");
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 //	    gridbagconstraints.ipadx = 7;
@@ -226,10 +229,10 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 		gridbagAdd(BtPlus, 4, 4, 1, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(Btclose, 0, 18, 10, 10);
+		gridbagAdd(Btpreview, 0, 18, 10, 10);
 		gridbagAdd(BtBasket, 4, 6, 1, 1);
 		gridbagAdd(BtMinus, 4, 4, 1, 1);
-		pack();
+
 		setVisible(true);
 	}
 
@@ -248,7 +251,7 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 	}
 
 	public static void main(String[] args) {
-		ProDetail win = new ProDetail(new JFrame());
+		ProDetail win = new ProDetail(parent);
 	}
 
 	@Override
@@ -340,36 +343,36 @@ public class ProDetail extends Dialog implements ActionListener, MouseListener {
 				String bk_allPrice = xAllPrice.getText();
 				double bk_point = Integer.parseInt(xAllPrice.getText()) * 0.02;
 				BasketData.createBasket(user_num, pro_num, bk_option, bk_price, bk_allPrice, bk_point);
-				
+
 				int check = JOptionPane.showConfirmDialog(null, "장바구니에 등록되었습니다. 장바구니로 이동하시겠습니까?", "",
 						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				Basket.getData(BasketData.selectBasket(Basket.cust_num));
 				if (check == 0) {
-					dispose();
-					new Basket_Dialog(new JFrame());
+					parent.home.changePanel((JPanel) new Basket());
 				} else
 					return;
-			}else
+			} else
 				JOptionPane.showMessageDialog(null, "사이즈 또는 색상을 선택하여 주세요");
 
-		}else if (e.getSource() == Btpurchase) {
+		} else if (e.getSource() == Btpurchase) {
 			if (!Cbsize.getSelectedItem().toString().equals("[필수] 선택")
 					&& !Cbsize.getSelectedItem().toString().equals("----------")
 					&& !Cbcolor.getSelectedItem().toString().equals("[필수] 선택")
 					&& !Cbcolor.getSelectedItem().toString().equals("----------")) {
-				int check = JOptionPane.showConfirmDialog(null, "주문창으로 이동하시겠습니까?", "",
-						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+				int check = JOptionPane.showConfirmDialog(null, "주문창으로 이동하시겠습니까?", "", JOptionPane.YES_NO_OPTION,
+						JOptionPane.INFORMATION_MESSAGE);
+				Basket.getData(BasketData.selectBasket(Basket.cust_num));
 				if (check == 0) {
-					dispose();
-					new MemOrdPg_Dialog(new JFrame());
+					parent.home.changePanel((JPanel) new MemOrdPg());
 				} else
 					return;
-			}else
+			} else
 				JOptionPane.showMessageDialog(null, "사이즈 또는 색상을 선택하여 주세요");
 		} else if (e.getSource() == Btpurchase) {
 			new MemOrdPg();
-		} else if (e.getSource() == Btclose) {
-			dispose();
-		} 
+		} else if (e.getSource() == Btpreview) {
+			parent.home.changePanel((JPanel) new ProImage(parent.home));
+		}
 	}
 
 	@Override

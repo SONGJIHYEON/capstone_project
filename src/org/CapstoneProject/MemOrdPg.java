@@ -64,7 +64,7 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 	
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints;
-
+ 
 	private ArrayList<String> getData(List<Map<String, Serializable>> BasketListData) {
 		model1.setRowCount(0);
 //		ar = new String[BasketListData.size()];
@@ -96,9 +96,6 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 		price = sum2 - (sum2 * disc_rt);
 		xAllDiscout.setText(String.valueOf(sum2 * disc_rt));
 		xPrice.setText(String.valueOf(price));
-//		double discount = sum2 * disc_rt + Double.valueOf(xUsedPoint.getText());
-//		xGradeDis.setText(String.valueOf(discount));
-//		xPrice.setText(String.valueOf(sum2 - discount));
 		
 		return arList;
 	}

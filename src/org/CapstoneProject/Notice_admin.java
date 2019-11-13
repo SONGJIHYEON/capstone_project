@@ -97,7 +97,7 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 
 		Tsearch = new JTextField(15);
 		Tsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		Tsearch.setPreferredSize(new Dimension(150, 41));
+		Tsearch.setPreferredSize(new Dimension(150, 40));
 
 		tNotice = new JTable(model1);
 		tNotice.getColumnModel().getColumn(0).setPreferredWidth(70); // JTable 의 컬럼 길이 조절

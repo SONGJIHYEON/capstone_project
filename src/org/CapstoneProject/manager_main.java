@@ -345,7 +345,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		win.add(MenuBar);
 		win.add(img_top);
 		win.add(img_back);	
-
+		
 		setExtendedState(MAXIMIZED_BOTH);
 		setVisible(true);
 	}
@@ -518,8 +518,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			JPanel PMb_look = new mb_look();
 			add(MenuBar);
 			add(img_top);
-			PMb_look.setSize(d.width / 2, d.height - 140);
-			PMb_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+//			PMb_look.setSize(d.width / 2, d.height - 140);
+			PMb_look.setBounds(235, 150, 1000, 470);
 			add(PMb_look);
 			repaint();
 			revalidate();

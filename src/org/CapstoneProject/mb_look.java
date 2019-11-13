@@ -1,5 +1,6 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,6 +8,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +24,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class mb_look extends JPanel implements ActionListener {
+public class mb_look extends JPanel implements ActionListener, MouseListener {
 
 	private JLabel mb_lookup, mb_lookup2, mb_gra;
 
@@ -31,10 +34,10 @@ public class mb_look extends JPanel implements ActionListener {
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 
-	private JTable emp_info;
+	private JTable cust_info;
 	private JScrollPane scrollpane1;
 
-	private JButton bus_man, pro_man, od_man, mb_man, emp_man, Bregist, Bcancel, Bsearch, Breset;
+	private JButton bus_man, pro_man, od_man, mb_man, cust_man, Bregist, Bcancel, Bsearch, Breset;
 
 	private JComboBox<String> cbSearch;
 
@@ -47,47 +50,33 @@ public class mb_look extends JPanel implements ActionListener {
 		gridbagconstraints = new GridBagConstraints();
 
 		mb_lookup = new JLabel("회원조회");
-		mb_lookup.setPreferredSize(new Dimension(200, 28));
-		mb_lookup2 = new JLabel("회원조회");
-		mb_lookup2.setPreferredSize(new Dimension(200, 28));
-		mb_gra = new JLabel("회원등급설정");
-		mb_lookup2.setPreferredSize(new Dimension(200, 28));
-
-		Tsearch = new JTextField(18);
-		Tsearch.setPreferredSize(new Dimension(100, 30));
+//		mb_lookup.setPreferredSize(new Dimension(200, 28));
 
 		cbSearch = new JComboBox<String>(search);
-		cbSearch.setPreferredSize(new Dimension(200, 28));
+		cbSearch.setPreferredSize(new Dimension(100, 30));
+		cbSearch.setBackground(Color.WHITE);
+		
+		Tsearch = new JTextField(22);
+		Tsearch.setPreferredSize(new Dimension(150, 30));
 
-		emp_info = new JTable(model1);
-		emp_info.getColumnModel().getColumn(0).setPreferredWidth(20);
-		emp_info.getColumnModel().getColumn(1).setPreferredWidth(20);
-		emp_info.getColumnModel().getColumn(2).setPreferredWidth(50);
-		emp_info.getColumnModel().getColumn(3).setPreferredWidth(300);
-		emp_info.getColumnModel().getColumn(4).setPreferredWidth(10);
-		emp_info.getColumnModel().getColumn(5).setPreferredWidth(10);
-		scrollpane1 = new JScrollPane(emp_info);
-		scrollpane1.setPreferredSize(new Dimension(1000, 300));
-
-		bus_man = new JButton("거래관리");
-		bus_man.setPreferredSize(new Dimension(200, 28));
-//         regist.addActionListener(this);
-		pro_man = new JButton("상품관리");
-		pro_man.setPreferredSize(new Dimension(200, 28));
-//         cancel.addActionListener(this);
-		od_man = new JButton("주문관리");
-		od_man.setPreferredSize(new Dimension(200, 28));
-		mb_man = new JButton("회원관리");
-		mb_man.setPreferredSize(new Dimension(200, 28));
-		emp_man = new JButton("사원관리");
-		emp_man.setPreferredSize(new Dimension(200, 28));
+		cust_info = new JTable(model1);
+		cust_info.getColumnModel().getColumn(0).setPreferredWidth(60);
+		cust_info.getColumnModel().getColumn(1).setPreferredWidth(60);
+		cust_info.getColumnModel().getColumn(2).setPreferredWidth(100);
+		cust_info.getColumnModel().getColumn(3).setPreferredWidth(400);
+		cust_info.getColumnModel().getColumn(4).setPreferredWidth(60);
+		cust_info.getColumnModel().getColumn(5).setPreferredWidth(80);
+		cust_info.addMouseListener(this);
+		scrollpane1 = new JScrollPane(cust_info);
+		scrollpane1.setPreferredSize(new Dimension(900, 300));
+		
 		Bsearch = new JButton("검색");
 		Bsearch.addActionListener(this);
-		Bsearch.setPreferredSize(new Dimension(200, 28));
+		Bsearch.setPreferredSize(new Dimension(80, 30));
 
 
 		getData(CustData.selectCust());
-		EmpRegisterView();
+		custRegisterView();
 	}
 
 	private void getData(List<Map<String, Serializable>> custListData) {
@@ -103,27 +92,23 @@ public class mb_look extends JPanel implements ActionListener {
 		}
 	}
 
-	private void EmpRegisterView() {
+	private void custRegisterView() {
 
 //         setTitle("회원조회");
+		setLayout(gridbaglayout);
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
+		gridbagAdd(mb_lookup, 1, 1, 1, 1);
 //         gridbagconstraints.ipadx = 7;
 //         
 //         gridbagconstraints.weightx=1.0;
 //         gridbagconstraints.weighty=1.0;
-
-		setLayout(gridbaglayout);
-		gridbagconstraints.anchor = GridBagConstraints.CENTER;
-
-		gridbagAdd(scrollpane1, 1, 3, 5, 5);
-
-		gridbagconstraints.anchor = GridBagConstraints.WEST;
-
-		gridbagAdd(Tsearch, 2, 2, 1, 1);
 		gridbagAdd(cbSearch, 1, 2, 1, 1);
-		gridbagAdd(mb_lookup2, 1, 1, 1, 1);
+		gridbagAdd(scrollpane1, 1, 3, 5, 5);
+		gridbagAdd(Tsearch, 2, 2, 1, 1);
 		gridbagAdd(Bsearch, 3, 2, 1, 1);
+
+		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 
@@ -147,11 +132,11 @@ public class mb_look extends JPanel implements ActionListener {
 
 	}
 
-	public void paintComponent(Graphics g) {
-		g.drawImage(manager_main.img, 0, 0, null);
-		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
-		super.paintComponent(g);
-	}
+//	public void paintComponent(Graphics g) {
+//		g.drawImage(manager_main.img, 0, 0, null);
+//		setOpaque(false);// 그림을 표시하게 설정,투명하게 조절
+//		super.paintComponent(g);
+//	}
 
 	public static void main(String[] args) {
 		new mb_look();
@@ -172,6 +157,44 @@ public class mb_look extends JPanel implements ActionListener {
 				getData(CustData.searchCust3(search));
 			}
 		}
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		int row;
+		if(e.getSource() == cust_info) {
+			row = cust_info.getSelectedRow();
+			String cust_id = "";
+			cust_id += cust_info.getValueAt(row, 0);
+			
+			new Cust_view_admin(new JFrame());
+		}
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

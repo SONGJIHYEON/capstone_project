@@ -13,7 +13,7 @@ import java.util.Map;
 public class BasketData {
 
 	public static Connection conn = ConnectionDB.getConnection();
-	static String quary;
+	static String quary, quary2;
 	static PreparedStatement pstm = null;
 	static ResultSet rs = null;
 
@@ -24,16 +24,13 @@ public class BasketData {
 	public static List<Map<String, Serializable>> BasketListData = new ArrayList<Map<String, Serializable>>();
 
 	/* 고객번호가 있는 링크 리스트 구성 */
-	public static void initBasketData(String pro_NUM, String pro_CTGR_NUM, String pro_NM, String pro_EXP) {
-
-	}
-
-	/* 고객정보를 생성하는 질의어 */
 	static void createBasket(String user_num, String pro_num, String bk_option, String bk_price, String bk_allPrice,
 			double bk_point) {
 
 		quary = "insert into bsk values ('" + user_num + "', '" + pro_num + "', '" + bk_option + "', '" + bk_price
 				+ "', '" + bk_allPrice + "', '" + bk_point + "')";
+
+		quary2 = "commit";
 
 		System.out.println(quary);
 		try {
@@ -44,6 +41,14 @@ public class BasketData {
 			sqle.printStackTrace();
 		}
 
+		try {
+			pstm = conn.prepareStatement(quary2);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("commit문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
 	}
 
 	static List<Map<String, Serializable>> deleteBasket(String pro_nm) {
@@ -51,6 +56,8 @@ public class BasketData {
 		quary = "delete bsk "
 				+ "where bsk.PRO_NUM = (select pro.pro_num from pro where bsk.pro_num = pro.pro_num and PRO_NM = '"
 				+ pro_nm + "') ";
+		
+		quary2 = "commit";
 
 		BasketListData.clear();
 
@@ -63,6 +70,13 @@ public class BasketData {
 			System.out.println("select문에서 예외 발생");
 			sqle.printStackTrace();
 		}
+		try {
+			pstm = conn.prepareStatement(quary2);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("commit문에서 예외 발생");
+			sqle.printStackTrace();
+		}
 
 		return BasketListData;
 
@@ -71,6 +85,8 @@ public class BasketData {
 	static List<Map<String, Serializable>> deleteBasket2(String cust_num) {
 
 		quary = "delete from bsk where cust_num = '" + cust_num + "'";
+		
+		quary2 = "commit";
 
 		BasketListData.clear();
 
@@ -81,6 +97,13 @@ public class BasketData {
 
 		} catch (SQLException sqle) {
 			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+		try {
+			pstm = conn.prepareStatement(quary2);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("commit문에서 예외 발생");
 			sqle.printStackTrace();
 		}
 
@@ -92,13 +115,17 @@ public class BasketData {
 
 		quary = "select MODEL_IMG1, PRO_NM, QUANT, UP, PR, POINT, pro.pro_num from model join pro on model.MODEL_NUM = pro.MODEL_NUM "
 				+ "join bsk on PRO.PRO_NUM = bsk.PRO_NUM where cust_num = '" + cust_num + "'";
-
+		
+		quary2 = "commit";
+		
 		BasketListData.clear();
 
 		try {
-			System.out.println(quary);
+//			System.out.println(quary);
 			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
 			rs = pstm.executeQuery();
+			conn.commit();
+
 			while (rs.next()) {
 
 				BasketdataSet = new HashMap<String, Serializable>();
@@ -114,17 +141,22 @@ public class BasketData {
 
 				BasketListData.add(BasketdataSet);
 //				System.out.println(BasketListData);
-
 			}
 
 		} catch (SQLException sqle) {
 			System.out.println("select문에서 예외 발생");
 			sqle.printStackTrace();
 		}
+		try {
+			pstm = conn.prepareStatement(quary2);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("commit문에서 예외 발생");
+			sqle.printStackTrace();
+		}
 
 		return BasketListData;
 
 	}
-
 
 }

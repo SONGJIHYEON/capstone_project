@@ -7,7 +7,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,13 +27,13 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 
-public class MemOrdPg_Dialog extends Dialog {   
+public class MemOrdPg_Dialog extends Dialog implements ActionListener {   
 	private JLabel vOrdName, vAddr, vPhone, vOpDeliv, vRecipiant, vRecipAddr, vRecipPhone, vDeliveMsg,
 	vGradeDis, vUsedPoint, vProPrice, vAllDiscout, vPrice, vPoint, v1, vDepositNm, vDepositBk;   
 	private JTextField  xOrdName, xAddr, xPhone, xRecipiant, xRecipAddr, xRecipPhone, xDeliveMsg, xGradeDis, xUsedPoint,
 	xProPrice, xAllDiscout, xPrice, xDepositNm, xDepositBk;         
 	   
-	private String[] col1 = {"no", "이미지", "상품정보", "수량", "포인트", "금액", "선택"};
+	private String[] col1 = {"이미지", "상품정보", "수량", "단가", "금액", "포인트"};
 	private String[] col2 = {"농협", "국민은행", "우리은행", "수협"};      
 	private String[] div = {"관리자", "유저"}; // 사원구분 콤보박스의 목록
 	         
@@ -40,15 +45,58 @@ public class MemOrdPg_Dialog extends Dialog {
 	private JTable tProInfo;      
 	private JScrollPane scrollpane1;
 	private JPanel pRadio, pRadio2;
-	         
 	private JButton BtOrder, BtClose;
 	private JComboBox<String> cbBk;      
+	
+	static ArrayList<String> arList = new ArrayList<>();
+	
+	String cust_nm, cust_addr, cust_phone, pro_price, cust_disc_rt, cust_point, cust_num, od_price, orderNum, used_point, payNum,
+	rBankTxt;
+	
+	double sum2, cust_price, disc_rt, price;
 	         
 	GridBagLayout gridbaglayout;      
 	GridBagConstraints gridbagconstraints;      // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
+	
+	private ArrayList<String> getData(List<Map<String, Serializable>> BasketListData) {
+		model1.setRowCount(0);
+//		ar = new String[BasketListData.size()];
+		sum2 = 0;
+		for (int i = 0; i < BasketListData.size(); i++) {
+			BasketListData.get(i).get("pro.pro_num");
+			sum2 = sum2 + Double.valueOf(BasketListData.get(i).get("PR").toString());
+			model1.addRow(new Object[] { 
+					BasketListData.get(i).get("MODEL_IMG1"), 
+					BasketListData.get(i).get("PRO_NM"),
+					BasketListData.get(i).get("QUANT"),
+					BasketListData.get(i).get("UP"),
+					BasketListData.get(i).get("PR"),
+					BasketListData.get(i).get("POINT"), });
+			
+			arList.add(BasketListData.get(i).get("pro.pro_num").toString());
+			arList.add(BasketListData.get(i).get("QUANT").toString());
+			arList.add(BasketListData.get(i).get("UP").toString());
+			arList.add(BasketListData.get(i).get("PR").toString());
+
+			String[] array = arList.toArray(new String[arList.size()]);
+
+		}
+
+		pro_price = String.valueOf(sum2);
+		xGradeDis.setText(cust_disc_rt + "%");
+		disc_rt = Double.valueOf(Login.user_disc_rt) * 0.01;
+		xProPrice.setText(pro_price);
+		price = sum2 - (sum2 * disc_rt);
+		xAllDiscout.setText(String.valueOf(sum2 * disc_rt));
+		xPrice.setText(String.valueOf(price));
+		
+		return arList;
+	}
 	         
 	public MemOrdPg_Dialog(JFrame fr) { 
         super(fr, "", true);
+        
+        cust_num = Login.user_num;
 		
         gridbaglayout = new GridBagLayout();
         gridbagconstraints = new GridBagConstraints();
@@ -117,9 +165,10 @@ public class MemOrdPg_Dialog extends Dialog {
         BtOrder = new JButton("주문하기");
 //        BtOrder.setPreferredSize(new Dimension(130,28));
         BtClose = new JButton("닫기");
+        BtClose.addActionListener(this);
 
 //        regist.addActionListener(this);
-        
+		getData(BasketData.selectBasket(cust_num));
         MemOrdPgView();
       }   
 	         
