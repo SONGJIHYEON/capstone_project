@@ -1,5 +1,3 @@
-
-  
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -221,6 +219,9 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 				NoticeData.createN(tTitle.getText(), tContent.getText(), writer);
 				JOptionPane.showMessageDialog(null, "공지사항이 등록되었습니다.", "공지사항 등록", JOptionPane.INFORMATION_MESSAGE);
 				dispose();
+				Notice_admin.getData();
+				repaint();
+				revalidate();
 			}
 			else {
 				JOptionPane.getRootFrame().dispose();
@@ -231,3 +232,5 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 	}   
 }	
 
+	
+			

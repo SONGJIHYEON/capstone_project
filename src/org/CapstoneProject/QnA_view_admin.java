@@ -1,4 +1,3 @@
-
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -240,3 +239,5 @@ public class QnA_view_admin extends Dialog implements ActionListener, MouseListe
 	}   
 }	
 
+	
+			

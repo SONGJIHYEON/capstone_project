@@ -75,9 +75,10 @@ public class evt_regist extends Dialog implements ActionListener {
 		Tevt_model = new JTextField(20);
 		Tevt_model.setPreferredSize(new Dimension(100, 30));
 		Tevt_st_dt = new JTextField(20);
-		Tevt_st_dt.setText(date);
+		Tevt_st_dt.setText("YYYY-MM-DD");
 		Tevt_st_dt.setPreferredSize(new Dimension(100, 30));
 		Tevt_fn_dt = new JTextField(20);
+		Tevt_fn_dt.setText("YYYY-MM-DD");
 		Tevt_fn_dt.setPreferredSize(new Dimension(100, 30));
 		Tevt_gift = new JTextField(20);
 		Tevt_gift.setPreferredSize(new Dimension(100, 30));
@@ -238,8 +239,8 @@ public class evt_regist extends Dialog implements ActionListener {
 					evtData.createEvt1(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, GIFT_modelnum);
 					JOptionPane.showMessageDialog(null, "이벤트가 등록되었습니다.", "이벤트 등록", JOptionPane.WARNING_MESSAGE);
 					Tevt_model.setText("");
-					Tevt_st_dt.setText("");
-					Tevt_fn_dt.setText("");
+					Tevt_st_dt.setText("YYYY-MM-DD");
+					Tevt_fn_dt.setText("YYYY-MM-DD");
 					Tevt_gift.setText("");
 
 				} else if (CBevt_tp.getSelectedItem() == "할인이벤트") {
@@ -253,8 +254,8 @@ public class evt_regist extends Dialog implements ActionListener {
 					evtData.createEvt2(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, evt_sale);
 					JOptionPane.showMessageDialog(null, "이벤트가 등록되었습니다.", "이벤트 등록", JOptionPane.WARNING_MESSAGE);
 					Tevt_model.setText("");
-					Tevt_st_dt.setText("");
-					Tevt_fn_dt.setText("");
+					Tevt_st_dt.setText("YYYY-MM-DD");
+					Tevt_fn_dt.setText("YYYY-MM-DD");
 					Tevt_sale.setText("");
 
 				} else if (CBevt_tp.getSelectedItem() == "포인트이벤트") {
@@ -268,8 +269,8 @@ public class evt_regist extends Dialog implements ActionListener {
 					evtData.createEvt3(evt_tp, evt_st_dt, evt_fn_dt, OBJ_modelnum, evt_point);
 					JOptionPane.showMessageDialog(null, "이벤트가 등록되었습니다.", "이벤트 등록", JOptionPane.WARNING_MESSAGE);
 					Tevt_model.setText("");
-					Tevt_st_dt.setText("");
-					Tevt_fn_dt.setText("");
+					Tevt_st_dt.setText("YYYY-MM-DD");
+					Tevt_fn_dt.setText("YYYY-MM-DD");
 					Tevt_point.setText("");
 				}
 

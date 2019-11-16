@@ -107,7 +107,7 @@ public class Notice_view_user extends Dialog implements ActionListener, MouseLis
 		tContent.setEnabled(false);
 		
 		tTitle.setText(sTitle);
-		tWriter.setText(sWriter);
+		tWriter.setText("관리자");
 		tDate.setText(sDate);
 		tContent.setText(sContent);
 		
@@ -222,3 +222,6 @@ public class Notice_view_user extends Dialog implements ActionListener, MouseLis
 		
 	}   
 }	
+
+	
+			

@@ -32,12 +32,12 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
-public class Od_list_no_deposit extends JPanel implements ActionListener, MouseListener {
+public class Od_list_Deliv extends JPanel implements ActionListener, MouseListener {
 
 	private JLabel no_deposit;
 	private JTextField Tsearch;
 
-	private String[] col1 = { "주문자명", "주문번호 ", "주문금액", "수령인명", "수령인주소", "수령인번호", "주문상태구분", "상세구매내역", "입금확인" };
+	private String[] col1 = { "주문자명", "주문번호 ", "주문금액", "수령인명", "수령인주소", "수령인번호", "상세구매내역", "배송업체확인", "배송완료" };
 	private String[] search = { "주문번호", "주문자명", "주문일시" };
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
@@ -75,23 +75,22 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 
 			model1.addRow(new Object[] {
 
-					OrderListData.get(i).get("cust_nm"),
-					OrderListData.get(i).get("od_num"), 
+					OrderListData.get(i).get("cust_nm"), 
+					OrderListData.get(i).get("od_num"),
 					OrderListData.get(i).get("OD_PR"), 
 					OrderListData.get(i).get("RECPT"),
-					OrderListData.get(i).get("RECPT_ADDR"),
+					OrderListData.get(i).get("RECPT_ADDR"), 
 					OrderListData.get(i).get("RECPT_TEL"),
-					OrderListData.get(i).get("OD_COND_TP"), 
-				});
+					OrderListData.get(i).get("OD_COND_TP"), });
 		}
 	}
 
-	public Od_list_no_deposit() {
+	public Od_list_Deliv() {
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		no_deposit = new JLabel("주문관리(미입금)");
+		no_deposit = new JLabel("주문관리(배송중)");
 		no_deposit.setPreferredSize(new Dimension(200, 28));
 
 		cbSearch = new JComboBox<String>(search);
@@ -116,7 +115,7 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
 //         setExtendedState(MAXIMIZED_BOTH);
-		getData(OrderData.selectOd_list_no_deposit());
+		getData(OrderData.selectOd_list_pre_pro());
 		EmpRegisterView();
 	}
 
@@ -163,7 +162,7 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 	}
 
 	public static void main(String[] args) {
-		new Od_list_no_deposit();
+		new Od_list_Deliv();
 	}
 
 	class TableCell2 extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {
@@ -212,19 +211,23 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 
 		public TableCell() {
 			// TODO Auto-generated constructor stub
-			jb = new JButton("입금확인");
+			jb = new JButton("배송등록");
 			jb.setHorizontalAlignment(JLabel.CENTER);
 
 			jb.addActionListener(e -> {
-				int check = JOptionPane.showConfirmDialog(null, "입금을 확인했으며 상품준비중으로 업데이트합니다", "",
-						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-				
-				if(check == 0) {
-					od_num = "";
-					od_num += (String) od_info.getValueAt(row, 1);
-					OrderData.updatePre_pro(od_num);
-				}else 
-					return;
+				int row = od_info.getSelectedRow();
+				od_num = "";
+				od_num += (String) od_info.getValueAt(row, 1);
+				System.out.println(od_num);
+				new RegDeliv(new JFrame());
+				OrderData.updateDeliv(od_num);
+
+//				model1.removeRow(row);
+//				String pro_nm = (String) tProInfo.getValueAt(tProInfo.getSelectedRow(), 1);
+//
+//				BasketData.deleteBasket(tProInfo.getValueAt(row, 1).toString());
+//				getData(BasketData.selectBasket(cust_num));
+
 			});
 		}
 

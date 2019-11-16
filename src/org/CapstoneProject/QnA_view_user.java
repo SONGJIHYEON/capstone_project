@@ -1,5 +1,3 @@
-
-  
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -18,9 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -128,19 +123,7 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 
 		tTitle.setText(sTitle);
 		tWriter.setText(sWriter);
-		
-		String oldstring = sDate;
-		
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String new_sDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
-		
-		tDate.setText(new_sDate);
+		tDate.setText(sDate);
 		tContent.setText(sContent);
 		
 		tTitle.setForeground(Color.BLACK);
@@ -206,7 +189,7 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 	private void getData(List<Map<String, Serializable>> QnAListData) {
 		
 			sTitle = (String) QnAListData.get(0).get("POST_MSG_TIT");
-			sWriter = (String) QnAListData.get(0).get("WRITER_NM");
+			sWriter = (String) QnAListData.get(0).get("CUST_NM");
 			sDate = (String) QnAListData.get(0).get("WRT_DATE");
 			sContent = (String) QnAListData.get(0).get("POST_MSG_CON");
 			
@@ -252,3 +235,5 @@ public class QnA_view_user extends Dialog implements ActionListener, MouseListen
 	}   
 }	
 
+	
+			

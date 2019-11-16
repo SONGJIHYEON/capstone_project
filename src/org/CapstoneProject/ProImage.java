@@ -52,7 +52,7 @@ public class ProImage extends JPanel implements MouseListener {
 	List<Map<String, Serializable>> ImageListData;
 	private int nowPage;
 	private int nowPanel;
-	private int postPerPage = 6;
+	private int postPerPage = 9;
 	private int pagePerPanel = 3;
 	private int panelNum;
 	private int pageNum;

@@ -1,5 +1,3 @@
-
-  
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -141,7 +139,28 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 
 		setTitle("홈페이지 관리자");
 		
-		setLayout(gridbaglayout);		
+		setLayout(gridbaglayout);
+		
+
+//		Home.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		Home.setHorizontalAlignment(SwingConstants.CENTER);
+//		Home.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+//		Mn_Manage.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		Mn_Manage.setHorizontalAlignment(SwingConstants.CENTER);
+//		Mn_Manage.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+//		Mn_Center.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		Mn_Center.setHorizontalAlignment(SwingConstants.CENTER);
+//		Mn_Center.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+//		Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
+//		Mn_Basket.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+//		Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
+//		Mn_Mypage.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+//		Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
+//		Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
+//		Mn_Logout.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 //		gridbagAdd(MenuBar, 0, 0, 7, 1);
@@ -185,6 +204,8 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 	public static void main(String[] args) {   
 		new QnA_question_write(new JFrame());
 	}
+	
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
@@ -238,3 +259,5 @@ public class QnA_question_write extends Dialog implements ActionListener, MouseL
 	}   
 }	
 
+	
+			

@@ -32,7 +32,7 @@ public class NoticeData {
 
 	static void createN(String Title, String content, String writer ) {
 		quary = "INSERT INTO POST_MSG VALUES (SEQ_NPOST_NUM.NEXTVAL, '공지사항', '"+Title+"', to_char(sysdate, 'yyyy-mm-dd'), '"+content+"', "
-				+ " null, null, null, '"+writer+"')";
+				+ " null, null, null, '"+writer+"' , null)";
 
 		try {
 			pstm = conn.prepareStatement(quary);
@@ -135,7 +135,7 @@ public class NoticeData {
 		
 		quary = "select POST_MSG_TIT, WRT_DATE, POST_MSG_CON "
 				+ "FROM  POST_MSG "
-				+ "where POST_MSG_NUM = " + POST_NUM ;
+				+ "where POST_BRD_TP = '공지사항' and POST_MSG_NUM = " + POST_NUM ;
 		
 		NoticeListData.clear();
 		

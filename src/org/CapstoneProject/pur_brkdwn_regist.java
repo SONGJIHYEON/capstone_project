@@ -104,29 +104,29 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 
 		Bregist = new JButton("등록");
 		Bregist.addActionListener(this);
-		Bregist.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		Bregist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Bregist.setBackground(Color.WHITE);
 
 		Bcancel = new JButton("취소");
-		Bcancel.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		Bcancel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Bcancel.setBackground(Color.WHITE);
 		Bcancel.addActionListener(this);
 
 		Bcorrsearch = new JButton("거래처검색");
 		Bcorrsearch.addActionListener(this);
-		Bcorrsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		Bcorrsearch.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Bcorrsearch.setFocusPainted(false);
 		Bcorrsearch.setBackground(Color.WHITE);
 
 		Bprosearch = new JButton("상품검색");
 		Bprosearch.addActionListener(this);
-		Bprosearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		Bprosearch.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Bprosearch.setFocusPainted(false);
 		Bprosearch.setBackground(Color.WHITE);
 
 		Badd = new JButton("상품추가");
 		Badd.addActionListener(this);
-		Badd.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		Badd.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Badd.setFocusPainted(false);
 		Badd.setBackground(Color.WHITE);
 

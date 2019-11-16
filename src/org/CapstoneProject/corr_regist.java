@@ -41,24 +41,24 @@ public class corr_regist extends Dialog implements ActionListener {
 		gridbagconstraints = new GridBagConstraints();
 
 		corr_regist2 = new JLabel("거래처등록");
-		corr_regist2.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		corr_regist2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		corr_regist2.setHorizontalAlignment(JLabel.CENTER);
 		corr_regist2.setPreferredSize(new Dimension(100, 30));
 
 		Lcorr_nm = new JLabel("업체명");
-		Lcorr_nm.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		Lcorr_nm.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Lcorr_nm.setHorizontalAlignment(JLabel.CENTER);
 		Lcorr_nm.setPreferredSize(new Dimension(100, 30));
 		Lcorr_prnm = new JLabel("대표명");
-		Lcorr_prnm.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		Lcorr_prnm.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Lcorr_prnm.setHorizontalAlignment(JLabel.CENTER);
 		Lcorr_prnm.setPreferredSize(new Dimension(100, 30));
 		Lcorr_ph = new JLabel("연락처");
-		Lcorr_ph.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		Lcorr_ph.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Lcorr_ph.setHorizontalAlignment(JLabel.CENTER);
 		Lcorr_ph.setPreferredSize(new Dimension(100, 30));
 		Lcorr_addr = new JLabel("주소");
-		Lcorr_addr.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		Lcorr_addr.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Lcorr_addr.setHorizontalAlignment(JLabel.CENTER);
 		Lcorr_addr.setPreferredSize(new Dimension(100, 30));
 
@@ -73,7 +73,7 @@ public class corr_regist extends Dialog implements ActionListener {
 		Tcorr_addr.setPreferredSize(new Dimension(100, 30));
 
 		vMemAddr1 = new JLabel("주소");
-		vMemAddr1.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		vMemAddr1.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		vMemAddr1.setHorizontalAlignment(JLabel.CENTER);
 		vMemAddr1.setPreferredSize(new Dimension(100, 30));
 		xMemAddr1 = new JTextField(18);
@@ -81,16 +81,16 @@ public class corr_regist extends Dialog implements ActionListener {
 
 		BtSearchAddr = new JButton("우편번호 검색");
 		BtSearchAddr.setBackground(Color.WHITE);
-		BtSearchAddr.setFont(new Font("휴먼매직체", Font.BOLD, 17));
+		BtSearchAddr.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		BtSearchAddr.setPreferredSize(new Dimension(150, 30));
 		BtSearchAddr.addActionListener(this);
 
 		vMemAddr2 = new JLabel("기본주소");
-		vMemAddr2.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		vMemAddr2.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		vMemAddr2.setHorizontalAlignment(JLabel.CENTER);
 		vMemAddr2.setPreferredSize(new Dimension(100, 30));
 		vMemAddr3 = new JLabel("상세주소");
-		vMemAddr3.setFont(new Font("휴먼매직체", Font.PLAIN, 17));
+		vMemAddr3.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		vMemAddr3.setHorizontalAlignment(JLabel.CENTER);
 		vMemAddr3.setPreferredSize(new Dimension(100, 30));
 		xMemAddr2 = new JTextField(18);
@@ -100,13 +100,13 @@ public class corr_regist extends Dialog implements ActionListener {
 
 		Bregist = new JButton("등록");
 		Bregist.setBackground(Color.WHITE);
-		Bregist.setFont(new Font("휴먼매직체", Font.BOLD, 17));
+		Bregist.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Bregist.setPreferredSize(new Dimension(80, 30));
 		Bregist.addActionListener(this);
 
 		Bcancel = new JButton("취소");
 		Bcancel.setBackground(Color.WHITE);
-		Bcancel.setFont(new Font("휴먼매직체", Font.BOLD, 17));
+		Bcancel.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Bcancel.setPreferredSize(new Dimension(80, 30));
 		Bcancel.addActionListener(this);
 		

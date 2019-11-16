@@ -1,5 +1,3 @@
-
-  
 package org.CapstoneProject;
 
 import java.awt.BorderLayout;
@@ -237,3 +235,5 @@ public class QnA_answer_write extends Dialog implements ActionListener, MouseLis
 	}   
 }	
 
+	
+			

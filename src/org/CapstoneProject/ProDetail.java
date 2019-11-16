@@ -116,6 +116,7 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 
 	public ProDetail(ProImage parent) {
 		this.parent = parent;
+		
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 

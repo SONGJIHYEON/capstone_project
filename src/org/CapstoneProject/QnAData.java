@@ -1,4 +1,3 @@
-
 package org.CapstoneProject;
 
 import java.io.Serializable;
@@ -31,7 +30,7 @@ public class QnAData {
 
 	static void createQ(String Title, String content, String writer ) {
 		quary = "INSERT INTO POST_MSG VALUES (SEQ_QPOST_NUM.NEXTVAL, 'QnA', '"+Title+"', to_char(sysdate, 'yyyy-mm-dd'), '"+content+"', "
-				+ "  '문의', null, null, '"+writer+"')";
+				+ "  '문의', null, null, '"+writer+"', null)";
 
 		try {
 			pstm = conn.prepareStatement(quary);
@@ -45,7 +44,7 @@ public class QnAData {
 
 	static void createA(String POST_NUM, String Title, String content, String writer ) {
 		quary = "INSERT INTO POST_MSG VALUES ('"+POST_NUM+"', 'QnA', '"+Title+"', to_char(sysdate, 'yyyy-mm-dd'), '"+content+"', "
-				+ "  '답변', null, null, '"+writer+"')";
+				+ "  '답변', null, null, '"+writer+"', null)";
 		try {
 			pstm = conn.prepareStatement(quary);
 			pstm.executeQuery();
@@ -59,7 +58,9 @@ public class QnAData {
 	static List<Map<String, Serializable>> selectQnA() {
 
 		quary = " SELECT  POST_MSG_NUM, POST_MSG_TY, POST_MSG_TIT, WRITER_NM, WRT_DATE "
-				+ "FROM  POST_MSG WHERE POST_BRD_TP = 'QnA' ORDER BY WRT_DATE ASC, POST_MSG_NUM ASC";
+				+ "FROM  POST_MSG "
+				+ "WHERE POST_BRD_TP = 'QnA' "
+				+ "ORDER BY WRT_DATE ASC, POST_MSG_NUM ASC";
 
 		QnAListData.clear();
 
@@ -128,7 +129,8 @@ public class QnAData {
 	
 	static List<Map<String, Serializable>> infoQ(String POST_NUM) {
 		
-		quary = "select POST_MSG_TIT, WRITER_NM, WRT_DATE, POST_MSG_CON FROM  POST_MSG "
+		quary = "select POST_MSG_TIT, WRITER_NM, WRT_DATE, POST_MSG_CON "
+				+ "FROM  POST_MSG "
 				+ "where POST_MSG_NUM = '"+POST_NUM+"'";
 		
 		QnAListData.clear();
@@ -163,4 +165,3 @@ public class QnAData {
 	
 
 }
-

@@ -35,8 +35,8 @@ import javax.swing.JTextField;
 public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 
 //	private static final int MAXIMIZED_BOTH = 0;
-	private JLabel vOd_num, vDeliv_num, vDeliv_date, vDeliv_cond, vDeliv_type;
-	private JTextField xOd_num, xDeliv_num, xDeliv_date, xDeliv_cond, xDeliv_type;
+	private JLabel vOd_num, vDeliv_comp, vDeliv_num, vDeliv_date, vDeliv_cond, vDeliv_type;
+	private JTextField xOd_num, xDeliv_comp, xDeliv_num, xDeliv_date, xDeliv_cond, xDeliv_type;
 //	private JTextArea xModelImage;
 
 	private String[] ctgr1 = { "상의", "하의", "아우터", "셔츠", "신발" };
@@ -79,6 +79,7 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
         super(fr, "", true);
         
         Od_num = Od_list_pre_pro.od_num;
+        System.out.println(Od_num);
 
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
@@ -87,6 +88,10 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 //		vRegModel2 = new JLabel("모델등록");
 		vOd_num = new JLabel("주문번호");
 		vOd_num.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		
+		vDeliv_comp = new JLabel("배송업체");
+		vDeliv_comp.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		
 
 		vDeliv_num = new JLabel("운송장번호");
 		vDeliv_num.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
@@ -104,6 +109,9 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 		xOd_num.setText(Od_num);
 		xOd_num.setEnabled(false);
 		xOd_num.setPreferredSize(new Dimension(120, 28));
+		
+		xDeliv_comp = new JTextField(20);
+		xDeliv_comp.setPreferredSize(new Dimension(120, 28));
 		
 		xDeliv_num = new JTextField(20);
 		xDeliv_num.setPreferredSize(new Dimension(120, 28));
@@ -133,7 +141,7 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 
 	private void RegModelView() {
 
-		setTitle("모델등록");
+		setTitle("배송등록");
 
 		setLayout(gbl);
 
@@ -142,16 +150,18 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 		
 
 		gridbagAdd(vOd_num, 1, 2, 1, 1);
-		gridbagAdd(vDeliv_num, 1, 3, 1, 1);
-		gridbagAdd(vDeliv_date, 1, 4, 1, 1);
-		gridbagAdd(vDeliv_cond, 1, 5, 1, 1);
-		gridbagAdd(vDeliv_type, 1, 6, 1, 1);
+		gridbagAdd(vDeliv_comp, 1, 3, 1, 1);
+		gridbagAdd(vDeliv_num, 1, 4, 1, 1);
+		gridbagAdd(vDeliv_date, 1, 5, 1, 1);
+		gridbagAdd(vDeliv_cond, 1, 6, 1, 1);
+		gridbagAdd(vDeliv_type, 1, 7, 1, 1);
 
 		gridbagAdd(xOd_num, 2, 2, 1, 1);
-		gridbagAdd(xDeliv_num, 2, 3, 1, 1);
-		gridbagAdd(xDeliv_date, 2, 4, 1, 1);
-		gridbagAdd(xDeliv_cond, 2, 5, 1, 1);
-		gridbagAdd(xDeliv_type, 2, 6, 1, 1);
+		gridbagAdd(xDeliv_comp, 2, 3, 1, 1);
+		gridbagAdd(xDeliv_num, 2, 4, 1, 1);
+		gridbagAdd(xDeliv_date, 2, 5, 1, 1);
+		gridbagAdd(xDeliv_cond, 2, 6, 1, 1);
+		gridbagAdd(xDeliv_type, 2, 7, 1, 1);
 
 //	    gridbagAdd(vTop, 1, 1, 1, 1);
 //	    gridbagAdd(vBottom, 2, 1, 1, 1);
@@ -161,10 +171,10 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 
 
 		gbc.anchor = GridBagConstraints.WEST;
-		gridbagAdd(BtReg, 2, 7, 1, 1);
+		gridbagAdd(BtReg, 2, 8, 1, 1);
 		
 		gbc.anchor = GridBagConstraints.EAST;
-		gridbagAdd(BtCancel, 2, 7, 1, 1);
+		gridbagAdd(BtCancel, 2, 8, 1, 1);
 
 		pack();
 		setVisible(true);
@@ -197,11 +207,19 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 			dispose();
 		}else if(e.getSource() == BtReg) {
 			String sOdnum = xOd_num.getText();
+			String sDeliv_comp = xDeliv_comp.getText();
 			String sDeliv_num = xDeliv_num.getText();
 			String sDeliv_date = xDeliv_date.getText();
 			String sDeliv_cond = xDeliv_cond.getText();
 			String sDeliv_type = xDeliv_type.getText();
-			DelivData.createDeliv(sDeliv_num, sOdnum, sDeliv_date, sDeliv_cond, sDeliv_type);
+			int check = JOptionPane.showConfirmDialog(null, "배송정보를 등록하시겠습니까", "",
+					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+			if(check == 0) {
+			DelivData.createDeliv(sDeliv_num, sOdnum, sDeliv_date, sDeliv_cond, sDeliv_type, sDeliv_comp);
+			JOptionPane.showMessageDialog(null, "배송정보를 등록하였습니다.", "", JOptionPane.INFORMATION_MESSAGE);
+			dispose();
+			}else
+				return;
 		}
 	}
 

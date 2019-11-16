@@ -41,14 +41,16 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 
-public class Notice_user extends JPanel implements ActionListener, MouseListener {
+public class Review_admin extends JPanel implements ActionListener, MouseListener {
+
+	static JPanel C_U = new JPanel();
 
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-	private JLabel vNotice;
+	private JLabel vReview;
 	private JTextField Tsearch;
 
-	static JLabel vNotice2, vQnA, vNomal, vSpace;
+	static JLabel vNotice, vReview2, vNomal, vSpace;
 	JPanel Label = new JPanel();
 
 	private static String[] col1 = { "No", "제목", "작성자", "작성일" };
@@ -59,12 +61,13 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 			return false;
 		}
 	};
+	static ArrayList<String> ar = new ArrayList<String>();
 
-	private JTable tNotice;
-	static List<Map<String, Serializable>> NoticeListData;
-	private static int nowPage;
+	private JTable tReview;
+	List<Map<String, Serializable>> ReviewListData;
+	private int nowPage;
 	private int nowPanel;
-	private static int postPerPage = 5;
+	private int postPerPage = 5;
 	private int pagePerPanel = 3;
 	private int panelNum;
 	private int pageNum;
@@ -80,9 +83,8 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 	GridBagConstraints gridbagconstraints;
 
 	static String POST_NUM;
-	static ArrayList<String> ar = new ArrayList<String>();
 
-	public Notice_user() {
+	public Review_admin() {
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
@@ -96,8 +98,8 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 		next.setBorderPainted(false);
 		next.addMouseListener(this);
 
-		vNotice = new JLabel("공지사항");
-		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		vReview = new JLabel("후기게시판");
+		vReview.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 
 		bSearch = new JButton("검색");
 		bSearch.setFocusPainted(false);
@@ -114,32 +116,32 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 		Tsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		Tsearch.setPreferredSize(new Dimension(150, 41));
 
-		tNotice = new JTable(model1);
-		tNotice.getColumnModel().getColumn(0).setPreferredWidth(70); // JTable 의 컬럼 길이 조절
-		tNotice.getColumnModel().getColumn(1).setPreferredWidth(460);
-		tNotice.getColumnModel().getColumn(2).setPreferredWidth(70);
-		tNotice.getColumnModel().getColumn(3).setPreferredWidth(100);
-		tNotice.addMouseListener(this);
-		Scroll = new JScrollPane(tNotice);
+		tReview = new JTable(model1);
+		tReview.getColumnModel().getColumn(0).setPreferredWidth(70);
+		tReview.getColumnModel().getColumn(1).setPreferredWidth(450);
+		tReview.getColumnModel().getColumn(2).setPreferredWidth(70);
+		tReview.getColumnModel().getColumn(3).setPreferredWidth(70);
+		tReview.addMouseListener(this);
+		Scroll = new JScrollPane(tReview);
 		Scroll.setPreferredSize(new Dimension(700, 300));
 
-		vNotice2 = new JLabel("· 공지사항");
-		vNotice2.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vNotice2.addMouseListener(this);
-		vQnA = new JLabel("· QnA");
-		vQnA.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vQnA.addMouseListener(this);
+		vNotice = new JLabel("· 공지사항");
+		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vNotice.addMouseListener(this);
+		vReview2 = new JLabel("· Review");
+		vReview2.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vReview2.addMouseListener(this);
 		vNomal = new JLabel("· 일반게시판");
 		vNomal.setFont(new Font("휴먼매직체", Font.BOLD, 20));
 		vNomal.addMouseListener(this);
 		vSpace = new JLabel("");
 		vSpace.setPreferredSize(new Dimension(50, 10));
 		Label.setLayout(new BoxLayout(Label, BoxLayout.Y_AXIS));
-		Label.add(vNotice2);
-		Label.add(vQnA);
+		Label.add(vNotice);
+		Label.add(vReview2);
 		Label.add(vNomal);
 
-		NoticeListData = NoticeData.selectNotice(); // 공지사항글 정보 받아오기
+		ReviewListData = ReviewData.selectReview(); // 공지사항글 정보 받아오기
 		createPanel();// 버튼을 올려놓을 패널 생성, nowPage와 nowPanel값 초기화
 		getData();// 테이블에 데이터 불러오기
 
@@ -153,12 +155,14 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 
 		gridbagAdd(vSpace, 1, 1, 1, 1);
-		gridbagAdd(vNotice, 2, 0, 1, 1);
+		gridbagAdd(vReview, 2, 0, 1, 1);
 		gridbagAdd(cbSearch, 2, 1, 1, 1);
 		gridbagAdd(Tsearch, 3, 1, 1, 1);
 		gridbagAdd(bSearch, 4, 1, 1, 1);
 
 		gridbagAdd(Scroll, 2, 2, 3, 1);
+
+		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(pre, 2, 3, 1, 1);
@@ -167,19 +171,21 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(next, 4, 3, 1, 1);
 
+		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		setVisible(true);
 	}
 
-	static void getData() {
+	void getData() {
 		model1.setRowCount(0);
+
 		for (int i = nowPage * postPerPage; i < nowPage * postPerPage + postPerPage; i++) {
-			if (i > NoticeListData.size() - 1) {
+			if (i > ReviewListData.size() - 1) {
 				break;
 			}
-			ar.add(NoticeListData.get(i).get("WRT_DATE").toString());
-			
+			ar.add(ReviewListData.get(i).get("WRT_DATE").toString());
+
 //			String oldstring = ex_st_date;
-			
+
 			Date date = null;
 			try {
 				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar.get(i));
@@ -189,20 +195,18 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 			}
 			String new_appc_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
 			model1.addRow(
-					new Object[] { 
-							NoticeListData.get(i).get("POST_MSG_NUM"), 
-							NoticeListData.get(i).get("POST_MSG_TIT"),
-							NoticeListData.get(i).get("WRITER_NM"), 
-							new_appc_date 
-							});
+					new Object[] { ReviewListData.get(i).get("POST_MSG_NUM"),
+							ReviewListData.get(i).get("POST_MSG_TIT"),							
+							ReviewListData.get(i).get("WRITER_NM"), 
+							new_appc_date });
 		}
 	}
 
 	private void createPanel() {
-		if (NoticeListData.size() != 0 && (NoticeListData.size() % postPerPage) == 0) { // 페이지 수 구하기
-			pageNum = NoticeListData.size() / postPerPage;
+		if (ReviewListData.size() != 0 && (ReviewListData.size() % postPerPage) == 0) { // 페이지 수 구하기
+			pageNum = ReviewListData.size() / postPerPage;
 		} else {
-			pageNum = NoticeListData.size() / postPerPage + 1;
+			pageNum = ReviewListData.size() / postPerPage + 1;
 		}
 
 		bPage = new JButton[pageNum];// 페이지수만큼의 원소를 지닌 버튼배열 선언
@@ -253,7 +257,7 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 	}
 
 	public static void main(String[] args) {
-		new Notice_user();
+		new Review_user();
 	}
 
 	@Override
@@ -266,13 +270,13 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 				getData();
 			}
 		}
-		
+
 		int row;
-		if (e.getSource() == tNotice) {
-			row = tNotice.getSelectedRow();
+		if (e.getSource() == tReview) {
+			row = tReview.getSelectedRow();
 			POST_NUM = "";
-			POST_NUM += tNotice.getValueAt(row, 0);
-			new Notice_view_user(new JFrame());
+			POST_NUM += tReview.getValueAt(row, 0);
+			new Review_view(new JFrame());
 		} else if (e.getSource() == pre) {
 			if (nowPanel > 0) {
 				remove(pPage[nowPanel]);
@@ -291,6 +295,9 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 				revalidate();
 			}
 		}
+
+//		new Review_view_user(new JFrame());
+
 	}
 
 	@Override
@@ -319,7 +326,6 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method st
 
 	}
 }

@@ -165,7 +165,7 @@ public class OrderData {
 
 	}
 	
-	static List<Map<String, Serializable>> searchOd_list_no_deposit() {
+	static List<Map<String, Serializable>> selectOd_list_no_deposit() {
 
 		quary1 = "select cust_nm, od_num, OD_PR,RECPT, RECPT_ADDR, RECPT_TEL, OD_COND_TP "
 				+ "from od join cust on od.cust_num = cust.cust_num where OD_COND_TP = '통장미입금'";
@@ -224,7 +224,66 @@ public class OrderData {
 
 	}
 	
-	static List<Map<String, Serializable>> searchOd_list_pre_pro() {
+	static List<Map<String, Serializable>> selectOd_list_pre_pro() {
+
+		quary1 = "select cust_nm, od_num, OD_PR,RECPT, RECPT_ADDR, RECPT_TEL, OD_COND_TP "
+				+ "from od join cust on od.cust_num = cust.cust_num where OD_COND_TP = '상품준비중'";
+
+		OrderListData.clear();
+
+		try {
+			System.out.println(quary1);
+			pstm = conn.prepareStatement(quary1, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				OrderdataSet = new HashMap<String, Serializable>();
+
+				OrderdataSet.put("cust_nm", rs.getString(1));
+				OrderdataSet.put("od_num", rs.getString(2));
+				OrderdataSet.put("OD_PR", rs.getString(3));
+				OrderdataSet.put("RECPT", rs.getString(4));
+				OrderdataSet.put("RECPT_ADDR", rs.getString(5));
+				OrderdataSet.put("RECPT_TEL", rs.getString(6));
+				OrderdataSet.put("OD_COND_TP", rs.getString(7));
+
+
+				OrderListData.add(OrderdataSet);
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return OrderListData;
+
+	}
+	
+	static void updateDeliv(String od_num) {
+
+		quary1 = "UPDATE od SET OD_COND_TP = '상품처리완료' WHERE OD_COND_TP = '상품준비중' and OD_NUM = '" + od_num + "'";
+
+		quary2 = "commit";
+
+		try {
+			pstm = conn.prepareStatement(quary1);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+		try {
+			pstm = conn.prepareStatement(quary2);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+	}
+	
+	static List<Map<String, Serializable>> selectDeliv() {
 
 		quary1 = "select cust_nm, od_num, OD_PR,RECPT, RECPT_ADDR, RECPT_TEL, OD_COND_TP "
 				+ "from od join cust on od.cust_num = cust.cust_num where OD_COND_TP = '상품준비중'";

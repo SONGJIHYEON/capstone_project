@@ -31,7 +31,7 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
-public class Cust_info extends JPanel  {
+public class Cust_info extends JPanel  implements ActionListener {
 
    Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
    
@@ -69,6 +69,8 @@ public class Cust_info extends JPanel  {
       
       Blogout = new JButton("로그아웃");
       Blogout.setPreferredSize(new Dimension(100, 30));
+      Blogout.setBackground(Color.lightGray);
+      Blogout.addActionListener(this);
       
       Cust_infoView();
    }
@@ -118,6 +120,19 @@ public class Cust_info extends JPanel  {
    public static void main(String[] args) {
       new Cust_info();
    }
+	public void dispose() {
+		JFrame parent = (JFrame) this.getTopLevelAncestor();
+		parent.dispose();
+	}
+
+@Override
+public void actionPerformed(ActionEvent e) {
+	// TODO Auto-generated method stub
+	if(e.getSource() == Blogout) {
+		dispose();
+		new Login_screen();
+	}
+}
 
    
 }

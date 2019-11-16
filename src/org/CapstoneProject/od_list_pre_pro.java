@@ -116,7 +116,7 @@ public class Od_list_pre_pro extends JPanel implements ActionListener, MouseList
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
 //         setExtendedState(MAXIMIZED_BOTH);
-		getData(OrderData.searchOd_list_pre_pro());
+		getData(OrderData.selectOd_list_pre_pro());
 		EmpRegisterView();
 	}
 
@@ -216,7 +216,12 @@ public class Od_list_pre_pro extends JPanel implements ActionListener, MouseList
 			jb.setHorizontalAlignment(JLabel.CENTER);
 
 			jb.addActionListener(e -> {
+				int row = od_info.getSelectedRow();
+				od_num = "";
+				od_num += (String) od_info.getValueAt(row, 1);
+				System.out.println(od_num);
 				new RegDeliv(new JFrame());
+				OrderData.updateDeliv(od_num);
 				
 //				model1.removeRow(row);
 //				String pro_nm = (String) tProInfo.getValueAt(tProInfo.getSelectedRow(), 1);

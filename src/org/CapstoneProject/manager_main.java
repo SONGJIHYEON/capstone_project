@@ -35,6 +35,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 	static JPanel N_A = new Notice_admin();
 	static JPanel Q_A = new QnA_admin();
+	static JPanel R_A = new Review_admin();
 
 	private static Image originImg, changedImg;
 	private static ImageIcon originIcon, Icon;
@@ -42,7 +43,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 	JLabel vNotice, vQnA, vReview, vSpace;
 	JLabel img_top;
 
-	static JLabel img_back;
+//	static JLabel img_back;
 
 	BackgroundMenuBar MenuBar = new BackgroundMenuBar();
 	// 거래처 메뉴
@@ -99,13 +100,13 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		gridbagconstraints = new GridBagConstraints();
 
 		vNotice = new JLabel("· 공지사항");
-		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vNotice.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		vNotice.addMouseListener(this);
 		vQnA = new JLabel("· QnA");
-		vQnA.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vQnA.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		vQnA.addMouseListener(this);
 		vReview = new JLabel("· 후기게시판");
-		vReview.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		vReview.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		vReview.addMouseListener(this);
 		Label.setLayout(new BoxLayout(Label, BoxLayout.Y_AXIS));
 		Label.add(vNotice);
@@ -113,7 +114,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Label.add(vReview);
 
 		img_top = new JLabel("");
-		originIcon = new ImageIcon("C:\\Users\\kibum\\Desktop\\관리자 상단.jpg");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\관리자 상단.jpg");
 		originImg = originIcon.getImage();
 		changedImg = originImg.getScaledInstance(d.width, 100, Image.SCALE_SMOOTH);
 		Icon = new ImageIcon(changedImg);
@@ -213,152 +214,145 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 		Mn_corr.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_corr.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_corr.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_corr.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 
 		corr_look.setBackground(new Color(255, 255, 255));
 		corr_look.setHorizontalAlignment(SwingConstants.CENTER);
-		corr_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		corr_look.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		corr_regist.setBackground(new Color(255, 255, 255));
 		corr_regist.setHorizontalAlignment(SwingConstants.CENTER);
-		corr_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		corr_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		pur_regist.setBackground(new Color(255, 255, 255));
 		pur_regist.setHorizontalAlignment(SwingConstants.CENTER);
-		pur_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		pur_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		// 상품메뉴
 		Mn_pro.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_pro.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_pro.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_pro.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 
 		model_look.setBackground(new Color(255, 255, 255));
 		model_look.setHorizontalAlignment(SwingConstants.CENTER);
-		model_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		model_look.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		model_regist.setBackground(new Color(255, 255, 255));
 		model_regist.setHorizontalAlignment(SwingConstants.CENTER);
-		model_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		model_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		pro_look.setBackground(new Color(255, 255, 255));
 		pro_look.setHorizontalAlignment(SwingConstants.CENTER);
-		pro_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		pro_look.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		pro_regist.setBackground(new Color(255, 255, 255));
 		pro_regist.setHorizontalAlignment(SwingConstants.CENTER);
-		pro_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		pro_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		pro_up_rec_reg.setBackground(new Color(255, 255, 255));
 		pro_up_rec_reg.setHorizontalAlignment(SwingConstants.CENTER);
-		pro_up_rec_reg.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		pro_up_rec_reg.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		pro_up_rec.setBackground(new Color(255, 255, 255));
 		pro_up_rec.setHorizontalAlignment(SwingConstants.CENTER);
-		pro_up_rec.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		pro_up_rec.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		// 주문 메뉴
 		Mn_Od.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Od.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Od.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_Od.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 
 		Od_deposit.setBackground(new Color(255, 255, 255));
 		Od_deposit.setHorizontalAlignment(SwingConstants.CENTER);
-		Od_deposit.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Od_deposit.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		Od_pre.setBackground(new Color(255, 255, 255));
 		Od_pre.setHorizontalAlignment(SwingConstants.CENTER);
-		Od_pre.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Od_pre.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		deliv.setBackground(new Color(255, 255, 255));
 		deliv.setHorizontalAlignment(SwingConstants.CENTER);
-		deliv.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		deliv.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		
 		deliv_fin.setBackground(new Color(255, 255, 255));
 		deliv_fin.setHorizontalAlignment(SwingConstants.CENTER);
-		deliv_fin.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		deliv_fin.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		Od_change.setBackground(new Color(255, 255, 255));
 		Od_change.setHorizontalAlignment(SwingConstants.CENTER);
-		Od_change.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Od_change.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Od_change.setHorizontalAlignment(JLabel.CENTER);
 
 		Od_refund.setBackground(new Color(255, 255, 255));
 		Od_refund.setHorizontalAlignment(SwingConstants.CENTER);
-		Od_refund.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Od_refund.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Od_refund.setHorizontalAlignment(JLabel.CENTER);
 
 		Od_cancel.setBackground(new Color(255, 255, 255));
 		Od_cancel.setHorizontalAlignment(SwingConstants.CENTER);
-		Od_cancel.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Od_cancel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Od_cancel.setHorizontalAlignment(JLabel.CENTER);
 
 		// 사원메뉴
 		Mn_Emp.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Emp.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Emp.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_Emp.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 
 		Emp_look.setBackground(new Color(255, 255, 255));
 		Emp_look.setHorizontalAlignment(SwingConstants.CENTER);
-		Emp_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Emp_look.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		Emp_regist.setBackground(new Color(255, 255, 255));
 		Emp_regist.setHorizontalAlignment(SwingConstants.CENTER);
-		Emp_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Emp_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		// 회원메뉴
 		Mn_Mb.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Mb.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_Mb.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_Mb.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 
 		Mb_look.setBackground(new Color(255, 255, 255));
 		Mb_look.setHorizontalAlignment(SwingConstants.CENTER);
-		Mb_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Mb_look.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		Mb_grade.setBackground(new Color(255, 255, 255));
 		Mb_grade.setHorizontalAlignment(SwingConstants.CENTER);
-		Mb_grade.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		Mb_grade.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		// 이벤트메뉴
 		Mn_EVT.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_EVT.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_EVT.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_EVT.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 
 		EVT_look.setBackground(new Color(255, 255, 255));
 		EVT_look.setHorizontalAlignment(SwingConstants.CENTER);
-		EVT_look.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		EVT_look.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		EVT_regist.setBackground(new Color(255, 255, 255));
 		EVT_regist.setHorizontalAlignment(SwingConstants.CENTER);
-		EVT_regist.setFont(new Font("휴먼매직체", Font.BOLD, 20));
+		EVT_regist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		Mn_POST.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_POST.setHorizontalAlignment(SwingConstants.CENTER);
-		Mn_POST.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Mn_POST.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 
 		Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Logout.setHorizontalAlignment(SwingConstants.CENTER);
-		Logout.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		Logout.setFont(new Font("맑은 고딕", Font.BOLD, 25));
 
-//         try {
-//        	 img = ImageIO.read(new File("C:\\Users\\kibum\\Desktop\\메인 배경.png"));
-//         } catch (IOException e) {
-//        	 JOptionPane.showMessageDialog(null, "이미지 불러오기 실패");
-//        	 System.exit(0);
-//         }
-
-		img_back = new JLabel("");
-		originIcon = new ImageIcon("C:\\Users\\kibum\\Desktop\\메인 배경.jpg");
-		originImg = originIcon.getImage();
-		img = originImg.getScaledInstance(d.width, d.height, Image.SCALE_SMOOTH);
-		Icon = new ImageIcon(img);
-		img_back.setIcon(Icon);
-		img_back.setBounds(0, 140, d.width, d.height);
+//		img_back = new JLabel("");
+//		originIcon = new ImageIcon("C:\\Users\\kibum\\Desktop\\메인 배경.jpg");
+//		originImg = originIcon.getImage();
+//		img = originImg.getScaledInstance(d.width, d.height, Image.SCALE_SMOOTH);
+//		Icon = new ImageIcon(img);
+//		img_back.setIcon(Icon);
+//		img_back.setBounds(0, 140, d.width, d.height);
 
 		getContentPane().setLayout(null);
 
 		win.add(MenuBar);
 		win.add(img_top);
-		win.add(img_back);
+//		win.add(img_back);
 
 		setExtendedState(MAXIMIZED_BOTH);
 		setVisible(true);
@@ -407,7 +401,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 			Pmodel_look.setSize(d.width / 2, d.height - 140);
-			Pmodel_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+			Pmodel_look.setBounds(170, 170, 1060, 470);
 			add(Pmodel_look);
 			repaint();
 			revalidate();
@@ -427,7 +421,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 			Ppro_look.setSize(d.width / 2, d.height - 140);
-			Ppro_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+			Ppro_look.setBounds(170, 170, 1060, 470);
 			add(Ppro_look);
 			repaint();
 			revalidate();
@@ -448,7 +442,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 			Ppro_up_rec.setSize(d.width / 2, d.height - 140);
-			Ppro_up_rec.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+			Ppro_up_rec.setBounds(170, 170, 1060, 470);
 			add(Ppro_up_rec);
 			repaint();
 			revalidate();
@@ -476,42 +470,42 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			repaint();
 			revalidate();
 		} else if (e.getSource() == Od_change) {
-			getContentPane().removeAll();
-			JPanel POd_change = new od_list_change();
-			add(MenuBar);
-			add(img_top);
-			POd_change.setSize(d.width / 2, d.height - 140);
-			POd_change.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			add(POd_change);
-			repaint();
-			revalidate();
+//			getContentPane().removeAll();
+//			JPanel POd_change = new od_list_change();
+//			add(MenuBar);
+//			add(img_top);
+//			POd_change.setSize(d.width / 2, d.height - 140);
+//			POd_change.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+//			add(POd_change);
+//			repaint();
+//			revalidate();
 		} else if (e.getSource() == Od_refund) {
-			getContentPane().removeAll();
-			JPanel POd_refund = new od_list_od_refund();
-			add(MenuBar);
-			add(img_top);
-			POd_refund.setSize(d.width / 2, d.height - 140);
-			POd_refund.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			add(POd_refund);
-			repaint();
-			revalidate();
+//			getContentPane().removeAll();
+//			JPanel POd_refund = new od_list_od_refund();
+//			add(MenuBar);
+//			add(img_top);
+//			POd_refund.setSize(d.width / 2, d.height - 140);
+//			POd_refund.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+//			add(POd_refund);
+//			repaint();
+//			revalidate();
 		} else if (e.getSource() == Od_cancel) {
-			getContentPane().removeAll();
-			JPanel POd_cancel = new od_list_od_cancel();
-			add(MenuBar);
-			add(img_top);
-			POd_cancel.setSize(d.width / 2, d.height - 140);
-			POd_cancel.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-			add(POd_cancel);
-			repaint();
-			revalidate();
+//			getContentPane().removeAll();
+//			JPanel POd_cancel = new od_list_od_cancel();
+//			add(MenuBar);
+//			add(img_top);
+//			POd_cancel.setSize(d.width / 2, d.height - 140);
+//			POd_cancel.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+//			add(POd_cancel);
+//			repaint();
+//			revalidate();
 		} else if (e.getSource() == Emp_look) {
 			getContentPane().removeAll();
 			JPanel PEmp_look = new emp_look();
 			add(MenuBar);
 			add(img_top);
 			PEmp_look.setSize(d.width / 2, d.height - 140);
-			PEmp_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+			PEmp_look.setBounds(170, 170, 1060, 470);
 			add(PEmp_look);
 			repaint();
 			revalidate();
@@ -553,7 +547,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 			PEvt_look.setSize(d.width / 2, d.height - 140);
-			PEvt_look.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
+			PEvt_look.setBounds(170, 170, 1060, 470);
 			add(PEvt_look);
 			repaint();
 			revalidate();
@@ -607,6 +601,17 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			Q_A.setBounds(235, 170, 1060, 470);
 			win.add(Label);
 			win.add(Q_A);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == vReview) {
+			getContentPane().removeAll();
+			add(MenuBar);
+			add(img_top);
+			Label.setBounds(70, 220, 130, 85);
+//			Q_A.setSize(d.width * 3 / 4, d.height - 200);
+			R_A.setBounds(235, 170, 1060, 470);
+			win.add(Label);
+			win.add(R_A);
 			repaint();
 			revalidate();
 		}
