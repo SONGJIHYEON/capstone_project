@@ -16,6 +16,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -68,34 +71,40 @@ public class QnA_view_admin extends Dialog implements ActionListener, MouseListe
 		gridbagconstraints = new GridBagConstraints(); 
 		
 		vTitle = new JLabel("제목");
-		vTitle.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vTitle.setPreferredSize(new Dimension(100,40));
+		vTitle.setHorizontalAlignment(JLabel.CENTER);
+		vTitle.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		vTitle.setPreferredSize(new Dimension(100, 40));
+
 		vContent = new JLabel("내용");
-		vContent.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vContent.setPreferredSize(new Dimension(100,40));
+		vContent.setHorizontalAlignment(JLabel.CENTER);
+		vContent.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		vContent.setPreferredSize(new Dimension(100, 40));
+
 		vWriter = new JLabel("작성자");
-		vWriter.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vWriter.setPreferredSize(new Dimension(100,40));
+		vWriter.setHorizontalAlignment(JLabel.CENTER);
+		vWriter.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		vWriter.setPreferredSize(new Dimension(100, 40));
+
 		vDate = new JLabel("작성일");
 		vDate.setHorizontalAlignment(JLabel.CENTER);
-		vDate.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vDate.setPreferredSize(new Dimension(100,40));
-		
+		vDate.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		vDate.setPreferredSize(new Dimension(100, 40));
+
 		vSpace1 = new JLabel("");
-		vSpace1.setPreferredSize(new Dimension(100,20));
+		vSpace1.setPreferredSize(new Dimension(100, 20));
 		vSpace2 = new JLabel("");
-		vSpace2.setPreferredSize(new Dimension(100,20));
+		vSpace2.setPreferredSize(new Dimension(100, 20));
 		
 		tTitle = new JTextField(20);
-		tTitle.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		tTitle.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		tWriter = new JTextField(5);
-		tWriter.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		tWriter.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		tDate = new JTextField(9);
-		tDate.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		tDate.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		
 		tContent = new JTextArea(15, 20);
 		tContent.setLineWrap(true);
-		tContent.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		tContent.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		Scroll = new JScrollPane(tContent);
 		
 		bAnswer = new JButton("답변");
@@ -103,14 +112,14 @@ public class QnA_view_admin extends Dialog implements ActionListener, MouseListe
 		bAnswer.setFocusPainted(false);
 		bAnswer.setBackground(Color.white);
 		bAnswer.setPreferredSize(new Dimension(80,30));
-		bAnswer.setFont(new Font("휴먼매직체", Font.BOLD , 17));
+		bAnswer.setFont(new Font("맑은 고딕", Font.BOLD , 17));
 		
 		bClose = new JButton("닫기");
 		bClose.addActionListener(this);
 		bClose.setFocusPainted(false);
 		bClose.setBackground(Color.white);
 		bClose.setPreferredSize(new Dimension(80,30));
-		bClose.setFont(new Font("휴먼매직체", Font.BOLD , 17));
+		bClose.setFont(new Font("맑은 고딕", Font.BOLD , 17));
 
 		tTitle.setEnabled(false);
 		tWriter.setEnabled(false);
@@ -129,10 +138,10 @@ public class QnA_view_admin extends Dialog implements ActionListener, MouseListe
 		tDate.setText(sDate);
 		tContent.setText(sContent);
 		
-		tTitle.setOpaque(false);
-		tWriter.setOpaque(false);
-		tDate.setOpaque(false);
-		tContent.setOpaque(false);
+		tTitle.setForeground(Color.BLACK);
+		tWriter.setForeground(Color.BLACK);
+		tDate.setForeground(Color.BLACK);
+		tContent.setForeground(Color.BLACK);
 
         pack();
 		home_adminView();
@@ -154,6 +163,7 @@ public class QnA_view_admin extends Dialog implements ActionListener, MouseListe
 		gridbagAdd(tDate, 3, 2, 1, 1);
 		gridbagAdd(vContent, 0, 4, 1, 1);
 	    gridbagAdd(Scroll, 1, 4, 3, 1);
+	    gridbagAdd(bAnswer, 1, 5, 1, 1);
 		
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 		gridbagAdd(vSpace1, 0, 1, 1, 1);
@@ -161,9 +171,8 @@ public class QnA_view_admin extends Dialog implements ActionListener, MouseListe
 		
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-
-		gridbagAdd(bAnswer, 0, 5, 2, 1);
-		gridbagAdd(bClose, 2, 5, 4, 1);
+		gridbagAdd(bClose, 3, 5, 1, 1);
+		
 		pack();
 	    setVisible(true);
 	}   
@@ -190,9 +199,18 @@ public class QnA_view_admin extends Dialog implements ActionListener, MouseListe
 	private void getData(List<Map<String, Serializable>> QnAListData) {
 		
 		sTitle = (String) QnAListData.get(0).get("POST_MSG_TIT");
-		sWriter = (String) QnAListData.get(0).get("CUST_NM");
-		sDate = (String) QnAListData.get(0).get("WRT_DATE");
+		sWriter = (String) QnAListData.get(0).get("WRITER_NM");
+		String sDate2 = (String) QnAListData.get(0).get("WRT_DATE");
 		sContent = (String) QnAListData.get(0).get("POST_MSG_CON");
+
+		Date date = null;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(sDate2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		sDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
 		
 	}
 

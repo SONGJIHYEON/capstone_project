@@ -285,8 +285,9 @@ public class OrderData {
 	
 	static List<Map<String, Serializable>> selectDeliv() {
 
-		quary1 = "select cust_nm, od_num, OD_PR,RECPT, RECPT_ADDR, RECPT_TEL, OD_COND_TP "
-				+ "from od join cust on od.cust_num = cust.cust_num where OD_COND_TP = '상품준비중'";
+		quary1 = "select cust_nm, od.od_num, OD_PR,RECPT, RECPT_ADDR, RECPT_TEL "
+				+ "from od join cust on od.cust_num = cust.cust_num "
+				+ "join deliv on od.od_num = deliv.od_num where DELIV_COND_TP = '배송중'";
 
 		OrderListData.clear();
 
@@ -298,13 +299,13 @@ public class OrderData {
 
 				OrderdataSet = new HashMap<String, Serializable>();
 
-				OrderdataSet.put("cust_nm", rs.getString(1));
-				OrderdataSet.put("od_num", rs.getString(2));
+				OrderdataSet.put("CUST_NM", rs.getString(1));
+				OrderdataSet.put("OD_NUM", rs.getString(2));
 				OrderdataSet.put("OD_PR", rs.getString(3));
 				OrderdataSet.put("RECPT", rs.getString(4));
 				OrderdataSet.put("RECPT_ADDR", rs.getString(5));
 				OrderdataSet.put("RECPT_TEL", rs.getString(6));
-				OrderdataSet.put("OD_COND_TP", rs.getString(7));
+
 
 
 				OrderListData.add(OrderdataSet);
@@ -316,7 +317,6 @@ public class OrderData {
 		}
 
 		return OrderListData;
-
 	}
 
 //

@@ -1,6 +1,7 @@
 
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -52,12 +53,11 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 	private JButton BtReg, BtCancel, BtCode;
 	private JComboBox<String> Cbctgr1, Cbctgr2;
 
-	String Od_num ;
+	String Od_num;
 
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 
-	
 //	public void getData(List<Map<String, Serializable>> ModelListData) {
 //		fModel = "";
 //		fModel += ModelListData.get(0).get("MODEL_CTGR_NUM").toString();
@@ -76,65 +76,80 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 //	}
 
 	public RegDeliv(JFrame fr) {
-        super(fr, "", true);
-        
-        Od_num = Od_list_pre_pro.od_num;
-        System.out.println(Od_num);
+		super(fr, "", true);
+
+		Od_num = Od_list_pre_pro.od_num;
+		System.out.println(Od_num);
 
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
-		
 
 //		vRegModel2 = new JLabel("모델등록");
 		vOd_num = new JLabel("주문번호");
-		vOd_num.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		
+		vOd_num.setPreferredSize(new Dimension(120, 35));
+		vOd_num.setHorizontalAlignment(JLabel.CENTER);
+		vOd_num.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
+
 		vDeliv_comp = new JLabel("배송업체");
-		vDeliv_comp.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		
+		vDeliv_comp.setPreferredSize(new Dimension(120, 35));
+		vDeliv_comp.setHorizontalAlignment(JLabel.CENTER);
+		vDeliv_comp.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
 
 		vDeliv_num = new JLabel("운송장번호");
-		vDeliv_num.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		
+		vDeliv_num.setPreferredSize(new Dimension(120, 35));
+		vDeliv_num.setHorizontalAlignment(JLabel.CENTER);
+		vDeliv_num.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
+
 		vDeliv_date = new JLabel("배송일시");
-		vDeliv_date.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		
+		vDeliv_date.setPreferredSize(new Dimension(120, 35));
+		vDeliv_date.setHorizontalAlignment(JLabel.CENTER);
+		vDeliv_date.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
+
 		vDeliv_cond = new JLabel("배송상태");
-		vDeliv_cond.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		vDeliv_cond.setPreferredSize(new Dimension(120, 35));
+		vDeliv_cond.setHorizontalAlignment(JLabel.CENTER);
+		vDeliv_cond.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
 
 		vDeliv_type = new JLabel("배송구분");
-		vDeliv_type.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		vOd_num.setPreferredSize(new Dimension(120, 35));
+		vOd_num.setHorizontalAlignment(JLabel.CENTER);
+		vDeliv_type.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
 
 		xOd_num = new JTextField(20);
 		xOd_num.setText(Od_num);
 		xOd_num.setEnabled(false);
-		xOd_num.setPreferredSize(new Dimension(120, 28));
-		
+		xOd_num.setPreferredSize(new Dimension(120, 30));
+
 		xDeliv_comp = new JTextField(20);
-		xDeliv_comp.setPreferredSize(new Dimension(120, 28));
-		
+		xDeliv_comp.setPreferredSize(new Dimension(120, 30));
+
 		xDeliv_num = new JTextField(20);
-		xDeliv_num.setPreferredSize(new Dimension(120, 28));
-		
+		xDeliv_num.setPreferredSize(new Dimension(120, 30));
+
 		xDeliv_date = new JTextField(20);
 		xDeliv_date.setText("YYYYMMDD");
 		xDeliv_date.addMouseListener(this);
-		xDeliv_date.setPreferredSize(new Dimension(120, 28));
-		
+		xDeliv_date.setPreferredSize(new Dimension(120, 30));
+
 		xDeliv_cond = new JTextField(20);
 		xDeliv_cond.setText("배송중");
 		xDeliv_cond.setEnabled(false);
-		xDeliv_cond.setPreferredSize(new Dimension(120, 28));
-		
+		xDeliv_cond.setPreferredSize(new Dimension(120, 30));
+
 		xDeliv_type = new JTextField(20);
 		xDeliv_type.setText("원배송");
 		xDeliv_type.setEnabled(false);
-		xDeliv_type.setPreferredSize(new Dimension(120, 28));
+		xDeliv_type.setPreferredSize(new Dimension(120, 30));
 
 		BtReg = new JButton("등록");
 		BtReg.addActionListener(this);
+		BtReg.setBackground(Color.white);
+		BtReg.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+
 		BtCancel = new JButton("닫기");
 		BtCancel.addActionListener(this);
+		BtCancel.setBackground(Color.white);
+		BtCancel.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
 		RegModelView();
 	}
@@ -147,7 +162,6 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 
 		gbc.anchor = GridBagConstraints.CENTER;
 //		gridbagAdd(vRegModel2, 1, 1, 1, 1);
-		
 
 		gridbagAdd(vOd_num, 1, 2, 1, 1);
 		gridbagAdd(vDeliv_comp, 1, 3, 1, 1);
@@ -169,10 +183,9 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 //	    gridbagAdd(vShirts, 4, 1, 1, 1);
 //	    gridbagAdd(vShoes, 5, 1, 1, 1);
 
-
 		gbc.anchor = GridBagConstraints.WEST;
 		gridbagAdd(BtReg, 2, 8, 1, 1);
-		
+
 		gbc.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtCancel, 2, 8, 1, 1);
 
@@ -203,22 +216,24 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource() == BtCancel) {
+		if (e.getSource() == BtCancel) {
 			dispose();
-		}else if(e.getSource() == BtReg) {
+		} else if (e.getSource() == BtReg) {
 			String sOdnum = xOd_num.getText();
 			String sDeliv_comp = xDeliv_comp.getText();
 			String sDeliv_num = xDeliv_num.getText();
 			String sDeliv_date = xDeliv_date.getText();
 			String sDeliv_cond = xDeliv_cond.getText();
 			String sDeliv_type = xDeliv_type.getText();
-			int check = JOptionPane.showConfirmDialog(null, "배송정보를 등록하시겠습니까", "",
-					JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
-			if(check == 0) {
-			DelivData.createDeliv(sDeliv_num, sOdnum, sDeliv_date, sDeliv_cond, sDeliv_type, sDeliv_comp);
-			JOptionPane.showMessageDialog(null, "배송정보를 등록하였습니다.", "", JOptionPane.INFORMATION_MESSAGE);
-			dispose();
-			}else
+			int check = JOptionPane.showConfirmDialog(null, "배송정보를 등록하시겠습니까?", "", JOptionPane.YES_NO_OPTION,
+					JOptionPane.INFORMATION_MESSAGE);
+			if (check == 0) {
+				DelivData.createDeliv(sDeliv_num, sOdnum, sDeliv_date, sDeliv_cond, sDeliv_type, sDeliv_comp);
+				OrderData.updateDeliv(Od_list_pre_pro.od_num);
+				JOptionPane.showMessageDialog(null, "배송정보 등록 및 상품처리완료로 업데이트하였습니다.", "",
+						JOptionPane.INFORMATION_MESSAGE);
+				dispose();
+			} else
 				return;
 		}
 	}
@@ -226,34 +241,34 @@ public class RegDeliv extends Dialog implements ActionListener, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if(e.getSource() == xDeliv_date) {
+		if (e.getSource() == xDeliv_date) {
 			xDeliv_date.setText("");
 		}
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

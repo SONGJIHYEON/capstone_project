@@ -1,8 +1,10 @@
 
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -26,18 +28,18 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 public class Basket extends JPanel implements MouseListener, ActionListener {
 
-	private JLabel vProPrice, vDiscount, vPrice, vPoint;
-	private static JTextField xProPrice;
-	private static JTextField xDiscount;
-	private static JTextField xPrice;
-	private JTextField xPoint;
+	private JLabel vProPrice, vDiscount, vPrice, vPoint, vSpace;
+	private static JTextField xProPrice, xDiscount, xPrice, xPoint;
 
 	private static String[] col1 = { "이미지", "상품정보", "수량", "단가", "금액", "포인트", "삭제" };
 //   private String[] col2 = {"부서명", "성명"};      
@@ -53,7 +55,7 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 //   private JComboBox<String> cbSel;      
 
 	int check, row;
-	static double sum2, sum3;
+	static double sum_price, sum_point;
 	static String pro_price, pro_price2, mb_disc_rt;
 	static String ar[];
 //   static ArrayList<String> ar;
@@ -69,26 +71,31 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 	static void getData(List<Map<String, Serializable>> BasketListData) {
 		model1.setRowCount(0);
 		ar = new String[BasketListData.size()];
-		sum2 = 0;
+		sum_price = 0;
+		sum_point = 0;
 		for (int i = 0; i < BasketListData.size(); i++) {
-			sum2 = sum2 + Double.valueOf(BasketListData.get(i).get("PR").toString());
+			sum_price += Double.valueOf(BasketListData.get(i).get("PR").toString());
+			sum_point += Double.valueOf(BasketListData.get(i).get("POINT").toString());
+			
 			model1.addRow(new Object[] { 
 					BasketListData.get(i).get("MODEL_IMG1"),
 					BasketListData.get(i).get("PRO_NM"),
-					BasketListData.get(i).get("QUANT"),
+					BasketListData.get(i).get("QUANT"), 
 					BasketListData.get(i).get("UP"),
-					BasketListData.get(i).get("PR"), 
+					BasketListData.get(i).get("PR"),
 					BasketListData.get(i).get("POINT"), });
 		}
-		pro_price = String.valueOf(sum2);
-		xProPrice.setText(pro_price);
+		
+		xProPrice.setText(String.valueOf(sum_price));
 		xDiscount.setText(mb_disc_rt + "%");
 		disc_rt = Double.valueOf(Login.user_disc_rt) * 0.01;
-		price = sum2 - (sum2 * disc_rt);
+		price = sum_price - (sum_price * disc_rt);
 		xPrice.setText(String.valueOf(price));
+		xPoint.setText(String.valueOf(sum_point));
 	}
 
 	public Basket() {
+		
 		mb_disc_rt = Login.user_disc_rt;
 		cust_num = Login.user_num;
 //      System.out.println(mb_disc_rt);
@@ -97,9 +104,16 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 		gridbagconstraints = new GridBagConstraints();
 
 		vProPrice = new JLabel("총 상품가격");
+		vProPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		vDiscount = new JLabel("등급 할인");
+		vDiscount.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		vPrice = new JLabel("최종 금액");
+		vPrice.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		vPoint = new JLabel("적립 포인트");
+		vPoint.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		vSpace = new JLabel("");
+		vSpace.setPreferredSize(new Dimension(15, 5));
+		
 
 		xProPrice = new JTextField(10);
 		xDiscount = new JTextField(10);
@@ -110,21 +124,37 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 
 		tProInfo = new JTable(model1);
 		scrollpane1 = new JScrollPane(tProInfo);
-		scrollpane1.setPreferredSize(new Dimension(750, 100));
+		scrollpane1.setPreferredSize(new Dimension(750, 250));
+
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tProInfo.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+
 		tProInfo.getColumnModel().getColumn(6).setCellRenderer(new TableCell2());
 		tProInfo.getColumnModel().getColumn(6).setCellEditor(new TableCell2());
 
+		tProInfo.setRowHeight(25);
+
+		JTableHeader th = tProInfo.getTableHeader();
+		th.setPreferredSize(new Dimension(750, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+
 		BtOrder = new JButton("주문하기");
+		BtOrder.setBackground(Color.white);
 		BtOrder.addActionListener(this);
 		BtOrder.setPreferredSize(new Dimension(130, 28));
 //      BtShopping = new JButton("쇼핑 계속하기");
 //      BtShopping.setPreferredSize(new Dimension(130, 28));
 //      BtShopping.addActionListener(this);
 		BtDelBasket = new JButton("장바구니 비우기");
+		BtDelBasket.setBackground(Color.white);
 		BtDelBasket.addActionListener(this);
 		BtDelBasket.setPreferredSize(new Dimension(130, 28));
 //        regist.addActionListener(this);
-
 
 		getData(BasketData.selectBasket(cust_num));
 		BasketView();
@@ -143,18 +173,20 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 		gridbagAdd(scrollpane1, 0, 0, 12, 1);
-		gridbagAdd(vProPrice, 0, 12, 1, 1);
-		gridbagAdd(vDiscount, 2, 12, 1, 1);
-		gridbagAdd(vPrice, 4, 12, 1, 1);
 		gridbagAdd(xProPrice, 1, 12, 1, 1);
-		gridbagAdd(xDiscount, 3, 12, 1, 1);
-		gridbagAdd(xPrice, 5, 12, 1, 1);
-//      gridbagAdd(xPoint, 5, 12, 1, 1);
+		gridbagAdd(xDiscount, 1, 13, 1, 1);
+		gridbagAdd(vSpace, 2, 13, 1, 1);
+		gridbagAdd(xPrice, 4, 12, 1, 1);
+		gridbagAdd(xPoint, 4, 13, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(BtDelBasket, 11, 12, 1, 1);
+		gridbagAdd(BtOrder, 11, 13, 1, 1);
 //      gridbagAdd(BtShopping, 11, 13, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
-		gridbagAdd(BtOrder, 10, 13, 1, 1);
+		gridbagAdd(vProPrice, 0, 12, 1, 1);
+		gridbagAdd(vDiscount, 0, 13, 1, 1);
+		gridbagAdd(vPrice, 3, 12, 1, 1);
+		gridbagAdd(vPoint, 3, 13, 1, 1);
 
 //      setExtendedState(MAXIMIZED_BOTH);
 		setVisible(true);
@@ -187,14 +219,15 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 			// TODO Auto-generated constructor stub
 			del = new JButton("X");
 			del.setHorizontalAlignment(JLabel.CENTER);
+			del.setBackground(Color.white);
 
 			del.addActionListener(e -> {
-				String pro_nm = (String) tProInfo.getValueAt(tProInfo.getSelectedRow(), 1);
-
-				BasketData.deleteBasket(tProInfo.getValueAt(row, 1).toString());
+				cust_num = Login.user_num;
+				String pro_nm = "";
+				pro_nm += (String) tProInfo.getValueAt(row, 1);
+				BasketData.deleteBasket(pro_nm);
 				model1.removeRow(row);
 				getData(BasketData.selectBasket(cust_num));
-
 			});
 		}
 
@@ -224,7 +257,7 @@ public class Basket extends JPanel implements MouseListener, ActionListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource() == tProInfo) {
-         row = tProInfo.getSelectedRow();
+			row = tProInfo.getSelectedRow();
 		}
 	}
 

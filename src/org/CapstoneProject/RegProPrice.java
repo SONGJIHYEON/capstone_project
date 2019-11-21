@@ -158,56 +158,56 @@ public class RegProPrice extends Dialog implements ActionListener {
       xModEndDate .setPreferredSize(new Dimension(120, 30));
 
       vProNm = new JLabel("상품명");
-      vProNm.setPreferredSize(new Dimension(120, 40));
+      vProNm.setPreferredSize(new Dimension(120, 35));
       vProNm.setHorizontalAlignment(JLabel.CENTER);
-      vProNm.setFont(new Font("돋음", Font.BOLD, 15));
+      vProNm.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 //      
 //      vProPrice2 = new JLabel("상품단가");
-//      vProPrice2.setPreferredSize(new Dimension(120, 40));
+//      vProPrice2.setPreferredSize(new Dimension(120, 35));
 //      vProPrice2.setHorizontalAlignment(JLabel.CENTER);
-//      vProPrice2.setFont(new Font("돋음", Font.BOLD, 15));
+//      vProPrice2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 //      vProSell = new JLabel("상품판매량");
-//      vProSell.setPreferredSize(new Dimension(120, 40));
+//      vProSell.setPreferredSize(new Dimension(120, 35));
 //      vProSell.setHorizontalAlignment(JLabel.CENTER);
-//      vProSell.setFont(new Font("돋음", Font.BOLD, 15));   
+//      vProSell.setFont(new Font("맑은 고딕", Font.BOLD, 15));   
 //      vProSellPrice = new JLabel("상품 매출액");
       
       vexPrice = new JLabel("적용단가");
-      vexPrice.setPreferredSize(new Dimension(120, 40));
+      vexPrice.setPreferredSize(new Dimension(120, 35));
       vexPrice.setHorizontalAlignment(JLabel.CENTER);
-      vexPrice.setFont(new Font("돋음", Font.BOLD, 15));
+      vexPrice.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       vexStDate = new JLabel("적용시작일");
-      vexStDate.setPreferredSize(new Dimension(120, 40));
+      vexStDate.setPreferredSize(new Dimension(120, 35));
       vexStDate.setHorizontalAlignment(JLabel.CENTER);
-      vexStDate.setFont(new Font("돋음", Font.BOLD, 15));
+      vexStDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       vexEndDate = new JLabel("적용종료일");
-      vexEndDate.setPreferredSize(new Dimension(120, 40));
+      vexEndDate.setPreferredSize(new Dimension(120, 35));
       vexEndDate.setHorizontalAlignment(JLabel.CENTER);
-      vexEndDate.setFont(new Font("돋음", Font.BOLD, 15));
+      vexEndDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
    
       vModPrice = new JLabel("변경단가");
-      vModPrice.setPreferredSize(new Dimension(120, 40));
+      vModPrice.setPreferredSize(new Dimension(120, 35));
       vModPrice.setHorizontalAlignment(JLabel.CENTER);
-      vModPrice.setFont(new Font("돋음", Font.BOLD, 15));
+      vModPrice.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       vModStDate = new JLabel("변경시작일");
-      vModStDate.setPreferredSize(new Dimension(120, 40));
+      vModStDate.setPreferredSize(new Dimension(120, 35));
       vModStDate.setHorizontalAlignment(JLabel.CENTER);
-      vModStDate.setFont(new Font("돋음", Font.BOLD, 15));
+      vModStDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       vModEndDate = new JLabel("변경종료일");
-      vModEndDate.setPreferredSize(new Dimension(120, 40));
+      vModEndDate.setPreferredSize(new Dimension(120, 35));
       vModEndDate.setHorizontalAlignment(JLabel.CENTER);
-      vModEndDate.setFont(new Font("돋음", Font.BOLD, 15));
+      vModEndDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
       BtPro = new JButton("상품명 검색");
       BtPro.addActionListener(this);
       BtPro.setPreferredSize(new Dimension(120, 30));
       BtPro.setFocusPainted(false);
       BtPro.setBackground(Color.white);
-      BtPro.setFont(new Font("돋음", Font.BOLD, 15));
+      BtPro.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
       
       BtReg = new JButton("등록");
@@ -215,14 +215,14 @@ public class RegProPrice extends Dialog implements ActionListener {
       BtReg.setPreferredSize(new Dimension(80, 30));
       BtReg.setFocusPainted(false);
       BtReg.setBackground(Color.white);
-      BtReg.setFont(new Font("돋음", Font.BOLD, 15));
+      BtReg.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       BtCancel = new JButton("닫기");
       BtCancel.addActionListener(this);
       BtCancel.setPreferredSize(new Dimension(80, 30));
       BtCancel.setFocusPainted(false);
       BtCancel.setBackground(Color.white);
-      BtCancel.setFont(new Font("돋음", Font.BOLD, 15));
+      BtCancel.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
 //      setExtendedState(MAXIMIZED_BOTH);
       RegProPriceView();
@@ -233,8 +233,6 @@ public class RegProPrice extends Dialog implements ActionListener {
 //      setTitle("홈페이지 관리자");
 
       setLayout(gbl);
-
-   
 
       gridbagAdd(vProNm, 1, 2, 1, 1);
       gridbagAdd(vexPrice, 1, 3, 1, 1);

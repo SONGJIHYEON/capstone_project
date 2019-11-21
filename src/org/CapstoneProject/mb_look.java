@@ -3,6 +3,7 @@ package org.CapstoneProject;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -22,7 +23,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class mb_look extends JPanel implements ActionListener, MouseListener {
 
@@ -50,14 +55,16 @@ public class mb_look extends JPanel implements ActionListener, MouseListener {
 		gridbagconstraints = new GridBagConstraints();
 
 		mb_lookup = new JLabel("회원조회");
-//		mb_lookup.setPreferredSize(new Dimension(200, 28));
+		mb_lookup.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		cbSearch = new JComboBox<String>(search);
-		cbSearch.setPreferredSize(new Dimension(100, 30));
+		cbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		cbSearch.setPreferredSize(new Dimension(150, 40));
 		cbSearch.setBackground(Color.WHITE);
 		
-		Tsearch = new JTextField(22);
-		Tsearch.setPreferredSize(new Dimension(150, 30));
+		Tsearch = new JTextField(15);
+		Tsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		Tsearch.setPreferredSize(new Dimension(150, 40));
 
 		cust_info = new JTable(model1);
 		cust_info.getColumnModel().getColumn(0).setPreferredWidth(60);
@@ -70,9 +77,26 @@ public class mb_look extends JPanel implements ActionListener, MouseListener {
 		scrollpane1 = new JScrollPane(cust_info);
 		scrollpane1.setPreferredSize(new Dimension(900, 300));
 		
-		Bsearch = new JButton("검색");
-		Bsearch.addActionListener(this);
-		Bsearch.setPreferredSize(new Dimension(80, 30));
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = cust_info.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		cust_info.setRowHeight(25);
+		
+		JTableHeader th = cust_info.getTableHeader();		
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+
+		
+        Bsearch = new JButton("검색");
+        Bsearch.setFocusPainted(false);
+        Bsearch.setBackground(Color.white);
+        Bsearch.setPreferredSize(new Dimension(80,40));
+        Bsearch.setFont(new Font("휴먼매직체", Font.BOLD , 22));
 
 
 		getData(CustData.selectCust());

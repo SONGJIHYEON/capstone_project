@@ -39,7 +39,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class QnA_user extends JPanel implements ActionListener, MouseListener {
 
@@ -133,6 +136,20 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 		tQnA.addMouseListener(this);
 		Scroll = new JScrollPane(tQnA);
 		Scroll.setPreferredSize(new Dimension(700, 300));
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tQnA.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		tQnA.setRowHeight(25);
+		
+		JTableHeader th = tQnA.getTableHeader();		
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 
 		vNotice = new JLabel("· 공지사항");
 		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));
@@ -175,8 +192,11 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 				e.printStackTrace();
 			}
 			String new_appc_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
-			model1.addRow(new Object[] { QnAListData.get(i).get("POST_MSG_NUM"), QnAListData.get(i).get("POST_MSG_TY"),
-					QnAListData.get(i).get("POST_MSG_TIT"), QnAListData.get(i).get("WRITER_NM"),
+			model1.addRow(new Object[] { 
+					QnAListData.get(i).get("POST_MSG_NUM"),
+					QnAListData.get(i).get("POST_MSG_TY"),
+					QnAListData.get(i).get("POST_MSG_TIT"), 
+					QnAListData.get(i).get("WRITER_NM"),
 					new_appc_date });
 		}
 	}
@@ -223,25 +243,6 @@ public class QnA_user extends JPanel implements ActionListener, MouseListener {
 	private void home_adminView() {
 
 		setLayout(gridbaglayout);
-
-//		Home.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		Home.setHorizontalAlignment(SwingConstants.CENTER);
-//		Home.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-//		Mn_Manage.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		Mn_Manage.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Manage.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-//		Mn_Center.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		Mn_Center.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Center.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-//		Mn_Basket.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		Mn_Basket.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Basket.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-//		Mn_Mypage.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		Mn_Mypage.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Mypage.setFont(new Font("휴먼매직체", Font.BOLD, 25));
-//		Mn_Logout.setBorder(new LineBorder(new Color(0, 0, 0)));
-//		Mn_Logout.setHorizontalAlignment(SwingConstants.CENTER);
-//		Mn_Logout.setFont(new Font("휴먼매직체", Font.BOLD, 25));
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 

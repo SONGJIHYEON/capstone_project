@@ -55,11 +55,43 @@ public class DelivData {
 			sqle.printStackTrace();
 		}
 	}
+	
+	static List<Map<String, Serializable>> selectDelivView(String od_num) {
+
+		quary = "select *from deliv where OD_NUM ='"+od_num+"'";
+
+		delivListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				delivdataSet = new HashMap<String, Serializable>();
+
+				delivdataSet.put("OD_NUM", rs.getString(2));
+				delivdataSet.put("DELIV_COMPANY", rs.getString(6));
+				delivdataSet.put("INV_NUM", rs.getString(1));
+				delivdataSet.put("DELIV_DATE", rs.getString(3));
+				delivdataSet.put("DELIV_COND_TP", rs.getString(4));
+				delivdataSet.put("DELIV_TP", rs.getString(5));
+
+				delivListData.add(delivdataSet);
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return delivListData;
+	}
 
 //	static List<Map<String, Serializable>> selectDeliv() {
 //
 //		quary = "SELECT MODEL_NM, MODEL_NUM, FIRST_CTGR, TOP_CLOTH_CTGR, BOT_CLOTH_CTGR, OUTER_CTGR, SHIR_CTGR, SHOOSE_CTGR "
-//				+ "FROM  MODEL JOIN MODEL_CTGR ON Model.MODEL_CTGR_NUM = Model_CTGR.MODEL_CTGR_NUM order by MODEL_NM";
+//				+ "FROM  MODEL JOIN MODEL_CTGR ON Model.MODEL_CTGR_NUM = Model_CTGR.MODEL_CTGR_NUM deliv by MODEL_NM";
 //
 //		delivListData.clear();
 //

@@ -25,9 +25,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 public class corr_look extends JPanel implements ActionListener, MouseListener {
 
@@ -74,27 +78,40 @@ public class corr_look extends JPanel implements ActionListener, MouseListener {
 		next.addMouseListener(this);
 
 		corr_lookup2 = new JLabel("거래처조회");
-		corr_lookup2.setFont(new Font("휴먼매직체", Font.BOLD, 40));
-		corr_lookup2.setPreferredSize(new Dimension(200, 50));
+		corr_lookup2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+//		corr_lookup2.setPreferredSize(new Dimension(200, 50));
 
 		Tsearch = new JTextField(22);
-		Tsearch.setOpaque(false);
-		Tsearch.setPreferredSize(new Dimension(150, 40));
+		Tsearch.setPreferredSize(new Dimension(100, 40));
 
 		cbSearch = new JComboBox<String>(search);
-		cbSearch.setFont(new Font("휴먼매직체", Font.PLAIN, 22));
-		cbSearch.setPreferredSize(new Dimension(200, 40));
-		cbSearch.setBackground(Color.WHITE);
+		cbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		cbSearch.setPreferredSize(new Dimension(150, 40));
+		cbSearch.setBackground(Color.WHITE);	
 
 		corr_info = new JTable(model1);
 		corr_info.addMouseListener(this);
 		corr_info.setOpaque(false);
 		scrollpane1 = new JScrollPane(corr_info);
 		scrollpane1.setPreferredSize(new Dimension(1000, 300));
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = corr_info.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		corr_info.setRowHeight(25);
+		
+		JTableHeader th = corr_info.getTableHeader();		
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 
 		Bsearch = new JButton("검색");
 		Bsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		Bsearch.setPreferredSize(new Dimension(100, 40));
+		Bsearch.setPreferredSize(new Dimension(80, 40));
 		Bsearch.setBackground(Color.WHITE);
 		Bsearch.addActionListener(this);
 

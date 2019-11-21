@@ -10,7 +10,13 @@ import java.awt.GridBagLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.EventObject;
 import java.util.List;
 import java.util.Map;
@@ -21,12 +27,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.event.CellEditorListener;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
-public class pur_list extends JPanel implements ActionListener {
+public class pur_list extends JPanel implements ActionListener, MouseListener {
 
 	private static String[] col1 = { "구매번호", "구매일자", "총금액", "상세내역조회" };
 
@@ -37,10 +47,41 @@ public class pur_list extends JPanel implements ActionListener {
 
 	private JButton jb;
 
-	static String pur_num, pur_num2;
+	static String pur_num;
+	
+	static ArrayList<String> ar = new ArrayList<String>();
+	int row = 0;
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
+	
+	static void getData(List<Map<String, Serializable>> purListData) {
+
+		model1.setRowCount(0);
+
+		for (int i = 0; i < purListData.size(); i++) {
+			
+			ar.add(purListData.get(i).get("PUR_DT").toString());
+			
+//			String oldstring = ex_st_date;
+			
+			Date date = null;
+			try {
+				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar.get(i));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				
+				e.printStackTrace();
+			}
+			String new_pur_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
+			
+			model1.addRow(new Object[] {
+					purListData.get(i).get("PUR_NUM"), 
+					new_pur_date,
+					purListData.get(i).get("TOT_PR")
+			});
+		}
+	}
 
 	public pur_list() {
 		gridbaglayout = new GridBagLayout();
@@ -48,17 +89,29 @@ public class pur_list extends JPanel implements ActionListener {
 
 		pur_info = new JTable(model1);
 		scrollpane1 = new JScrollPane(pur_info);
-		scrollpane1.setPreferredSize(new Dimension(400, 300));
-		pur_info.getColumnModel().getColumn(0).setPreferredWidth(50);
+		scrollpane1.setPreferredSize(new Dimension(450, 300));
+		pur_info.getColumnModel().getColumn(0).setPreferredWidth(100);
 		pur_info.getColumnModel().getColumn(1).setPreferredWidth(100);
 		pur_info.getColumnModel().getColumn(2).setPreferredWidth(100);
 		pur_info.getColumnModel().getColumn(3).setPreferredWidth(150);
-
-//         getDeptData(EmpData.selectDept());
-//         getSvpData(EmpData.selectSpv());
-
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = pur_info.getColumnModel();
+		
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
 		pur_info.getColumnModel().getColumn(3).setCellRenderer(new TableCell());
 		pur_info.getColumnModel().getColumn(3).setCellEditor(new TableCell());
+		
+		pur_info.setRowHeight(25);
+		
+		JTableHeader th = pur_info.getTableHeader();		
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+
 
 		EmpRegisterView();
 	}
@@ -78,7 +131,7 @@ public class pur_list extends JPanel implements ActionListener {
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 
-		System.out.println(corr_look.corr_num);
+		System.out.println(corr_look.corr_num+"a");
 
 		getData(purData.selectpur(corr_look.corr_num));
 
@@ -100,19 +153,6 @@ public class pur_list extends JPanel implements ActionListener {
 
 	}
 
-	static void getData(List<Map<String, Serializable>> purListData) {
-
-		model1.setNumRows(0);
-
-		for (int i = 0; i < purListData.size(); i++) {
-			model1.addRow(new Object[] {
-					purListData.get(i).get("PUR_NUM"), 
-					purListData.get(i).get("PUR_DT"),
-					purListData.get(i).get("TOT_PR")
-			});
-		}
-	}
-
 	public static void main(String[] args) {
 		new pur_list();
 	}
@@ -123,12 +163,13 @@ public class pur_list extends JPanel implements ActionListener {
 			// TODO Auto-generated constructor stub
 			jb = new JButton("상세내역조회");
 			jb.setBackground(Color.WHITE);
-			jb.setFocusPainted(false);
+//			jb.setFocusPainted(false);
+			
 			jb.addActionListener(e -> {
-				int row = pur_info.getSelectedRow();
+				int row = 0;
+				row = pur_info.getSelectedRow();
 				pur_num = "";
 				pur_num += (String) pur_info.getValueAt(row, 0);
-				System.out.println(pur_num);
 				pur_brkdwn_list s = new pur_brkdwn_list();
 			});
 
@@ -159,6 +200,40 @@ public class pur_list extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == pur_info) {
+//			row = pur_info.getSelectedRow();
+		}
+		
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

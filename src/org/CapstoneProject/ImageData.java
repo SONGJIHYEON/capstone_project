@@ -66,7 +66,7 @@ public class ImageData {
 				ImagedataSet.put("MODEL_IMG2", rs.getString(2));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
+//            System.out.println(ImageListData);
 
 			}
 
@@ -96,7 +96,7 @@ public class ImageData {
 				ImagedataSet.put("MODEL_NICK", rs.getString(1));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
+//            System.out.println(ImageListData);
 
 			}
 
@@ -128,7 +128,7 @@ public class ImageData {
 				ImagedataSet.put("FIRST_CTGR", rs.getString(1));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
+//            System.out.println(ImageListData);
 
 			}
 
@@ -160,7 +160,7 @@ public class ImageData {
 				ImagedataSet.put("SIZ", rs.getString(1));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
+//            System.out.println(ImageListData);
 
 			}
 
@@ -192,7 +192,7 @@ public class ImageData {
 				ImagedataSet.put("CLR", rs.getString(1));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
+//            System.out.println(ImageListData);
 
 			}
 
@@ -222,7 +222,7 @@ public class ImageData {
 				ImagedataSet.put("MODEL_NM", rs.getString(1));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
+//            System.out.println(ImageListData);
 
 			}
 
@@ -234,7 +234,7 @@ public class ImageData {
 		return ImageListData;
 
 	}
-	
+
 	static List<Map<String, Serializable>> countBasicPrice(String filename) {
 
 		quary = "select count(up) from model " + "join pro on model.MODEL_NUM = pro.MODEL_NUM "
@@ -254,7 +254,7 @@ public class ImageData {
 				ImagedataSet.put("up", rs.getString(1));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
+//            System.out.println(ImageListData);
 			}
 
 		} catch (SQLException sqle) {
@@ -265,7 +265,6 @@ public class ImageData {
 		return ImageListData;
 
 	}
-
 
 	static List<Map<String, Serializable>> selectBasicPrice(String filename) {
 
@@ -287,9 +286,9 @@ public class ImageData {
 				ImagedataSet.put("UP", rs.getString(2));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
-				
-				if(ImageListData.get(0).get("UP").toString() == null) {
+//            System.out.println(ImageListData);
+
+				if (ImageListData.get(0).get("UP").toString() == null) {
 					error = 1;
 				}
 
@@ -324,7 +323,7 @@ public class ImageData {
 				ImagedataSet.put("UP", rs.getString(2));
 
 				ImageListData.add(ImagedataSet);
-//				System.out.println(ImageListData);
+//            System.out.println(ImageListData);
 
 			}
 
@@ -356,7 +355,7 @@ public class ImageData {
 				ImagedataSet.put("CLR", rs.getString(1));
 
 				ImageListData.add(ImagedataSet);
-//		            System.out.println(ImageListData);
+//                  System.out.println(ImageListData);
 
 			}
 
@@ -368,7 +367,7 @@ public class ImageData {
 		return ImageListData;
 
 	}
-	
+
 	static List<Map<String, Serializable>> selectProNum(String proName) {
 
 		quary = "select pro_num from pro where pro_nm = '" + proName + "'";
@@ -386,7 +385,7 @@ public class ImageData {
 				ImagedataSet.put("PRO_NUM", rs.getString(1));
 
 				ImageListData.add(ImagedataSet);
-//		            System.out.println(ImageListData);
+//                  System.out.println(ImageListData);
 
 			}
 
@@ -398,37 +397,68 @@ public class ImageData {
 		return ImageListData;
 
 	}
-	 static List<Map<String, Serializable>> registModel() {
 
-         quary = "select MODEL_IMG1, MODEL_NICK from model "
-               + "order by MODEL_IMG1 ASC";
-         
-         ImageListData.clear();
+	static List<Map<String, Serializable>> registModel() {
 
-         try {
-            System.out.println(quary);
-            pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
+		quary = "select MODEL_IMG1, MODEL_NICK from model " + "order by MODEL_IMG1 ASC";
 
-               ImagedataSet = new HashMap<String, Serializable>();
+		ImageListData.clear();
 
-               ImagedataSet.put("MODEL_IMG1", rs.getString(1));
-               ImagedataSet.put("MODEL_NICK", rs.getString(2));
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
 
-               ImageListData.add(ImagedataSet);
+				ImagedataSet = new HashMap<String, Serializable>();
+
+				ImagedataSet.put("MODEL_IMG1", rs.getString(1));
+				ImagedataSet.put("MODEL_NICK", rs.getString(2));
+
+				ImageListData.add(ImagedataSet);
 //               System.out.println(ImageListData);
 
-            }
+			}
 
-         } catch (SQLException sqle) {
-            System.out.println("select문에서 예외 발생");
-            sqle.printStackTrace();
-         }
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
 
-         return ImageListData;
+		return ImageListData;
 
-      }
+	}
 
+	static List<Map<String, Serializable>> registModelType(String model_ctgr) {
+
+		quary = "select MODEL_IMG1, MODEL_NICK from model " + "where MODEL_CTGR_NUM = " + model_ctgr
+				+ " order by MODEL_IMG1 ASC";
+
+		ImageListData.clear();
+
+		try {
+			System.out.println(quary);
+			pstm = conn.prepareStatement(quary, rs.TYPE_SCROLL_INSENSITIVE, rs.CONCUR_READ_ONLY);
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+
+				ImagedataSet = new HashMap<String, Serializable>();
+
+				ImagedataSet.put("MODEL_IMG1", rs.getString(1));
+				ImagedataSet.put("MODEL_NICK", rs.getString(2));
+
+				ImageListData.add(ImagedataSet);
+//               System.out.println(ImageListData);
+
+			}
+
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+
+		return ImageListData;
+
+	}
 
 }

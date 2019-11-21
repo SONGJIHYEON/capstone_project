@@ -58,44 +58,6 @@ public class Cust_view_admin extends Dialog implements ActionListener {
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
 
-//	private void getData1(List<Map<String, Serializable>> idListData) {
-//
-//		sid2 = "";
-//		sid2 += idListData.get(0).get("ID").toString();
-//
-//		intid = Integer.parseInt(sid2);
-//
-//		if (intid == 0) {
-//			JOptionPane.showMessageDialog(null, "사용가능한 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
-//			return;
-//		} else
-//			JOptionPane.showMessageDialog(null, "중복된 아이디 입니다", "", JOptionPane.INFORMATION_MESSAGE);
-//			xMemId.setText("");
-//			return;
-//	}
-//
-//	public void getData2(List<Map<String, Serializable>> MbgraListData) {
-//
-//		SimpleDateFormat spdate = new SimpleDateFormat("yyyy-MM-dd");
-//
-//		STdate = "";
-//		STdate += MbgraListData.get(0).get("DISC_APP_ST_DT");
-//
-//		String oldstring = STdate;
-//		Date date = null;
-//		try {
-//			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		String newstring = new SimpleDateFormat("yyyy-MM-dd").format(date);
-//		System.out.println(newstring);
-//
-//		CustData.initCustData(ID, PWD, CUST_NM, BD, PH_NUM, ADDR, newstring);
-//		CustData.createCust();
-//	}
-
 	public Cust_view_admin(JFrame fr) {
         super(fr, "", true);
         
@@ -105,21 +67,23 @@ public class Cust_view_admin extends Dialog implements ActionListener {
 		user_birth = Login.user_birth;
 		user_phone = Login.user_phone;
 		
-		String oldstring = user_birth;
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String newbirth = new SimpleDateFormat("yyyy-MM-dd").format(date);
+//		String oldstring = user_birth;
+//		
+//		Date date = null;
+//		try {
+//			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(oldstring);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		String newbirth = new SimpleDateFormat("yyyy-MM-dd").format(date);
 
 		gbl = new GridBagLayout();
 		gbc = new GridBagConstraints();
 
 		vMemId = new JLabel("아이디");
 		vMemId.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		
 		xMemId = new JTextField(13);
 		xMemId.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemId.setText(user_id);
@@ -146,7 +110,7 @@ public class Cust_view_admin extends Dialog implements ActionListener {
 		vMemBirth.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
 		xMemBirth = new JTextField(13);
 		xMemBirth.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		xMemBirth.setText(newbirth);
+		xMemBirth.setText(user_birth);
 		xMemBirth.setEnabled(false);
 
 		vMemPhone = new JLabel("휴대폰 번호");
@@ -273,17 +237,6 @@ public class Cust_view_admin extends Dialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-//		if (e.getSource() == BtCheckId) {
-//			sid = "";
-//			sid += xMemId.getText();
-//			if (sid.equals("")) {
-//				JOptionPane.showMessageDialog(null, "ID를 입력해 주세요.", "ID미입력", JOptionPane.WARNING_MESSAGE);
-//			} else {
-//				CheckId.initCustData(sid);
-//				getData1(CheckId.selectid());
-//			}
-//
-//		}
 
 		String pw1 = new String(xMemPw1.getPassword());
 		String pw2 = new String(xMemPw2.getPassword());

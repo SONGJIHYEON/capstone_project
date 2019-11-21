@@ -56,8 +56,8 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 	static JPanel P_I = new ProImage();
 	static JPanel M_M = new JPanel();
-	static JPanel Od_list = new Od_list_user();	
-	
+	static JPanel Od_list = new Od_list_user();
+
 	JPanel Menu;
 	JLabel Lbasket, Lorder, Lmypage, Lpost;
 
@@ -106,7 +106,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 	private JScrollPane scroll;
 
-	static String click = "H";
+	static String model_ctgr;
 
 	GridBagLayout gbl;
 	GridBagConstraints gbc;
@@ -163,13 +163,12 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Mn_Shoose.add(Sho_6);
 		Mn_Shoose.add(Sho_7);
 		Mn_Shoose.add(Sho_8);
-		
+
 		Menu = new JPanel();
 		Lbasket = new JLabel("장바구니 ");
 		Lorder = new JLabel("주문하기 ");
 		Lmypage = new JLabel("마이페이지 ");
 		Lpost = new JLabel("게시판 ");
-
 
 		MenuBar2.add(Mn_Top);
 		MenuBar2.add(Mn_Bottom);
@@ -235,7 +234,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	}
 
 	public void changePanel(JPanel newPanel) { // 센터패널 교환하기
-		if(Label != null) {
+		if (Label != null) {
 			remove(Label);
 		}
 		remove(Panel_Center);
@@ -246,7 +245,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		revalidate();
 		repaint();
 	}
-	
+
 	public void changePanel2(JPanel newPanel) { // 센터패널 교환하기
 		remove(Panel_Center);
 		newPanel.setSize(d.width - 500, d.height - 85);
@@ -262,7 +261,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 
 		setTitle("홈페이지 유저");
 		setSize(d.width, d.height);
-		
+
 		Lbasket.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 //		Lbasket.setHorizontalAlignment(JLabel.CENTER);
 		Lbasket.addMouseListener(this);
@@ -272,7 +271,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Lpost.addMouseListener(this);
 		Lmypage.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		Lmypage.addMouseListener(this);
-		
+
 		Menu.add(Lbasket);
 		Menu.add(Lorder);
 		Menu.add(Lmypage);
@@ -287,18 +286,23 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Top_1.setBackground(new Color(255, 255, 255));
 		Top_1.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Top_1.getPreferredSize().height));
 		Top_1.setFont(new Font("", Font.BOLD, 15));
+		Top_1.addActionListener(this);
 
 		Top_2.setBackground(new Color(255, 255, 255));
 		Top_2.setFont(new Font("  ", Font.BOLD, 15));
+		Top_2.addActionListener(this);
 
 		Top_3.setBackground(new Color(255, 255, 255));
 		Top_3.setFont(new Font("  ", Font.BOLD, 15));
+		Top_3.addActionListener(this);
 
 		Top_4.setBackground(new Color(255, 255, 255));
 		Top_4.setFont(new Font("  ", Font.BOLD, 15));
+		Top_4.addActionListener(this);
 
 		Top_5.setBackground(new Color(255, 255, 255));
 		Top_5.setFont(new Font("  ", Font.BOLD, 15));
+		Top_5.addActionListener(this);
 
 		Mn_Bottom.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Bottom.setPreferredSize(new Dimension(205, Mn_Bottom.getPreferredSize().height));
@@ -308,18 +312,23 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Bot_1.setBackground(new Color(255, 255, 255));
 		Bot_1.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Bot_1.getPreferredSize().height));
 		Bot_1.setFont(new Font("", Font.BOLD, 15));
+		Bot_1.addActionListener(this);
 
 		Bot_2.setBackground(new Color(255, 255, 255));
 		Bot_2.setFont(new Font("  ", Font.BOLD, 15));
+		Bot_2.addActionListener(this);
 
 		Bot_3.setBackground(new Color(255, 255, 255));
 		Bot_3.setFont(new Font("  ", Font.BOLD, 15));
+		Bot_3.addActionListener(this);
 
 		Bot_4.setBackground(new Color(255, 255, 255));
 		Bot_4.setFont(new Font("  ", Font.BOLD, 15));
+		Bot_4.addActionListener(this);
 
 		Bot_5.setBackground(new Color(255, 255, 255));
 		Bot_5.setFont(new Font("  ", Font.BOLD, 15));
+		Bot_5.addActionListener(this);
 
 		Mn_Outter.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Outter.setPreferredSize(new Dimension(205, Mn_Outter.getPreferredSize().height));
@@ -329,27 +338,35 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Out_1.setBackground(new Color(255, 255, 255));
 		Out_1.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Out_1.getPreferredSize().height));
 		Out_1.setFont(new Font("", Font.BOLD, 15));
+		Out_1.addActionListener(this);
 
 		Out_2.setBackground(new Color(255, 255, 255));
 		Out_2.setFont(new Font("  ", Font.BOLD, 15));
+		Out_2.addActionListener(this);
 
 		Out_3.setBackground(new Color(255, 255, 255));
 		Out_3.setFont(new Font("  ", Font.BOLD, 15));
+		Out_3.addActionListener(this);
 
 		Out_4.setBackground(new Color(255, 255, 255));
 		Out_4.setFont(new Font("  ", Font.BOLD, 15));
+		Out_4.addActionListener(this);
 
 		Out_5.setBackground(new Color(255, 255, 255));
 		Out_5.setFont(new Font("  ", Font.BOLD, 15));
+		Out_5.addActionListener(this);
 
 		Out_6.setBackground(new Color(255, 255, 255));
 		Out_6.setFont(new Font("", Font.BOLD, 15));
+		Out_6.addActionListener(this);
 
 		Out_7.setBackground(new Color(255, 255, 255));
 		Out_7.setFont(new Font("  ", Font.BOLD, 15));
+		Out_7.addActionListener(this);
 
 		Out_8.setBackground(new Color(255, 255, 255));
 		Out_8.setFont(new Font("  ", Font.BOLD, 15));
+		Out_8.addActionListener(this);
 
 		Mn_Shirts.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Shirts.setPreferredSize(new Dimension(205, Mn_Shirts.getPreferredSize().height));
@@ -359,15 +376,19 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Sht_1.setBackground(new Color(255, 255, 255));
 		Sht_1.setPreferredSize(new Dimension(d.width * 3 / 4 * 1 / 5, Sht_1.getPreferredSize().height));
 		Sht_1.setFont(new Font("", Font.BOLD, 15));
+		Sht_1.addActionListener(this);
 
 		Sht_2.setBackground(new Color(255, 255, 255));
 		Sht_2.setFont(new Font("  ", Font.BOLD, 15));
+		Sht_2.addActionListener(this);
 
 		Sht_3.setBackground(new Color(255, 255, 255));
 		Sht_3.setFont(new Font("  ", Font.BOLD, 15));
+		Sht_3.addActionListener(this);
 
 		Sht_4.setBackground(new Color(255, 255, 255));
 		Sht_4.setFont(new Font("  ", Font.BOLD, 15));
+		Sht_4.addActionListener(this);
 
 		Mn_Shoose.setBorder(new LineBorder(new Color(0, 0, 0)));
 		Mn_Shoose.setPreferredSize(new Dimension(205, Mn_Shoose.getPreferredSize().height));
@@ -377,27 +398,35 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 		Sho_1.setBackground(new Color(255, 255, 255));
 		Sho_1.setPreferredSize(new Dimension(205, Sho_1.getPreferredSize().height));
 		Sho_1.setFont(new Font("", Font.BOLD, 15));
+		Sho_1.addActionListener(this);
 
 		Sho_2.setBackground(new Color(255, 255, 255));
 		Sho_2.setFont(new Font("  ", Font.BOLD, 15));
+		Sho_2.addActionListener(this);
 
 		Sho_3.setBackground(new Color(255, 255, 255));
 		Sho_3.setFont(new Font("  ", Font.BOLD, 15));
+		Sho_3.addActionListener(this);
 
 		Sho_4.setBackground(new Color(255, 255, 255));
 		Sho_4.setFont(new Font("  ", Font.BOLD, 15));
+		Sho_4.addActionListener(this);
 
 		Sho_5.setBackground(new Color(255, 255, 255));
 		Sho_5.setFont(new Font("  ", Font.BOLD, 15));
+		Sho_5.addActionListener(this);
 
 		Sho_6.setBackground(new Color(255, 255, 255));
 		Sho_6.setFont(new Font("", Font.BOLD, 15));
+		Sho_6.addActionListener(this);
 
 		Sho_7.setBackground(new Color(255, 255, 255));
 		Sho_7.setFont(new Font("  ", Font.BOLD, 15));
+		Sho_7.addActionListener(this);
 
 		Sho_8.setBackground(new Color(255, 255, 255));
 		Sho_8.setFont(new Font("  ", Font.BOLD, 15));
+		Sho_8.addActionListener(this);
 
 		Panel_Center = new JPanel();
 		setLayout(null);
@@ -472,7 +501,7 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 			changePanel2(new Review_user());
 			repaint();
 			revalidate();
-		} else if(e.getSource() == img_top) {
+		} else if (e.getSource() == img_top) {
 			changePanel((JPanel) new ProImage(this));
 			repaint();
 			revalidate();
@@ -506,5 +535,156 @@ public class home_user extends JFrame implements MouseListener, ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		if (e.getSource() == Top_1) {
+			model_ctgr = "1";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Top_2) {
+			model_ctgr = "2";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Top_3) {
+			model_ctgr = "3";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Top_4) {
+			model_ctgr = "4";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Top_5) {
+			model_ctgr = "5";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Bot_1) {
+			model_ctgr = "6";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Bot_2) {
+			model_ctgr = "7";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Bot_3) {
+			model_ctgr = "8";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Bot_4) {
+			model_ctgr = "9";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Bot_5) {
+			model_ctgr = "10";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Out_1) {
+			model_ctgr = "11";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Out_2) {
+			model_ctgr = "12";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Out_3) {
+			model_ctgr = "13";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Out_4) {
+			model_ctgr = "14";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Out_5) {
+			model_ctgr = "15";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Out_6) {
+			model_ctgr = "16";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Out_7) {
+			model_ctgr = "17";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Out_8) {
+			model_ctgr = "18";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sht_1) {
+			model_ctgr = "19";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sht_2) {
+			model_ctgr = "20";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sht_3) {
+			model_ctgr = "21";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sht_4) {
+			model_ctgr = "22";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sho_1) {
+			model_ctgr = "23";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sho_2) {
+			model_ctgr = "24";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sho_3) {
+			model_ctgr = "25";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sho_4) {
+			model_ctgr = "26";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sho_5) {
+			model_ctgr = "27";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sho_6) {
+			model_ctgr = "28";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sho_7) {
+			model_ctgr = "29";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		} else if (e.getSource() == Sho_8) {
+			model_ctgr = "30";
+			changePanel((JPanel) new ProImageType(this));
+			repaint();
+			revalidate();
+		}
 	}
 }

@@ -1,5 +1,6 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -24,9 +25,13 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 import org.CapstoneProject.Basket.TableCell2;
 
@@ -68,22 +73,41 @@ public class ManPro extends JPanel {
 		getData(ProData.selectProMod());
 
 		vAdminPro2 = new JLabel("상품조회");
-		vAdminPro2.setPreferredSize(new Dimension(200, 28));
+		vAdminPro2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		CbSearch = new JComboBox<String>(search);
-		CbSearch.setPreferredSize(new Dimension(200, 28));
+		CbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		CbSearch.setPreferredSize(new Dimension(150, 40));
+		CbSearch.setBackground(Color.WHITE);
 
-		xSearch = new JTextField(20);
-		xSearch.setPreferredSize(new Dimension(200, 28));
+		xSearch = new JTextField(15);
+		xSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		xSearch.setPreferredSize(new Dimension(150, 40));
 
 		tModelInfo = new JTable(model1);
 		scrollpane1 = new JScrollPane(tModelInfo);
 		scrollpane1.setPreferredSize(new Dimension(1000, 300));
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tModelInfo.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+
+		tModelInfo.setRowHeight(25);
+
+		JTableHeader th = tModelInfo.getTableHeader();
+		th.setPreferredSize(new Dimension(1000, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 
 		BtSearch = new JButton("검색");
-		BtSearch.setPreferredSize(new Dimension(100, 28));
-		BtReg = new JButton("등록");
-		BtReg.setPreferredSize(new Dimension(100, 28));
+		BtSearch.setFocusPainted(false);
+		BtSearch.setBackground(Color.white);
+		BtSearch.setPreferredSize(new Dimension(80, 40));
+		BtSearch.setFont(new Font("휴먼매직체", Font.BOLD, 22));
+
 //		BtCancel = new JButton("닫기");
 		ManProView();
 	}
@@ -92,7 +116,6 @@ public class ManPro extends JPanel {
 
 		setLayout(gbl);
 
-		gridbagAdd(vAdminPro2, 1, 1, 1, 1);
 
 		gridbagAdd(CbSearch, 1, 2, 1, 1);
 		gridbagAdd(xSearch, 2, 2, 1, 1);
@@ -100,6 +123,7 @@ public class ManPro extends JPanel {
 		gbc.anchor = GridBagConstraints.CENTER;
 
 		gbc.anchor = GridBagConstraints.WEST;
+		gridbagAdd(vAdminPro2, 1, 1, 1, 1);
 		gridbagAdd(BtSearch, 3, 2, 1, 1);
 		gridbagAdd(scrollpane1, 1, 3, 5, 5);
 

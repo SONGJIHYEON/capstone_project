@@ -1,6 +1,7 @@
 
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -30,7 +31,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class ModelSearch extends Dialog implements MouseListener, ActionListener {
 	private JLabel vModelNm, vModelCtgr1, vModelCtgr2, vModelCode, vModelExp, vModelSize;
@@ -47,7 +52,7 @@ public class ModelSearch extends Dialog implements MouseListener, ActionListener
 
 	private DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 
-	private JButton BtSearch, BtReg;
+	private JButton BtSearch, BtReg, Btcancel;
 	private JComboBox<String> CbSearch;
 
 	String ModelName, first_ctgr, ModelNum;
@@ -61,22 +66,50 @@ public class ModelSearch extends Dialog implements MouseListener, ActionListener
 		gbc = new GridBagConstraints();
 
 		CbSearch = new JComboBox<String>(search);
-		CbSearch.setPreferredSize(new Dimension(200, 28));
+		CbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		CbSearch.setPreferredSize(new Dimension(150, 30));
+		CbSearch.setBackground(Color.WHITE);
 
-		xSearch = new JTextField(20);
-		xSearch.setPreferredSize(new Dimension(200, 28));
+		xSearch = new JTextField(15);
+		xSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		xSearch.setPreferredSize(new Dimension(150, 30));
 
 		tModelInfo = new JTable(model1);
 		tModelInfo.addMouseListener(this);
 		scrollpane1 = new JScrollPane(tModelInfo);
 		scrollpane1.setPreferredSize(new Dimension(1000, 300));
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
 
-		BtSearch = new JButton("검색");
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tModelInfo.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+
+		tModelInfo.setRowHeight(25);
+
+		JTableHeader th = tModelInfo.getTableHeader();
+		th.setPreferredSize(new Dimension(1000, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+
+		BtSearch = new JButton("검색");		
+		BtSearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		BtSearch.setPreferredSize(new Dimension(90, 30));
+		BtSearch.setBackground(Color.WHITE);
 		BtSearch.addActionListener(this);
-		BtSearch.setPreferredSize(new Dimension(100, 28));
+		
 		BtReg = new JButton("등록");
+		BtReg.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		BtReg.setPreferredSize(new Dimension(90, 30));
+		BtReg.setBackground(Color.WHITE);
 		BtReg.addActionListener(this);
-		BtReg.setPreferredSize(new Dimension(100, 28));
+		
+		Btcancel = new JButton("닫기");
+		Btcancel.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		Btcancel.setPreferredSize(new Dimension(90, 30));
+		Btcancel.setBackground(Color.WHITE);
+		Btcancel.addActionListener(this);
 //      BtCancel = new JButton("닫기");
 
 		getData(ModelData.selectModel());
@@ -103,7 +136,7 @@ public class ModelSearch extends Dialog implements MouseListener, ActionListener
 
 //      setExtendedState(MAXIMIZED_BOTH);
 
-		setTitle("홈페이지 관리자");
+		setTitle("모델 검색");
 
 		setLayout(gbl);
 
@@ -122,7 +155,9 @@ public class ModelSearch extends Dialog implements MouseListener, ActionListener
 		gbc.anchor = GridBagConstraints.WEST;
 		gridbagAdd(BtSearch, 3, 2, 1, 1);
 		gridbagAdd(scrollpane1, 1, 3, 10, 5);
+
 		gbc.anchor = GridBagConstraints.EAST;
+		gridbagAdd(Btcancel, 10, 2, 1, 1);
 		gridbagAdd(BtReg, 10, 10, 1, 1);
 
 		pack();
@@ -153,8 +188,10 @@ public class ModelSearch extends Dialog implements MouseListener, ActionListener
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == BtReg) {
 			dispose();
+		}else if(e.getSource() == Btcancel) {
+			dispose();
 		}
-
+		
 		if (e.getSource() == BtSearch) {
 			String search = xSearch.getText();
 			if (CbSearch.getSelectedItem() == "모델명") {

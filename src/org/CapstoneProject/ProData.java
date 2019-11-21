@@ -54,7 +54,7 @@ public class ProData {
 	
 static List<Map<String, Serializable>> selectPro() {
 		
-		quary = "select *from pro order by PRO_NM asc";
+		quary = "select MODEL_NM, PRO_NM, SIZ, CLR from pro join model on pro.model_num = model.model_num order by MODEL_NM asc";
 		
 		ProListData.clear();
 		
@@ -66,9 +66,9 @@ static List<Map<String, Serializable>> selectPro() {
 				
 				ProdataSet = new HashMap<String, Serializable>();
 				
-				ProdataSet.put("Pro_NM", rs.getString(1)); 
-				ProdataSet.put("Pro_NUM", rs.getString(3));
-				ProdataSet.put("SIZ", rs.getString(5));
+				ProdataSet.put("MODEL_NM", rs.getString(1)); 
+				ProdataSet.put("PRO_NM", rs.getString(2));
+				ProdataSet.put("SIZ", rs.getString(3));
 				ProdataSet.put("CLR", rs.getString(4));
 
 //				ProdataSet.put("FIRST_CTGR", rs.getString(2)); 

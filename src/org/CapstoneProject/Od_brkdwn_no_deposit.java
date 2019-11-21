@@ -18,7 +18,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class Od_brkdwn_no_deposit extends Dialog implements ActionListener {
 
@@ -27,8 +31,10 @@ public class Od_brkdwn_no_deposit extends Dialog implements ActionListener {
 	private static DefaultTableModel model1 = new DefaultTableModel(col1, 0);
 	private JButton Btcancel;
 
-	private JTable pur_info;
+	private JTable table;
 	private JScrollPane scrollpane1;
+	
+	int value;
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
@@ -36,20 +42,36 @@ public class Od_brkdwn_no_deposit extends Dialog implements ActionListener {
 	public Od_brkdwn_no_deposit(JFrame fr) {
 		super(fr, "", true);
 		
+		
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		pur_info = new JTable(model1);
-		scrollpane1 = new JScrollPane(pur_info);
+		table = new JTable(model1);
+		scrollpane1 = new JScrollPane(table);
 		scrollpane1.setPreferredSize(new Dimension(600, 300));
 		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = table.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		table.setRowHeight(25);
+		
+		JTableHeader th = table.getTableHeader();		
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		
 		Btcancel = new JButton("닫기");
+		Btcancel.setBackground(Color.white);
 		Btcancel.addActionListener(this);
+		
+		getData(Od_brkdwn_Data.selectOd_brkdwn_admin(Od_list_no_deposit.od_num));			
+		getData(Od_brkdwn_Data.selectOd_brkdwn_admin(Od_list_pre_pro.od_num));
 
-//         getDeptData(EmpData.selectDept());
 
-//         getSvpData(EmpData.selectSpv());
-		pack();
 		EmpRegisterView();
 	}
 
@@ -69,8 +91,6 @@ public class Od_brkdwn_no_deposit extends Dialog implements ActionListener {
 		
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(Btcancel, 0, 1, 1, 1);
-
-		getData(Od_brkdwn_Data.selectOd_brkdwn_admin(Od_list_no_deposit.od_num));
 		
 		pack();
 		setVisible(true);
@@ -92,8 +112,8 @@ public class Od_brkdwn_no_deposit extends Dialog implements ActionListener {
 
 			});
 		}
-
 	}
+	
 
 	private void gridbagAdd(Component c, int x, int y, int w, int h) {
 

@@ -39,7 +39,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class Notice_user extends JPanel implements ActionListener, MouseListener {
 
@@ -64,7 +67,7 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 	static List<Map<String, Serializable>> NoticeListData;
 	private static int nowPage;
 	private int nowPanel;
-	private static int postPerPage = 5;
+	private static int postPerPage = 10;
 	private int pagePerPanel = 3;
 	private int panelNum;
 	private int pageNum;
@@ -116,12 +119,28 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 
 		tNotice = new JTable(model1);
 		tNotice.getColumnModel().getColumn(0).setPreferredWidth(70); // JTable 의 컬럼 길이 조절
-		tNotice.getColumnModel().getColumn(1).setPreferredWidth(460);
+		tNotice.getColumnModel().getColumn(1).setPreferredWidth(430);
 		tNotice.getColumnModel().getColumn(2).setPreferredWidth(70);
-		tNotice.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tNotice.getColumnModel().getColumn(3).setPreferredWidth(130);
 		tNotice.addMouseListener(this);
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tNotice.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		tNotice.setRowHeight(25);
+		
+		JTableHeader th = tNotice.getTableHeader();
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+
 		Scroll = new JScrollPane(tNotice);
 		Scroll.setPreferredSize(new Dimension(700, 300));
+		
 
 		vNotice2 = new JLabel("· 공지사항");
 		vNotice2.setFont(new Font("휴먼매직체", Font.BOLD, 20));
@@ -158,14 +177,14 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 		gridbagAdd(Tsearch, 3, 1, 1, 1);
 		gridbagAdd(bSearch, 4, 1, 1, 1);
 
-		gridbagAdd(Scroll, 2, 2, 3, 1);
+		gridbagAdd(Scroll, 2, 2, 5, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(pre, 2, 3, 1, 1);
+		gridbagAdd(next, 3, 3, 3, 1);
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
-		gridbagAdd(pPage[0], 3, 3, 1, 1);
+		gridbagAdd(pPage[0], 3, 3, 3, 1);
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
-		gridbagAdd(next, 4, 3, 1, 1);
+		gridbagAdd(pre, 3, 3, 3, 1);
 
 		setVisible(true);
 	}
@@ -177,9 +196,9 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 				break;
 			}
 			ar.add(NoticeListData.get(i).get("WRT_DATE").toString());
-			
+
 //			String oldstring = ex_st_date;
-			
+
 			Date date = null;
 			try {
 				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar.get(i));
@@ -188,13 +207,11 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 				e.printStackTrace();
 			}
 			String new_appc_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
-			model1.addRow(
-					new Object[] { 
-							NoticeListData.get(i).get("POST_MSG_NUM"), 
-							NoticeListData.get(i).get("POST_MSG_TIT"),
-							NoticeListData.get(i).get("WRITER_NM"), 
-							new_appc_date 
-							});
+			model1.addRow(new Object[] { 
+					NoticeListData.get(i).get("POST_MSG_NUM"),					
+					NoticeListData.get(i).get("POST_MSG_TIT"), 
+					NoticeListData.get(i).get("WRITER_NM"), 
+					new_appc_date });
 		}
 	}
 
@@ -266,7 +283,7 @@ public class Notice_user extends JPanel implements ActionListener, MouseListener
 				getData();
 			}
 		}
-		
+
 		int row;
 		if (e.getSource() == tNotice) {
 			row = tNotice.getSelectedRow();

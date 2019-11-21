@@ -89,17 +89,17 @@ public class RegPro extends Dialog implements ActionListener, ItemListener {
       gbc = new GridBagConstraints();
 
       vProNm = new JLabel("상품명");
-      vProNm.setFont(new Font("돋음", Font.BOLD, 15));
+      vProNm.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       vProNm.setHorizontalAlignment(JLabel.CENTER);
       vProNm.setPreferredSize(new Dimension(120, 45));
       
       vProSize = new JLabel("상품 사이즈");
-      vProSize.setFont(new Font("돋음", Font.BOLD, 15));
+      vProSize.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       vProSize.setHorizontalAlignment(JLabel.CENTER);
       vProSize.setPreferredSize(new Dimension(120, 45));
       
       vProColor = new JLabel("상품 색상");
-      vProColor.setFont(new Font("돋음", Font.BOLD, 15));
+      vProColor.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 //      vProStock = new JLabel("재고등록");
 
       xModelNm = new JTextField(22);
@@ -108,7 +108,7 @@ public class RegPro extends Dialog implements ActionListener, ItemListener {
       taProNm = new JTextArea(10, 10);
 
       vModelNm = new JLabel("모델명");
-      vModelNm.setFont(new Font("돋음", Font.BOLD, 15));
+      vModelNm.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       vModelNm.setHorizontalAlignment(JLabel.CENTER);
       vModelNm.setPreferredSize(new Dimension(120, 45));
       
@@ -170,6 +170,7 @@ public class RegPro extends Dialog implements ActionListener, ItemListener {
 
       for (int i = 0; i < color.length; i++) {
          chcolor[i] = new JCheckBox(color[i]);
+         chcolor[i].setFont(new Font("맑은 고딕", Font.BOLD, 12));
 //         chcolor[i].addItemListener(this);
          pcolor.add(chcolor[i]);
       }
@@ -181,7 +182,7 @@ public class RegPro extends Dialog implements ActionListener, ItemListener {
       BtModel.addActionListener(this);
       BtModel.setPreferredSize(new Dimension(120, 28));
       BtModel.setBackground(Color.white);
-      BtModel.setFont(new Font("돋음", Font.BOLD, 15));
+      BtModel.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
       BtColor = new JButton("색상 가져오기");
       BtColor.addActionListener(this);
@@ -189,7 +190,7 @@ public class RegPro extends Dialog implements ActionListener, ItemListener {
       BtPro = new JButton("상품 생성");
       BtPro.setPreferredSize(new Dimension(120, 28));
       BtPro.setBackground(Color.white);
-      BtPro.setFont(new Font("돋음", Font.BOLD, 15));
+      BtPro.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
       BtImg = new JButton("첨부하기");
       BtPro.addActionListener(this);
@@ -198,7 +199,7 @@ public class RegPro extends Dialog implements ActionListener, ItemListener {
       BtReg.addActionListener(this);
       BtReg.setFocusPainted(false);
       BtReg.setBackground(Color.white);
-      BtReg.setFont(new Font("돋음", Font.BOLD, 17));
+      BtReg.setFont(new Font("맑은 고딕", Font.BOLD, 17));
       BtReg.setPreferredSize(new Dimension(70, 30));
 
       BtCancel = new JButton("닫기");
@@ -206,7 +207,7 @@ public class RegPro extends Dialog implements ActionListener, ItemListener {
       BtCancel.setFocusPainted(false);
       BtCancel.setBackground(Color.white);
       BtCancel.setPreferredSize(new Dimension(70, 30));
-      BtCancel.setFont(new Font("돋음", Font.BOLD, 17));
+      BtCancel.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 
       psize2.setEnabled(false);
       psize2.setVisible(false);

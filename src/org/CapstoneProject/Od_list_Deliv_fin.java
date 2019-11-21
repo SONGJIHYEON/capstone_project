@@ -37,7 +37,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
-public class Od_list_Deliv extends JPanel implements ActionListener, MouseListener {
+public class Od_list_Deliv_fin extends JPanel implements ActionListener, MouseListener {
 
 	private JLabel no_deposit;
 	private JTextField Tsearch;
@@ -90,7 +90,7 @@ public class Od_list_Deliv extends JPanel implements ActionListener, MouseListen
 		}
 	}
 
-	public Od_list_Deliv() {
+	public Od_list_Deliv_fin() {
 
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
@@ -197,7 +197,7 @@ public class Od_list_Deliv extends JPanel implements ActionListener, MouseListen
 	}
 
 	public static void main(String[] args) {
-		new Od_list_Deliv();
+		new Od_list_Deliv_fin();
 	}
 	
 	class TableCell3 extends AbstractCellEditor implements TableCellEditor, TableCellRenderer {

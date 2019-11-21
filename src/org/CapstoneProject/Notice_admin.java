@@ -39,7 +39,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class Notice_admin extends JPanel implements ActionListener, MouseListener {
 	
@@ -99,7 +102,7 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 		next.addMouseListener(this);
         
         vNotice = new JLabel("공지사항");
-        vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+        vNotice.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         
         bWrite = new JButton("글쓰기");
         bWrite.setFocusPainted(false);
@@ -115,23 +118,37 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
         bSearch.setPreferredSize(new Dimension(80,40));
         bSearch.setFont(new Font("휴먼매직체", Font.BOLD , 22));
         
-        cbSearch = new JComboBox<String>(search);
-        cbSearch.setFont(new Font("휴먼매직체", Font.PLAIN , 22));
-        cbSearch.setPreferredSize(new Dimension(100,40));
-        cbSearch.setBackground(Color.WHITE);
+		cbSearch = new JComboBox<String>(search);
+		cbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		cbSearch.setPreferredSize(new Dimension(150, 40));
+		cbSearch.setBackground(Color.WHITE);
         
         Tsearch = new JTextField(15);
         Tsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-        Tsearch.setPreferredSize(new Dimension(150,41));
+        Tsearch.setPreferredSize(new Dimension(150,40));
 
 		tNotice = new JTable(model1);
-		tNotice.getColumnModel().getColumn(0).setPreferredWidth(100);  //JTable 의 컬럼 길이 조절
-		tNotice.getColumnModel().getColumn(1).setPreferredWidth(700);
+		tNotice.getColumnModel().getColumn(0).setPreferredWidth(100);
+		tNotice.getColumnModel().getColumn(1).setPreferredWidth(450);
 		tNotice.getColumnModel().getColumn(2).setPreferredWidth(100);
-		tNotice.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tNotice.getColumnModel().getColumn(3).setPreferredWidth(150);
 		tNotice.addMouseListener(this);
 		Scroll = new JScrollPane(tNotice);
-		Scroll.setPreferredSize(new Dimension(1000, 300));
+		Scroll.setPreferredSize(new Dimension(800, 300));
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tNotice.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		tNotice.setRowHeight(25);
+		
+		JTableHeader th = tNotice.getTableHeader();		
+		th.setPreferredSize(new Dimension(800, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 		
 		NoticeListData = NoticeData.selectNotice(); // 공지사항글 정보 받아오기
 		createPanel();// 버튼을 올려놓을 패널 생성, nowPage와 nowPanel값 초기화
@@ -158,8 +175,6 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(bWrite, 4, 1, 1, 1);
-		
-		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(pre, 2, 3, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 		gridbagAdd(pPage[0], 3, 3, 1, 1);
@@ -207,6 +222,7 @@ public class Notice_admin extends JPanel implements ActionListener, MouseListene
 				e.printStackTrace();
 			}
 			String new_appc_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
+			
 			model1.addRow(
 					new Object[] { 
 							NoticeListData.get(i).get("POST_MSG_NUM"), 

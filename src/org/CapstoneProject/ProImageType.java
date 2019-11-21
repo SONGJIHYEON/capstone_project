@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class ProImage extends JPanel implements ActionListener, MouseListener {
+public class ProImageType extends JPanel implements ActionListener, MouseListener {
 
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -53,14 +53,14 @@ public class ProImage extends JPanel implements ActionListener, MouseListener {
 	List<Map<String, Serializable>> ImageListData;
 	private int nowPage;
 	private int nowPanel;
-	private int postPerPage = 9;
+	private int postPerPage = 3;
 	private int pagePerPanel = 3;
 	private int panelNum;
 	private int pageNum;
 	private JButton[] bPage;
 	private JPanel[] pPage;
 	private JButton pre, next;
-	String ad;
+	String ad, model_ctgr;
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints;
@@ -166,13 +166,13 @@ public class ProImage extends JPanel implements ActionListener, MouseListener {
 		return;
 	}
 
-	public ProImage(home_user home) {
+	public ProImageType(home_user home) {
 		this();
 		this.home = home;
 		ProImageview();
 	}
 
-	public ProImage() {
+	public ProImageType() {
 //      setLayout(new FlowLayout(FlowLayout.CENTER, 100, 50));      
 		pre = new JButton("<");
 		pre.setContentAreaFilled(false);
@@ -202,8 +202,8 @@ public class ProImage extends JPanel implements ActionListener, MouseListener {
 	}
 
 	void getData() {
-
-		getData9(ImageData.registModel());
+		model_ctgr = home_user.model_ctgr;
+		getData9(ImageData.registModelType(model_ctgr));
 
 		String ModelImg2[] = new String[arModelImg.size()];
 		ImgLabels = new JLabel[arModelImg.size()];
@@ -235,7 +235,7 @@ public class ProImage extends JPanel implements ActionListener, MouseListener {
 			ModelImg2[i] = arModelImg.get(i);
 			ModelNick2[i] = arModelNick.get(i);
 
-			ad = "C:\\Users\\ssong\\Desktop\\img\\" + ModelImg2[i] + ".jpg";
+			ad = "C:\\Users\\kibum\\Desktop\\img\\" + ModelImg2[i] + ".jpg";
 			f = new File(ad);
 
 			originIcon = new ImageIcon(ad);
@@ -289,7 +289,7 @@ public class ProImage extends JPanel implements ActionListener, MouseListener {
 	}
 
 	public static void main(String[] args) {
-		new ProImage();
+		new ProImageType();
 
 	}
 

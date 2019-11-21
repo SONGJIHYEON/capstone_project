@@ -112,7 +112,7 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 		vMemId = new JLabel("아이디");
 		vMemId.setPreferredSize(new Dimension(120, 40));
 		vMemId.setHorizontalAlignment(JLabel.CENTER);
-		vMemId.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemId.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
 		xMemId = new JTextField(22);
 		xMemId.setPreferredSize(new Dimension(120, 30));
@@ -123,24 +123,24 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 		BtCheckId.setFocusPainted(false);
 		BtCheckId.setBackground(Color.white);
 
-		BtCheckId.setFont(new Font("돋음", Font.BOLD, 15));
+		BtCheckId.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
 		vMemPw1 = new JLabel("비밀번호");
 		vMemPw1.setPreferredSize(new Dimension(120, 40));
-		vMemPw1.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemPw1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		vMemPw1.setHorizontalAlignment(JLabel.CENTER);
 
 		xMemPw1 = new JPasswordField(22);
 		xMemPw1.setPreferredSize(new Dimension(120, 30));
 
 		vMemPw2 = new JLabel("비밀번호 확인");
-		vMemPw2.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemPw2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
 		xMemPw2 = new JPasswordField(22);
 		xMemPw2.setPreferredSize(new Dimension(120, 30));
 
 		vMemName = new JLabel("이름");
-		vMemName.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemName.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		vMemName.setHorizontalAlignment(JLabel.CENTER);
 		vMemName.setPreferredSize(new Dimension(120, 40));
 
@@ -148,7 +148,7 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 		xMemName.setPreferredSize(new Dimension(120, 30));
 
 		vMemBirth = new JLabel("생년월일");
-		vMemBirth.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemBirth.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		vMemBirth.setHorizontalAlignment(JLabel.CENTER);
 		vMemBirth.setPreferredSize(new Dimension(120, 40));
 
@@ -159,7 +159,7 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 		xMemBirth.addMouseListener(this);
 
 		vMemPhone = new JLabel("휴대폰 번호");
-		vMemPhone.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemPhone.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		vMemPhone.setHorizontalAlignment(JLabel.CENTER);
 		vMemPhone.setPreferredSize(new Dimension(120, 40));
 
@@ -167,7 +167,7 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 		xMemPhone.setPreferredSize(new Dimension(120, 30));
 
 //      vMemEmail = new JLabel("이메일");
-//      vMemEmail.setFont(new Font("돋음", Font.BOLD, 15));
+//      vMemEmail.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 //      vMemEmail.setHorizontalAlignment(JLabel.CENTER);
 //      vMemEmail.setPreferredSize(new Dimension(120, 45));
 
@@ -178,7 +178,7 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 //      CbEmail.addActionListener(this);
 
 		vMemAddr1 = new JLabel("우편번호");
-		vMemAddr1.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemAddr1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		vMemAddr1.setHorizontalAlignment(JLabel.CENTER);
 		vMemAddr1.setPreferredSize(new Dimension(120, 40));
 
@@ -190,10 +190,10 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 		BtSearchAddr.setPreferredSize(new Dimension(120, 30));
 		BtSearchAddr.setFocusPainted(false);
 		BtSearchAddr.setBackground(Color.white);
-		BtSearchAddr.setFont(new Font("돋음", Font.BOLD, 15));
+		BtSearchAddr.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
 		vMemAddr2 = new JLabel("기본주소");
-		vMemAddr2.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemAddr2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		vMemAddr2.setHorizontalAlignment(JLabel.CENTER);
 		vMemAddr2.setPreferredSize(new Dimension(120, 20));
 
@@ -201,7 +201,7 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 		xMemAddr2.setPreferredSize(new Dimension(120, 30));
 
 		vMemAddr3 = new JLabel("상세주소");
-		vMemAddr3.setFont(new Font("돋음", Font.BOLD, 15));
+		vMemAddr3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		vMemAddr3.setHorizontalAlignment(JLabel.CENTER);
 		vMemAddr3.setPreferredSize(new Dimension(120, 20));
 
@@ -213,14 +213,14 @@ public class RegMember extends Dialog implements ActionListener, MouseListener {
 		BtRegist.setPreferredSize(new Dimension(65, 25));
 		BtRegist.setFocusPainted(false);
 		BtRegist.setBackground(Color.white);
-		BtRegist.setFont(new Font("돋음", Font.BOLD, 15));
+		BtRegist.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
 		BtCancel = new JButton("취소");
 		BtCancel.addActionListener(this);
 		BtCancel.setPreferredSize(new Dimension(65, 25));
 		BtCancel.setFocusPainted(false);
 		BtCancel.setBackground(Color.white);
-		BtCancel.setFont(new Font("돋음", Font.BOLD, 15));
+		BtCancel.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 
 		Bt.add(BtRegist);
 		Bt.add(BtCancel);

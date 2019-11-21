@@ -39,7 +39,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class Review_user extends JPanel implements ActionListener, MouseListener {
 
@@ -117,13 +120,27 @@ public class Review_user extends JPanel implements ActionListener, MouseListener
 		Tsearch.setPreferredSize(new Dimension(150, 41));
 
 		tReview = new JTable(model1);
-		tReview.getColumnModel().getColumn(0).setPreferredWidth(70);
-		tReview.getColumnModel().getColumn(1).setPreferredWidth(450);
-		tReview.getColumnModel().getColumn(2).setPreferredWidth(70);
-		tReview.getColumnModel().getColumn(3).setPreferredWidth(70);
+		tReview.getColumnModel().getColumn(0).setPreferredWidth(80);
+		tReview.getColumnModel().getColumn(1).setPreferredWidth(420);
+		tReview.getColumnModel().getColumn(2).setPreferredWidth(80);
+		tReview.getColumnModel().getColumn(3).setPreferredWidth(80);
 		tReview.addMouseListener(this);
 		Scroll = new JScrollPane(tReview);
 		Scroll.setPreferredSize(new Dimension(700, 300));
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tReview.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		tReview.setRowHeight(25);
+		
+		JTableHeader th = tReview.getTableHeader();		
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 
 		vNotice = new JLabel("· 공지사항");
 		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));

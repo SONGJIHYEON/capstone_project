@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 
@@ -65,21 +66,41 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 		pur_list.getColumnModel().getColumn(5).setCellEditor(new TableCell());
 		scrollpane1 = new JScrollPane(pur_list);
 		scrollpane1.setPreferredSize(new Dimension(400, 300));
+		
+		pur_list.setRowHeight(20);
+		
+		JTableHeader th = pur_list.getTableHeader();		
+		th.setPreferredSize(new Dimension(400, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 
 		// 구매내역
 		Lcorr_nm = new JLabel("거래처명");
+		Lcorr_nm.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		Lcorr_nm.setHorizontalAlignment(JLabel.CENTER);
 		Lcorr_nm.setPreferredSize(new Dimension(100, 30));
 		Lpur_dt = new JLabel("구매일자");
+		Lpur_dt.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		Lpur_dt.setHorizontalAlignment(JLabel.CENTER);
 		Lpur_dt.setPreferredSize(new Dimension(100, 30));
 		Lpro_nm = new JLabel("상품명");
+		Lpro_nm.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		Lpro_nm.setHorizontalAlignment(JLabel.CENTER);
 		Lpro_nm.setPreferredSize(new Dimension(100, 30));
 		Lpur_quant = new JLabel("구매수량");
+		Lpur_quant.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		Lpur_quant.setHorizontalAlignment(JLabel.CENTER);
 		Lpur_quant.setPreferredSize(new Dimension(100, 30));
 		Lpur_up = new JLabel("구매단가");
+		Lpur_up.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		Lpur_up.setHorizontalAlignment(JLabel.CENTER);
 		Lpur_up.setPreferredSize(new Dimension(100, 30));
 		Lpr = new JLabel("금액");
+		Lpr.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		Lpr.setHorizontalAlignment(JLabel.CENTER);
 		Lpr.setPreferredSize(new Dimension(100, 30));
 		Ltot_pr = new JLabel("총 구매액");
+		Ltot_pr.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		Ltot_pr.setHorizontalAlignment(JLabel.CENTER);
 		Ltot_pr.setPreferredSize(new Dimension(100, 30));
 
 		// 구매내역 입력
@@ -104,29 +125,29 @@ public class pur_brkdwn_regist extends Dialog implements ActionListener, MouseLi
 
 		Bregist = new JButton("등록");
 		Bregist.addActionListener(this);
-		Bregist.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		Bregist.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Bregist.setBackground(Color.WHITE);
 
 		Bcancel = new JButton("취소");
-		Bcancel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		Bcancel.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Bcancel.setBackground(Color.WHITE);
 		Bcancel.addActionListener(this);
 
 		Bcorrsearch = new JButton("거래처검색");
 		Bcorrsearch.addActionListener(this);
-		Bcorrsearch.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		Bcorrsearch.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Bcorrsearch.setFocusPainted(false);
 		Bcorrsearch.setBackground(Color.WHITE);
 
 		Bprosearch = new JButton("상품검색");
 		Bprosearch.addActionListener(this);
-		Bprosearch.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		Bprosearch.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Bprosearch.setFocusPainted(false);
 		Bprosearch.setBackground(Color.WHITE);
 
 		Badd = new JButton("상품추가");
 		Badd.addActionListener(this);
-		Badd.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		Badd.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		Badd.setFocusPainted(false);
 		Badd.setBackground(Color.WHITE);
 

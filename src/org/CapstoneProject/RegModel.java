@@ -84,7 +84,7 @@ public class RegModel extends Dialog implements ActionListener {
       vModelNm = new JLabel("모델명");
       vModelNm.setPreferredSize(new Dimension(120, 40));
       vModelNm.setHorizontalAlignment(JLabel.CENTER);
-      vModelNm.setFont(new Font("돋음", Font.BOLD, 15));
+      vModelNm.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       xModelNm = new JTextField(22);
       xModelNm.setPreferredSize(new Dimension(120, 30));
@@ -105,10 +105,10 @@ public class RegModel extends Dialog implements ActionListener {
       vModelCode = new JLabel("모델코드");
       vModelCode.setPreferredSize(new Dimension(120, 40));
       vModelCode.setHorizontalAlignment(JLabel.CENTER);
-      vModelCode.setFont(new Font("돋음", Font.BOLD, 15));
+      vModelCode.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       vModelCtgr1 = new JLabel("1차분류");
-      vModelCtgr1.setFont(new Font("돋음", Font.BOLD, 15));
+      vModelCtgr1.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       
       Cbctgr1 = new JComboBox<String>(ctgr1);
@@ -120,17 +120,17 @@ public class RegModel extends Dialog implements ActionListener {
       Cbctgr2.addActionListener(this);
       
       vModelCtgr2 = new JLabel("2차분류");
-      vModelCtgr2.setFont(new Font("돋음", Font.BOLD, 15));
+      vModelCtgr2.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       vModelExp = new JLabel("모델상세사이즈");
       vModelExp.setPreferredSize(new Dimension(120, 40));
       vModelExp.setHorizontalAlignment(JLabel.CENTER);
-      vModelExp.setFont(new Font("돋음", Font.BOLD, 15));
+      vModelExp.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
       vModelNick = new JLabel("모델별칭");
       vModelNick.setPreferredSize(new Dimension(120, 40));
       vModelNick.setHorizontalAlignment(JLabel.CENTER);
-      vModelNick.setFont(new Font("돋음", Font.BOLD, 15));
+      vModelNick.setFont(new Font("맑은 고딕", Font.BOLD, 15));
       
 //      vModelSize = new JLabel("모델 상세사이즈");
 
@@ -138,7 +138,7 @@ public class RegModel extends Dialog implements ActionListener {
       BtCode.addActionListener(this);
       BtCode.setFocusPainted(false);
       BtCode.setBackground(Color.white);
-      BtCode.setFont(new Font("돋음", Font.BOLD, 12));
+      BtCode.setFont(new Font("맑은 고딕", Font.BOLD, 12));
 
 //      BtSearch = new JButton("검색");
 //      BtSearch.setPreferredSize(new Dimension(100,28));
@@ -146,13 +146,13 @@ public class RegModel extends Dialog implements ActionListener {
       BtReg.addActionListener(this);
       BtReg.setFocusPainted(false);
       BtReg.setBackground(Color.white);
-      BtReg.setFont(new Font("돋음", Font.BOLD, 13));
+      BtReg.setFont(new Font("맑은 고딕", Font.BOLD, 13));
       
       BtCancel = new JButton("닫기");
       BtCancel.addActionListener(this);
       BtCancel.setFocusPainted(false);
       BtCancel.setBackground(Color.white);
-      BtCancel.setFont(new Font("돋음", Font.BOLD, 13));
+      BtCancel.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
       RegModelView();
    }
@@ -280,14 +280,34 @@ public class RegModel extends Dialog implements ActionListener {
       if (e.getSource() == BtReg) {
          if (a == "상의") {
             getData(ModelData.selectModelNum1(a, b));
+            JOptionPane.showMessageDialog(null, "모델이 등록되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+            xModelNm.setText("");
+            xModelCode.setText("");
+            xModelNick.setText("");
          } else if (a == "하의") {
             getData(ModelData.selectModelNum2(a, b));
+            JOptionPane.showMessageDialog(null, "모델이 등록되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+            xModelNm.setText("");
+            xModelCode.setText("");
+            xModelNick.setText("");
          } else if (a == "아우터") {
             getData(ModelData.selectModelNum3(a, b));
+            JOptionPane.showMessageDialog(null, "모델이 등록되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+            xModelNm.setText("");
+            xModelCode.setText("");
+            xModelNick.setText("");
          } else if (a == "셔츠") {
             getData(ModelData.selectModelNum4(a, b));
+            JOptionPane.showMessageDialog(null, "모델이 등록되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+            xModelNm.setText("");
+            xModelCode.setText("");
+            xModelNick.setText("");
          } else if (a == "신발") {
             getData(ModelData.selectModelNum5(a, b));
+            JOptionPane.showMessageDialog(null, "모델이 등록되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+            xModelNm.setText("");
+            xModelCode.setText("");
+            xModelNick.setText("");
          }
       } else if(e.getSource() == BtCancel) {
          dispose();

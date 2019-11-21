@@ -1,5 +1,6 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -31,7 +32,11 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 
 public class ManModel extends JPanel implements MouseListener, ActionListener{
@@ -62,22 +67,41 @@ public class ManModel extends JPanel implements MouseListener, ActionListener{
 		gbc = new GridBagConstraints(); 
 		
 		vAdminModel = new JLabel("모델조회");
-		vAdminModel.setPreferredSize(new Dimension(200,28));
+		vAdminModel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
         		
 		CbSearch = new JComboBox<String>(search);
-		CbSearch.setPreferredSize(new Dimension(200,28));
+		CbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		CbSearch.setPreferredSize(new Dimension(150, 40));
+		CbSearch.setBackground(Color.WHITE);
 		
-		xSearch = new JTextField(20);
-		xSearch.setPreferredSize(new Dimension(200,28));
+		xSearch = new JTextField(15);
+		xSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		xSearch.setPreferredSize(new Dimension(150, 40));
 		
 		tModelInfo = new JTable(model1);
 		tModelInfo.addMouseListener(this);
         scrollpane1 = new JScrollPane(tModelInfo);
         scrollpane1.setPreferredSize(new Dimension(1000, 300));
+        
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tModelInfo.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+
+		tModelInfo.setRowHeight(25);
+
+		JTableHeader th = tModelInfo.getTableHeader();
+		th.setPreferredSize(new Dimension(1000, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 		
 		BtSearch = new JButton("검색");
-		BtSearch.addActionListener(this);
-		BtSearch.setPreferredSize(new Dimension(100,28));
+		BtSearch.setFocusPainted(false);
+		BtSearch.setBackground(Color.white);
+		BtSearch.setPreferredSize(new Dimension(80, 40));
+		BtSearch.setFont(new Font("휴먼매직체", Font.BOLD, 22));
 //		BtCancel = new JButton("닫기");
 		
 		

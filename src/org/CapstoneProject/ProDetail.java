@@ -58,7 +58,7 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 
 	private JButton Btpurchase, BtBasket, BtPlus, BtMinus, Btpreview;
 	private JTabbedPane t;
-	private JTextArea ta;
+	private JLabel L1, L2;
 	private JPanel p, p1, p2;
 
 	String ad, option, allprice, img, img2, nickname, ctgr, price, price2, modelname, up_price, user_id, user_num,
@@ -76,8 +76,10 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
 	List<Map<String, Serializable>> ImageListData;
+	private ImageIcon Icon_detail;
 
 	private static ProImage parent;
+	private static ProImage parent2;
 
 	public String getData(List<Map<String, Serializable>> ImageListData) {
 
@@ -116,7 +118,7 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 
 	public ProDetail(ProImage parent) {
 		this.parent = parent;
-		
+
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
@@ -143,8 +145,8 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 		vAllPrice = new JLabel("총 상품가격");
 		vProNm = new JLabel(nickname);
 
-//	    cbSel = new JComboBox<String>(div);
-//	    cbSel.setPreferredSize(new Dimension(203, 20));
+//       cbSel = new JComboBox<String>(div);
+//       cbSel.setPreferredSize(new Dimension(203, 20));
 
 		xPrice = new JTextField(20);
 		xPrice.setText(price);
@@ -178,15 +180,29 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 		Cbcolor.addMouseListener(this);
 
 		p1 = new JPanel();
-		ta = new JTextArea(22, 30);
-		ta.setLineWrap(true);
-		scrollpane1 = new JScrollPane(ta);
+		L1 = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\" + ProImage.img + "2.jpg");
+		originImg = originIcon.getImage();
+		changedImg = originImg;
+		Icon_detail = new ImageIcon(changedImg);
+		L1.setIcon(Icon_detail);
+		scrollpane1 = new JScrollPane(L1);
 		scrollpane1.setPreferredSize(new Dimension(430, 400));
 
 		p1.add(scrollpane1);
 		p1.setPreferredSize(new Dimension(430, 400));
 
 		p2 = new JPanel();
+		L2 = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\" + ProImage.img + "2.jpg");
+		originImg = originIcon.getImage();
+		changedImg = originImg;
+		Icon_detail = new ImageIcon(changedImg);
+		L2.setIcon(Icon_detail);
+		scrollpane2 = new JScrollPane(L2);
+		scrollpane2.setPreferredSize(new Dimension(430, 400));
+
+		p2.add(scrollpane2);
 		p2.setPreferredSize(new Dimension(430, 400));
 
 		t = new JTabbedPane();
@@ -200,12 +216,12 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 	}
 
 	private void ProDetailView() {
-//		setTitle("장바구니");
+//      setTitle("장바구니");
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
-//	    gridbagconstraints.ipadx = 7;
-//	    
-//	    gridbagconstraints.weightx=1.0;
+//       gridbagconstraints.ipadx = 7;
+//       
+//       gridbagconstraints.weightx=1.0;
 //      gridbagconstraints.weighty=1.0;
 
 		setLayout(gridbaglayout);
@@ -235,6 +251,105 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 		gridbagAdd(BtMinus, 4, 4, 1, 1);
 
 		setVisible(true);
+	}
+
+	public ProDetail(ProImageType parent) {
+		this.parent = parent2;
+
+		gridbaglayout = new GridBagLayout();
+		gridbagconstraints = new GridBagConstraints();
+
+		img = ProImage.img;
+		img2 = ProImage.img2;
+		nickname = ProImage.nickname;
+		ctgr = ProImage.ctgr;
+		arSize = ProImage.arSize;
+		price = ProImage.price;
+		modelname = ProImage.modelname;
+
+		ad = "C:\\Users\\ssong\\Desktop\\img\\" + img + ".jpg";
+
+		originIcon = new ImageIcon(ad);
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+		Icon = new ImageIcon(changedImg);
+
+		vProImg = new JLabel(Icon);
+		vPrice = new JLabel("단가");
+		vColor = new JLabel("색상");
+		vSize = new JLabel("사이즈");
+		vOption = new JLabel("구매 수량");
+		vAllPrice = new JLabel("총 상품가격");
+		vProNm = new JLabel(nickname);
+
+//       cbSel = new JComboBox<String>(div);
+//       cbSel.setPreferredSize(new Dimension(203, 20));
+
+		xPrice = new JTextField(20);
+		xPrice.setText(price);
+		xOption = new JTextField(3);
+		xOption.setText("1");
+		xOption.setEnabled(false);
+		xAllPrice = new JTextField(20);
+		xAllPrice.addMouseListener(this);
+		xAllPrice.setText(xPrice.getText());
+
+		BtPlus = new JButton("▲");
+		BtPlus.setPreferredSize(new Dimension(45, 20));
+		BtPlus.addActionListener(this);
+		BtMinus = new JButton("▼");
+		BtMinus.setPreferredSize(new Dimension(45, 20));
+		BtMinus.addActionListener(this);
+		Btpurchase = new JButton("주문하기");
+		Btpurchase.addActionListener(this);
+		BtBasket = new JButton("장바구니");
+		BtBasket.addActionListener(this);
+		Btpreview = new JButton("이전");
+		Btpreview.addActionListener(this);
+
+		Cbsize = new JComboBox<String>(arSize.toArray(new String[arSize.size()]));
+		Cbsize.setPreferredSize(new Dimension(120, 20));
+		Cbsize.addActionListener(this);
+
+		Cbcolor = new JComboBox<String>(Basic_clr);
+		Cbcolor.setPreferredSize(new Dimension(120, 20));
+		Cbcolor.addActionListener(this);
+		Cbcolor.addMouseListener(this);
+
+		p1 = new JPanel();
+		L1 = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\" + ProImage.img + "2.jpg");
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance(430, 800, Image.SCALE_SMOOTH);
+		Icon_detail = new ImageIcon(changedImg);
+		L1.setIcon(Icon_detail);
+		scrollpane1 = new JScrollPane(L1);
+		scrollpane1.setPreferredSize(new Dimension(430, 400));
+
+		p1.add(scrollpane1);
+		p1.setPreferredSize(new Dimension(430, 400));
+
+		p2 = new JPanel();
+		L2 = new JLabel("");
+		originIcon = new ImageIcon("C:\\Users\\ssong\\Desktop\\img\\" + ProImage.img + "2.jpg");
+		originImg = originIcon.getImage();
+		changedImg = originImg.getScaledInstance(430, 800, Image.SCALE_SMOOTH);
+		Icon_detail = new ImageIcon(changedImg);
+		L2.setIcon(Icon_detail);
+		scrollpane2 = new JScrollPane(L2);
+		scrollpane2.setPreferredSize(new Dimension(430, 400));
+
+		p2.add(scrollpane2);
+		p2.setPreferredSize(new Dimension(430, 400));
+
+		t = new JTabbedPane();
+		t.add("상품상세", p1);
+		t.add("상품사이즈", p2);
+
+		p = new JPanel();
+		p.add(t);
+
+		ProDetailView();
 	}
 
 	private void gridbagAdd(Component c, int x, int y, int w, int h) {
@@ -297,7 +412,7 @@ public class ProDetail extends JPanel implements ActionListener, MouseListener {
 				getData2(ImageData.selectColor2(selectSize));
 				Cbcolor.setModel(new DefaultComboBoxModel(arColor.toArray()));
 				Cbcolor.setPreferredSize(new Dimension(120, 20));
-//				arColor = null;
+//            arColor = null;
 			}
 			price = xPrice.getText();
 			intprice = Integer.parseInt(price);

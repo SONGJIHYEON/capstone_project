@@ -4,6 +4,7 @@ package org.CapstoneProject;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -28,9 +29,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 public class Od_list_no_deposit extends JPanel implements ActionListener, MouseListener {
 
@@ -52,6 +57,7 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 
 	static String od_num;
 	int row;
+	static int value = 0;
 
 	GridBagLayout gridbaglayout;
 	GridBagConstraints gridbagconstraints; // gridbag레이아웃에 컴포넌트의 위치를 잡아주는 역할
@@ -91,27 +97,57 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		no_deposit = new JLabel("주문관리(미입금)");
-		no_deposit.setPreferredSize(new Dimension(200, 28));
+		no_deposit = new JLabel("미입금");
+		no_deposit.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		cbSearch = new JComboBox<String>(search);
-		cbSearch.setPreferredSize(new Dimension(200, 28));
+		cbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		cbSearch.setPreferredSize(new Dimension(150, 40));
+		cbSearch.setBackground(Color.WHITE);
 
-		Tsearch = new JTextField();
-		Tsearch.setPreferredSize(new Dimension(200, 28));
+		Tsearch = new JTextField(15);
+		Tsearch.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		Tsearch.setPreferredSize(new Dimension(150, 40));
 
 		od_info = new JTable(model1);
 		scrollpane1 = new JScrollPane(od_info);
 		scrollpane1.setPreferredSize(new Dimension(1000, 300));
+		od_info.getColumnModel().getColumn(0).setPreferredWidth(70);
+		od_info.getColumnModel().getColumn(1).setPreferredWidth(85);
+		od_info.getColumnModel().getColumn(2).setPreferredWidth(70);
+		od_info.getColumnModel().getColumn(3).setPreferredWidth(70);
+		od_info.getColumnModel().getColumn(4).setPreferredWidth(265);
+		od_info.getColumnModel().getColumn(5).setPreferredWidth(100);
+		od_info.getColumnModel().getColumn(6).setPreferredWidth(100);
+		od_info.getColumnModel().getColumn(7).setPreferredWidth(110);
+		od_info.getColumnModel().getColumn(8).setPreferredWidth(70);
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = od_info.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
 		od_info.getColumnModel().getColumn(7).setCellRenderer(new TableCell2());
 		od_info.getColumnModel().getColumn(7).setCellEditor(new TableCell2());
 		od_info.getColumnModel().getColumn(8).setCellRenderer(new TableCell());
 		od_info.getColumnModel().getColumn(8).setCellEditor(new TableCell());
+		
+
+		
+		od_info.setRowHeight(25);
+		
+		JTableHeader th = od_info.getTableHeader();		
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 
 		Bsearch = new JButton("검색");
-		Bsearch.setPreferredSize(new Dimension(100, 28));
-		reset = new JButton("초기화");
-		reset.setPreferredSize(new Dimension(100, 28));
+		Bsearch.setFocusPainted(false);
+		Bsearch.setBackground(Color.white);
+		Bsearch.setPreferredSize(new Dimension(80, 40));
+		Bsearch.setFont(new Font("휴먼매직체", Font.BOLD, 22));
 
 //         getDeptData(EmpData.selectDept());
 //         getSvpData(EmpData.selectSpv());
@@ -139,7 +175,7 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 		gridbagAdd(Tsearch, 2, 2, 1, 1);
 		gridbagAdd(Bsearch, 3, 2, 1, 1);
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(reset, 3, 2, 1, 1);
+//		gridbagAdd(reset, 3, 2, 1, 1);
 
 		gridbagAdd(scrollpane1, 1, 3, 5, 5);
 
@@ -212,16 +248,20 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 
 		public TableCell() {
 			// TODO Auto-generated constructor stub
-			jb = new JButton("입금확인");
+			jb = new JButton("확인");
 			jb.setHorizontalAlignment(JLabel.CENTER);
+			jb.setBackground(Color.WHITE);
+			jb.setFocusPainted(false);
 
 			jb.addActionListener(e -> {
+				int row = od_info.getSelectedRow();
 				int check = JOptionPane.showConfirmDialog(null, "입금을 확인했으며 상품준비중으로 업데이트합니다", "",
 						JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
 				
+				od_num = "";
+				od_num += (String) od_info.getValueAt(row, 1);
+
 				if(check == 0) {
-					od_num = "";
-					od_num += (String) od_info.getValueAt(row, 1);
 					OrderData.updatePre_pro(od_num);
 				}else 
 					return;
@@ -253,10 +293,7 @@ public class Od_list_no_deposit extends JPanel implements ActionListener, MouseL
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource() == od_info) {
-			row = od_info.getSelectedRow();
-		}
-
+		
 	}
 
 	@Override

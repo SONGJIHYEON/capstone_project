@@ -49,7 +49,7 @@ public class Login_screen extends JFrame {
 		img_right.setIcon(Icon_Right);
 		img_right.setBounds(d.width * 3 / 4, 100, d.width / 4, d.height - 100);
 
-		add(Login);
+		add(Login);	
 		add(img_top);
 		add(img_left);
 		add(img_right);

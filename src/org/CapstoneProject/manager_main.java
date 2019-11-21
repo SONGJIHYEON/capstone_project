@@ -54,8 +54,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 
 	// 상품 메뉴
 	JMenu Mn_pro = new JMenu("상품");
-	JMenuItem model_look = new JMenuItem("모델조회");
 	JMenuItem model_regist = new JMenuItem("모델등록");
+	JMenuItem model_look = new JMenuItem("모델조회");
 	JMenuItem pro_regist = new JMenuItem("상품등록");
 	JMenuItem pro_look = new JMenuItem("상품조회");
 	JMenuItem pro_up_rec_reg = new JMenuItem("상품단가등록");
@@ -152,8 +152,8 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 		Mn_corr.setPreferredSize(new Dimension(d.width / 8, Mn_corr.getPreferredSize().height));
 //		corr_look.setPreferredSize(new Dimension(d.width / 8, corr_look.getPreferredSize().height));
 
-		Mn_pro.add(model_look);
 		Mn_pro.add(model_regist);
+		Mn_pro.add(model_look);
 		Mn_pro.add(pro_regist);
 		Mn_pro.add(pro_look);
 		Mn_pro.add(pro_up_rec_reg);
@@ -401,7 +401,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 			Pmodel_look.setSize(d.width / 2, d.height - 140);
-			Pmodel_look.setBounds(170, 170, 1060, 470);
+			Pmodel_look.setBounds(170, 150, 1060, 470);
 			add(Pmodel_look);
 			repaint();
 			revalidate();
@@ -421,7 +421,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 			Ppro_look.setSize(d.width / 2, d.height - 140);
-			Ppro_look.setBounds(170, 170, 1060, 470);
+			Ppro_look.setBounds(170, 150, 1060, 470);
 			add(Ppro_look);
 			repaint();
 			revalidate();
@@ -469,17 +469,17 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(POd_pre);
 			repaint();
 			revalidate();
-		} else if (e.getSource() == Od_change) {
-//			getContentPane().removeAll();
-//			JPanel POd_change = new od_list_change();
-//			add(MenuBar);
-//			add(img_top);
-//			POd_change.setSize(d.width / 2, d.height - 140);
-//			POd_change.setBounds(d.width / 4, 140, d.width / 2, d.height - 140);
-//			add(POd_change);
-//			repaint();
-//			revalidate();
-		} else if (e.getSource() == Od_refund) {
+		} else if (e.getSource() == deliv) {
+			getContentPane().removeAll();
+			JPanel POd_deliv = new Od_list_Deliv();
+			add(MenuBar);
+			add(img_top);
+			POd_deliv.setSize(d.width / 2, d.height - 140);
+			POd_deliv.setBounds(200, 150, 1000, 470);
+			add(POd_deliv);
+			repaint();
+			revalidate();
+		} else if (e.getSource() == deliv_fin) {
 //			getContentPane().removeAll();
 //			JPanel POd_refund = new od_list_od_refund();
 //			add(MenuBar);
@@ -505,7 +505,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 			PEmp_look.setSize(d.width / 2, d.height - 140);
-			PEmp_look.setBounds(170, 170, 1060, 470);
+			PEmp_look.setBounds(170, 150, 1060, 470);
 			add(PEmp_look);
 			repaint();
 			revalidate();
@@ -527,7 +527,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 //			PMb_look.setSize(d.width / 2, d.height - 140);
-			PMb_look.setBounds(235, 150, 1000, 470);
+			PMb_look.setBounds(200, 150, 1000, 470);
 			add(PMb_look);
 			repaint();
 			revalidate();
@@ -547,7 +547,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			add(MenuBar);
 			add(img_top);
 			PEvt_look.setSize(d.width / 2, d.height - 140);
-			PEvt_look.setBounds(170, 170, 1060, 470);
+			PEvt_look.setBounds(170, 150, 1060, 470);
 			add(PEvt_look);
 			repaint();
 			revalidate();
@@ -574,7 +574,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			getContentPane().removeAll();
 			add(MenuBar);
 			add(img_top);
-			Label.setBounds(70, 220, 130, 85);
+			Label.setBounds(70, 210, 130, 85);
 //			N_A.setSize(d.width * 3 / 4, d.height - 200);
 			N_A.setBounds(235, 170, 1060, 470);
 			win.add(Label);
@@ -585,7 +585,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			getContentPane().removeAll();
 			add(MenuBar);
 			add(img_top);
-			Label.setBounds(70, 220, 130, 85);
+			Label.setBounds(70, 210, 130, 85);
 //			N_A.setSize(d.width * 3 / 4, d.height - 200);
 			N_A.setBounds(235, 170, 1060, 470);
 			win.add(Label);
@@ -596,7 +596,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			getContentPane().removeAll();
 			add(MenuBar);
 			add(img_top);
-			Label.setBounds(70, 220, 130, 85);
+			Label.setBounds(70, 210, 130, 85);
 //			Q_A.setSize(d.width * 3 / 4, d.height - 200);
 			Q_A.setBounds(235, 170, 1060, 470);
 			win.add(Label);
@@ -607,7 +607,7 @@ public class manager_main extends JFrame implements ActionListener, MouseListene
 			getContentPane().removeAll();
 			add(MenuBar);
 			add(img_top);
-			Label.setBounds(70, 220, 130, 85);
+			Label.setBounds(70, 210, 130, 85);
 //			Q_A.setSize(d.width * 3 / 4, d.height - 200);
 			R_A.setBounds(235, 170, 1060, 470);
 			win.add(Label);

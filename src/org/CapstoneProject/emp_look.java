@@ -1,7 +1,9 @@
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -24,9 +26,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumnModel;
 
 public class emp_look extends JPanel implements ActionListener {
 
@@ -42,7 +48,7 @@ public class emp_look extends JPanel implements ActionListener {
 	private JScrollPane scrollpane1;
 	private JButton jb, Bsearch, Breset;
 	private JComboBox<String> cbSearch;
-	
+
 	ArrayList<String> ar = new ArrayList<String>();
 
 	GridBagLayout gridbaglayout;
@@ -54,35 +60,52 @@ public class emp_look extends JPanel implements ActionListener {
 		gridbagconstraints = new GridBagConstraints();
 
 		emp_lookup = new JLabel("사원조회");
-		emp_lookup.setPreferredSize(new Dimension(100, 30));
+		emp_lookup.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
-		Tsearch = new JTextField(18);
-		Tsearch.setPreferredSize(new Dimension(100, 30));
+		Tsearch = new JTextField(15);
+		Tsearch.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
+		Tsearch.setPreferredSize(new Dimension(150, 40));
 
 		cbSearch = new JComboBox<String>(search);
-		cbSearch.setPreferredSize(new Dimension(200, 28));
+		cbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		cbSearch.setPreferredSize(new Dimension(150, 40));
+		cbSearch.setBackground(Color.WHITE);
 
 		emp_info = new JTable(model1);
 		scrollpane1 = new JScrollPane(emp_info);
-		scrollpane1.setPreferredSize(new Dimension(1000, 300));
+		scrollpane1.setPreferredSize(new Dimension(900, 300));
+
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = emp_info.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+
+		emp_info.setRowHeight(25);
+
+		JTableHeader th = emp_info.getTableHeader();
+		th.setPreferredSize(new Dimension(900, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 
 		Bsearch = new JButton("검색");
-		Bsearch.addActionListener(this);
-		Bsearch.setPreferredSize(new Dimension(200, 28));
-//         getDeptData(EmpData.selectDept());
-//         getSvpData(EmpData.selectSpv());
-//         setExtendedState(MAXIMIZED_BOTH);
+		Bsearch.setFocusPainted(false);
+		Bsearch.setBackground(Color.white);
+		Bsearch.setPreferredSize(new Dimension(80, 40));
+		Bsearch.setFont(new Font("휴먼매직체", Font.BOLD, 22));
+
 		getData(empData.selectEmp());
 		EmpRegisterView();
 	}
 
 	private void getData(List<Map<String, Serializable>> empListData) {
 
-		for (int i = 0; i < empListData.size(); i++) {		
+		for (int i = 0; i < empListData.size(); i++) {
 			ar.add(empListData.get(i).get("APPC_DT").toString());
-			
+
 //			String oldstring = ex_st_date;
-			
+
 			Date date = null;
 			try {
 				date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S").parse(ar.get(i));
@@ -91,12 +114,12 @@ public class emp_look extends JPanel implements ActionListener {
 				e.printStackTrace();
 			}
 			String new_appc_date = new SimpleDateFormat("yyyy-MM-dd").format(date);
-			
-			model1.addRow(new Object[] {
+
+			model1.addRow(new Object[] { 
 					empListData.get(i).get("EMP_NUM"), 
 					empListData.get(i).get("EMP_NM"),
 					empListData.get(i).get("PH_NUM"), 
-					new_appc_date,
+					new_appc_date, 
 					empListData.get(i).get("EMP_TP"),
 					empListData.get(i).get("REG_WRKR_TP") });
 		}

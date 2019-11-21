@@ -15,7 +15,7 @@ import java.util.Map;
 public class NoticeData {
 
 	public static Connection conn = ConnectionDB.getConnection();
-	static String quary;
+	static String quary, quary2;
 	static PreparedStatement pstm = null;
 	static ResultSet rs = null;
 
@@ -48,9 +48,19 @@ public class NoticeData {
 		quary = "UPDATE POST_MSG " 
 				+ "SET POST_MSG_TIT='"+Title+"',WRT_DATE=to_char(sysdate, 'yyyy-mm-dd'),POST_MSG_CON='"+content+"' "
 				+ "WHERE POST_MSG_NUM='"+Title+"' ";
+		
+		quary2 = "commit";
 
 		try {
 			pstm = conn.prepareStatement(quary);
+			pstm.executeQuery();
+		} catch (SQLException sqle) {
+			System.out.println("select문에서 예외 발생");
+			sqle.printStackTrace();
+		}
+		
+		try {
+			pstm = conn.prepareStatement(quary2);
 			pstm.executeQuery();
 		} catch (SQLException sqle) {
 			System.out.println("select문에서 예외 발생");
@@ -133,7 +143,7 @@ public class NoticeData {
 	
 	static List<Map<String, Serializable>> infoN(String POST_NUM) {
 		
-		quary = "select POST_MSG_TIT, WRT_DATE, POST_MSG_CON "
+		quary = "select POST_MSG_TIT, WRITER_NM, WRT_DATE, POST_MSG_CON "
 				+ "FROM  POST_MSG "
 				+ "where POST_BRD_TP = '공지사항' and POST_MSG_NUM = " + POST_NUM ;
 		
@@ -148,8 +158,9 @@ public class NoticeData {
 				NoticeDataSet = new HashMap<String, Serializable>();
 				
 				NoticeDataSet.put("POST_MSG_TIT", rs.getString(1)); 
-				NoticeDataSet.put("WRT_DATE", rs.getString(2));
-				NoticeDataSet.put("POST_MSG_CON", rs.getString(3));
+				NoticeDataSet.put("WRITER_NM", rs.getString(2));
+				NoticeDataSet.put("WRT_DATE", rs.getString(3));
+				NoticeDataSet.put("POST_MSG_CON", rs.getString(4));
 
 				NoticeListData.add(NoticeDataSet);
 				

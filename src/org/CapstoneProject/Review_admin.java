@@ -39,7 +39,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class Review_admin extends JPanel implements ActionListener, MouseListener {
 
@@ -67,7 +70,7 @@ public class Review_admin extends JPanel implements ActionListener, MouseListene
 	List<Map<String, Serializable>> ReviewListData;
 	private int nowPage;
 	private int nowPanel;
-	private int postPerPage = 5;
+	private int postPerPage = 10;
 	private int pagePerPanel = 3;
 	private int panelNum;
 	private int pageNum;
@@ -99,7 +102,7 @@ public class Review_admin extends JPanel implements ActionListener, MouseListene
 		next.addMouseListener(this);
 
 		vReview = new JLabel("후기게시판");
-		vReview.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		vReview.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		bSearch = new JButton("검색");
 		bSearch.setFocusPainted(false);
@@ -108,22 +111,36 @@ public class Review_admin extends JPanel implements ActionListener, MouseListene
 		bSearch.setFont(new Font("휴먼매직체", Font.BOLD, 22));
 
 		cbSearch = new JComboBox<String>(search);
-		cbSearch.setFont(new Font("휴먼매직체", Font.PLAIN, 22));
-		cbSearch.setPreferredSize(new Dimension(100, 40));
+		cbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		cbSearch.setPreferredSize(new Dimension(150, 40));
 		cbSearch.setBackground(Color.WHITE);
 
 		Tsearch = new JTextField(15);
 		Tsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		Tsearch.setPreferredSize(new Dimension(150, 41));
+		Tsearch.setPreferredSize(new Dimension(150, 40));
 
 		tReview = new JTable(model1);
-		tReview.getColumnModel().getColumn(0).setPreferredWidth(70);
+		tReview.getColumnModel().getColumn(0).setPreferredWidth(100);
 		tReview.getColumnModel().getColumn(1).setPreferredWidth(450);
-		tReview.getColumnModel().getColumn(2).setPreferredWidth(70);
-		tReview.getColumnModel().getColumn(3).setPreferredWidth(70);
+		tReview.getColumnModel().getColumn(2).setPreferredWidth(100);
+		tReview.getColumnModel().getColumn(3).setPreferredWidth(150);
 		tReview.addMouseListener(this);
 		Scroll = new JScrollPane(tReview);
-		Scroll.setPreferredSize(new Dimension(700, 300));
+		Scroll.setPreferredSize(new Dimension(800, 300));
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tReview.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		tReview.setRowHeight(25);
+		
+		JTableHeader th = tReview.getTableHeader();		
+		th.setPreferredSize(new Dimension(800, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 
 		vNotice = new JLabel("· 공지사항");
 		vNotice.setFont(new Font("휴먼매직체", Font.BOLD, 20));
@@ -154,15 +171,12 @@ public class Review_admin extends JPanel implements ActionListener, MouseListene
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 
-		gridbagAdd(vSpace, 1, 1, 1, 1);
 		gridbagAdd(vReview, 2, 0, 1, 1);
 		gridbagAdd(cbSearch, 2, 1, 1, 1);
 		gridbagAdd(Tsearch, 3, 1, 1, 1);
 		gridbagAdd(bSearch, 4, 1, 1, 1);
 
 		gridbagAdd(Scroll, 2, 2, 3, 1);
-
-		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		gridbagAdd(pre, 2, 3, 1, 1);
@@ -171,7 +185,6 @@ public class Review_admin extends JPanel implements ActionListener, MouseListene
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 		gridbagAdd(next, 4, 3, 1, 1);
 
-		gridbagconstraints.anchor = GridBagConstraints.EAST;
 		setVisible(true);
 	}
 

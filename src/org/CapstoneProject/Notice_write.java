@@ -60,18 +60,24 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 		gridbagconstraints = new GridBagConstraints(); 
 		
 		vTitle = new JLabel("제목");
-		vTitle.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vTitle.setPreferredSize(new Dimension(100,40));
+		vTitle.setHorizontalAlignment(JLabel.CENTER);
+		vTitle.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		vTitle.setPreferredSize(new Dimension(100, 40));
+
 		vContent = new JLabel("내용");
-		vContent.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vContent.setPreferredSize(new Dimension(100,40));
+		vContent.setHorizontalAlignment(JLabel.CENTER);
+		vContent.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		vContent.setPreferredSize(new Dimension(100, 40));
+		
 		vWriter = new JLabel("작성자");
-		vWriter.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vWriter.setPreferredSize(new Dimension(100,40));
+		vWriter.setHorizontalAlignment(JLabel.CENTER);
+		vWriter.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		vWriter.setPreferredSize(new Dimension(100, 40));
+		
 		vDate = new JLabel("작성일");
 		vDate.setHorizontalAlignment(JLabel.CENTER);
-		vDate.setFont(new Font("휴먼매직체", Font.BOLD, 20));
-		vDate.setPreferredSize(new Dimension(100,40));
+		vDate.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		vDate.setPreferredSize(new Dimension(100, 40));
 		
 		vSpace1 = new JLabel("");
 		vSpace1.setPreferredSize(new Dimension(100,20));
@@ -79,11 +85,11 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 		vSpace2.setPreferredSize(new Dimension(100,20));
 		
 		tTitle = new JTextField(20);
-		tTitle.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		tTitle.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		tWriter = new JTextField(5);
 		tWriter.setText("관리자");
 		tWriter.setHorizontalAlignment(JTextField.CENTER);
-		tWriter.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		tWriter.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c1 = Calendar.getInstance();
@@ -92,11 +98,11 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 		tDate = new JTextField(9);
 		tDate.setText(strToday);
 		tDate.setHorizontalAlignment(JTextField.CENTER);
-		tDate.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		tDate.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		
 		tContent = new JTextArea(15, 20);
 		tContent.setLineWrap(true);
-		tContent.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
+		tContent.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		Scroll = new JScrollPane(tContent);
 		
 		bRegist = new JButton("등록");
@@ -104,14 +110,14 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 		bRegist.setFocusPainted(false);
 		bRegist.setBackground(Color.white);
 		bRegist.setPreferredSize(new Dimension(80,30));
-		bRegist.setFont(new Font("휴먼매직체", Font.BOLD , 17));
+		bRegist.setFont(new Font("맑은 고딕", Font.BOLD , 17));
 		
 		bCancel = new JButton("취소");
 		bCancel.addActionListener(this);
 		bCancel.setFocusPainted(false);
 		bCancel.setBackground(Color.white);
 		bCancel.setPreferredSize(new Dimension(80,30));
-		bCancel.setFont(new Font("휴먼매직체", Font.BOLD , 17));
+		bCancel.setFont(new Font("맑은 고딕", Font.BOLD , 17));
 		
 		tTitle.setBorder(new LineBorder(Color.black));
 		tWriter.setBorder(new LineBorder(Color.black));
@@ -120,10 +126,6 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 		bRegist.setBorder(new LineBorder(Color.black));
 		bCancel.setBorder(new LineBorder(Color.black));
 		
-		tTitle.setOpaque(false);
-		tWriter.setOpaque(false);
-		tDate.setOpaque(false);
-		tContent.setOpaque(false);
 
 		home_adminView();
 	}
@@ -137,22 +139,21 @@ public class Notice_write extends Dialog implements ActionListener, MouseListene
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 
 		gridbagAdd(vTitle, 0, 0, 1, 1);
-	    gridbagAdd(tTitle, 1, 0, 3, 1);
+		gridbagAdd(tTitle, 1, 0, 3, 1);
 		gridbagAdd(vWriter, 0, 2, 1, 1);
 		gridbagAdd(tWriter, 1, 2, 1, 1);
 		gridbagAdd(vDate, 2, 2, 1, 1);
 		gridbagAdd(tDate, 3, 2, 1, 1);
 		gridbagAdd(vContent, 0, 4, 1, 1);
-	    gridbagAdd(Scroll, 1, 4, 3, 1);
-		
+		gridbagAdd(Scroll, 1, 4, 3, 1);
+		gridbagAdd(bRegist, 1, 5, 1, 1);
+
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 		gridbagAdd(vSpace1, 0, 1, 1, 1);
 		gridbagAdd(vSpace2, 0, 3, 1, 1);
-		
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(bRegist, 0, 5, 3, 1);
-		gridbagAdd(bCancel, 0, 5, 4, 1);
+		gridbagAdd(bCancel, 3, 5, 1, 1);
 	    
 		pack();
 	    setVisible(true);

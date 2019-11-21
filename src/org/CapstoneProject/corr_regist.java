@@ -40,10 +40,10 @@ public class corr_regist extends Dialog implements ActionListener {
 		gridbaglayout = new GridBagLayout();
 		gridbagconstraints = new GridBagConstraints();
 
-		corr_regist2 = new JLabel("거래처등록");
-		corr_regist2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		corr_regist2.setHorizontalAlignment(JLabel.CENTER);
-		corr_regist2.setPreferredSize(new Dimension(100, 30));
+//		corr_regist2 = new JLabel("거래처등록");
+//		corr_regist2.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+//		corr_regist2.setHorizontalAlignment(JLabel.CENTER);
+//		corr_regist2.setPreferredSize(new Dimension(100, 30));
 
 		Lcorr_nm = new JLabel("업체명");
 		Lcorr_nm.setFont(new Font("맑은 고딕", Font.BOLD, 17));
@@ -120,6 +120,8 @@ public class corr_regist extends Dialog implements ActionListener {
 	}
 
 	private void EmpRegisterView() {
+		
+		setTitle("거래처등록");
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
 //         gridbagconstraints.ipadx = 7;
@@ -132,7 +134,7 @@ public class corr_regist extends Dialog implements ActionListener {
 		
 		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 
-		gridbagAdd(corr_regist2, 1, 1, 1, 1);
+//		gridbagAdd(corr_regist2, 1, 1, 1, 1);
 		gridbagAdd(Lcorr_nm, 1, 3, 1, 1);
 		gridbagAdd(Lcorr_prnm, 1, 4, 1, 1);
 		gridbagAdd(Lcorr_ph, 1, 5, 1, 1);

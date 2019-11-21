@@ -37,13 +37,17 @@ public class pur_look extends JFrame implements ActionListener {
 	Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public pur_look() {
+		
+		setTitle("구매조회");
+		
 //		pur_list.setSize(d.width / 3, d.height / 2);
-		pur_list.setBounds(0, 0, 440, 380);
+		pur_list.setBounds(0, 0, 460, 380);
 //		pur_brkdwn_list.setSize(d.width / 3, d.height / 2);
-		pur_brkdwn_list.setBounds(440, 0, 630, 380);
+		pur_brkdwn_list.setBounds(460, 0, 630, 380);
 
 		BtClose = new JButton("닫기");
-		BtClose.setBounds(985, 385, 70, 30);
+		BtClose.setBackground(Color.WHITE);
+		BtClose.setBounds(1000, 385, 70, 30);
 		BtClose.addActionListener(this);
 
 		getContentPane().add(BtClose);
@@ -51,7 +55,7 @@ public class pur_look extends JFrame implements ActionListener {
 		getContentPane().add(pur_brkdwn_list);
 
 		getContentPane().setLayout(null);
-		setSize(1090, 470);
+		setSize(1100, 470);
 //		setResizable(false);
 		setVisible(true);
 	}

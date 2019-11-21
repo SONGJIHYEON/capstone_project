@@ -39,7 +39,10 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class QnA_admin extends JPanel implements ActionListener, MouseListener {
 
@@ -96,7 +99,7 @@ public class QnA_admin extends JPanel implements ActionListener, MouseListener {
 		next.addMouseListener(this);
 
 		vQnA = new JLabel("QnA");
-		vQnA.setFont(new Font("휴먼매직체", Font.BOLD, 25));
+		vQnA.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 
 		bSearch = new JButton("검색");
 		bSearch.setFocusPainted(false);
@@ -105,23 +108,37 @@ public class QnA_admin extends JPanel implements ActionListener, MouseListener {
 		bSearch.setFont(new Font("휴먼매직체", Font.BOLD, 22));
 
 		cbSearch = new JComboBox<String>(search);
-		cbSearch.setFont(new Font("휴먼매직체", Font.PLAIN, 22));
-		cbSearch.setPreferredSize(new Dimension(100, 40));
+		cbSearch.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		cbSearch.setPreferredSize(new Dimension(150, 40));
 		cbSearch.setBackground(Color.WHITE);
 
 		Tsearch = new JTextField(15);
 		Tsearch.setFont(new Font("휴먼매직체", Font.PLAIN, 20));
-		Tsearch.setPreferredSize(new Dimension(150, 41));
+		Tsearch.setPreferredSize(new Dimension(150, 40));
 
 		tQnA = new JTable(model1);
-		tQnA.getColumnModel().getColumn(0).setPreferredWidth(70);
-		tQnA.getColumnModel().getColumn(1).setPreferredWidth(70);
+		tQnA.getColumnModel().getColumn(0).setPreferredWidth(80);
+		tQnA.getColumnModel().getColumn(1).setPreferredWidth(80);
 		tQnA.getColumnModel().getColumn(2).setPreferredWidth(390);
-		tQnA.getColumnModel().getColumn(3).setPreferredWidth(70);
-		tQnA.getColumnModel().getColumn(4).setPreferredWidth(100);
+		tQnA.getColumnModel().getColumn(3).setPreferredWidth(100);
+		tQnA.getColumnModel().getColumn(4).setPreferredWidth(150);
 		tQnA.addMouseListener(this);
 		Scroll = new JScrollPane(tQnA);
-		Scroll.setPreferredSize(new Dimension(700, 300));
+		Scroll.setPreferredSize(new Dimension(800, 300));
+		
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
+
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = tQnA.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		tQnA.setRowHeight(25);
+		
+		JTableHeader th = tQnA.getTableHeader();		
+		th.setPreferredSize(new Dimension(800, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 
 		QnAListData = QnAData.selectQnA();// 공지사항글 정보 받아오기
 		createPanel();// 버튼을 올려놓을 패널 생성, nowPage와 nowPanel값 초기화

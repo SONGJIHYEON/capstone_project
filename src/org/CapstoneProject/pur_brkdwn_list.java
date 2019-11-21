@@ -18,7 +18,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
+import javax.swing.table.TableColumnModel;
 
 public class pur_brkdwn_list extends JPanel implements ActionListener {
 
@@ -40,9 +44,20 @@ public class pur_brkdwn_list extends JPanel implements ActionListener {
 		scrollpane1 = new JScrollPane(pur_info);
 		scrollpane1.setPreferredSize(new Dimension(600, 300));
 
-//         getDeptData(EmpData.selectDept());
+		DefaultTableCellRenderer tScheduleCellRenderer = new DefaultTableCellRenderer();
 
-//         getSvpData(EmpData.selectSpv());
+		tScheduleCellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+		TableColumnModel tcmSchedule = pur_info.getColumnModel();
+		for (int i = 0; i < tcmSchedule.getColumnCount(); i++) {
+			tcmSchedule.getColumn(i).setCellRenderer(tScheduleCellRenderer);
+		}
+		
+		pur_info.setRowHeight(25);
+		
+		JTableHeader th = pur_info.getTableHeader();		
+		th.setPreferredSize(new Dimension(700, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
+		
 		EmpRegisterView();
 	}
 

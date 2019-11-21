@@ -1,9 +1,11 @@
 
 package org.CapstoneProject;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -155,7 +157,13 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 		tProInfo = new JTable(model1);
 		scrollpane1 = new JScrollPane(tProInfo);
 //        scrollpane1.setRowHeaderView(tProInfo);
-		scrollpane1.setPreferredSize(new Dimension(750, 100));
+		scrollpane1.setPreferredSize(new Dimension(750, 150));
+		
+		tProInfo.setRowHeight(25);
+		
+		JTableHeader th = tProInfo.getTableHeader();
+		th.setPreferredSize(new Dimension(750, 30));
+		th.setFont(new Font("맑은 고딕", Font.PLAIN, 17));
 
 		rSameAddr = new JRadioButton("주문자와 동일");
 		rSameAddr.addActionListener(this);
@@ -183,14 +191,16 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 //		pRadio2.add(rDeposit);
 
 		BtPoint = new JButton("사용");
+		BtPoint.setBackground(Color.white);
 		BtPoint.addActionListener(this);
 
 		cbBk = new JComboBox<String>(col2);
 		cbBk.setPreferredSize(new Dimension(100, 28));
 		BtOrder = new JButton("주문하기");
+		BtOrder.setBackground(Color.white);
 		BtOrder.addActionListener(this);
-		BtBack = new JButton("이전 페이지");
-		BtBack.addActionListener(this);
+//		BtBack = new JButton("이전 페이지");
+//		BtBack.addActionListener(this);
 
 		getData(BasketData.selectBasket(cust_num));
 		MemOrdPgView();
@@ -241,7 +251,6 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 		gridbagAdd(xRecipPhone, 1, 19, 1, 1);
 		gridbagAdd(xDeliveMsg, 1, 20, 1, 1);
 
-		gridbagconstraints.anchor = GridBagConstraints.CENTER;
 		gridbagAdd(v1, 2, 13, 1, 1);
 		gridbagAdd(vGradeDis, 3, 13, 1, 1);
 		gridbagAdd(vUsedPoint, 3, 14, 1, 1);
@@ -260,10 +269,10 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 		gridbagAdd(cbBk, 4, 20, 1, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.EAST;
-		gridbagAdd(BtOrder, 5, 21, 1, 1);
+		gridbagAdd(BtOrder, 6, 20, 1, 1);
 
 		gridbagconstraints.anchor = GridBagConstraints.WEST;
-		gridbagAdd(BtBack, 6, 21, 1, 1);
+//		gridbagAdd(BtBack, 6, 21, 1, 1);
 		gridbagAdd(vPoint, 6, 14, 1, 1);
 		gridbagAdd(BtPoint, 5, 14, 1, 1);
 
@@ -313,24 +322,31 @@ public class MemOrdPg extends JPanel implements ActionListener, MouseListener {
 			}
 		} if(rBank.isSelected() == true) {
 			if(e.getSource() == BtOrder) {
-				rBankTxt = rBank.getText();
-				od_price = xPrice.getText();
-				Recipiant = xRecipiant.getText();
-				RecipAddr = xRecipAddr.getText();
-				RecipPhone = xRecipPhone.getText();
-				
-				OrderData.createOrderB(cust_num, od_price, Recipiant, RecipAddr, RecipPhone);
-				getData2(OrderData.selectOd_Num());
-				OrderData.createOd_brkdwn(orderNum);
-				PayData.createPay(orderNum, String.valueOf(price));
-				getData3(PayData.selectPay_Num());
-				if(!xUsedPoint.getText().equals("")) {
-					used_point = xUsedPoint.getText();
-					PayData.createPayBrkdwn1(payNum, Double.valueOf(od_price), Double.valueOf(used_point));
-				}else 
-					PayData.createPayBrkdwn2(payNum, price);
+				int check = JOptionPane.showConfirmDialog(null, "주문 하시겠습니까?", "주문 확인", JOptionPane.YES_NO_OPTION,
+						JOptionPane.INFORMATION_MESSAGE);
+				if(check == 0) {
+					rBankTxt = rBank.getText();
+					od_price = xPrice.getText();
+					Recipiant = xRecipiant.getText();
+					RecipAddr = xRecipAddr.getText();
+					RecipPhone = xRecipPhone.getText();
+					
+					OrderData.createOrderB(cust_num, od_price, Recipiant, RecipAddr, RecipPhone);
+					getData2(OrderData.selectOd_Num());
+					OrderData.createOd_brkdwn(orderNum);
+					PayData.createPay(orderNum, String.valueOf(price));
+					getData3(PayData.selectPay_Num());
+					if(!xUsedPoint.getText().equals("")) {
+						used_point = xUsedPoint.getText();
+						PayData.createPayBrkdwn1(payNum, Double.valueOf(od_price), Double.valueOf(used_point));
+						}else {
+							PayData.createPayBrkdwn2(payNum, price);
+						}
+					JOptionPane.showMessageDialog(null, "주문이 완료되었습니다", "", JOptionPane.INFORMATION_MESSAGE);
+					}else
+						return;
 				}
-		} else if(rCard.isSelected() == true) {
+			} else if(rCard.isSelected() == true) {
 			if(e.getSource() == BtOrder) {
 				System.out.println(price);
 				od_price = xPrice.getText();
